@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Miva Revision Hub</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            background: #f5f7fa;
+            color: #17365d;
+        }
+
+        .hero {
+            background: linear-gradient(135deg, #173f67, #0d2d4d);
+            color: white;
+            text-align: center;
+            padding: 55px 20px 65px;
+        }
+
+        .hero h1 {
+            font-size: 42px;
+            margin-bottom: 15px;
+        }
+
+        .hero p {
+            font-size: 17px;
+            line-height: 1.7;
+            max-width: 750px;
+            margin: auto;
+            color: #dce8f4;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: -30px auto 60px;
+            padding: 0 20px;
+        }
+
+        .courses {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 22px;
+        }
+
+        .card {
+            background: white;
+            border-radius: 12px;
+            padding: 25px;
+            box-shadow: 0 4px 18px rgba(0,0,0,0.08);
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.12);
+        }
+
+        .code {
+            display: inline-block;
+            background: #dff4f1;
+            color: #008f83;
+            font-weight: bold;
+            font-size: 13px;
+            padding: 7px 12px;
+            border-radius: 20px;
+            margin-bottom: 15px;
+        }
+
+        .card h2 {
+            font-size: 21px;
+            margin-bottom: 12px;
+            line-height: 1.35;
+        }
+
+        .card p {
+            color: #66788a;
+            font-size: 14px;
+            line-height: 1.6;
+            margin-bottom: 20px;
+        }
+
+        .buttons {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+
+        .buttons a,
+        .coming-soon {
+            display: inline-block;
+            padding: 10px 13px;
+            border-radius: 6px;
+            font-size: 13px;
+            font-weight: bold;
+            text-decoration: none;
+        }
+
+        .buttons a {
+            background: #0c9f94;
+            color: white;
+        }
+
+        .buttons a:hover {
+            background: #087f77;
+        }
+
+        .coming-soon {
+            background: #e9edf1;
+            color: #8a96a3;
+            cursor: default;
+        }
+
+        footer {
+            text-align: center;
+            padding: 30px 20px;
+            color: #7b8794;
+            font-size: 13px;
+        }
+
+        @media (max-width: 900px) {
+            .courses {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 600px) {
+            .courses {
+                grid-template-columns: 1fr;
+            }
+
+            .hero h1 {
+                font-size: 32px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <header class="hero">
+        <h1>Miva Revision Hub</h1>
+        <p>
+            Interactive revision materials, course summaries and study resources
+            for Miva Open University 100-level Business Management students.
+        </p>
+    </header>
+
+    <main class="container">
+        <section class="courses">
+
+            <!-- AMS 102 -->
+            <div class="card">
+                <span class="code">AMS 102</span>
+                <h2>Basic Mathematics</h2>
+                <p>
+                    Course summaries and revision materials covering the
+                    semester's mathematics topics.
+                </p>
+
+                <div class="buttons">
+                    <a href="AMS%20102%20Week%201%20-%20Week%204.html">Weeks 1–4</a>
+                    <span class="coming-soon">Weeks 5–8</span>
+                    <span class="coming-soon">Weeks 9–12</span>
+                </div>
+            </div>
+
+            <!-- AMS 104 -->
+            <div class="card">
+                <span class="code">AMS 104</span>
+                <h2>Principles of Project Management</h2>
+                <p>
+                    Revision summaries covering the key principles and concepts
+                    of project management.
+                </p>
+
+                <div class="buttons">
+                    <a href="AMS%20104%20Week%201%20-%20Week%204.html">Weeks 1–4</a>
+                    <span class="coming-soon">Weeks 5–8</span>
+                    <span class="coming-soon">Weeks 9–12</span>
+                </div>
+            </div>
+
+            <!-- AMS 108 -->
+            <div class="card">
+                <span class="code">AMS 108</span>
+                <h2>Principles of Management II</h2>
+                <p>
+                    Course summaries and study materials for Principles of
+                    Management II.
+                </p>
+
+                <div class="buttons">
+                    <a href="AMS%20108%20Week%201%20-%20Week%204.html">Weeks 1–4</a>
+                    <span class="coming-soon">Weeks 5–8</span>
+                    <span class="coming-soon">Weeks 9–12</span>
+                </div>
+            </div>
+
+            <!-- BUA 102 -->
+            <div class="card">
+                <span class="code">BUA 102</span>
+                <h2>Introduction to Business II</h2>
+                <p>
+                    Revision materials and summaries for Introduction to
+                    Business II.
+                </p>
+
+                <div class="buttons">
+                    <a href="BUA%20102%20Week%201%20-%20Week%204.html">Weeks 1–4</a>
+                    <span class="coming-soon">Weeks 5–8</span>
+                    <span class="coming-soon">Weeks 9–12</span>
+                </div>
+            </div>
+
+            <!-- ECO 102 -->
+            <div class="card">
+                <span class="code">ECO 102</span>
+                <h2>Principles of Economics II</h2>
+                <p>
+                    Economics II summaries and revision materials for the
+                    second semester.
+                </p>
+
+                <div class="buttons">
+                    <a href="ECO%20101%20Week%201%20-%20Week%204.html">Weeks 1–4</a>
+                    <span class="coming-soon">Weeks 5–8</span>
+                    <span class="coming-soon">Weeks 9–12</span>
+                </div>
+            </div>
+
+            <!-- GST 112 -->
+            <div class="card">
+                <span class="code">GST 112</span>
+                <h2>Nigerian Peoples and Culture</h2>
+                <p>
+                    Course summaries and revision materials covering Nigerian
+                    peoples, culture and society.
+                </p>
+
+                <div class="buttons">
+                    <a href="GST%20112%20Week%201%20-%20Week%204.html">Weeks 1–4</a>
+                    <span class="coming-soon">Weeks 5–8</span>
+                    <span class="coming-soon">Weeks 9–12</span>
+                </div>
+            </div>
+
+            <!-- GST 122 -->
+            <div class="card">
+                <span class="code">GST 122</span>
+                <h2>Communication Skills in English II</h2>
+                <p>
+                    Revision materials and summaries for Communication Skills
+                    in English II.
+                </p>
+
+                <div class="buttons">
+                    <a href="GST%20122%20Week%201%20-%20Week%204.html">Weeks 1–4</a>
+                    <span class="coming-soon">Weeks 5–8</span>
+                    <span class="coming-soon">Weeks 9–12</span>
+                </div>
+            </div>
+
+        </section>
+    </main>
+
+    <footer>
+        Miva Revision Hub · Business Management · 100 Level · Semester 2
+    </footer>
+
+</body>
+</html>
