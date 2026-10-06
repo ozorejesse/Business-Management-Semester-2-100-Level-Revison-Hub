@@ -1,0 +1,1098 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Principles of Management II - Master Summary Suite</title>
+    <style>
+        :root {
+            --bg-color: #f8fafc;
+            --surface-color: #ffffff;
+            --text-color: #1e293b;
+            --border-color: #e2e8f0;
+            --primary-color: #0d9488;
+            --primary-hover: #0f766e;
+            --success-color: #16a34a;
+            --success-bg: #f0fdf4;
+            --success-border: #bbf7d0;
+            --error-color: #dc2626;
+            --error-bg: #fef2f2;
+            --error-border: #fecaca;
+            --badge-bg: #ccfbf1;
+            --badge-text: #115e59;
+            --card-hover: #f1f5f9;
+            --summary-bg: #f1f5f9;
+        }
+
+        [data-theme="dark"] {
+            --bg-color: #0f172a;
+            --surface-color: #1e293b;
+            --text-color: #f8fafc;
+            --border-color: #334155;
+            --primary-color: #14b8a6;
+            --primary-hover: #2dd4bf;
+            --success-color: #4ade80;
+            --success-bg: #064e3b;
+            --success-border: #047857;
+            --error-color: #f87171;
+            --error-bg: #7f1d1d;
+            --error-border: #991b1b;
+            --badge-bg: #115e59;
+            --badge-text: #ccfbf1;
+            --card-hover: #334155;
+            --summary-bg: #0f172a;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            margin: 0;
+            padding: 20px;
+            transition: background-color 0.3s, color 0.3s;
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            background: var(--surface-color);
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+        }
+
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        h1 {
+            color: var(--primary-color);
+            margin: 0;
+            font-size: 1.8rem;
+        }
+
+        .nav-tabs {
+            display: flex;
+            gap: 8px;
+            margin-bottom: 25px;
+            border-bottom: 2px solid var(--border-color);
+            padding-bottom: 10px;
+            flex-wrap: wrap;
+        }
+
+        .tab-btn {
+            background: none;
+            border: none;
+            color: var(--text-color);
+            font-size: 14px;
+            font-weight: 600;
+            padding: 8px 14px;
+            cursor: pointer;
+            border-radius: 6px;
+            transition: background 0.2s, color 0.2s;
+        }
+
+        .tab-btn.active {
+            background-color: var(--primary-color);
+            color: #ffffff;
+        }
+
+        .theme-toggle {
+            background: none;
+            border: 1px solid var(--border-color);
+            color: var(--text-color);
+            padding: 8px 12px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-weight: 600;
+        }
+
+        .controls {
+            display: flex;
+            gap: 10px;
+            align-items: center;
+            margin-bottom: 20px;
+            flex-wrap: wrap;
+        }
+
+        select, input[type="text"], input[type="number"], button.action-btn {
+            padding: 10px 14px;
+            font-size: 14px;
+            border-radius: 6px;
+            border: 1px solid var(--border-color);
+            background-color: var(--surface-color);
+            color: var(--text-color);
+        }
+
+        button.action-btn {
+            background-color: var(--primary-color);
+            color: white;
+            border: none;
+            font-weight: 600;
+            cursor: pointer;
+        }
+
+        button.action-btn:hover {
+            background-color: var(--primary-hover);
+        }
+
+        .search-box {
+            width: 100%;
+            margin-bottom: 20px;
+            padding: 12px;
+            box-sizing: border-box;
+            border-radius: 6px;
+            border: 1px solid var(--border-color);
+            background: var(--surface-color);
+            color: var(--text-color);
+            font-size: 15px;
+        }
+
+        .summary-week {
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            padding: 24px;
+            margin-bottom: 25px;
+            background-color: var(--surface-color);
+        }
+
+        .summary-week h2 {
+            color: var(--primary-color);
+            margin-top: 0;
+            border-bottom: 2px solid var(--border-color);
+            padding-bottom: 8px;
+        }
+
+        .summary-week h3 {
+            color: var(--text-color);
+            font-size: 1.1rem;
+            margin-top: 15px;
+            margin-bottom: 5px;
+        }
+
+        .summary-week ul {
+            margin-top: 5px;
+            padding-left: 20px;
+        }
+
+        .summary-week li {
+            margin-bottom: 6px;
+        }
+
+        .formula-box {
+            background-color: var(--summary-bg);
+            border-left: 4px solid var(--primary-color);
+            padding: 12px 16px;
+            margin: 12px 0;
+            font-family: "Courier New", Courier, monospace;
+            border-radius: 0 6px 6px 0;
+        }
+
+        .progress-dashboard {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 12px;
+            margin-bottom: 20px;
+        }
+
+        .progress-card {
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            padding: 12px 16px;
+            background: var(--surface-color);
+            text-align: center;
+        }
+
+        .progress-card .score {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: var(--primary-color);
+        }
+
+        .question-card {
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            padding: 20px;
+            margin-bottom: 20px;
+            background-color: var(--surface-color);
+        }
+
+        .question-title {
+            font-weight: 600;
+            margin-bottom: 12px;
+            color: var(--text-color);
+        }
+
+        .options {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            margin-bottom: 10px;
+        }
+
+        .option-label {
+            display: flex;
+            align-items: center;
+            padding: 10px 14px;
+            border: 1px solid var(--border-color);
+            border-radius: 6px;
+            cursor: pointer;
+            transition: background 0.15s;
+        }
+
+        .option-label:hover {
+            background-color: var(--card-hover);
+        }
+
+        .option-label input {
+            margin-right: 12px;
+        }
+
+        .explanation {
+            display: none;
+            margin-top: 12px;
+            padding: 12px;
+            border-radius: 6px;
+            font-size: 14px;
+            line-height: 1.5;
+        }
+
+        .explanation.correct {
+            display: block;
+            background-color: var(--success-bg);
+            border: 1px solid var(--success-border);
+            color: var(--success-color);
+        }
+
+        .explanation.incorrect {
+            display: block;
+            background-color: var(--error-bg);
+            border: 1px solid var(--error-border);
+            color: var(--error-color);
+        }
+
+        .badge {
+            display: inline-block;
+            padding: 2px 8px;
+            font-size: 12px;
+            font-weight: 600;
+            border-radius: 4px;
+            background: var(--badge-bg);
+            color: var(--badge-text);
+            margin-bottom: 8px;
+        }
+
+        .matching-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            margin-top: 15px;
+        }
+
+        .match-column {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .match-card {
+            padding: 14px 16px;
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            background: var(--surface-color);
+            cursor: pointer;
+            user-select: none;
+            transition: border-color 0.2s, background 0.2s;
+            min-height: 50px;
+            display: flex;
+            align-items: center;
+            font-weight: 500;
+        }
+
+        .match-card:hover { border-color: var(--primary-color); }
+        .match-card.selected { border: 2px solid var(--primary-color); background-color: var(--card-hover); }
+        .match-card.matched { border-color: var(--success-color); background-color: var(--success-bg); color: var(--success-color); cursor: default; opacity: 0.8; }
+        .match-card.wrong { border-color: var(--error-color); background-color: var(--error-bg); }
+
+        .matching-feedback {
+            margin-bottom: 20px;
+            padding: 16px;
+            border-radius: 8px;
+            font-size: 15px;
+            display: none;
+            line-height: 1.5;
+        }
+
+        .solver-panel {
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            padding: 20px;
+            background: var(--surface-color);
+            margin-bottom: 20px;
+        }
+
+        .scenario-inputs {
+            display: flex;
+            gap: 10px;
+            align-items: center;
+            margin-top: 15px;
+            margin-bottom: 15px;
+            flex-wrap: wrap;
+        }
+
+        .step-list {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            margin-top: 15px;
+        }
+
+        .step-item {
+            padding: 12px;
+            border-left: 4px solid var(--primary-color);
+            background: var(--summary-bg);
+            border-radius: 0 6px 6px 0;
+        }
+
+        .flashcard-wrapper {
+            perspective: 1000px;
+            max-width: 500px;
+            margin: 20px auto;
+        }
+
+        .flashcard {
+            width: 100%;
+            height: 250px;
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            background: var(--surface-color);
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 24px;
+            text-align: center;
+            cursor: pointer;
+            box-sizing: border-box;
+            user-select: none;
+            transition: transform 0.2s;
+        }
+
+        .flashcard:hover {
+            transform: translateY(-2px);
+        }
+
+        .flashcard .card-label {
+            font-size: 12px;
+            color: var(--badge-text);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 10px;
+        }
+
+        .flashcard .card-content {
+            font-size: 1.2rem;
+            font-weight: 600;
+        }
+
+        .flashcard-controls {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            margin-top: 15px;
+        }
+
+        .view-section { display: none; }
+        .view-section.active { display: block; }
+        .score-board { font-weight: bold; color: var(--primary-color); }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <div class="header">
+        <h1>Principles of Management II (Comprehensive Suite)</h1>
+        <button class="theme-toggle" onclick="toggleTheme()" id="themeBtn">🌙 Night Mode</button>
+    </div>
+
+    <div class="nav-tabs">
+        <button class="tab-btn active" onclick="switchTab('summaries')">📖 Course Summaries</button>
+        <button class="tab-btn" onclick="switchTab('quiz')">📝 Quiz & Mastery (20 Questions)</button>
+        <button class="tab-btn" onclick="switchTab('matching')">🧩 Matching Game</button>
+        <button class="tab-btn" onclick="switchTab('solver')">🔍 Decision & Production Analyzer</button>
+        <button class="tab-btn" onclick="switchTab('flashcards')">🎴 Study Flashcards</button>
+    </div>
+
+    <!-- TAB 1: SUMMARIES -->
+    <div id="summariesTab" class="view-section active">
+        <input type="text" id="summarySearch" class="search-box" placeholder="⚡ Search across all Management II topics..." oninput="filterSummaries()">
+        
+        <div id="summaryList">
+            <!-- Week 1 -->
+            <div class="summary-week searchable">
+                <h2>1. Forms of Business Ownership</h2>
+                <p>Covers key legal structures, criteria for selection, liability profiles, taxation structures, and special entities like social enterprises.</p>
+                
+                <h3>Key Decision Factors</h3>
+                <ul>
+                    <li><strong>Evaluation Criteria:</strong> Tax considerations, liability exposure, capital requirements (startup & future), management control, managerial ability, vision, succession planning, and formation costs.</li>
+                    <li><strong>Sole Proprietorship:</strong> Owned/managed by one person. Riskiest due to <em>unlimited personal liability</em>. Simple setup, total decision authority, direct profit incentive, marginal tax rates (7.5% - 15%). Limited capital and lack of continuity.</li>
+                    <li><strong>Partnerships:</strong> Co-owned by two or more people. Shared capital and complementary skills.
+                        <ul>
+                            <li><em>General Partners:</em> Active management role, unlimited personal liability. Every partnership must have at least one.</li>
+                            <li><em>Limited Partners:</em> Cannot manage day-to-day operations; limited liability. Includes <strong>Silent Partners</strong> (known to public) and <strong>Dormant Partners</strong> (unknown to public).</li>
+                            <li><em>LLP (Limited Liability Partnership):</em> Limits all partners' liability; pass-through income tax (no entity-level tax).</li>
+                        </ul>
+                    </li>
+                    <li><strong>Corporation & Limited Companies:</strong> Separate legal entity from owners.
+                        <ul>
+                            <li><em>Publicly Held (PLC):</em> Traded on stock exchanges, minimum 2 shareholders, minimum 2 directors, raises capital via public share sales. Subject to double taxation.</li>
+                            <li><em>Closely Held (Ltd):</em> Shares owned by small group (e.g., family), restrictions on share transfers.</li>
+                            <li><em>LLC (Limited Liability Company):</em> Combines limited liability of a corporation with pass-through taxation of a partnership. Requires <strong>Articles of Organization</strong> (name, address, duration) and an <strong>Operating Agreement</strong> (provisions governing conduct).</li>
+                        </ul>
+                    </li>
+                    <li><strong>Social Enterprise:</strong> Uses commercial strategies to achieve social/environmental benefits. Profits are primarily reinvested rather than distributed. Focuses on self-generated revenue over grants/donations.</li>
+                </ul>
+
+                <div class="formula-box">
+                    LLC Core Docs = Articles of Organization + Operating Agreement<br>
+                    PLC Structure = Board of Directors (Elected) + Shareholders (Limited Liability) + Stock Sales
+                </div>
+            </div>
+
+            <!-- Week 2 -->
+            <div class="summary-week searchable">
+                <h2>2. Production Function & Management</h2>
+                <p>Details manufacturing processes, operations strategies, aids to production, and modern Industry 4.0 innovations.</p>
+                
+                <h3>Key Concepts & Production Systems</h3>
+                <ul>
+                    <li><strong>Production Process Types:</strong>
+                        <ul>
+                            <li><em>Jobbing / Job Shop:</em> Custom, customized, one-off or small-batch items. Labor-intensive, skilled workforce, flexible layout, general-purpose machinery (e.g., tailoring, specialty printing).</li>
+                            <li><em>Project-Based:</em> Temporary teams assembled around unique projects with fixed scopes, timelines, and budgets (e.g., construction, film production, software engineering).</li>
+                            <li><em>Batch Production:</em> Standardized parts produced in discrete lots/batches. Middle ground between jobbing and mass production; emphasizes planning, scheduling, and general-purpose machines.</li>
+                            <li><em>Mass & Continuous Production:</em> High-volume, highly automated, standardized production lines. Low per-unit cost, rigid specifications, specialized machines (e.g., automotive, smartphones).</li>
+                        </ul>
+                    </li>
+                    <li><strong>Aids to Production & Engineering:</strong>
+                        <ul>
+                            <li><em>Work Study:</em> Method study and work measurement to streamline operational workflows.</li>
+                            <li><em>Value Engineering (VE):</em> Systematic process to maximize functionality/quality while minimizing overall lifecycle costs.</li>
+                            <li><em>Value Analysis (VA):</em> Application of VE focused specifically on analyzing existing component parts, materials, and designs.</li>
+                            <li><em>Quality Circles:</em> Small, voluntary employee groups meeting regularly to analyze data and solve quality problems.</li>
+                        </ul>
+                    </li>
+                    <li><strong>Modern Manufacturing Tech:</strong> CAD/CAM, ERP systems, Additive Manufacturing (3D Printing), Cobots (collaborative robots), AR/VR, IoT, and AI-driven automation.</li>
+                </ul>
+
+                <div class="formula-box">
+                    Value Optimization = Maximizing Functionality & Quality ÷ Minimizing Lifecycle Costs<br>
+                    Batch vs. Jobbing = Standardized Lots vs. Fully Custom/Single Units
+                </div>
+            </div>
+
+            <!-- Week 3 -->
+            <div class="summary-week searchable">
+                <h2>3. Marketing & Market Research</h2>
+                <p>Covers definitions of marketing vs. selling, marketing orientations, the 7 Ps mix, bootstrap tactics, and market research methodologies.</p>
+                
+                <h3>Key Concepts & Breakdown</h3>
+                <ul>
+                    <li><strong>Marketing vs. Selling:</strong> Marketing creates, delivers, and exchanges value to satisfy target needs at a profit. Selling is assisting or persuading a customer to buy an existing product.</li>
+                    <li><strong>Orientations:</strong> Production, Product, Sales, Market (customer-centric), and Societal orientations.</li>
+                    <li><strong>The Marketing Mix (7 Ps):</strong>
+                        <ul>
+                            <li><em>Traditional 4 Ps:</em> Product, Price, Place, Promotion.</li>
+                            <li><em>Extended 3 Ps (Services):</em> People, Process, Physical Evidence.</li>
+                        </ul>
+                    </li>
+                    <li><strong>Bootstrap Marketing:</strong> Unconventional, low-cost, creative marketing strategies for small businesses to maximize ROI without large budgets. Focuses on finding niches, building community, publicity, and emotional connection.</li>
+                    <li><strong>Market vs. Marketing Research:</strong>
+                        <ul>
+                            <li><em>Market Research:</em> Focuses on market size, target demographics, trends, segments, and demand.</li>
+                            <li><em>Marketing Research:</em> Broader scope evaluating ad effectiveness, concept testing, promotional methods, copywriting, and customer satisfaction.</li>
+                        </ul>
+                    </li>
+                    <li><strong>USP & Brand Attributes:</strong> Unique Selling Proposition. Uses <em>Threshold Attributes</em> (expected baseline), <em>Performance Attributes</em> (superior features), and <em>Excitement Attributes</em> (unexpected differentiators).</li>
+                </ul>
+
+                <div class="formula-box">
+                    Extended Mix = 4 Ps (Product, Price, Place, Promotion) + 3 Ps (People, Process, Physical Evidence)<br>
+                    USP Triad = Threshold Attributes + Performance Attributes + Excitement Attributes
+                </div>
+            </div>
+
+            <!-- Week 4 -->
+            <div class="summary-week searchable">
+                <h2>4. Managerial Competencies & Stress Management</h2>
+                <p>Analyzes manager development, talent management, stress symptoms/interventions, employee counseling, job evaluation, and employee relations.</p>
+                
+                <h3>Key Concepts & Frameworks</h3>
+                <ul>
+                    <li><strong>Managerial Competencies & Development:</strong> Clusters of Knowledge, Skills, and Abilities (KSAs). Key roles: Self skills, Providing direction, Facilitating change, Working with people, Using resources, Achieving results.
+                        <ul>
+                            <li><em>Development Methods:</em> CPD (Continuing Professional Development), Coaching, Job Rotation, Delegation, Secondments, Case Studies, and Simulations.</li>
+                            <li><em>Succession Planning & Talent Management:</em> Identifying high-potential employees to fill leadership roles, ensuring continuity and knowledge retention.</li>
+                        </ul>
+                    </li>
+                    <li><strong>Workplace Stress:</strong> Adverse physical/psychological reactions to demands exceeding individual coping capacity.
+                        <ul>
+                            <li><em>Causes:</em> Heavy workload, role ambiguity, lack of control, poor relationships/bullying, organizational changes.</li>
+                            <li><em>Symptoms:</em> Physiological (hypertension, ulcers), Psychological (anxiety, depression), Behavioral (absenteeism, substance abuse).</li>
+                        </ul>
+                    </li>
+                    <li><strong>Counseling & Harassment:</strong>
+                        <ul>
+                            <li><em>Counseling:</em> Professional guidance providing active listening, confidentiality, root cause identification, and joint action planning.</li>
+                            <li><em>Harassment & Discrimination:</em> Unwelcome conduct targeting protected characteristics (race, gender, age, religion, disability). Employer must establish reporting, investigate, and take corrective action.</li>
+                        </ul>
+                    </li>
+                    <li><strong>Job Evaluation & Employee Relations:</strong>
+                        <ul>
+                            <li><em>Job Evaluation Methods:</em> Analytical (Points rating, Factor comparison) vs. Non-analytical (Job ranking, Job classification). Used to establish internal equity and salary structures.</li>
+                            <li><em>Employee Relations:</em> Strategic management of individual/collective workplace relationships, aiming for open communication, fairness, engagement, and constructive conflict resolution.</li>
+                        </ul>
+                    </li>
+                </ul>
+
+                <div class="formula-box">
+                    Job Evaluation Types = Analytical (Points, Factors) vs. Non-Analytical (Ranking, Grading)<br>
+                    Managerial KSAs = Knowledge + Skills + Abilities
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- TAB 2: QUIZ -->
+    <div id="quizTab" class="view-section">
+        <div class="progress-dashboard">
+            <div class="progress-card"><div>Module 1: Ownership</div><div class="score" id="m_mod1">0%</div></div>
+            <div class="progress-card"><div>Module 2: Production</div><div class="score" id="m_mod2">0%</div></div>
+            <div class="progress-card"><div>Module 3: Marketing</div><div class="score" id="m_mod3">0%</div></div>
+            <div class="progress-card"><div>Module 4: Managerial/HR</div><div class="score" id="m_mod4">0%</div></div>
+        </div>
+
+        <div class="controls">
+            <label for="topicSelect"><strong>Select Topic:</strong></label>
+            <select id="topicSelect">
+                <option value="1">1. Forms of Business Ownership (5 Questions)</option>
+                <option value="2">2. Production Function & Management (5 Questions)</option>
+                <option value="3">3. Marketing & Market Research (5 Questions)</option>
+                <option value="4">4. Managerial Competencies & Stress (5 Questions)</option>
+                <option value="all" selected>All 4 Topics Combined (20 Questions)</option>
+            </select>
+            <button class="action-btn" onclick="generateQuiz(false)">Generate Quiz</button>
+            <button class="action-btn" style="background-color: var(--error-color)" onclick="generateQuiz(true)">🎯 Retry Missed Questions Only</button>
+        </div>
+
+        <div id="quizContainer"></div>
+    </div>
+
+    <!-- TAB 3: MATCHING GAME -->
+    <div id="matchingTab" class="view-section">
+        <div class="controls">
+            <button class="action-btn" onclick="resetMatchingGame()">Reset / New Cards</button>
+            <div id="matchingScore" class="score-board">Matches Found: 0 / 0</div>
+        </div>
+
+        <div id="matchingFeedback" class="matching-feedback"></div>
+
+        <div class="matching-container">
+            <div class="match-column" id="leftCol"></div>
+            <div class="match-column" id="rightCol"></div>
+        </div>
+    </div>
+
+    <!-- TAB 4: DECISION & PRODUCTION ANALYZER -->
+    <div id="solverTab" class="view-section">
+        <div class="solver-panel">
+            <h2>Management Decision & Operations Analyzer</h2>
+            <p>Select scenario parameters to evaluate organizational legal structure, production workflow selection, or job evaluation methodologies.</p>
+            
+            <div class="controls">
+                <label for="scenarioType"><strong>Analysis Engine:</strong></label>
+                <select id="scenarioType" onchange="renderScenarioInputs()">
+                    <option value="ownership_recommender">Business Ownership Selection Advisor</option>
+                    <option value="production_selector">Production System Classifier</option>
+                    <option value="evaluation_analyzer">Job Evaluation System Evaluator</option>
+                </select>
+            </div>
+
+            <div class="scenario-inputs" id="scenarioInputs"></div>
+
+            <button class="action-btn" onclick="solveAndDraw()">Analyze Scenario</button>
+
+            <div class="step-list" id="stepList"></div>
+        </div>
+    </div>
+
+    <!-- TAB 5: FLASHCARDS -->
+    <div id="flashcardsTab" class="view-section">
+        <div class="flashcard-wrapper">
+            <div class="flashcard" id="flashcard" onclick="flipCard()">
+                <div class="card-label" id="fcLabel">CONCEPT (Click to Flip)</div>
+                <div class="card-content" id="fcContent">Click start to load deck</div>
+            </div>
+        </div>
+
+        <div class="flashcard-controls">
+            <button class="action-btn" style="background-color: var(--error-color)" onclick="rateCard('hard')">🔴 Hard</button>
+            <button class="action-btn" style="background-color: #d97706" onclick="rateCard('medium')">🟡 Medium</button>
+            <button class="action-btn" style="background-color: var(--success-color)" onclick="rateCard('easy')">🟢 Easy</button>
+        </div>
+    </div>
+
+</div>
+
+<script>
+    function toggleTheme() {
+        const currentTheme = document.body.getAttribute('data-theme');
+        const themeBtn = document.getElementById('themeBtn');
+        if (currentTheme === 'dark') {
+            document.body.removeAttribute('data-theme');
+            themeBtn.innerText = '🌙 Night Mode';
+        } else {
+            document.body.setAttribute('data-theme', 'dark');
+            themeBtn.innerText = '☀️ Light Mode';
+        }
+    }
+
+    function switchTab(tabName) {
+        document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));
+        document.querySelectorAll('.view-section').forEach(sec => sec.classList.remove('active'));
+
+        const tabs = ['summaries', 'quiz', 'matching', 'solver', 'flashcards'];
+        const index = tabs.indexOf(tabName);
+        document.querySelectorAll('.tab-btn')[index].classList.add('active');
+        document.getElementById(tabName + 'Tab').classList.add('active');
+
+        if (tabName === 'matching') resetMatchingGame();
+        if (tabName === 'solver') { renderScenarioInputs(); solveAndDraw(); }
+        if (tabName === 'flashcards') loadFlashcard();
+    }
+
+    function filterSummaries() {
+        const query = document.getElementById('summarySearch').value.toLowerCase();
+        document.querySelectorAll('.searchable').forEach(el => {
+            const text = el.innerText.toLowerCase();
+            el.style.display = text.includes(query) ? 'block' : 'none';
+        });
+    }
+
+    // MASTERY SYSTEM
+    let masteryData = JSON.parse(localStorage.getItem('pom_mastery') || '{"1":{"c":0,"t":0},"2":{"c":0,"t":0},"3":{"c":0,"t":0},"4":{"c":0,"t":0}}');
+    let missedQuestions = JSON.parse(localStorage.getItem('pom_missed') || '[]');
+
+    function saveMastery() {
+        localStorage.setItem('pom_mastery', JSON.stringify(masteryData));
+        localStorage.setItem('pom_missed', JSON.stringify(missedQuestions));
+        updateMasteryUI();
+    }
+
+    function updateMasteryUI() {
+        for (let m = 1; m <= 4; m++) {
+            const data = masteryData[m];
+            const pct = data && data.t > 0 ? Math.round((data.c / data.t) * 100) : 0;
+            const el = document.getElementById(`m_mod${m}`);
+            if (el) el.innerText = `${pct}%`;
+        }
+    }
+
+    function shuffle(arr) { return [...arr].sort(() => Math.random() - 0.5); }
+
+    // QUIZ BANK (5 questions per module = 20 total)
+    const quizBank = [
+        // Topic 1: Ownership
+        { mod: 1, title: "Which business legal structure combines limited liability protection with pass-through taxation and operating flexibility?", correct: "Limited Liability Company (LLC)", options: ["Limited Liability Company (LLC)", "Sole Proprietorship", "Public Limited Company (PLC)", "General Partnership"], exp: "LLCs offer pass-through tax treatment like partnerships while protecting members from personal liability." },
+        { mod: 1, title: "A limited partner who is neither active in management nor generally known to be associated with the firm is a:", correct: "Dormant Partner", options: ["Dormant Partner", "Silent Partner", "General Partner", "Managing Partner"], exp: "Dormant partners are both inactive and publicly unknown, whereas silent partners are inactive but known." },
+        { mod: 1, title: "What primary document establishes the internal operational rules and provisions for an LLC?", correct: "Operating Agreement", options: ["Operating Agreement", "Articles of Organization", "Royal Charter", "Business Registration Certificate"], exp: "The Operating Agreement governs internal management and operations, while Articles of Organization establish existence." },
+        { mod: 1, title: "What is a major financial disadvantage of a traditional Corporation/PLC?", correct: "Double Taxation", options: ["Double Taxation", "Unlimited Personal Liability", "Pass-Through Taxation", "Lack of Capital Access"], exp: "Corporations face double taxation: taxes on corporate net income and personal taxes on shareholder dividends." },
+        { mod: 1, title: "A social enterprise differs from a traditional commercial business primarily because:", correct: "Its profits are primarily reinvested to drive positive social change", options: ["Its profits are primarily reinvested to drive positive social change", "It is legally forbidden from making money", "It relies entirely on grants and donations", "It pays zero taxes under all circumstances"], exp: "Social enterprises use commercial tactics to generate income, but reinvest profits into social/environmental missions." },
+
+        // Topic 2: Production
+        { mod: 2, title: "Tailoring, specialty printing, and custom furniture manufacturing are classic examples of:", correct: "Jobbing Production", options: ["Jobbing Production", "Mass Production", "Continuous Production", "Batch Production"], exp: "Jobbing production creates individual or small-custom quantities tailored to client specifications." },
+        { mod: 3, title: "Which production method represents a middle ground between jobbing and mass production?", correct: "Batch Production", options: ["Batch Production", "Project-based Production", "Flow Production", "Continuous Assembly"], exp: "Batch manufacturing processes standardized units in discrete lots using flexible layouts." },
+        { mod: 2, title: "Value Analysis (VA) differs from general Value Engineering (VE) because it specifically focuses on:", correct: "Analyzing existing components, materials, and designs of an active product", options: ["Analyzing existing components, materials, and designs of an active product", "Initial concept development before manufacturing", "Marketing and advertising expenditures", "Employee salary structures"], exp: "Value Analysis is applied directly to existing components and products to optimize value and cost." },
+        { mod: 2, title: "Temporary teams assembled with specific skills for a unique output that disband upon completion characterize:", correct: "Project-Based Production", options: ["Project-Based Production", "Batch Production", "Mass Production", "Continuous Production"], exp: "Project production (e.g., construction, software) relies on temporary teams disbanded after project delivery." },
+        { mod: 2, title: "Small, voluntary groups of employees who meet regularly to solve work-related quality problems are:", correct: "Quality Circles", options: ["Quality Circles", "Board of Directors", "Audit Committees", "Project Taskforces"], exp: "Quality circles engage workers voluntarily in data-driven quality and process improvement." },
+
+        // Topic 3: Marketing
+        { mod: 3, title: "Which component is part of the extended 3 Ps in service marketing?", correct: "Physical Evidence", options: ["Physical Evidence", "Price", "Promotion", "Product"], exp: "The extended 3 Ps for services are People, Process, and Physical Evidence." },
+        { mod: 3, title: "Low-cost, unconventional, and highly creative tactics used by small firms to yield high returns are called:", correct: "Bootstrap Marketing", options: ["Bootstrap Marketing", "Mass Marketing", "Production Orientation", "Transactional Selling"], exp: "Bootstrap marketing relies on imagination, relationships, and low-cost execution rather than big budgets." },
+        { mod: 3, title: "Evaluating advertisement effectiveness, copywriting style, and concept testing falls under:", correct: "Marketing Research", options: ["Marketing Research", "Market Research", "Demographic Analysis", "Supply Chain Planning"], exp: "Marketing research focuses on advertising, promotional efficacy, and customer satisfaction." },
+        { mod: 3, title: "In brand positioning, unexpected features that excite customers and differentiate the brand are:", correct: "Excitement Attributes", options: ["Excitement Attributes", "Threshold Attributes", "Performance Attributes", "Baseline Attributes"], exp: "Excitement attributes go beyond basic expectations (threshold) to create unique differentiation." },
+        { mod: 3, title: "What orientation focuses on mass production and low cost under the assumption that customers favor available/cheap items?", correct: "Production Orientation", options: ["Production Orientation", "Market Orientation", "Societal Orientation", "Sales Orientation"], exp: "Production orientation prioritizes high operational efficiency and wide distribution." },
+
+        // Topic 4: Managerial/HR
+        { mod: 4, title: "Knowledge, Skills, and Abilities vital for managerial performance are collectively known as:", correct: "Competencies (KSAs)", options: ["Competencies (KSAs)", "Job Descriptions", "Physical Evidence", "Threshold Attributes"], exp: "Competencies combine knowledge, skills, and abilities required to achieve organizational goals." },
+        { mod: 4, title: "Points Rating and Factor Comparison methods in job evaluation are classified as:", correct: "Analytical Methods", options: ["Analytical Methods", "Non-analytical Methods", "Subjective Rankings", "Casual Classifications"], exp: "Analytical job evaluation schemes break jobs down into quantitative factors for objective rating." },
+        { mod: 4, title: "Identified physical symptoms of stress include hypertension, heart disease, and:", correct: "Ulcers and Muscle Tension", options: ["Ulcers and Muscle Tension", "Anxiety and Depression", "Loss of Appetite", "Substance Abuse"], exp: "Physiological stress symptoms manifest physically (ulcers, high blood pressure, muscle tension)." },
+        { mod: 4, title: "The systematic identification and development of internal staff to fill future key leadership vacancies is:", correct: "Succession Planning", options: ["Succession Planning", "Job Evaluation", "Method Study", "Value Engineering"], exp: "Succession planning ensures leadership continuity by grooming internal talent for critical roles." },
+        { mod: 4, title: "Job Ranking and Job Classification belong to which category of job evaluation?", correct: "Non-analytical Schemes", options: ["Non-analytical Schemes", "Analytical Schemes", "Factor Comparison Systems", "Point-Factor Rating Systems"], exp: "Non-analytical schemes assess jobs as whole entities without breaking them into point factors." }
+    ];
+
+    let currentQuestions = [];
+
+    function generateQuiz(retryMissedOnly = false) {
+        const topic = document.getElementById('topicSelect').value;
+        if (retryMissedOnly) {
+            currentQuestions = [...missedQuestions];
+            if (currentQuestions.length === 0) {
+                alert("No missed questions recorded yet!");
+                return;
+            }
+        } else {
+            if (topic === 'all') {
+                currentQuestions = shuffle([...quizBank]);
+            } else {
+                const modNum = parseInt(topic);
+                currentQuestions = quizBank.filter(q => q.mod === modNum);
+            }
+        }
+        renderQuiz();
+    }
+
+    function renderQuiz() {
+        const container = document.getElementById('quizContainer');
+        container.innerHTML = '';
+
+        currentQuestions.forEach((q, qIndex) => {
+            const card = document.createElement('div');
+            card.className = 'question-card';
+            card.innerHTML = `
+                <span class="badge">Module ${q.mod}</span>
+                <div class="question-title">${qIndex + 1}. ${q.title}</div>
+                <div class="options">
+                    ${shuffle(q.options).map(opt => `
+                        <label class="option-label">
+                            <input type="radio" name="q_${qIndex}" value="${opt}" onchange="handleOptionSelect(${qIndex}, '${opt.replace(/'/g, "\\'")}', '${q.correct.replace(/'/g, "\\'")}', '${q.exp.replace(/'/g, "\\'")}', ${q.mod})">
+                            ${opt}
+                        </label>
+                    `).join('')}
+                </div>
+                <div class="explanation" id="exp_${qIndex}"></div>
+            `;
+            container.appendChild(card);
+        });
+    }
+
+    function handleOptionSelect(qIndex, selectedOpt, correctOpt, explanation, mod) {
+        const expDiv = document.getElementById(`exp_${qIndex}`);
+        document.querySelectorAll(`input[name="q_${qIndex}"]`).forEach(i => i.disabled = true);
+
+        if (!masteryData[mod]) masteryData[mod] = { c: 0, t: 0 };
+        masteryData[mod].t += 1;
+
+        if (selectedOpt === correctOpt) {
+            expDiv.className = 'explanation correct';
+            expDiv.innerHTML = `<strong>Correct!</strong> ${explanation}`;
+            masteryData[mod].c += 1;
+        } else {
+            expDiv.className = 'explanation incorrect';
+            expDiv.innerHTML = `<strong>Incorrect.</strong> Correct answer: <strong>${correctOpt}</strong>.<br>${explanation}`;
+            if (!missedQuestions.some(item => item.title === currentQuestions[qIndex].title)) {
+                missedQuestions.push(currentQuestions[qIndex]);
+            }
+        }
+        saveMastery();
+    }
+
+    // MATCHING GAME ENGINE
+    const rawPairs = [
+        { id: 0, left: "Articles of Organization", right: "Document establishing an LLC's official legal existence", explanation: "Defines business name, address, duration, and structure." },
+        { id: 1, left: "Jobbing Production", right: "Customized manufacturing of low-volume, specialized goods", explanation: "Labor-intensive, highly adaptable using skilled workers." },
+        { id: 2, left: "Value Engineering", right: "Maximizing function while minimizing total lifecycle costs", explanation: "Structured, systematic approach applied during design or revision." },
+        { id: 3, left: "Extended Marketing Mix", right: "People, Process, and Physical Evidence", explanation: "3 additional Ps critical for service marketing success." },
+        { id: 4, left: "Analytical Job Evaluation", right: "Points Rating and Factor Comparison methods", explanation: "Breaks jobs down into quantitative factors to set compensation." },
+        { id: 5, left: "Silent Partner", right: "Inactive in management but publicly known as a partner", explanation: "Differs from a dormant partner who is neither active nor publicly known." }
+    ];
+
+    let leftSelected = null, rightSelected = null, matchesCount = 0;
+
+    function resetMatchingGame() {
+        matchesCount = 0;
+        leftSelected = null;
+        rightSelected = null;
+
+        const leftCol = document.getElementById('leftCol');
+        const rightCol = document.getElementById('rightCol');
+        const feedbackDiv = document.getElementById('matchingFeedback');
+        
+        leftCol.innerHTML = ''; 
+        rightCol.innerHTML = ''; 
+        feedbackDiv.style.display = 'none';
+
+        document.getElementById('matchingScore').innerText = `Matches Found: 0 / ${rawPairs.length}`;
+
+        const leftList = shuffle(rawPairs);
+        const rightList = shuffle(rawPairs);
+
+        leftList.forEach(item => {
+            const card = document.createElement('div');
+            card.className = 'match-card';
+            card.dataset.id = item.id;
+            card.innerText = item.left;
+            card.onclick = () => selectLeft(card, item);
+            leftCol.appendChild(card);
+        });
+
+        rightList.forEach(item => {
+            const card = document.createElement('div');
+            card.className = 'match-card';
+            card.dataset.id = item.id;
+            card.innerText = item.right;
+            card.onclick = () => selectRight(card, item);
+            rightCol.appendChild(card);
+        });
+    }
+
+    function selectLeft(card, item) {
+        if (card.classList.contains('matched')) return;
+        document.querySelectorAll('#leftCol .match-card').forEach(c => c.classList.remove('selected'));
+        leftSelected = { card, item };
+        card.classList.add('selected');
+        checkPairMatch();
+    }
+
+    function selectRight(card, item) {
+        if (card.classList.contains('matched')) return;
+        document.querySelectorAll('#rightCol .match-card').forEach(c => c.classList.remove('selected'));
+        rightSelected = { card, item };
+        card.classList.add('selected');
+        checkPairMatch();
+    }
+
+    function checkPairMatch() {
+        if (!leftSelected || !rightSelected) return;
+
+        const feedbackDiv = document.getElementById('matchingFeedback');
+        feedbackDiv.style.display = 'block';
+
+        if (leftSelected.item.id === rightSelected.item.id) {
+            leftSelected.card.className = 'match-card matched';
+            rightSelected.card.className = 'match-card matched';
+
+            feedbackDiv.style.backgroundColor = 'var(--success-bg)';
+            feedbackDiv.style.borderColor = 'var(--success-border)';
+            feedbackDiv.style.color = 'var(--success-color)';
+            feedbackDiv.innerHTML = `<strong>Correct Match!</strong><br>${leftSelected.item.left} ⟺ <code>${leftSelected.item.right}</code><br>${leftSelected.item.explanation}`;
+
+            matchesCount++;
+            document.getElementById('matchingScore').innerText = `Matches Found: ${matchesCount} / ${rawPairs.length}`;
+            leftSelected = null; rightSelected = null;
+        } else {
+            const l = leftSelected, r = rightSelected;
+            l.card.classList.add('wrong');
+            r.card.classList.add('wrong');
+
+            feedbackDiv.style.backgroundColor = 'var(--error-bg)';
+            feedbackDiv.style.borderColor = 'var(--error-border)';
+            feedbackDiv.style.color = 'var(--error-color)';
+            feedbackDiv.innerHTML = `<strong>Incorrect Pair.</strong> Try again!`;
+
+            setTimeout(() => {
+                l.card.classList.remove('wrong', 'selected');
+                r.card.classList.remove('wrong', 'selected');
+            }, 800);
+
+            leftSelected = null; rightSelected = null;
+        }
+    }
+
+    // INTERACTIVE SOLVER / ANALYZER
+    function renderScenarioInputs() {
+        const scenario = document.getElementById('scenarioType').value;
+        const container = document.getElementById('scenarioInputs');
+        container.innerHTML = '';
+
+        if (scenario === 'ownership_recommender') {
+            container.innerHTML = `
+                <label>Primary Goal: </label>
+                <select id="sc_goal">
+                    <option value="llc">Protect liability & avoid double taxation</option>
+                    <option value="plc">Raise massive capital on public stock exchange</option>
+                    <option value="sole">Minimal cost, full control, instant setup</option>
+                    <option value="social">Reinvest profits into social goals</option>
+                </select>
+            `;
+        } else if (scenario === 'production_selector') {
+            container.innerHTML = `
+                <label>Product Type & Volume: </label>
+                <select id="sc_prod">
+                    <option value="jobbing">Highly customized, 1-off bespoke items</option>
+                    <option value="batch">Standardized items produced in discrete lots</option>
+                    <option value="mass">High volume, identical automated products</option>
+                    <option value="project">Unique large-scale multi-month construction/software</option>
+                </select>
+            `;
+        } else if (scenario === 'evaluation_analyzer') {
+            container.innerHTML = `
+                <label>Evaluation Objective: </label>
+                <select id="sc_eval">
+                    <option value="points">Quantitative numerical point scheme</option>
+                    <option value="ranking">Simple holistic ranking from highest to lowest</option>
+                    <option value="classification">Assigning jobs to predefined grade categories</option>
+                </select>
+            `;
+        }
+    }
+
+    function solveAndDraw() {
+        const scenario = document.getElementById('scenarioType').value;
+        const list = document.getElementById('stepList');
+        list.innerHTML = '';
+
+        if (scenario === 'ownership_recommender') {
+            const goal = document.getElementById('sc_goal').value;
+            let steps = [];
+
+            if (goal === 'llc') {
+                steps = [
+                    "<strong>Recommended Structure:</strong> Limited Liability Company (LLC)",
+                    "<strong>Key Feature:</strong> Offers corporate limited liability while maintaining pass-through income taxation.",
+                    "<strong>Required Documents:</strong> Articles of Organization (state registration) + Operating Agreement (internal governance).",
+                    "<strong>Tax Profile:</strong> Profits/losses flow directly to members' personal tax returns."
+                ];
+            } else if (goal === 'plc') {
+                steps = [
+                    "<strong>Recommended Structure:</strong> Public Limited Company (PLC) / Corporation",
+                    "<strong>Key Feature:</strong> Ability to sell shares publicly on stock exchanges to raise equity.",
+                    "<strong>Governance:</strong> Managed by an elected Board of Directors representing shareholders.",
+                    "<strong>Tax Profile:</strong> Subject to double taxation (corporate profits + dividend tax)."
+                ];
+            } else if (goal === 'sole') {
+                steps = [
+                    "<strong>Recommended Structure:</strong> Sole Proprietorship",
+                    "<strong>Key Feature:</strong> Simplest and least expensive structure to start.",
+                    "<strong>Risk Exposure:</strong> Owner faces <em>unlimited personal liability</em> for all business debts.",
+                    "<strong>Tax Profile:</strong> Direct pass-through tax rate (7.5% - 15%)."
+                ];
+            } else {
+                steps = [
+                    "<strong>Recommended Structure:</strong> Social Enterprise",
+                    "<strong>Key Feature:</strong> Uses commercial revenue models to fund social or environmental objectives.",
+                    "<strong>Profit Allocation:</strong> Surplus is reinvested into the business mission rather than paid out to shareholders.",
+                    "<strong>Financial Model:</strong> Focuses on income generation over total reliance on grants."
+                ];
+            }
+            steps.forEach(s => { const d = document.createElement('div'); d.className = 'step-item'; d.innerHTML = s; list.appendChild(d); });
+
+        } else if (scenario === 'production_selector') {
+            const prod = document.getElementById('sc_prod').value;
+            let steps = [];
+
+            if (prod === 'jobbing') {
+                steps = [
+                    "<strong>Production System:</strong> Jobbing / Job Shop Production",
+                    "<strong>Characteristics:</strong> Highly labor-intensive, skilled workers, varied sequences, general-purpose machines.",
+                    "<strong>Examples:</strong> Tailoring, custom furniture, specialty printing.",
+                    "<strong>Trade-off:</strong> Highly flexible but higher cost per unit."
+                ];
+            } else if (prod === 'batch') {
+                steps = [
+                    "<strong>Production System:</strong> Batch Production",
+                    "<strong>Characteristics:</strong> Standardized components produced in lots, middle ground between job shop and mass.",
+                    "<strong>Key Focus:</strong> Detailed production planning, inventory buffer control, short runs.",
+                    "<strong>Examples:</strong> Bakery goods, pharmaceuticals, electronics sub-assemblies."
+                ];
+            } else if (prod === 'mass') {
+                steps = [
+                    "<strong>Production System:</strong> Mass & Continuous Production",
+                    "<strong>Characteristics:</strong> Automated assembly lines, low unit costs, rigid specifications.",
+                    "<strong>Key Requirement:</strong> Capital-intensive machinery set up in line formation.",
+                    "<strong>Examples:</strong> Automobile manufacturing, smartphone assembly."
+                ];
+            } else {
+                steps = [
+                    "<strong>Production System:</strong> Project-Based Production",
+                    "<strong>Characteristics:</strong> Temporary specialized team assembled for a distinct contract.",
+                    "<strong>Management Role:</strong> Strong project management required for scope, schedule, and budget.",
+                    "<strong>Examples:</strong> Construction, software development, filmmaking."
+                ];
+            }
+            steps.forEach(s => { const d = document.createElement('div'); d.className = 'step-item'; d.innerHTML = s; list.appendChild(d); });
+
+        } else if (scenario === 'evaluation_analyzer') {
+            const evalObj = document.getElementById('sc_eval').value;
+            let steps = [];
+
+            if (evalObj === 'points') {
+                steps = [
+                    "<strong>System Type:</strong> Analytical - Points Rating Method",
+                    "<strong>Process:</strong> Breaks jobs into compensable factors (skill, effort, responsibility) and assigns numeric points.",
+                    "<strong>Advantage:</strong> Highly objective and quantifiable basis for salary administration.",
+                    "<strong>Category:</strong> Analytical scheme."
+                ];
+            } else if (evalObj === 'ranking') {
+                steps = [
+                    "<strong>System Type:</strong> Non-analytical - Job Ranking Method",
+                    "<strong>Process:</strong> Ranks jobs subjectively as whole entities from highest to lowest worth.",
+                    "<strong>Advantage:</strong> Fast and easy to execute in smaller organizations.",
+                    "<strong>Category:</strong> Non-analytical scheme."
+                ];
+            } else {
+                steps = [
+                    "<strong>System Type:</strong> Non-analytical - Job Classification / Grading",
+                    "<strong>Process:</strong> Places whole jobs into predefined grade classes based on complexity and skill.",
+                    "<strong>Advantage:</strong> Standardized grouping across administrative divisions.",
+                    "<strong>Category:</strong> Non-analytical scheme."
+                ];
+            }
+            steps.forEach(s => { const d = document.createElement('div'); d.className = 'step-item'; d.innerHTML = s; list.appendChild(d); });
+        }
+    }
+
+    // FLASHCARD DECK
+    const flashcardsDeck = [
+        { concept: "Operating Agreement", answer: "Internal document governing provisions and conduct of an LLC.", topic: 1 },
+        { concept: "Unlimited Personal Liability", answer: "Owner's personal assets can be seized to pay business debts (Sole Prop/General Partner).", topic: 1 },
+        { concept: "Social Enterprise", answer: "Business using commercial strategies to achieve social goals, reinvesting profits.", topic: 1 },
+        { concept: "Jobbing Production", answer: "Manufacturing customized goods in small quantities or single items.", topic: 2 },
+        { concept: "Value Engineering (VE)", answer: "Structured method to maximize functionality while minimizing lifecycle costs.", topic: 2 },
+        { concept: "Quality Circles", answer: "Voluntary employee groups meeting regularly to solve quality/process problems.", topic: 2 },
+        { concept: "Extended 3 Ps", answer: "People, Process, and Physical Evidence (Service Marketing).", topic: 3 },
+        { concept: "Bootstrap Marketing", answer: "Unconventional, low-cost creative marketing strategies yielding high returns.", topic: 3 },
+        { concept: "Marketing vs. Market Research", answer: "Market = size/demographics; Marketing = advertising/copywriting/customer satisfaction.", topic: 3 },
+        { concept: "Managerial Competencies", answer: "Clusters of Knowledge, Skills, and Abilities (KSAs) needed for performance.", topic: 4 },
+        { concept: "Analytical Job Evaluation", answer: "Quantitative schemes rating job factors (Points Rating, Factor Comparison).", topic: 4 },
+        { concept: "Succession Planning", answer: "Strategic process of identifying/grooming internal staff for key leadership roles.", topic: 4 }
+    ];
+
+    let fcIndex = 0, fcIsFlipped = false;
+
+    function loadFlashcard() {
+        const currentCard = flashcardsDeck[fcIndex];
+        fcIsFlipped = false;
+        document.getElementById('fcLabel').innerText = `MODULE ${currentCard.topic} CONCEPT (Click to Flip)`;
+        document.getElementById('fcContent').innerText = currentCard.concept;
+    }
+
+    function flipCard() {
+        const currentCard = flashcardsDeck[fcIndex];
+        fcIsFlipped = !fcIsFlipped;
+        document.getElementById('fcLabel').innerText = fcIsFlipped ? "DEFINITION / EXPLANATION" : `MODULE ${currentCard.topic} CONCEPT (Click to Flip)`;
+        document.getElementById('fcContent').innerText = fcIsFlipped ? currentCard.answer : currentCard.concept;
+    }
+
+    function rateCard(rating) {
+        fcIndex = (fcIndex + 1) % flashcardsDeck.length;
+        loadFlashcard();
+    }
+
+    window.onload = () => {
+        updateMasteryUI();
+        generateQuiz();
+        renderScenarioInputs();
+    };
+</script>
+
+</body>
+</html>

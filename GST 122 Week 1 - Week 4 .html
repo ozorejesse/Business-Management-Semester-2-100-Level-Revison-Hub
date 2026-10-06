@@ -1,0 +1,1072 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>English Language & Communication Master Suite (Expanded Edition)</title>
+    <style>
+        :root {
+            --bg-color: #f8fafc;
+            --surface-color: #ffffff;
+            --text-color: #1e293b;
+            --border-color: #e2e8f0;
+            --primary-color: #2563eb;
+            --primary-hover: #1d4ed8;
+            --success-color: #16a34a;
+            --success-bg: #f0fdf4;
+            --success-border: #bbf7d0;
+            --error-color: #dc2626;
+            --error-bg: #fef2f2;
+            --error-border: #fecaca;
+            --badge-bg: #e2e8f0;
+            --badge-text: #475569;
+            --card-hover: #f1f5f9;
+            --summary-bg: #f1f5f9;
+        }
+
+        [data-theme="dark"] {
+            --bg-color: #0f172a;
+            --surface-color: #1e293b;
+            --text-color: #f8fafc;
+            --border-color: #334155;
+            --primary-color: #3b82f6;
+            --primary-hover: #60a5fa;
+            --success-color: #4ade80;
+            --success-bg: #064e3b;
+            --success-border: #047857;
+            --error-color: #f87171;
+            --error-bg: #7f1d1d;
+            --error-border: #991b1b;
+            --badge-bg: #334155;
+            --badge-text: #cbd5e1;
+            --card-hover: #334155;
+            --summary-bg: #0f172a;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            margin: 0;
+            padding: 20px;
+            transition: background-color 0.3s, color 0.3s;
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 950px;
+            margin: 0 auto;
+            background: var(--surface-color);
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+        }
+
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        h1 {
+            color: var(--primary-color);
+            margin: 0;
+            font-size: 1.8rem;
+        }
+
+        .nav-tabs {
+            display: flex;
+            gap: 8px;
+            margin-bottom: 25px;
+            border-bottom: 2px solid var(--border-color);
+            padding-bottom: 10px;
+            flex-wrap: wrap;
+        }
+
+        .tab-btn {
+            background: none;
+            border: none;
+            color: var(--text-color);
+            font-size: 14px;
+            font-weight: 600;
+            padding: 8px 14px;
+            cursor: pointer;
+            border-radius: 6px;
+            transition: background 0.2s, color 0.2s;
+        }
+
+        .tab-btn.active {
+            background-color: var(--primary-color);
+            color: #ffffff;
+        }
+
+        .theme-toggle {
+            background: none;
+            border: 1px solid var(--border-color);
+            color: var(--text-color);
+            padding: 8px 12px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-weight: 600;
+        }
+
+        .controls {
+            display: flex;
+            gap: 10px;
+            align-items: center;
+            margin-bottom: 20px;
+            flex-wrap: wrap;
+        }
+
+        select, input[type="text"], input[type="number"], button.action-btn {
+            padding: 10px 14px;
+            font-size: 14px;
+            border-radius: 6px;
+            border: 1px solid var(--border-color);
+            background-color: var(--surface-color);
+            color: var(--text-color);
+        }
+
+        button.action-btn {
+            background-color: var(--primary-color);
+            color: white;
+            border: none;
+            font-weight: 600;
+            cursor: pointer;
+        }
+
+        button.action-btn:hover {
+            background-color: var(--primary-hover);
+        }
+
+        .search-box {
+            width: 100%;
+            margin-bottom: 20px;
+            padding: 12px;
+            box-sizing: border-box;
+            border-radius: 6px;
+            border: 1px solid var(--border-color);
+            background: var(--surface-color);
+            color: var(--text-color);
+            font-size: 15px;
+        }
+
+        .summary-week {
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            padding: 24px;
+            margin-bottom: 25px;
+            background-color: var(--surface-color);
+        }
+
+        .summary-week h2 {
+            color: var(--primary-color);
+            margin-top: 0;
+            border-bottom: 2px solid var(--border-color);
+            padding-bottom: 8px;
+        }
+
+        .summary-week h3 {
+            color: var(--text-color);
+            font-size: 1.1rem;
+            margin-top: 15px;
+            margin-bottom: 5px;
+        }
+
+        .summary-week ul {
+            margin-top: 5px;
+            padding-left: 20px;
+        }
+
+        .summary-week li {
+            margin-bottom: 4px;
+        }
+
+        .formula-box {
+            background-color: var(--summary-bg);
+            border-left: 4px solid var(--primary-color);
+            padding: 12px 16px;
+            margin: 12px 0;
+            font-family: "Courier New", Courier, monospace;
+            border-radius: 0 6px 6px 0;
+        }
+
+        .progress-dashboard {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 12px;
+            margin-bottom: 20px;
+        }
+
+        .progress-card {
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            padding: 12px 16px;
+            background: var(--surface-color);
+            text-align: center;
+        }
+
+        .progress-card .score {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: var(--primary-color);
+        }
+
+        .question-card {
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            padding: 20px;
+            margin-bottom: 20px;
+            background-color: var(--surface-color);
+        }
+
+        .question-title {
+            font-weight: 600;
+            margin-bottom: 12px;
+            color: var(--text-color);
+        }
+
+        .options {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            margin-bottom: 10px;
+        }
+
+        .option-label {
+            display: flex;
+            align-items: center;
+            padding: 10px 14px;
+            border: 1px solid var(--border-color);
+            border-radius: 6px;
+            cursor: pointer;
+            transition: background 0.15s;
+        }
+
+        .option-label:hover {
+            background-color: var(--card-hover);
+        }
+
+        .option-label input {
+            margin-right: 12px;
+        }
+
+        .explanation {
+            display: none;
+            margin-top: 12px;
+            padding: 12px;
+            border-radius: 6px;
+            font-size: 14px;
+            line-height: 1.5;
+        }
+
+        .explanation.correct {
+            display: block;
+            background-color: var(--success-bg);
+            border: 1px solid var(--success-border);
+            color: var(--success-color);
+        }
+
+        .explanation.incorrect {
+            display: block;
+            background-color: var(--error-bg);
+            border: 1px solid var(--error-border);
+            color: var(--error-color);
+        }
+
+        .badge {
+            display: inline-block;
+            padding: 2px 8px;
+            font-size: 12px;
+            font-weight: 600;
+            border-radius: 4px;
+            background: var(--badge-bg);
+            color: var(--badge-text);
+            margin-bottom: 8px;
+        }
+
+        .matching-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            margin-top: 15px;
+        }
+
+        .match-column {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .match-card {
+            padding: 14px 16px;
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            background: var(--surface-color);
+            cursor: pointer;
+            user-select: none;
+            transition: border-color 0.2s, background 0.2s;
+            min-height: 50px;
+            display: flex;
+            align-items: center;
+            font-weight: 500;
+        }
+
+        .match-card:hover { border-color: var(--primary-color); }
+        .match-card.selected { border: 2px solid var(--primary-color); background-color: var(--card-hover); }
+        .match-card.matched { border-color: var(--success-color); background-color: var(--success-bg); color: var(--success-color); cursor: default; opacity: 0.8; }
+        .match-card.wrong { border-color: var(--error-color); background-color: var(--error-bg); }
+
+        .matching-feedback {
+            margin-bottom: 20px;
+            padding: 16px;
+            border-radius: 8px;
+            font-size: 15px;
+            display: none;
+            line-height: 1.5;
+        }
+
+        .solver-panel {
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            padding: 20px;
+            background: var(--surface-color);
+            margin-bottom: 20px;
+        }
+
+        .scenario-inputs {
+            display: flex;
+            gap: 10px;
+            align-items: center;
+            margin-top: 15px;
+            margin-bottom: 15px;
+            flex-wrap: wrap;
+        }
+
+        .step-list {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            margin-top: 15px;
+        }
+
+        .step-item {
+            padding: 12px;
+            border-left: 4px solid var(--primary-color);
+            background: var(--summary-bg);
+            border-radius: 0 6px 6px 0;
+        }
+
+        .flashcard-wrapper {
+            perspective: 1000px;
+            max-width: 500px;
+            margin: 20px auto;
+        }
+
+        .flashcard {
+            width: 100%;
+            height: 250px;
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            background: var(--surface-color);
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 24px;
+            text-align: center;
+            cursor: pointer;
+            box-sizing: border-box;
+            user-select: none;
+            transition: transform 0.2s;
+        }
+
+        .flashcard:hover {
+            transform: translateY(-2px);
+        }
+
+        .flashcard .card-label {
+            font-size: 12px;
+            color: var(--badge-text);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 10px;
+        }
+
+        .flashcard .card-content {
+            font-size: 1.2rem;
+            font-weight: 600;
+        }
+
+        .flashcard-controls {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            margin-top: 15px;
+        }
+
+        .view-section { display: none; }
+        .view-section.active { display: block; }
+        .score-board { font-weight: bold; color: var(--primary-color); }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <div class="header">
+        <h1>English Language & Communication Master Suite (Expanded)</h1>
+        <button class="theme-toggle" onclick="toggleTheme()" id="themeBtn">🌙 Night Mode</button>
+    </div>
+
+    <div class="nav-tabs">
+        <button class="tab-btn active" onclick="switchTab('summaries')">📖 Comprehensive Summaries</button>
+        <button class="tab-btn" onclick="switchTab('quiz')">📝 Quiz & Mastery (30 Questions)</button>
+        <button class="tab-btn" onclick="switchTab('matching')">🧩 Matching Game</button>
+        <button class="tab-btn" onclick="switchTab('solver')">🔍 Sentence & Structure Analyzer</button>
+        <button class="tab-btn" onclick="switchTab('flashcards')">🎴 Extended Flashcards</button>
+    </div>
+
+    <!-- TAB 1: SUMMARIES -->
+    <div id="summariesTab" class="view-section active">
+        <input type="text" id="summarySearch" class="search-box" placeholder="⚡ Search across all expanded course topics..." oninput="filterSummaries()">
+        
+        <div id="summaryList">
+            <div class="summary-week searchable">
+                <h2>1. Core Communication Skills & Listening Modes</h2>
+                <p>Explores foundational skills in listening, speaking, reading, and writing, distinguishing between active, engaged processing and passive, uncritical reception[cite: 1].</p>
+                
+                <h3>Key Concepts & Breakdown</h3>
+                <ul>
+                    <li><strong>Receptive vs. Expressive Skills:</strong> Listening and Reading are receptive skills used to decode meaning; Speaking and Writing are productive/expressive skills used to encode messages[cite: 1].</li>
+                    <li><strong>The Communication Loop:</strong> Requires a Sender, Message, Encoding process, Transmission Channel, Receiver, Decoding process, and Feedback loop to confirm accuracy[cite: 1].</li>
+                    <li><strong>Active Listening:</strong> A deliberate cognitive process involving undivided attention, note-taking, critical synthesis, tone analysis, and non-verbal feedback[cite: 1].</li>
+                    <li><strong>Passive Listening:</strong> Receiving sound without evaluation, questioning, or critical absorption, often leading to partial information retention[cite: 1].</li>
+                </ul>
+
+                <div class="formula-box">
+                    Communication Loop: Sender ➔ Message ➔ Channel ➔ Receiver ➔ Feedback[cite: 1]<br>
+                    Listening Modes: Active (Analytical/Critical/Engaged) vs. Passive (Uncritical/Inattentive)[cite: 1]
+                </div>
+            </div>
+
+            <div class="summary-week searchable">
+                <h2>2. The 8 Parts of Speech</h2>
+                <p>Covers the essential structural units of English sentences: Nouns, Pronouns, Verbs, Adjectives, Adverbs, Prepositions, Conjunctions, and Interjections[cite: 2].</p>
+                
+                <h3>Key Concepts & Breakdown</h3>
+                <ul>
+                    <li><strong>Nouns & Pronouns:</strong> Nouns name people, places, things, or abstract ideas[cite: 2]. Pronouns replace nouns to prevent repetition (e.g., personal, relative, demonstrative)[cite: 2].</li>
+                    <li><strong>Verbs:</strong> Express actions, states of being, or linking conditions (e.g., action verbs vs. auxiliary/linking verbs)[cite: 2].</li>
+                    <li><strong>Modifiers:</strong> Adjectives modify or describe nouns/pronouns[cite: 2]. Adverbs modify verbs, adjectives, or other adverbs (often answering how, when, where, why, or to what extent)[cite: 2].</li>
+                    <li><strong>Structural Connectors:</strong> Prepositions establish spatial, temporal, or logical relationships[cite: 2]. Conjunctions join words, phrases, or clauses (coordinating vs. subordinating)[cite: 2]. Interjections express sudden emotion[cite: 2].</li>
+                </ul>
+
+                <div class="formula-box">
+                    Content-Heavy Core: Noun + Pronoun + Verb + Adjective + Adverb[cite: 2, 4]<br>
+                    Structural Connectors: Preposition + Conjunction + Interjection[cite: 2, 4]
+                </div>
+            </div>
+
+            <div class="summary-week searchable">
+                <h2>3. Sentence Structures & Functions</h2>
+                <p>Analyzes clause arrangements (Simple, Compound, Complex, Compound-Complex) and expressive purposes (Declarative, Imperative, Interrogative, Exclamatory, Conditional)[cite: 3].</p>
+                
+                <h3>Key Concepts & Breakdown</h3>
+                <ul>
+                    <li><strong>Simple Sentences:</strong> Contain one independent clause (one subject and one predicate)[cite: 3].</li>
+                    <li><strong>Compound Sentences:</strong> Contain two or more independent clauses joined by a coordinating conjunction (FANBOYS) or a semicolon[cite: 3, 6].</li>
+                    <li><strong>Complex Sentences:</strong> Contain one independent clause and at least one dependent clause joined by a subordinating conjunction[cite: 3].</li>
+                    <li><strong>Compound-Complex Sentences:</strong> Contain at least two independent clauses and one or more dependent clauses[cite: 3].</li>
+                    <li><strong>Sentence Functions:</strong> Declarative (makes a statement), Imperative (gives a command), Interrogative (asks a question), Exclamatory (expresses strong emotion), and Conditional (states a scenario and outcome)[cite: 3].</li>
+                </ul>
+
+                <div class="formula-box">
+                    Complex = 1 Independent Clause + ≥1 Dependent Clause[cite: 3]<br>
+                    Compound-Complex = ≥2 Independent Clauses + ≥1 Dependent Clause[cite: 3]
+                </div>
+            </div>
+
+            <div class="summary-week searchable">
+                <h2>4. Word Classes: Content vs. Function Words</h2>
+                <p>Distinguishes open-class content words that convey primary semantic meaning from closed-class function words that provide grammatical connections and prosodic structure[cite: 4].</p>
+                
+                <h3>Key Concepts & Breakdown</h3>
+                <ul>
+                    <li><strong>Content Words (Open Class):</strong> Include Nouns, Main Verbs, Adjectives, and Adverbs[cite: 4]. New words can be continually added to the language[cite: 4]. They carry primary meaning and receive main vocal stress in speech[cite: 4].</li>
+                    <li><strong>Function Words (Closed Class):</strong> Include Pronouns, Auxiliary Verbs, Prepositions, Conjunctions, Articles, and Determiners[cite: 4]. They serve purely structural or grammatical roles and are generally unstressed in spoken English[cite: 4].</li>
+                    <li><strong>Prosodic Timing:</strong> The alternation between stressed content words and unstressed function words gives spoken English its characteristic rhythm[cite: 4].</li>
+                </ul>
+
+                <div class="formula-box">
+                    Content Words (Stressed): Nouns, Main Verbs, Adjectives, Adverbs[cite: 4]<br>
+                    Function Words (Unstressed): Pronouns, Auxiliaries, Prepositions, Conjunctions, Articles[cite: 4]
+                </div>
+            </div>
+
+            <div class="summary-week searchable">
+                <h2>5. Paragraph Structure & Development</h2>
+                <p>Covers structural components of paragraphs including topic sentences, supporting details, coherence, unity, and transitional phrases[cite: 5].</p>
+                
+                <h3>Key Concepts & Breakdown</h3>
+                <ul>
+                    <li><strong>Topic Sentence:</strong> Directs the primary focus and central argument of the entire paragraph[cite: 5].</li>
+                    <li><strong>Supporting Details:</strong> Provide evidence, statistical data, explanations, and concrete illustrations[cite: 5].</li>
+                    <li><strong>Paragraph Unity:</strong> Achieved when every single sentence relates directly back to the main topic sentence[cite: 5].</li>
+                    <li><strong>Paragraph Coherence:</strong> Logical, smooth transition from one sentence to the next using pronouns, parallel structures, and transitional words (e.g., however, furthermore, consequently)[cite: 5].</li>
+                    <li><strong>Concluding Sentence:</strong> Summarizes the main point or provides a transition to the next paragraph[cite: 5].</li>
+                </ul>
+
+                <div class="formula-box">
+                    Paragraph Anatomy = Topic Sentence + Supporting Details + Concluding Sentence[cite: 5]<br>
+                    Core Attributes = Unity (Single idea focus) + Coherence (Logical sequential flow)[cite: 5]
+                </div>
+            </div>
+
+            <div class="summary-week searchable">
+                <h2>6. Punctuation Mechanics & Usage</h2>
+                <p>Rules and applications for 13 essential punctuation marks to establish clear pause structure, tone, syntactic relationship, and text boundary[cite: 6].</p>
+                
+                <h3>Key Concepts & Breakdown</h3>
+                <ul>
+                    <li><strong>Terminal Marks:</strong> Periods (.), Question Marks (?), and Exclamation Points (!) end distinct sentences[cite: 6].</li>
+                    <li><strong>Pauses & Links:</strong> Commas (,) separate items in lists or introductory clauses[cite: 6]. Semicolons (;) connect independent clauses without conjunctions[cite: 6]. Colons (:) introduce lists, explanations, or quotes[cite: 6].</li>
+                    <li><strong>Enclosure & Separation:</strong> Apostrophes (') show possession or contractions[cite: 6]. Quotation marks (" ") enclose direct discourse[cite: 6]. Parentheses ( ) and Brackets [ ] enclose supplemental comments or edits[cite: 6]. Hyphens (-) join compound words while Dashes (—) emphasize pauses[cite: 6].</li>
+                </ul>
+
+                <div class="formula-box">
+                    Punctuation Kit: Period, Comma, Semicolon, Colon, Apostrophe, Quotations, Hyphen, Dash, etc.[cite: 6]<br>
+                    Semicolon Rule: Independent Clause + ; + Independent Clause[cite: 6]
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- TAB 2: QUIZ -->
+    <div id="quizTab" class="view-section">
+        <div class="progress-dashboard">
+            <div class="progress-card"><div>Module 1: Communication</div><div class="score" id="m_mod1">0%</div></div>
+            <div class="progress-card"><div>Module 2: Parts of Speech</div><div class="score" id="m_mod2">0%</div></div>
+            <div class="progress-card"><div>Module 3: Sentence Types</div><div class="score" id="m_mod3">0%</div></div>
+            <div class="progress-card"><div>Module 4: Word Classes</div><div class="score" id="m_mod4">0%</div></div>
+            <div class="progress-card"><div>Module 5: Paragraphs</div><div class="score" id="m_mod5">0%</div></div>
+            <div class="progress-card"><div>Module 6: Punctuation</div><div class="score" id="m_mod6">0%</div></div>
+        </div>
+
+        <div class="controls">
+            <label for="topicSelect"><strong>Select Topic:</strong></label>
+            <select id="topicSelect">
+                <option value="1">1. Communication & Listening Skills (5 Questions)</option>
+                <option value="2">2. The 8 Parts of Speech (5 Questions)</option>
+                <option value="3">3. Sentence Structures & Functions (5 Questions)</option>
+                <option value="4">4. Content vs. Function Words (5 Questions)</option>
+                <option value="5">5. Paragraph Unity & Coherence (5 Questions)</option>
+                <option value="6">6. Punctuation Mechanics (5 Questions)</option>
+                <option value="all" selected>All 6 Topics Combined (30 Questions)</option>
+            </select>
+            <button class="action-btn" onclick="generateQuiz(false)">Generate Quiz</button>
+            <button class="action-btn" style="background-color: var(--error-color)" onclick="generateQuiz(true)">🎯 Retry Missed Questions Only</button>
+        </div>
+
+        <div id="quizContainer"></div>
+    </div>
+
+    <!-- TAB 3: MATCHING GAME -->
+    <div id="matchingTab" class="view-section">
+        <div class="controls">
+            <button class="action-btn" onclick="resetMatchingGame()">Reset / New Cards</button>
+            <div id="matchingScore" class="score-board">Matches Found: 0 / 0</div>
+        </div>
+
+        <div id="matchingFeedback" class="matching-feedback"></div>
+
+        <div class="matching-container">
+            <div class="match-column" id="leftCol"></div>
+            <div class="match-column" id="rightCol"></div>
+        </div>
+    </div>
+
+    <!-- TAB 4: INTERACTIVE SENTENCE ANALYZER -->
+    <div id="solverTab" class="view-section">
+        <div class="solver-panel">
+            <h2>English Sentence Structure & Grammar Analyzer</h2>
+            <p>Select or enter different grammatical scenarios to inspect structural breakdowns, clause connections, and functional classifications[cite: 3, 4, 5].</p>
+            
+            <div class="controls">
+                <label for="scenarioType"><strong>Analysis Engine:</strong></label>
+                <select id="scenarioType" onchange="renderScenarioInputs()">
+                    <option value="clause_breakdown">Clause Breakdown (Simple / Compound / Complex / Compound-Complex)</option>
+                    <option value="word_class">Word Class Stress Analyzer (Content vs. Function)</option>
+                    <option value="punctuation_fix">Punctuation & Semicolon Integrator</option>
+                    <option value="paragraph_unity">Paragraph Coherence & Transition Verifier</option>
+                </select>
+            </div>
+
+            <div class="scenario-inputs" id="scenarioInputs"></div>
+
+            <button class="action-btn" onclick="solveAndDraw()">Analyze Structure</button>
+
+            <div class="step-list" id="stepList"></div>
+        </div>
+    </div>
+
+    <!-- TAB 5: FLASHCARDS -->
+    <div id="flashcardsTab" class="view-section">
+        <div class="flashcard-wrapper">
+            <div class="flashcard" id="flashcard" onclick="flipCard()">
+                <div class="card-label" id="fcLabel">CONCEPT (Click to Flip)</div>
+                <div class="card-content" id="fcContent">Click start to load deck</div>
+            </div>
+        </div>
+
+        <div class="flashcard-controls">
+            <button class="action-btn" style="background-color: var(--error-color)" onclick="rateCard('hard')">🔴 Hard</button>
+            <button class="action-btn" style="background-color: #d97706" onclick="rateCard('medium')">🟡 Medium</button>
+            <button class="action-btn" style="background-color: var(--success-color)" onclick="rateCard('easy')">🟢 Easy</button>
+        </div>
+    </div>
+
+</div>
+
+<script>
+    function toggleTheme() {
+        const currentTheme = document.body.getAttribute('data-theme');
+        const themeBtn = document.getElementById('themeBtn');
+        if (currentTheme === 'dark') {
+            document.body.removeAttribute('data-theme');
+            themeBtn.innerText = '🌙 Night Mode';
+        } else {
+            document.body.setAttribute('data-theme', 'dark');
+            themeBtn.innerText = '☀️ Light Mode';
+        }
+    }
+
+    function switchTab(tabName) {
+        document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));
+        document.querySelectorAll('.view-section').forEach(sec => sec.classList.remove('active'));
+
+        const tabs = ['summaries', 'quiz', 'matching', 'solver', 'flashcards'];
+        const index = tabs.indexOf(tabName);
+        document.querySelectorAll('.tab-btn')[index].classList.add('active');
+        document.getElementById(tabName + 'Tab').classList.add('active');
+
+        if (tabName === 'matching') resetMatchingGame();
+        if (tabName === 'solver') { renderScenarioInputs(); solveAndDraw(); }
+        if (tabName === 'flashcards') loadFlashcard();
+    }
+
+    function filterSummaries() {
+        const query = document.getElementById('summarySearch').value.toLowerCase();
+        document.querySelectorAll('.searchable').forEach(el => {
+            const text = el.innerText.toLowerCase();
+            el.style.display = text.includes(query) ? 'block' : 'none';
+        });
+    }
+
+    // MASTERY SYSTEM
+    let masteryData = JSON.parse(localStorage.getItem('eng_mastery') || '{"1":{"c":0,"t":0},"2":{"c":0,"t":0},"3":{"c":0,"t":0},"4":{"c":0,"t":0},"5":{"c":0,"t":0},"6":{"c":0,"t":0}}');
+    let missedQuestions = JSON.parse(localStorage.getItem('eng_missed') || '[]');
+
+    function saveMastery() {
+        localStorage.setItem('eng_mastery', JSON.stringify(masteryData));
+        localStorage.setItem('eng_missed', JSON.stringify(missedQuestions));
+        updateMasteryUI();
+    }
+
+    function updateMasteryUI() {
+        for (let m = 1; m <= 6; m++) {
+            const data = masteryData[m];
+            const pct = data && data.t > 0 ? Math.round((data.c / data.t) * 100) : 0;
+            const el = document.getElementById(`m_mod${m}`);
+            if (el) el.innerText = `${pct}%`;
+        }
+    }
+
+    function shuffle(arr) { return [...arr].sort(() => Math.random() - 0.5); }
+
+    // FULL EXPANDED QUIZ BANK (5 questions per topic module = 30 total questions)
+    const quizBank = [
+        // Topic 1: Communication & Listening Skills
+        { mod: 1, title: "Which listening mode involves critical evaluation, synthesis, and engaged processing?", correct: "Active Listening", options: ["Active Listening", "Passive Listening", "Involuntary Hearing", "Subconscious Listening"], exp: "Active listening requires purposeful engagement, mental evaluation, and feedback[cite: 1]." },
+        { mod: 1, title: "In the communication process, what component closes the loop by providing the receiver's response?", correct: "Feedback", options: ["Feedback", "Encoding", "Channel", "Noise"], exp: "Feedback lets the sender know if the message was understood correctly[cite: 1]." },
+        { mod: 1, title: "Listening without evaluating or critically engaging with the content is termed:", correct: "Passive Listening", options: ["Passive Listening", "Active Listening", "Empathetic Listening", "Analytical Listening"], exp: "Passive listening receives sound without active cognitive processing or critique[cite: 1]." },
+        { mod: 1, title: "Which pair represents productive (expressive) communication skills?", correct: "Speaking & Writing", options: ["Speaking & Writing", "Listening & Reading", "Reading & Writing", "Listening & Speaking"], exp: "Speaking and writing require message production/encoding[cite: 1]." },
+        { mod: 1, title: "What phase of communication involves converting ideas into symbolic language?", correct: "Encoding", options: ["Encoding", "Decoding", "Feedback", "Noise Filtration"], exp: "Encoding is the process where the sender converts thought into words or symbols[cite: 1]." },
+
+        // Topic 2: The 8 Parts of Speech
+        { mod: 2, title: "Which part of speech modifies nouns or pronouns by describing or limiting them?", correct: "Adjective", options: ["Adjective", "Adverb", "Preposition", "Conjunction"], exp: "Adjectives provide descriptive qualities or attributes to nouns/pronouns[cite: 2]." },
+        { mod: 2, title: "Words that show relationship in space, time, or direction between elements are:", correct: "Prepositions", options: ["Prepositions", "Conjunctions", "Interjections", "Verbs"], exp: "Prepositions like 'in', 'on', 'under', and 'after' establish structural relationships[cite: 2]." },
+        { mod: 2, title: "Which part of speech joins words, phrases, or clauses together?", correct: "Conjunction", options: ["Conjunction", "Adverb", "Preposition", "Interjection"], exp: "Conjunctions (e.g., and, but, because) connect syntactic elements[cite: 2]." },
+        { mod: 2, title: "An adverb can modify all of the following EXCEPT:", correct: "Nouns", options: ["Nouns", "Verbs", "Adjectives", "Other Adverbs"], exp: "Nouns are modified by adjectives, not adverbs[cite: 2]." },
+        { mod: 2, title: "A word used to express sudden emotion or reaction (e.g., 'Oh!', 'Wow!') is a(n):", correct: "Interjection", options: ["Interjection", "Preposition", "Conjunction", "Pronoun"], exp: "Interjections convey brief, isolated emotional expressions[cite: 2]." },
+
+        // Topic 3: Sentence Structures & Functions
+        { mod: 3, title: "A sentence consisting of one independent clause and at least one dependent clause is:", correct: "Complex Sentence", options: ["Complex Sentence", "Simple Sentence", "Compound Sentence", "Compound-Complex Sentence"], exp: "Complex sentences combine an independent clause with subordinating clauses[cite: 3]." },
+        { mod: 3, title: "What functional type of sentence issues commands or requests?", correct: "Imperative", options: ["Imperative", "Declarative", "Interrogative", "Exclamatory"], exp: "Imperative sentences direct an action or give an order[cite: 3]." },
+        { mod: 3, title: "A sentence containing two independent clauses joined by a coordinating conjunction is:", correct: "Compound Sentence", options: ["Compound Sentence", "Simple Sentence", "Complex Sentence", "Fragment"], exp: "Compound sentences connect co-equal main clauses[cite: 3]." },
+        { mod: 3, title: "Which type of sentence contains at least two independent clauses and one dependent clause?", correct: "Compound-Complex Sentence", options: ["Compound-Complex Sentence", "Complex Sentence", "Compound Sentence", "Simple Sentence"], exp: "Compound-complex sentences combine both multiple main clauses and subordinate structures[cite: 3]." },
+        { mod: 3, title: "A sentence that states an condition and its outcome ('If it rains, we will stay inside') is:", correct: "Conditional", options: ["Conditional", "Exclamatory", "Declarative", "Imperative"], exp: "Conditional sentences express hypothetical situations and consequences[cite: 3]." },
+
+        // Topic 4: Content vs Function Words
+        { mod: 4, title: "Which class of words carries primary informational meaning and is open to new entries?", correct: "Content Words", options: ["Content Words", "Function Words", "Grammatical Connectors", "Closed Class"], exp: "Content words (nouns, main verbs, adjectives, adverbs) convey essential semantic meaning[cite: 4]." },
+        { mod: 4, title: "In spoken English rhythm, which types of words are usually unstressed?", correct: "Function Words", options: ["Function Words", "Content Words", "Nouns", "Main Verbs"], exp: "Function words like articles and prepositions are unaccented to maintain speech cadence[cite: 4]." },
+        { mod: 4, title: "All of the following are function words EXCEPT:", correct: "Substantive Nouns", options: ["Substantive Nouns", "Auxiliary Verbs", "Prepositions", "Definite Articles"], exp: "Nouns belong to the content word class[cite: 4]." },
+        { mod: 4, title: "Why are content words described as an 'open class'?", correct: "New words are frequently added to language vocabulary", options: ["New words are frequently added to language vocabulary", "They have fixed grammatical rules", "They only exist in open speech", "They cannot be written down"], exp: "Open classes constantly incorporate new terms like 'blog' or 'algorithm'[cite: 4]." },
+        { mod: 4, title: "Auxiliary verbs (e.g., 'is', 'have', 'do') function primarily as:", correct: "Function Words", options: ["Function Words", "Content Words", "Descriptive Adjectives", "Nominals"], exp: "Auxiliaries assist main verbs grammatically and belong to closed function classes[cite: 4]." },
+
+        // Topic 5: Paragraph Unity & Coherence
+        { mod: 5, title: "Which sentence states the central idea or primary focus of a paragraph?", correct: "Topic Sentence", options: ["Topic Sentence", "Supporting Detail", "Concluding Sentence", "Transitional Phrase"], exp: "The topic sentence summarizes the primary theme around which the paragraph is built[cite: 5]." },
+        { mod: 5, title: "When every sentence in a paragraph directly supports the main idea, the paragraph possesses:", correct: "Unity", options: ["Unity", "Coherence", "Fragmentation", "Passive Voice"], exp: "Unity ensures all details remain tightly focused on a single topic sentence[cite: 5]." },
+        { mod: 5, title: "The smooth, logical flow of thoughts connecting one sentence to the next is termed:", correct: "Coherence", options: ["Coherence", "Unity", "Syntax", "Redundancy"], exp: "Coherence ensures clear transitions and logical relationships across sentences[cite: 5]." },
+        { mod: 5, title: "Words like 'however', 'moreover', and 'consequently' are examples of:", correct: "Transitional Expressions", options: ["Transitional Expressions", "Topic Headings", "Dependent Fragments", "Content Nouns"], exp: "Transitional phrases establish clear logical connections between paragraph ideas[cite: 5]." },
+        { mod: 5, title: "The main purpose of a paragraph's concluding sentence is to:", correct: "Summarize points or transition smoothly", options: ["Summarize points or transition smoothly", "Introduce brand new unrelated topics", "List dictionary definitions", "Provide long citations"], exp: "Concluding sentences tie together arguments or transition to subsequent points[cite: 5]." },
+
+        // Topic 6: Punctuation Mechanics
+        { mod: 6, title: "Which punctuation mark is used to link independent clauses without a conjunction?", correct: "Semicolon (;)", options: ["Semicolon (;)", "Comma (,)", "Colon (:)", "Hyphen (-)"], exp: "A semicolon joins closely related independent clauses without coordinating conjunctions[cite: 6]." },
+        { mod: 6, title: "Which mark introduces lists, explanations, or formal block quotes?", correct: "Colon (:)", options: ["Colon (:)", "Semicolon (;)", "Comma (,)", "Dash (—)"], exp: "Colons signal that an elaboration, list, or direct illustration follows[cite: 6]." },
+        { mod: 6, title: "Improperly joining two independent clauses with only a comma creates a:", correct: "Comma Splice", options: ["Comma Splice", "Fused Sentence", "Fragment", "Dangling Modifier"], exp: "Joining independent clauses with just a comma constitutes a comma splice[cite: 6]." },
+        { mod: 6, title: "Which punctuation mark is used to join compound words or prefixes?", correct: "Hyphen (-)", options: ["Hyphen (-)", "Dash (—)", "Slash (/)", "Apostrophe (')"], exp: "Hyphens link compound terms like 'well-known' or 'mother-in-law'[cite: 6]." },
+        { mod: 6, title: "Apostrophes serve two primary grammatical roles:", correct: "Possession and Contraction", options: ["Possession and Contraction", "Questions and Exclamations", "Lists and Quotes", "Clauses and Phrases"], exp: "Apostrophes indicate ownership (Mary's book) or missing letters (it's)[cite: 6]." }
+    ];
+
+    let currentQuestions = [];
+
+    function generateQuiz(retryMissedOnly = false) {
+        const topic = document.getElementById('topicSelect').value;
+        if (retryMissedOnly) {
+            currentQuestions = [...missedQuestions];
+            if (currentQuestions.length === 0) {
+                alert("No missed questions recorded yet!");
+                return;
+            }
+        } else {
+            if (topic === 'all') {
+                currentQuestions = shuffle([...quizBank]);
+            } else {
+                const modNum = parseInt(topic);
+                currentQuestions = quizBank.filter(q => q.mod === modNum);
+            }
+        }
+        renderQuiz();
+    }
+
+    function renderQuiz() {
+        const container = document.getElementById('quizContainer');
+        container.innerHTML = '';
+
+        currentQuestions.forEach((q, qIndex) => {
+            const card = document.createElement('div');
+            card.className = 'question-card';
+            card.innerHTML = `
+                <span class="badge">Topic ${q.mod}</span>
+                <div class="question-title">${qIndex + 1}. ${q.title}</div>
+                <div class="options">
+                    ${shuffle(q.options).map(opt => `
+                        <label class="option-label">
+                            <input type="radio" name="q_${qIndex}" value="${opt}" onchange="handleOptionSelect(${qIndex}, '${opt.replace(/'/g, "\\'")}', '${q.correct.replace(/'/g, "\\'")}', '${q.exp.replace(/'/g, "\\'")}', ${q.mod})">
+                            ${opt}
+                        </label>
+                    `).join('')}
+                </div>
+                <div class="explanation" id="exp_${qIndex}"></div>
+            `;
+            container.appendChild(card);
+        });
+    }
+
+    function handleOptionSelect(qIndex, selectedOpt, correctOpt, explanation, mod) {
+        const expDiv = document.getElementById(`exp_${qIndex}`);
+        document.querySelectorAll(`input[name="q_${qIndex}"]`).forEach(i => i.disabled = true);
+
+        if (!masteryData[mod]) masteryData[mod] = { c: 0, t: 0 };
+        masteryData[mod].t += 1;
+
+        if (selectedOpt === correctOpt) {
+            expDiv.className = 'explanation correct';
+            expDiv.innerHTML = `<strong>Correct!</strong> ${explanation}`;
+            masteryData[mod].c += 1;
+        } else {
+            expDiv.className = 'explanation incorrect';
+            expDiv.innerHTML = `<strong>Incorrect.</strong> Correct answer: <strong>${correctOpt}</strong>.<br>${explanation}`;
+            if (!missedQuestions.some(item => item.title === currentQuestions[qIndex].title)) {
+                missedQuestions.push(currentQuestions[qIndex]);
+            }
+        }
+        saveMastery();
+    }
+
+    // MATCHING GAME ENGINE
+    const rawPairs = [
+        { id: 0, left: "Active Listening", right: "Critically processing and evaluating audio feedback", explanation: "Active engagement requires conscious cognitive synthesis[cite: 1]." },
+        { id: 1, left: "Content Words", right: "Nouns, Verbs, Adjectives carry primary meaning", explanation: "Open-class words carry the primary semantic weight[cite: 4]." },
+        { id: 2, left: "Complex Sentence", right: "1 Independent Clause + ≥1 Dependent Clause", explanation: "Combines main thought with subordinate ideas[cite: 3]." },
+        { id: 3, left: "Paragraph Unity", right: "Every supporting sentence aligns with topic sentence", explanation: "Maintains singular thematic focus throughout[cite: 5]." },
+        { id: 4, left: "Semicolon Usage", right: "Connects two related independent clauses", explanation: "Eliminates comma splices while preserving clause weight[cite: 6]." },
+        { id: 5, left: "Function Words", right: "Articles, Prepositions, Conjunctions providing structure", explanation: "Closed-class words providing syntactic relationships[cite: 4]." }
+    ];
+
+    let leftSelected = null, rightSelected = null, matchesCount = 0;
+
+    function resetMatchingGame() {
+        matchesCount = 0;
+        leftSelected = null;
+        rightSelected = null;
+
+        const leftCol = document.getElementById('leftCol');
+        const rightCol = document.getElementById('rightCol');
+        const feedbackDiv = document.getElementById('matchingFeedback');
+        
+        leftCol.innerHTML = ''; 
+        rightCol.innerHTML = ''; 
+        feedbackDiv.style.display = 'none';
+
+        document.getElementById('matchingScore').innerText = `Matches Found: 0 / ${rawPairs.length}`;
+
+        const leftList = shuffle(rawPairs);
+        const rightList = shuffle(rawPairs);
+
+        leftList.forEach(item => {
+            const card = document.createElement('div');
+            card.className = 'match-card';
+            card.dataset.id = item.id;
+            card.innerText = item.left;
+            card.onclick = () => selectLeft(card, item);
+            leftCol.appendChild(card);
+        });
+
+        rightList.forEach(item => {
+            const card = document.createElement('div');
+            card.className = 'match-card';
+            card.dataset.id = item.id;
+            card.innerText = item.right;
+            card.onclick = () => selectRight(card, item);
+            rightCol.appendChild(card);
+        });
+    }
+
+    function selectLeft(card, item) {
+        if (card.classList.contains('matched')) return;
+        document.querySelectorAll('#leftCol .match-card').forEach(c => c.classList.remove('selected'));
+        leftSelected = { card, item };
+        card.classList.add('selected');
+        checkPairMatch();
+    }
+
+    function selectRight(card, item) {
+        if (card.classList.contains('matched')) return;
+        document.querySelectorAll('#rightCol .match-card').forEach(c => c.classList.remove('selected'));
+        rightSelected = { card, item };
+        card.classList.add('selected');
+        checkPairMatch();
+    }
+
+    function checkPairMatch() {
+        if (!leftSelected || !rightSelected) return;
+
+        const feedbackDiv = document.getElementById('matchingFeedback');
+        feedbackDiv.style.display = 'block';
+
+        if (leftSelected.item.id === rightSelected.item.id) {
+            leftSelected.card.className = 'match-card matched';
+            rightSelected.card.className = 'match-card matched';
+
+            feedbackDiv.style.backgroundColor = 'var(--success-bg)';
+            feedbackDiv.style.borderColor = 'var(--success-border)';
+            feedbackDiv.style.color = 'var(--success-color)';
+            feedbackDiv.innerHTML = `<strong>Correct Match!</strong><br>${leftSelected.item.left} ⟺ <code>${leftSelected.item.right}</code><br>${leftSelected.item.explanation}`;
+
+            matchesCount++;
+            document.getElementById('matchingScore').innerText = `Matches Found: ${matchesCount} / ${rawPairs.length}`;
+            leftSelected = null; rightSelected = null;
+        } else {
+            const l = leftSelected, r = rightSelected;
+            l.card.classList.add('wrong');
+            r.card.classList.add('wrong');
+
+            feedbackDiv.style.backgroundColor = 'var(--error-bg)';
+            feedbackDiv.style.borderColor = 'var(--error-border)';
+            feedbackDiv.style.color = 'var(--error-color)';
+            feedbackDiv.innerHTML = `<strong>Incorrect Pair.</strong> Try again!`;
+
+            setTimeout(() => {
+                l.card.classList.remove('wrong', 'selected');
+                r.card.classList.remove('wrong', 'selected');
+            }, 800);
+
+            leftSelected = null; rightSelected = null;
+        }
+    }
+
+    // INTERACTIVE SENTENCE ANALYZER
+    function renderScenarioInputs() {
+        const scenario = document.getElementById('scenarioType').value;
+        const container = document.getElementById('scenarioInputs');
+        container.innerHTML = '';
+
+        if (scenario === 'clause_breakdown') {
+            container.innerHTML = `
+                <label>Select Example Sentence: </label>
+                <select id="sc_clause">
+                    <option value="simple">The student writes clear reports.</option>
+                    <option value="compound">The student writes reports, and the teacher reviews them.</option>
+                    <option value="complex">Because the student studied diligently, she passed the exam.</option>
+                    <option value="cmp_cmplx">Although it rained, the team played well, and they won the trophy.</option>
+                </select>
+            `;
+        } else if (scenario === 'word_class') {
+            container.innerHTML = `
+                <label>Sample Phrase: </label>
+                <input type="text" id="sc_text" value="The quick brown fox jumps over the lazy dog" style="width: 350px;">
+            `;
+        } else if (scenario === 'punctuation_fix') {
+            container.innerHTML = `
+                <label>Clauses to Connect: </label>
+                <input type="text" id="sc_c1" value="She loved reading books" style="width: 200px;">
+                <input type="text" id="sc_c2" value="he preferred watching documentations" style="width: 200px;">
+            `;
+        } else if (scenario === 'paragraph_unity') {
+            container.innerHTML = `
+                <label>Topic Sentence: </label>
+                <input type="text" id="sc_topic" value="Effective communication requires active listening." style="width: 300px;">
+            `;
+        }
+    }
+
+    function solveAndDraw() {
+        const scenario = document.getElementById('scenarioType').value;
+        const list = document.getElementById('stepList');
+        list.innerHTML = '';
+
+        if (scenario === 'clause_breakdown') {
+            const type = document.getElementById('sc_clause').value;
+            let steps = [];
+
+            if (type === 'simple') {
+                steps = [
+                    "<strong>Structure:</strong> Simple Sentence[cite: 3]",
+                    "<strong>Independent Clause:</strong> 'The student writes clear reports.'[cite: 3]",
+                    "<strong>Dependent Clauses:</strong> None[cite: 3]",
+                    "<strong>Analysis:</strong> Expresses a single complete thought with subject and predicate[cite: 3]."
+                ];
+            } else if (type === 'compound') {
+                steps = [
+                    "<strong>Structure:</strong> Compound Sentence[cite: 3]",
+                    "<strong>Clause 1 (Independent):</strong> 'The student writes reports'[cite: 3]",
+                    "<strong>Connective:</strong> Coordinating Conjunction ', and'[cite: 3, 6]",
+                    "<strong>Clause 2 (Independent):</strong> 'the teacher reviews them.'[cite: 3]",
+                    "<strong>Analysis:</strong> Connects two coordinate independent clauses of equal syntactic rank[cite: 3]."
+                ];
+            } else if (type === 'complex') {
+                steps = [
+                    "<strong>Structure:</strong> Complex Sentence[cite: 3]",
+                    "<strong>Dependent Clause:</strong> 'Because the student studied diligently'[cite: 3]",
+                    "<strong>Independent Clause:</strong> 'she passed the exam.'[cite: 3]",
+                    "<strong>Analysis:</strong> Uses subordinating conjunction 'Because' to establish causation[cite: 3]."
+                ];
+            } else {
+                steps = [
+                    "<strong>Structure:</strong> Compound-Complex Sentence[cite: 3]",
+                    "<strong>Dependent Clause:</strong> 'Although it rained'[cite: 3]",
+                    "<strong>Independent Clause 1:</strong> 'the team played well'[cite: 3]",
+                    "<strong>Independent Clause 2:</strong> 'they won the trophy'[cite: 3]",
+                    "<strong>Analysis:</strong> Combines multiple coordinate main clauses with subordinating context[cite: 3]."
+                ];
+            }
+            steps.forEach(s => { const d = document.createElement('div'); d.className = 'step-item'; d.innerHTML = s; list.appendChild(d); });
+
+        } else if (scenario === 'word_class') {
+            const phrase = document.getElementById('sc_text').value;
+            const words = phrase.split(' ');
+            
+            let contentWords = [];
+            let functionWords = [];
+
+            words.forEach(w => {
+                const lower = w.toLowerCase().replace(/[^a-z]/g, '');
+                if (['the', 'a', 'an', 'in', 'on', 'at', 'over', 'under', 'and', 'or', 'but', 'is', 'are', 'was', 'were', 'to', 'of'].includes(lower)) {
+                    functionWords.push(w);
+                } else {
+                    contentWords.push(w);
+                }
+            });
+
+            const steps = [
+                `<strong>Original Input:</strong> "${phrase}"`,
+                `<strong>Content Words (Stressed/Meaning):</strong> <span style="color:var(--primary-color)">${contentWords.join(', ')}</span>[cite: 4]`,
+                `<strong>Function Words (Unstressed/Grammar):</strong> ${functionWords.join(', ')}[cite: 4]`,
+                `<strong>Prosodic Note:</strong> In speech, primary emphasis falls on the content words to preserve English stress timing[cite: 4].`
+            ];
+            steps.forEach(s => { const d = document.createElement('div'); d.className = 'step-item'; d.innerHTML = s; list.appendChild(d); });
+
+        } else if (scenario === 'punctuation_fix') {
+            const c1 = document.getElementById('sc_c1').value;
+            const c2 = document.getElementById('sc_c2').value;
+
+            const steps = [
+                `<strong>Option 1 (Semicolon Connection):</strong> "${c1}; ${c2}."[cite: 6]`,
+                `<strong>Option 2 (Comma + Coordinating Conjunction):</strong> "${c1}, but ${c2}."[cite: 6]`,
+                `<strong>Option 3 (Period / Two Sentences):</strong> "${c1}. ${c2.charAt(0).toUpperCase() + c2.slice(1)}."[cite: 6]`,
+                `<strong>Warning:</strong> Connecting these clauses with *only* a comma creates a <strong>Comma Splice error</strong>[cite: 6].`
+            ];
+            steps.forEach(s => { const d = document.createElement('div'); d.className = 'step-item'; d.innerHTML = s; list.appendChild(d); });
+
+        } else if (scenario === 'paragraph_unity') {
+            const topic = document.getElementById('sc_topic').value;
+
+            const steps = [
+                `<strong>Primary Topic Sentence:</strong> "${topic}"[cite: 5]`,
+                `<strong>Supporting Sentence 1 (Development):</strong> "It involves focusing on the speaker without distractions."[cite: 5]`,
+                `<strong>Supporting Sentence 2 (Detail):</strong> "Listeners evaluate key points and maintain eye contact."[cite: 5]`,
+                `<strong>Coherence Check:</strong> All details link directly back to active listening, ensuring structural paragraph unity[cite: 5].`
+            ];
+            steps.forEach(s => { const d = document.createElement('div'); d.className = 'step-item'; d.innerHTML = s; list.appendChild(d); });
+        }
+    }
+
+    // FLASHCARD ENGINE
+    const flashcardsDeck = [
+        { concept: "Active Listening", answer: "Engaged cognitive process requiring critical analysis, synthesis, and feedback.", topic: 1 },
+        { concept: "Receptive Skills", answer: "Listening and Reading (used to decode incoming messages).", topic: 1 },
+        { concept: "Productive Skills", answer: "Speaking and Writing (used to encode outgoing messages).", topic: 1 },
+        { concept: "Content Words", answer: "Nouns, main verbs, adjectives, and adverbs that carry meaning.", topic: 4 },
+        { concept: "Function Words", answer: "Closed-class structural words (articles, prepositions, conjunctions).", topic: 4 },
+        { concept: "Compound-Complex Sentence", answer: "At least two independent clauses and one or more dependent clauses.", topic: 3 },
+        { concept: "Paragraph Unity", answer: "Every supporting sentence aligns strictly with the primary topic sentence.", topic: 5 },
+        { concept: "Paragraph Coherence", answer: "Logical flow and clear transition between sequential sentences.", topic: 5 },
+        { concept: "Semicolon Role", answer: "Joins related independent clauses without a coordinating conjunction.", topic: 6 },
+        { concept: "Comma Splice Error", answer: "Incorrectly joining two independent clauses using only a comma.", topic: 6 }
+    ];
+
+    let fcIndex = 0, fcIsFlipped = false;
+
+    function loadFlashcard() {
+        const currentCard = flashcardsDeck[fcIndex];
+        fcIsFlipped = false;
+        document.getElementById('fcLabel').innerText = `TOPIC ${currentCard.topic} CONCEPT (Click to Flip)`;
+        document.getElementById('fcContent').innerText = currentCard.concept;
+    }
+
+    function flipCard() {
+        const currentCard = flashcardsDeck[fcIndex];
+        fcIsFlipped = !fcIsFlipped;
+        document.getElementById('fcLabel').innerText = fcIsFlipped ? "DEFINITION / RULE" : `TOPIC ${currentCard.topic} CONCEPT (Click to Flip)`;
+        document.getElementById('fcContent').innerText = fcIsFlipped ? currentCard.answer : currentCard.concept;
+    }
+
+    function rateCard(rating) {
+        fcIndex = (fcIndex + 1) % flashcardsDeck.length;
+        loadFlashcard();
+    }
+
+    window.onload = () => {
+        updateMasteryUI();
+        generateQuiz();
+        renderScenarioInputs();
+    };
+</script>
+
+</body>
+</html>

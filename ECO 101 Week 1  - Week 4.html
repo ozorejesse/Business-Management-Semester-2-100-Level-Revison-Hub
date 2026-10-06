@@ -1,0 +1,1091 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ECO 102: Principles of Economics II - Interactive Master Suite</title>
+    <!-- MathJax for Rendering LaTeX Equations -->
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <style>
+        :root {
+            --bg-color: #f8fafc;
+            --surface-color: #ffffff;
+            --text-color: #1e293b;
+            --border-color: #e2e8f0;
+            --primary-color: #2563eb;
+            --primary-hover: #1d4ed8;
+            --success-color: #16a34a;
+            --success-bg: #f0fdf4;
+            --success-border: #bbf7d0;
+            --error-color: #dc2626;
+            --error-bg: #fef2f2;
+            --error-border: #fecaca;
+            --badge-bg: #e2e8f0;
+            --badge-text: #475569;
+            --card-hover: #f1f5f9;
+            --summary-bg: #f1f5f9;
+        }
+
+        [data-theme="dark"] {
+            --bg-color: #0f172a;
+            --surface-color: #1e293b;
+            --text-color: #f8fafc;
+            --border-color: #334155;
+            --primary-color: #3b82f6;
+            --primary-hover: #60a5fa;
+            --success-color: #4ade80;
+            --success-bg: #064e3b;
+            --success-border: #047857;
+            --error-color: #f87171;
+            --error-bg: #7f1d1d;
+            --error-border: #991b1b;
+            --badge-bg: #334155;
+            --badge-text: #cbd5e1;
+            --card-hover: #334155;
+            --summary-bg: #0f172a;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            margin: 0;
+            padding: 20px;
+            transition: background-color 0.3s, color 0.3s;
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 950px;
+            margin: 0 auto;
+            background: var(--surface-color);
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+        }
+
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        h1 {
+            color: var(--primary-color);
+            margin: 0;
+            font-size: 1.8rem;
+        }
+
+        .nav-tabs {
+            display: flex;
+            gap: 8px;
+            margin-bottom: 25px;
+            border-bottom: 2px solid var(--border-color);
+            padding-bottom: 10px;
+            flex-wrap: wrap;
+        }
+
+        .tab-btn {
+            background: none;
+            border: none;
+            color: var(--text-color);
+            font-size: 14px;
+            font-weight: 600;
+            padding: 8px 14px;
+            cursor: pointer;
+            border-radius: 6px;
+            transition: background 0.2s, color 0.2s;
+        }
+
+        .tab-btn.active {
+            background-color: var(--primary-color);
+            color: #ffffff;
+        }
+
+        .theme-toggle {
+            background: none;
+            border: 1px solid var(--border-color);
+            color: var(--text-color);
+            padding: 8px 12px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-weight: 600;
+        }
+
+        .controls {
+            display: flex;
+            gap: 10px;
+            align-items: center;
+            margin-bottom: 20px;
+            flex-wrap: wrap;
+        }
+
+        select, input[type="text"], input[type="number"], button.action-btn {
+            padding: 10px 14px;
+            font-size: 14px;
+            border-radius: 6px;
+            border: 1px solid var(--border-color);
+            background-color: var(--surface-color);
+            color: var(--text-color);
+        }
+
+        button.action-btn {
+            background-color: var(--primary-color);
+            color: white;
+            border: none;
+            font-weight: 600;
+            cursor: pointer;
+        }
+
+        button.action-btn:hover {
+            background-color: var(--primary-hover);
+        }
+
+        .search-box {
+            width: 100%;
+            margin-bottom: 20px;
+            padding: 12px;
+            box-sizing: border-box;
+            border-radius: 6px;
+            border: 1px solid var(--border-color);
+            background: var(--surface-color);
+            color: var(--text-color);
+            font-size: 15px;
+        }
+
+        .summary-week {
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            padding: 24px;
+            margin-bottom: 25px;
+            background-color: var(--surface-color);
+        }
+
+        .summary-week h2 {
+            color: var(--primary-color);
+            margin-top: 0;
+            border-bottom: 2px solid var(--border-color);
+            padding-bottom: 8px;
+        }
+
+        .summary-week h3 {
+            color: var(--text-color);
+            font-size: 1.1rem;
+            margin-top: 15px;
+            margin-bottom: 5px;
+        }
+
+        .summary-week ul {
+            margin-top: 5px;
+            padding-left: 20px;
+        }
+
+        .summary-week li {
+            margin-bottom: 4px;
+        }
+
+        .formula-box {
+            background-color: var(--summary-bg);
+            border-left: 4px solid var(--primary-color);
+            padding: 12px 16px;
+            margin: 12px 0;
+            font-family: "Courier New", Courier, monospace;
+            border-radius: 0 6px 6px 0;
+        }
+
+        .progress-dashboard {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 12px;
+            margin-bottom: 20px;
+        }
+
+        .progress-card {
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            padding: 12px 16px;
+            background: var(--surface-color);
+            text-align: center;
+        }
+
+        .progress-card .score {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: var(--primary-color);
+        }
+
+        .question-card {
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            padding: 20px;
+            margin-bottom: 20px;
+            background-color: var(--surface-color);
+        }
+
+        .question-title {
+            font-weight: 600;
+            margin-bottom: 12px;
+            color: var(--text-color);
+        }
+
+        .options {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            margin-bottom: 10px;
+        }
+
+        .option-label {
+            display: flex;
+            align-items: center;
+            padding: 10px 14px;
+            border: 1px solid var(--border-color);
+            border-radius: 6px;
+            cursor: pointer;
+            transition: background 0.15s;
+        }
+
+        .option-label:hover {
+            background-color: var(--card-hover);
+        }
+
+        .option-label input {
+            margin-right: 12px;
+        }
+
+        .explanation {
+            display: none;
+            margin-top: 12px;
+            padding: 12px;
+            border-radius: 6px;
+            font-size: 14px;
+            line-height: 1.5;
+        }
+
+        .explanation.correct {
+            display: block;
+            background-color: var(--success-bg);
+            border: 1px solid var(--success-border);
+            color: var(--success-color);
+        }
+
+        .explanation.incorrect {
+            display: block;
+            background-color: var(--error-bg);
+            border: 1px solid var(--error-border);
+            color: var(--error-color);
+        }
+
+        .badge {
+            display: inline-block;
+            padding: 2px 8px;
+            font-size: 12px;
+            font-weight: 600;
+            border-radius: 4px;
+            background: var(--badge-bg);
+            color: var(--badge-text);
+            margin-bottom: 8px;
+        }
+
+        .matching-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            margin-top: 15px;
+        }
+
+        .match-column {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .match-card {
+            padding: 14px 16px;
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            background: var(--surface-color);
+            cursor: pointer;
+            user-select: none;
+            transition: border-color 0.2s, background 0.2s;
+            min-height: 50px;
+            display: flex;
+            align-items: center;
+            font-weight: 500;
+        }
+
+        .match-card:hover { border-color: var(--primary-color); }
+        .match-card.selected { border: 2px solid var(--primary-color); background-color: var(--card-hover); }
+        .match-card.matched { border-color: var(--success-color); background-color: var(--success-bg); color: var(--success-color); cursor: default; opacity: 0.8; }
+        .match-card.wrong { border-color: var(--error-color); background-color: var(--error-bg); }
+
+        .matching-feedback {
+            margin-bottom: 20px;
+            padding: 16px;
+            border-radius: 8px;
+            font-size: 15px;
+            display: none;
+            line-height: 1.5;
+        }
+
+        .solver-panel {
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            padding: 20px;
+            background: var(--surface-color);
+            margin-bottom: 20px;
+        }
+
+        .scenario-inputs {
+            display: flex;
+            gap: 10px;
+            align-items: center;
+            margin-top: 15px;
+            margin-bottom: 15px;
+            flex-wrap: wrap;
+        }
+
+        .step-list {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            margin-top: 15px;
+        }
+
+        .step-item {
+            padding: 12px;
+            border-left: 4px solid var(--primary-color);
+            background: var(--summary-bg);
+            border-radius: 0 6px 6px 0;
+        }
+
+        .flashcard-wrapper {
+            perspective: 1000px;
+            max-width: 500px;
+            margin: 20px auto;
+        }
+
+        .flashcard {
+            width: 100%;
+            height: 250px;
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            background: var(--surface-color);
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 24px;
+            text-align: center;
+            cursor: pointer;
+            box-sizing: border-box;
+            user-select: none;
+            transition: transform 0.2s;
+        }
+
+        .flashcard:hover {
+            transform: translateY(-2px);
+        }
+
+        .flashcard .card-label {
+            font-size: 12px;
+            color: var(--badge-text);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 10px;
+        }
+
+        .flashcard .card-content {
+            font-size: 1.2rem;
+            font-weight: 600;
+        }
+
+        .flashcard-controls {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            margin-top: 15px;
+        }
+
+        .view-section { display: none; }
+        .view-section.active { display: block; }
+        .score-board { font-weight: bold; color: var(--primary-color); }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <div class="header">
+        <h1>ECO 102: Macroeconomics Master Suite</h1>
+        <button class="theme-toggle" onclick="toggleTheme()" id="themeBtn">🌙 Night Mode</button>
+    </div>
+
+    <div class="nav-tabs">
+        <button class="tab-btn active" onclick="switchTab('summaries')">📖 Comprehensive Summaries</button>
+        <button class="tab-btn" onclick="switchTab('quiz')">📝 Quiz & Mastery (30 Questions)</button>
+        <button class="tab-btn" onclick="switchTab('matching')">🧩 Matching Game</button>
+        <button class="tab-btn" onclick="switchTab('solver')">🔍 Interactive Macro Calculator</button>
+        <button class="tab-btn" onclick="switchTab('flashcards')">🎴 Flashcards</button>
+    </div>
+
+    <!-- TAB 1: SUMMARIES -->
+    <div id="summariesTab" class="view-section active">
+        <input type="text" id="summarySearch" class="search-box" placeholder="⚡ Search across macroeconomics topics (e.g. Circular Flow, Keynesian, APC, MPS, Break-Even)..." oninput="filterSummaries()">
+        
+        <div id="summaryList">
+            <!-- Week 1 -->
+            <div class="summary-week searchable">
+                <h2>1. Week 1: The Circular Flow Diagram (Two-Sector Economy)</h2>
+                <p>Provides a primary model explaining how income is generated, distributed, and redistributed within a macroeconomy across time.</p>
+                
+                <h3>Key Economic Agents</h3>
+                <ul>
+                    <li><strong>Households:</strong> Aggregated individual consumer units that own all factors of production (land, labour, capital, entrepreneurship) and consume finished goods/services to maximize utility.</li>
+                    <li><strong>Business Units (Firms):</strong> Entities responsible for harnessing factor inputs from households to produce finished goods and services.</li>
+                </ul>
+
+                <h3>Core Assumptions of the Basic Model</h3>
+                <ul>
+                    <li><strong>1. Households do not invest:</strong> They consume goods and services exclusively for utility.</li>
+                    <li><strong>2. Business units do not consume:</strong> They harness inputs to produce finished output.</li>
+                    <li><strong>3. Households own factor inputs:</strong> Inputs are supplied to firms at a market price.</li>
+                    <li><strong>4. Closed System (No Leakages or Injections):</strong> Money generated remains entirely within the flow cycle; no government ($T, G$), financial markets ($S, I$), or foreign sector ($M, X$).</li>
+                </ul>
+
+                <h3>Real Flow vs. Money Flow</h3>
+                <ul>
+                    <li><strong>Real Flow (Outer Loop):</strong> Physical movement of factors of production from Households to Firms, and finished Goods & Services from Firms to Households.</li>
+                    <li><strong>Money Flow (Inner Loop):</strong> Monetary exchange of Factor Payments (wages, rent, interest, profit) from Firms to Households, and Consumption Expenditure from Households to Firms.</li>
+                </ul>
+
+                <div class="formula-box">
+                    Commodity Market: Goods & Services $\longleftrightarrow$ Consumption Spending<br>
+                    Factor Market: Factors of Production $\longleftrightarrow$ Factor Income (Wages, Rent, Interest, Profits)
+                </div>
+            </div>
+
+            <!-- Week 2 -->
+            <div class="summary-week searchable">
+                <h2>2. Week 2: Circular Money Flow with Saving and Investment</h2>
+                <p>Expands the two-sector model by incorporating the financial sector as an intermediary between household savings and firm investments.</p>
+                
+                <h3>Leakages vs. Injections</h3>
+                <ul>
+                    <li><strong>Leakages (Withdrawals):</strong> Portions of income diverted away from the immediate consumption stream. Household <em>Saving ($S$)</em> is the primary leakage in this expanded model.</li>
+                    <li><strong>Injections:</strong> Additions of funds into the circular flow stream. Business <em>Investment ($I$)</em> represents the primary injection.</li>
+                    <li><strong>Financial Intermediaries:</strong> Banks and financial institutions channel saved funds from households into loanable funds for business capital investment.</li>
+                </ul>
+
+                <h3>Equilibrium & The Savings-Investment Identity</h3>
+                <ul>
+                    <li>For the circular flow to maintain constancy (equilibrium), aggregate leakages must equal aggregate injections:
+                        $$S = I$$
+                    </li>
+                    <li><strong>If $S > I$:</strong> Excess savings cause aggregate expenditure to fall below aggregate output. Unsold inventory rises, causing firms to cut production, income, and employment.</li>
+                    <li><strong>If $S < I$:</strong> Excess investment boosts aggregate demand beyond current production capacity, putting upward pressure on interest rates, output, and income.</li>
+                </ul>
+
+                <div class="formula-box">
+                    Income Allocation: $Y = C + S$<br>
+                    Aggregate Expenditure: $E = C + I$<br>
+                    Equilibrium Condition: $Y = E \implies C + S = C + I \implies S = I$
+                </div>
+            </div>
+
+            <!-- Week 3 -->
+            <div class="summary-week searchable">
+                <h2>3. Week 3: Average and Marginal Propensity to Consume (APC & MPC)</h2>
+                <p>Explores the relationship between consumption expenditure ($C$) and income ($Y$), deriving key propensities based on Keynesian macroeconomic principles.</p>
+                
+                <h3>Average Propensity to Consume (APC)</h3>
+                <ul>
+                    <li>The proportion of total disposable income allocated towards consumption at a given income level:
+                        $$APC = \frac{C}{Y}$$
+                    </li>
+                    <li><strong>Key Feature:</strong> Ranges between $0$ and $1$ (or $>1$ when dissaving occurs). $APC$ falls as income rises because consumption increases at a slower rate than income.</li>
+                </ul>
+
+                <h3>Marginal Propensity to Consume (MPC)</h3>
+                <ul>
+                    <li>The ratio of the change in consumption ($\Delta C$) resulting from a unit change in income ($\Delta Y$):
+                        $$MPC = \frac{\Delta C}{\Delta Y}$$
+                    </li>
+                    <li>Reflects marginal decision-making behavior ($0 < MPC < 1$). For instance, an $MPC = 0.8$ means $80\%$ of additional income is spent, and $20\%$ is saved.</li>
+                </ul>
+
+                <div class="formula-box">
+                    Consumption Identity: $Y = C + S \implies 1 = \frac{C}{Y} + \frac{S}{Y}$<br>
+                    Marginal Identity: $\Delta Y = \Delta C + \Delta S \implies 1 = \frac{\Delta C}{\Delta Y} + \frac{\Delta S}{\Delta Y}$
+                </div>
+            </div>
+
+            <!-- Week 4: Propensity to Save -->
+            <div class="summary-week searchable">
+                <h2>4. Week 4: Average and Marginal Propensity to Save (APS & MPS)</h2>
+                <p>Examines the saving behavior of households as the counterpart to consumption behavior.</p>
+                
+                <h3>Average Propensity to Save (APS)</h3>
+                <ul>
+                    <li>The proportion of aggregate disposable income saved:
+                        $$APS = \frac{S}{Y}$$
+                    </li>
+                    <li>Because $Y = C + S$, dividing by $Y$ gives $APC + APS = 1 \implies APS = 1 - APC$.</li>
+                    <li>$APS$ can be negative at low income levels where consumption exceeds income ($C > Y$, i.e., dissaving).</li>
+                </ul>
+
+                <h3>Marginal Propensity to Save (MPS)</h3>
+                <ul>
+                    <li>The fraction of an incremental change in income that is saved:
+                        $$MPS = \frac{\Delta S}{\Delta Y}$$
+                    </li>
+                    <li>Because $\Delta Y = \Delta C + \Delta S$, dividing by $\Delta Y$ yields:
+                        $$MPC + MPS = 1 \implies MPS = 1 - MPC$$
+                    </li>
+                </ul>
+
+                <div class="formula-box">
+                    Fundamental Propensity Identities:<br>
+                    $APC + APS = 1$<br>
+                    $MPC + MPS = 1$
+                </div>
+            </div>
+
+            <!-- Week 4: Savings Function -->
+            <div class="summary-week searchable">
+                <h2>5. Week 4: The Savings Function & Derivation</h2>
+                <p>Derives the explicit mathematical savings function from the linear Keynesian consumption function $C = a + bY$.</p>
+                
+                <h3>Derivation Steps</h3>
+                <ul>
+                    <li>Given $Y = C + S \implies S = Y - C$.</li>
+                    <li>Substitute $C = a + bY$:
+                        $$S = Y - (a + bY) = -a + Y - bY = -a + (1 - b)Y$$
+                    </li>
+                    <li>Where $-a$ is autonomous dissaving (negative intercept) and $(1 - b) = MPS$.</li>
+                </ul>
+
+                <h3>Key Characteristics of the Savings Function Graph</h3>
+                <ul>
+                    <li><strong>Negative Intercept ($-a$):</strong> Represents dissavings funded by borrowing or drawing down past savings when income $Y = 0$.</li>
+                    <li><strong>Break-Even Point ($S = 0$):</strong> Point where disposable income equals consumption ($Y = C$). At this point, $APC = 1$ and $APS = 0$.</li>
+                    <li><strong>Positive Slope ($MPS > 0$):</strong> Savings increase as income increases.</li>
+                </ul>
+
+                <div class="formula-box">
+                    Keynesian Consumption: $C = a + bY \quad (a > 0, 0 < b < 1)$<br>
+                    Keynesian Savings: $S = -a + (1 - b)Y$<br>
+                    Break-Even Condition: $S = 0 \implies Y = C$
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- TAB 2: QUIZ -->
+    <div id="quizTab" class="view-section">
+        <div class="progress-dashboard">
+            <div class="progress-card"><div>Module 1: Circular Flow</div><div class="score" id="m_mod1">0%</div></div>
+            <div class="progress-card"><div>Module 2: Saving & Investment</div><div class="score" id="m_mod2">0%</div></div>
+            <div class="progress-card"><div>Module 3: Consumption & APC/MPC</div><div class="score" id="m_mod3">0%</div></div>
+            <div class="progress-card"><div>Module 4: Saving Propensities</div><div class="score" id="m_mod4">0%</div></div>
+            <div class="progress-card"><div>Module 5: Savings Function</div><div class="score" id="m_mod5">0%</div></div>
+        </div>
+
+        <div class="controls">
+            <label for="topicSelect"><strong>Select Topic:</strong></label>
+            <select id="topicSelect">
+                <option value="1">1. Circular Flow Diagram (6 Questions)</option>
+                <option value="2">2. Saving & Investment Integration (6 Questions)</option>
+                <option value="3">3. Consumption & Propensities (APC/MPC) (6 Questions)</option>
+                <option value="4">4. Saving Propensities (APS/MPS) (6 Questions)</option>
+                <option value="5">5. The Savings Function (6 Questions)</option>
+                <option value="all" selected>All 5 Topics Combined (30 Questions)</option>
+            </select>
+            <button class="action-btn" onclick="generateQuiz(false)">Generate Quiz</button>
+            <button class="action-btn" style="background-color: var(--error-color)" onclick="generateQuiz(true)">🎯 Retry Missed Questions Only</button>
+        </div>
+
+        <div id="quizContainer"></div>
+    </div>
+
+    <!-- TAB 3: MATCHING GAME -->
+    <div id="matchingTab" class="view-section">
+        <div class="controls">
+            <button class="action-btn" onclick="resetMatchingGame()">Reset / New Cards</button>
+            <div id="matchingScore" class="score-board">Matches Found: 0 / 0</div>
+        </div>
+
+        <div id="matchingFeedback" class="matching-feedback"></div>
+
+        <div class="matching-container">
+            <div class="match-column" id="leftCol"></div>
+            <div class="match-column" id="rightCol"></div>
+        </div>
+    </div>
+
+    <!-- TAB 4: INTERACTIVE SOLVER -->
+    <div id="solverTab" class="view-section">
+        <div class="solver-panel">
+            <h2>Interactive Macroeconomic Model Calculator</h2>
+            <p>Select a scenario and enter parameters to calculate consumption, savings, propensities, and break-even income levels.</p>
+            
+            <div class="controls">
+                <label for="scenarioType"><strong>Analysis Engine:</strong></label>
+                <select id="scenarioType" onchange="renderScenarioInputs()">
+                    <option value="propensity_calc">APC & APS / MPC & MPS Calculator</option>
+                    <option value="function_derivation">Savings Function Derivation ($C = a + bY \to S = -a + sY$)</option>
+                    <option value="breakeven_finder">Break-Even Income & Savings Calculator</option>
+                </select>
+            </div>
+
+            <div class="scenario-inputs" id="scenarioInputs"></div>
+
+            <button class="action-btn" onclick="solveAndDraw()">Compute Breakdown</button>
+
+            <div class="step-list" id="stepList"></div>
+        </div>
+    </div>
+
+    <!-- TAB 5: FLASHCARDS -->
+    <div id="flashcardsTab" class="view-section">
+        <div class="flashcard-wrapper">
+            <div class="flashcard" id="flashcard" onclick="flipCard()">
+                <div class="card-label" id="fcLabel">CONCEPT (Click to Flip)</div>
+                <div class="card-content" id="fcContent">Click start to load deck</div>
+            </div>
+        </div>
+
+        <div class="flashcard-controls">
+            <button class="action-btn" style="background-color: var(--error-color)" onclick="rateCard('hard')">🔴 Hard</button>
+            <button class="action-btn" style="background-color: #d97706" onclick="rateCard('medium')">🟡 Medium</button>
+            <button class="action-btn" style="background-color: var(--success-color)" onclick="rateCard('easy')">🟢 Easy</button>
+        </div>
+    </div>
+
+</div>
+
+<script>
+    function toggleTheme() {
+        const currentTheme = document.body.getAttribute('data-theme');
+        const themeBtn = document.getElementById('themeBtn');
+        if (currentTheme === 'dark') {
+            document.body.removeAttribute('data-theme');
+            themeBtn.innerText = '🌙 Night Mode';
+        } else {
+            document.body.setAttribute('data-theme', 'dark');
+            themeBtn.innerText = '☀️ Light Mode';
+        }
+    }
+
+    function switchTab(tabName) {
+        document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));
+        document.querySelectorAll('.view-section').forEach(sec => sec.classList.remove('active'));
+
+        const tabs = ['summaries', 'quiz', 'matching', 'solver', 'flashcards'];
+        const index = tabs.indexOf(tabName);
+        document.querySelectorAll('.tab-btn')[index].classList.add('active');
+        document.getElementById(tabName + 'Tab').classList.add('active');
+
+        if (tabName === 'matching') resetMatchingGame();
+        if (tabName === 'solver') { renderScenarioInputs(); solveAndDraw(); }
+        if (tabName === 'flashcards') loadFlashcard();
+    }
+
+    function filterSummaries() {
+        const query = document.getElementById('summarySearch').value.toLowerCase();
+        document.querySelectorAll('.searchable').forEach(el => {
+            const text = el.innerText.toLowerCase();
+            el.style.display = text.includes(query) ? 'block' : 'none';
+        });
+    }
+
+    // MASTERY SYSTEM
+    let masteryData = JSON.parse(localStorage.getItem('eco_mastery') || '{"1":{"c":0,"t":0},"2":{"c":0,"t":0},"3":{"c":0,"t":0},"4":{"c":0,"t":0},"5":{"c":0,"t":0}}');
+    let missedQuestions = JSON.parse(localStorage.getItem('eco_missed') || '[]');
+
+    function saveMastery() {
+        localStorage.setItem('eco_mastery', JSON.stringify(masteryData));
+        localStorage.setItem('eco_missed', JSON.stringify(missedQuestions));
+        updateMasteryUI();
+    }
+
+    function updateMasteryUI() {
+        for (let m = 1; m <= 5; m++) {
+            const data = masteryData[m];
+            const pct = data && data.t > 0 ? Math.round((data.c / data.t) * 100) : 0;
+            const el = document.getElementById(`m_mod${m}`);
+            if (el) el.innerText = `${pct}%`;
+        }
+    }
+
+    function shuffle(arr) { return [...arr].sort(() => Math.random() - 0.5); }
+
+    // QUIZ BANK (30 Questions across 5 Modules)
+    const quizBank = [
+        // Topic 1: Circular Flow
+        { mod: 1, title: "In a basic two-sector circular flow model, which two economic agents are present?", correct: "Households and Business Units (Firms)", options: ["Households and Business Units (Firms)", "Firms and Government", "Households and Financial Sector", "Firms and Foreign Traders"], exp: "The simplest primary economy model contains only households and firms." },
+        { mod: 1, title: "Which loop in the circular flow diagram represents factor input and product movement?", correct: "Real Flow", options: ["Real Flow", "Money Flow", "Financial Flow", "Leakage Flow"], exp: "The real flow tracks physical factors of production and final goods/services." },
+        { mod: 1, title: "Where do households sell their labour, land, and capital to businesses?", correct: "Factor Market", options: ["Factor Market", "Commodity Market", "Financial Market", "Foreign Exchange Market"], exp: "The factor market is where inputs are offered by households and hired by firms." },
+        { mod: 1, title: "Which assumption is true for households in the basic two-sector circular flow model?", correct: "Households do not invest", options: ["Households do not invest", "Households do not consume", "Households pay taxes to government", "Households import goods"], exp: "Households only consume finished goods for utility and do not invest." },
+        { mod: 1, title: "What reward do households receive from firms for providing entrepreneurial skills?", correct: "Profit", options: ["Profit", "Wages", "Rent", "Interest"], exp: "The return to entrepreneurship is profit (while labour receives wages, land gets rent, capital gets interest)." },
+        { mod: 1, title: "What market handles the purchase of finished goods and services by households?", correct: "Commodity Market", options: ["Commodity Market", "Factor Market", "Money Market", "Capital Market"], exp: "Finished products are bought and sold in the commodity (goods & services) market." },
+
+        // Topic 2: Saving & Investment
+        { mod: 2, title: "In macroeconomics, household saving is classified as a:", correct: "Leakage (Withdrawal)", options: ["Leakage (Withdrawal)", "Injection", "Factor Payment", "Consumption Overhead"], exp: "Saving diverts income away from the immediate consumption spending stream." },
+        { mod: 2, title: "Business investment is categorized in the circular flow as a(n):", correct: "Injection", options: ["Injection", "Leakage", "Taxes", "Dissaving"], exp: "Investment introduces new funds into the circular flow stream." },
+        { mod: 2, title: "What is the equilibrium condition for a circular flow model with savings and investment?", correct: "S = I", options: ["S = I", "S > I", "C = S", "Y = I"], exp: "Equilibrium requires total leakages ($S$) to equal total injections ($I$)." },
+        { mod: 2, title: "What sector acts as the primary intermediary between household savings and business investment?", correct: "Financial Sector", options: ["Financial Sector", "Government Sector", "External Sector", "Commodity Sector"], exp: "Banks and credit unions channel deposits into loans for business investment." },
+        { mod: 2, title: "If aggregate savings exceed aggregate investment ($S > I$), what is the expected impact?", correct: "Excess supply, unsold stock, and reduced economic activity", options: ["Excess supply, unsold stock, and reduced economic activity", "Inflationary pressure and economic overheating", "Interest rate surges", "Increase in national income"], exp: "When $S > I$, spending falls below output, leading to unsold goods and production cutbacks." },
+        { mod: 2, title: "The mathematical expression Y = C + I represents income from which perspective?", correct: "Aggregate Expenditure / Output", options: ["Aggregate Expenditure / Output", "Disposable Income Allocation", "Net Exports Balance", "Government Budget"], exp: "In equilibrium, total income equals total expenditure ($C + I$)." },
+
+        // Topic 3: Consumption & APC/MPC
+        { mod: 3, title: "How is the Average Propensity to Consume (APC) defined mathematically?", correct: "C / Y", options: ["C / Y", "ΔC / ΔY", "Y / C", "C / S"], exp: "APC is the fraction of aggregate disposable income spent on consumption ($C/Y$)." },
+        { mod: 3, title: "The Marginal Propensity to Consume (MPC) measures:", correct: "The change in consumption resulting from a change in income", options: ["The change in consumption resulting from a change in income", "Total consumption divided by total income", "The ratio of savings to income", "The change in income per unit of savings"], exp: "MPC = $\\Delta C / \\Delta Y$, representing marginal spending behavior." },
+        { mod: 3, title: "If income increases by ₦30,000 and consumption increases by ₦21,000, what is the MPC?", correct: "0.70", options: ["0.70", "0.30", "1.42", "0.75"], exp: "$MPC = \\Delta C / \\Delta Y = 21,000 / 30,000 = 0.70$." },
+        { mod: 3, title: "As income rises in an economy, what generally happens to the value of APC?", correct: "It decreases", options: ["It decreases", "It increases", "It stays constant at 1.0", "It becomes negative"], exp: "As income grows, consumption increases at a slower rate, causing $APC = C/Y$ to fall." },
+        { mod: 3, title: "If MPC = 1, it implies that:", correct: "Every additional unit of income is spent on consumption", options: ["Every additional unit of income is spent on consumption", "The economy saves 100% of extra income", "Consumption is independent of income", "APS must be equal to 1"], exp: "An $MPC = 1$ means $\\Delta C = \\Delta Y$, so all incremental income is spent." },
+        { mod: 3, title: "In a closed two-sector economy without government taxes, disposable income ($Y$) equals:", correct: "C + S", options: ["C + S", "C - S", "S - I", "C + T"], exp: "Income is either consumed or saved ($Y = C + S$)." },
+
+        // Topic 4: Saving Propensities
+        { mod: 4, title: "The sum of APC and APS is always equal to:", correct: "1", options: ["1", "0", "MPC", "MPS"], exp: "Since $Y = C + S$, dividing by $Y$ yields $C/Y + S/Y = 1$, or $APC + APS = 1$." },
+        { mod: 4, title: "If a household's APC is 0.82, what is its Average Propensity to Save (APS)?", correct: "0.18", options: ["0.18", "0.82", "-0.18", "1.82"], exp: "$APS = 1 - APC = 1 - 0.82 = 0.18$." },
+        { mod: 4, title: "If MPC + MPS = 1, and MPC is 0.75, what is the value of MPS?", correct: "0.25", options: ["0.25", "0.75", "1.25", "0.50"], exp: "$MPS = 1 - MPC = 1 - 0.75 = 0.25$." },
+        { mod: 4, title: "What does a negative APS signify?", correct: "Dissaving (Consumption exceeds income)", options: ["Dissaving (Consumption exceeds income)", "High investment rate", "Equilibrium state", "Zero consumption"], exp: "$APS < 0$ occurs when $S < 0$, meaning $C > Y$ (funded by past savings or debt)." },
+        { mod: 4, title: "The main economic motive behind household saving for consumption smoothing is:", correct: "Spreading consumption expenditure evenly over time", options: ["Spreading consumption expenditure evenly over time", "Maximizing immediate tax burdens", "Eliminating interest rates", "Avoiding corporate investment"], exp: "Consumption smoothing helps maintain a stable standard of living across periods." },
+        { mod: 4, title: "If disposable income drops, what happens to savings if MPS > 0?", correct: "Savings decrease by MPS × ΔY", options: ["Savings decrease by MPS × ΔY", "Savings increase", "Savings remain unchanged", "APS becomes equal to 1"], exp: "Because savings depend positively on income, a fall in income reduces savings." },
+
+        // Topic 5: Savings Function
+        { mod: 5, title: "Given a consumption function C = 150 + 0.80Y, what is the corresponding saving function?", correct: "S = -150 + 0.20Y", options: ["S = -150 + 0.20Y", "S = 150 + 0.20Y", "S = -150 + 0.80Y", "S = 150 - 0.80Y"], exp: "$S = Y - C = Y - (150 + 0.80Y) = -150 + 0.20Y$." },
+        { mod: 5, title: "In the saving function S = -a + (1 - b)Y, what does '-a' represent?", correct: "Autonomous dissaving at zero income", options: ["Autonomous dissaving at zero income", "Marginal propensity to save", "Break-even income level", "Induced investment"], exp: "$-a$ represents the negative intercept (dissaving) when disposable income is zero." },
+        { mod: 5, title: "At the Break-Even Point on a Keynesian graph:", correct: "Savings equal zero (S = 0) and C = Y", options: ["Savings equal zero (S = 0) and C = Y", "Savings equal investment (S = I)", "APC = 0", "MPS = 0"], exp: "Break-even is where all income is consumed, leaving zero savings." },
+        { mod: 5, title: "What is the value of APC at the break-even income point?", correct: "1.0", options: ["1.0", "0.0", "0.5", "Negative"], exp: "At break-even, $C = Y$, so $APC = C/Y = 1.0$." },
+        { mod: 5, title: "The slope of the linear saving function graph is equal to:", correct: "MPS (Marginal Propensity to Save)", options: ["MPS (Marginal Propensity to Save)", "APS", "APC", "Autonomous Consumption"], exp: "The slope of $S = -a + sY$ is $s = \Delta S / \Delta Y = MPS$." },
+        { mod: 5, title: "For the consumption function C = 200 + 0.75Y, find the break-even level of income (Y):", correct: "800", options: ["800", "600", "1,000", "400"], exp: "At break-even, $Y = C \implies Y = 200 + 0.75Y \implies 0.25Y = 200 \implies Y = 800$." }
+    ];
+
+    let currentQuestions = [];
+
+    function generateQuiz(retryMissedOnly = false) {
+        const topic = document.getElementById('topicSelect').value;
+        if (retryMissedOnly) {
+            currentQuestions = [...missedQuestions];
+            if (currentQuestions.length === 0) {
+                alert("No missed questions recorded yet!");
+                return;
+            }
+        } else {
+            if (topic === 'all') {
+                currentQuestions = shuffle([...quizBank]);
+            } else {
+                const modNum = parseInt(topic);
+                currentQuestions = quizBank.filter(q => q.mod === modNum);
+            }
+        }
+        renderQuiz();
+    }
+
+    function renderQuiz() {
+        const container = document.getElementById('quizContainer');
+        container.innerHTML = '';
+
+        currentQuestions.forEach((q, qIndex) => {
+            const card = document.createElement('div');
+            card.className = 'question-card';
+            card.innerHTML = `
+                <span class="badge">Topic ${q.mod}</span>
+                <div class="question-title">${qIndex + 1}. ${q.title}</div>
+                <div class="options">
+                    ${shuffle(q.options).map(opt => `
+                        <label class="option-label">
+                            <input type="radio" name="q_${qIndex}" value="${opt}" onchange="handleOptionSelect(${qIndex}, '${opt.replace(/'/g, "\\'")}', '${q.correct.replace(/'/g, "\\'")}', '${q.exp.replace(/'/g, "\\'")}', ${q.mod})">
+                            ${opt}
+                        </label>
+                    `).join('')}
+                </div>
+                <div class="explanation" id="exp_${qIndex}"></div>
+            `;
+            container.appendChild(card);
+        });
+        if (window.MathJax) MathJax.typesetPromise();
+    }
+
+    function handleOptionSelect(qIndex, selectedOpt, correctOpt, explanation, mod) {
+        const expDiv = document.getElementById(`exp_${qIndex}`);
+        document.querySelectorAll(`input[name="q_${qIndex}"]`).forEach(i => i.disabled = true);
+
+        if (!masteryData[mod]) masteryData[mod] = { c: 0, t: 0 };
+        masteryData[mod].t += 1;
+
+        if (selectedOpt === correctOpt) {
+            expDiv.className = 'explanation correct';
+            expDiv.innerHTML = `<strong>Correct!</strong> ${explanation}`;
+            masteryData[mod].c += 1;
+        } else {
+            expDiv.className = 'explanation incorrect';
+            expDiv.innerHTML = `<strong>Incorrect.</strong> Correct answer: <strong>${correctOpt}</strong>.<br>${explanation}`;
+            if (!missedQuestions.some(item => item.title === currentQuestions[qIndex].title)) {
+                missedQuestions.push(currentQuestions[qIndex]);
+            }
+        }
+        saveMastery();
+        if (window.MathJax) MathJax.typesetPromise();
+    }
+
+    // MATCHING GAME ENGINE
+    const rawPairs = [
+        { id: 0, left: "Real Flow", right: "Physical movement of factors & goods between agents", explanation: "Outer loop tracking input resources and outputs." },
+        { id: 1, left: "Leakage (Withdrawal)", right: "Household Savings (S) diverted from expenditure", explanation: "Diverts money from the immediate spending loop." },
+        { id: 2, left: "Injection", right: "Business Investment (I) added to circular flow", explanation: "Injects loanable funds into national spending stream." },
+        { id: 3, left: "APC + APS", right: "Always equals 1.0 (Y = C + S)", explanation: "The sum of consumption and savings ratios equals total income." },
+        { id: 4, left: "MPC + MPS", right: "Always equals 1.0 (ΔY = ΔC + ΔS)", explanation: "Incremental income is either spent or saved." },
+        { id: 5, left: "Break-Even Point", right: "Savings S = 0 and Income Y = Consumption C", explanation: "Income level where no dissaving or positive saving occurs." }
+    ];
+
+    let leftSelected = null, rightSelected = null, matchesCount = 0;
+
+    function resetMatchingGame() {
+        matchesCount = 0;
+        leftSelected = null;
+        rightSelected = null;
+
+        const leftCol = document.getElementById('leftCol');
+        const rightCol = document.getElementById('rightCol');
+        const feedbackDiv = document.getElementById('matchingFeedback');
+        
+        leftCol.innerHTML = ''; 
+        rightCol.innerHTML = ''; 
+        feedbackDiv.style.display = 'none';
+
+        document.getElementById('matchingScore').innerText = `Matches Found: 0 / ${rawPairs.length}`;
+
+        const leftList = shuffle(rawPairs);
+        const rightList = shuffle(rawPairs);
+
+        leftList.forEach(item => {
+            const card = document.createElement('div');
+            card.className = 'match-card';
+            card.dataset.id = item.id;
+            card.innerText = item.left;
+            card.onclick = () => selectLeft(card, item);
+            leftCol.appendChild(card);
+        });
+
+        rightList.forEach(item => {
+            const card = document.createElement('div');
+            card.className = 'match-card';
+            card.dataset.id = item.id;
+            card.innerText = item.right;
+            card.onclick = () => selectRight(card, item);
+            rightCol.appendChild(card);
+        });
+    }
+
+    function selectLeft(card, item) {
+        if (card.classList.contains('matched')) return;
+        document.querySelectorAll('#leftCol .match-card').forEach(c => c.classList.remove('selected'));
+        leftSelected = { card, item };
+        card.classList.add('selected');
+        checkPairMatch();
+    }
+
+    function selectRight(card, item) {
+        if (card.classList.contains('matched')) return;
+        document.querySelectorAll('#rightCol .match-card').forEach(c => c.classList.remove('selected'));
+        rightSelected = { card, item };
+        card.classList.add('selected');
+        checkPairMatch();
+    }
+
+    function checkPairMatch() {
+        if (!leftSelected || !rightSelected) return;
+
+        const feedbackDiv = document.getElementById('matchingFeedback');
+        feedbackDiv.style.display = 'block';
+
+        if (leftSelected.item.id === rightSelected.item.id) {
+            leftSelected.card.className = 'match-card matched';
+            rightSelected.card.className = 'match-card matched';
+
+            feedbackDiv.style.backgroundColor = 'var(--success-bg)';
+            feedbackDiv.style.borderColor = 'var(--success-border)';
+            feedbackDiv.style.color = 'var(--success-color)';
+            feedbackDiv.innerHTML = `<strong>Correct Match!</strong><br>${leftSelected.item.left} ⟺ <code>${leftSelected.item.right}</code><br>${leftSelected.item.explanation}`;
+
+            matchesCount++;
+            document.getElementById('matchingScore').innerText = `Matches Found: ${matchesCount} / ${rawPairs.length}`;
+            leftSelected = null; rightSelected = null;
+        } else {
+            const l = leftSelected, r = rightSelected;
+            l.card.classList.add('wrong');
+            r.card.classList.add('wrong');
+
+            feedbackDiv.style.backgroundColor = 'var(--error-bg)';
+            feedbackDiv.style.borderColor = 'var(--error-border)';
+            feedbackDiv.style.color = 'var(--error-color)';
+            feedbackDiv.innerHTML = `<strong>Incorrect Pair.</strong> Try again!`;
+
+            setTimeout(() => {
+                l.card.classList.remove('wrong', 'selected');
+                r.card.classList.remove('wrong', 'selected');
+            }, 800);
+
+            leftSelected = null; rightSelected = null;
+        }
+    }
+
+    // INTERACTIVE SOLVER
+    function renderScenarioInputs() {
+        const scenario = document.getElementById('scenarioType').value;
+        const container = document.getElementById('scenarioInputs');
+        container.innerHTML = '';
+
+        if (scenario === 'propensity_calc') {
+            container.innerHTML = `
+                <label>Income ($Y$): </label>
+                <input type="number" id="sc_y" value="100000" style="width: 120px;">
+                <label>Consumption ($C$): </label>
+                <input type="number" id="sc_c" value="75000" style="width: 120px;">
+                <label>New Income ($Y_2$): </label>
+                <input type="number" id="sc_y2" value="130000" style="width: 120px;">
+                <label>New Consumption ($C_2$): </label>
+                <input type="number" id="sc_c2" value="96000" style="width: 120px;">
+            `;
+        } else if (scenario === 'function_derivation') {
+            container.innerHTML = `
+                <label>Autonomous Consumption ($a$): </label>
+                <input type="number" id="sc_a" value="150" style="width: 100px;">
+                <label>MPC ($b$): </label>
+                <input type="number" step="0.01" id="sc_b" value="0.80" style="width: 100px;">
+            `;
+        } else if (scenario === 'breakeven_finder') {
+            container.innerHTML = `
+                <label>Autonomous Consumption ($a$): </label>
+                <input type="number" id="sc_ba" value="200" style="width: 100px;">
+                <label>MPC ($b$): </label>
+                <input type="number" step="0.01" id="sc_bb" value="0.75" style="width: 100px;">
+                <label>Target Income ($Y$): </label>
+                <input type="number" id="sc_by" value="1200" style="width: 100px;">
+            `;
+        }
+    }
+
+    function solveAndDraw() {
+        const scenario = document.getElementById('scenarioType').value;
+        const list = document.getElementById('stepList');
+        list.innerHTML = '';
+
+        if (scenario === 'propensity_calc') {
+            const Y = parseFloat(document.getElementById('sc_y').value) || 0;
+            const C = parseFloat(document.getElementById('sc_c').value) || 0;
+            const Y2 = parseFloat(document.getElementById('sc_y2').value) || 0;
+            const C2 = parseFloat(document.getElementById('sc_c2').value) || 0;
+
+            const S = Y - C;
+            const apc = (C / Y).toFixed(4);
+            const aps = (S / Y).toFixed(4);
+
+            const dY = Y2 - Y;
+            const dC = C2 - C;
+            const dS = dY - dC;
+
+            const mpc = dY !== 0 ? (dC / dY).toFixed(4) : "N/A";
+            const mps = dY !== 0 ? (dS / dY).toFixed(4) : "N/A";
+
+            const steps = [
+                `<strong>Initial Savings ($S$):</strong> $S = Y - C = ${Y} - ${C} = ${S}$`,
+                `<strong>Average Propensity to Consume ($APC$):</strong> $APC = \\frac{C}{Y} = \\frac{${C}}{${Y}} = ${apc}$`,
+                `<strong>Average Propensity to Save ($APS$):</strong> $APS = \\frac{S}{Y} = \\frac{${S}}{${Y}} = ${aps}$ (Note: $APC + APS = ${(parseFloat(apc)+parseFloat(aps)).toFixed(2)}$)`,
+                `<strong>Changes ($\Delta Y, \Delta C, \Delta S$):</strong> $\Delta Y = ${dY}, \\Delta C = ${dC}, \\Delta S = ${dS}$`,
+                `<strong>Marginal Propensity to Consume ($MPC$):</strong> $MPC = \\frac{\\Delta C}{\\Delta Y} = \\frac{${dC}}{${dY}} = ${mpc}$`,
+                `<strong>Marginal Propensity to Save ($MPS$):</strong> $MPS = \\frac{\\Delta S}{\\Delta Y} = \\frac{${dS}}{${dY}} = ${mps}$ (Note: $MPC + MPS = ${(parseFloat(mpc)+parseFloat(mps)).toFixed(2)}$)`
+            ];
+            steps.forEach(s => { const d = document.createElement('div'); d.className = 'step-item'; d.innerHTML = s; list.appendChild(d); });
+
+        } else if (scenario === 'function_derivation') {
+            const a = parseFloat(document.getElementById('sc_a').value) || 0;
+            const b = parseFloat(document.getElementById('sc_b').value) || 0;
+            const mps = (1 - b).toFixed(2);
+
+            const steps = [
+                `<strong>Given Consumption Function:</strong> $C = ${a} + ${b}Y$`,
+                `<strong>General Income Identity:</strong> $Y = C + S \\implies S = Y - C$`,
+                `<strong>Substitution:</strong> $S = Y - (${a} + ${b}Y) = -${a} + Y - ${b}Y = -${a} + (1 - ${b})Y$`,
+                `<strong>Derived Savings Function:</strong> $S = -${a} + ${mps}Y$`,
+                `<strong>Interpretation:</strong> Autonomous dissaving = $-${a}$, MPS = $1 - ${b} = ${mps}$.`
+            ];
+            steps.forEach(s => { const d = document.createElement('div'); d.className = 'step-item'; d.innerHTML = s; list.appendChild(d); });
+
+        } else if (scenario === 'breakeven_finder') {
+            const a = parseFloat(document.getElementById('sc_ba').value) || 0;
+            const b = parseFloat(document.getElementById('sc_bb').value) || 0;
+            const Y_target = parseFloat(document.getElementById('sc_by').value) || 0;
+
+            const mps = 1 - b;
+            const Y_be = mps !== 0 ? (a / mps) : "Undefined";
+
+            const C_target = a + b * Y_target;
+            const S_target = -a + mps * Y_target;
+
+            const steps = [
+                `<strong>Savings Function:</strong> $S = -${a} + ${mps.toFixed(2)}Y$`,
+                `<strong>Break-Even Formula ($S = 0$):</strong> $0 = -${a} + ${mps.toFixed(2)}Y_{BE} \\implies Y_{BE} = \\frac{${a}}{${mps.toFixed(2)}} = ${Y_be}$`,
+                `<strong>Verification at Break-Even:</strong> At $Y = ${Y_be}$, $C = ${a} + ${b}(${Y_be}) = ${Y_be}$, so $S = 0$ and $APC = 1.0$.`,
+                `<strong>Evaluation at Target Income ($Y = ${Y_target}$):</strong>`,
+                `• Consumption $C = ${a} + ${b}(${Y_target}) = ${C_target}$`,
+                `• Savings $S = -${a} + ${mps.toFixed(2)}(${Y_target}) = ${S_target}$`,
+                `• State: ${S_target < 0 ? "Dissaving" : S_target === 0 ? "Break-Even" : "Positive Saving"}`
+            ];
+            steps.forEach(s => { const d = document.createElement('div'); d.className = 'step-item'; d.innerHTML = s; list.appendChild(d); });
+        }
+        if (window.MathJax) MathJax.typesetPromise();
+    }
+
+    // FLASHCARD ENGINE
+    const flashcardsDeck = [
+        { concept: "Two-Sector Economy", answer: "A simple model containing only Households and Business Units (Firms).", topic: 1 },
+        { concept: "Real Flow", answer: "The movement of physical factors of production and final goods/services.", topic: 1 },
+        { concept: "Money Flow", answer: "The flow of factor payments (wages, rent, interest, profits) and consumption spending.", topic: 1 },
+        { concept: "Saving (S)", answer: "The leakage/withdrawal of income not allocated to immediate consumption spending.", topic: 2 },
+        { concept: "Investment (I)", answer: "The injection of funds into capital goods creation by businesses.", topic: 2 },
+        { concept: "Average Propensity to Consume (APC)", answer: "The ratio of total consumption to total income (C / Y).", topic: 3 },
+        { concept: "Marginal Propensity to Consume (MPC)", answer: "The ratio of change in consumption to change in income (ΔC / ΔY).", topic: 3 },
+        { concept: "Average Propensity to Save (APS)", answer: "The fraction of income saved (S / Y). Note: APC + APS = 1.", topic: 4 },
+        { concept: "Marginal Propensity to Save (MPS)", answer: "The fraction of additional income saved (ΔS / ΔY). Note: MPC + MPS = 1.", topic: 4 },
+        { concept: "Savings Function", answer: "S = -a + (1 - b)Y, where '-a' is autonomous dissaving and '(1 - b)' is MPS.", topic: 5 },
+        { concept: "Break-Even Point", answer: "The income level where S = 0 and C = Y (APC = 1).", topic: 5 }
+    ];
+
+    let fcIndex = 0, fcIsFlipped = false;
+
+    function loadFlashcard() {
+        const currentCard = flashcardsDeck[fcIndex];
+        fcIsFlipped = false;
+        document.getElementById('fcLabel').innerText = `TOPIC ${currentCard.topic} CONCEPT (Click to Flip)`;
+        document.getElementById('fcContent').innerText = currentCard.concept;
+    }
+
+    function flipCard() {
+        const currentCard = flashcardsDeck[fcIndex];
+        fcIsFlipped = !fcIsFlipped;
+        document.getElementById('fcLabel').innerText = fcIsFlipped ? "DEFINITION / FORMULA" : `TOPIC ${currentCard.topic} CONCEPT (Click to Flip)`;
+        document.getElementById('fcContent').innerText = fcIsFlipped ? currentCard.answer : currentCard.concept;
+    }
+
+    function rateCard(rating) {
+        fcIndex = (fcIndex + 1) % flashcardsDeck.length;
+        loadFlashcard();
+    }
+
+    window.onload = () => {
+        updateMasteryUI();
+        generateQuiz();
+        renderScenarioInputs();
+    };
+</script>
+
+</body>
+</html>
