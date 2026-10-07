@@ -1,0 +1,1490 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Resources | Miva Revision Hub</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        :root {
+            --navy: #102f52;
+            --navy-dark: #0a223d;
+            --blue: #173f67;
+            --teal: #0c9f94;
+            --teal-dark: #087f77;
+            --teal-soft: #e3f6f3;
+            --page: #f5f7fa;
+            --text: #16324f;
+            --muted: #718096;
+            --border: #e5ebf1;
+            --white: #ffffff;
+        }
+
+        body {
+            font-family: Inter, ui-sans-serif, -apple-system,
+                BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            background: var(--page);
+            color: var(--text);
+            line-height: 1.5;
+        }
+
+        a {
+            color: inherit;
+        }
+
+        /* HERO */
+
+        .hero {
+            position: relative;
+            overflow: hidden;
+
+            background:
+                radial-gradient(
+                    circle at 82% 18%,
+                    rgba(61, 151, 181, 0.18),
+                    transparent 27%
+                ),
+                linear-gradient(
+                    135deg,
+                    #173f67 0%,
+                    #0d2d4d 58%,
+                    #091f38 100%
+                );
+
+            color: white;
+        }
+
+        .hero::before,
+        .hero::after {
+            content: "";
+            position: absolute;
+            border: 1px solid rgba(255,255,255,0.07);
+            transform: rotate(35deg);
+            pointer-events: none;
+        }
+
+        .hero::before {
+            width: 430px;
+            height: 430px;
+            right: -170px;
+            top: -220px;
+            border-radius: 80px;
+        }
+
+        .hero::after {
+            width: 280px;
+            height: 280px;
+            left: -150px;
+            bottom: -210px;
+            border-radius: 60px;
+        }
+
+        /* NAV */
+
+        .nav {
+            position: relative;
+            z-index: 2;
+
+            max-width: 1200px;
+            margin: auto;
+            padding: 22px 20px;
+
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+
+            gap: 30px;
+        }
+
+        .brand {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+
+            text-decoration: none;
+
+            font-weight: 750;
+            letter-spacing: -0.2px;
+            white-space: nowrap;
+        }
+
+        .brand-mark {
+            width: 36px;
+            height: 36px;
+
+            border-radius: 11px;
+
+            display: grid;
+            place-items: center;
+
+            background: rgba(255,255,255,0.12);
+            border: 1px solid rgba(255,255,255,0.16);
+
+            font-size: 18px;
+        }
+
+        .nav-links {
+            display: flex;
+            align-items: center;
+            gap: 28px;
+        }
+
+        .nav-links a {
+            position: relative;
+
+            text-decoration: none;
+
+            color: #dce8f4;
+
+            font-size: 14px;
+            font-weight: 600;
+
+            padding: 7px 0;
+        }
+
+        .nav-links a.active {
+            color: white;
+        }
+
+        .nav-links a.active::after {
+            content: "";
+
+            position: absolute;
+
+            left: 0;
+            right: 0;
+            bottom: 0;
+
+            height: 2px;
+
+            border-radius: 4px;
+
+            background: #48c7ba;
+        }
+
+        /* HERO CONTENT */
+
+        .hero-content {
+            position: relative;
+            z-index: 1;
+
+            max-width: 1200px;
+            margin: auto;
+
+            padding: 50px 20px 92px;
+
+            display: grid;
+
+            grid-template-columns:
+                minmax(0, 1fr)
+                auto;
+
+            align-items: center;
+
+            gap: 50px;
+        }
+
+        .eyebrow {
+            color: #6bd4c9;
+
+            font-size: 12px;
+            font-weight: 800;
+
+            letter-spacing: 2.2px;
+
+            margin-bottom: 14px;
+        }
+
+        .hero h1 {
+            max-width: 760px;
+
+            font-size: clamp(38px, 5vw, 62px);
+
+            line-height: 1.04;
+
+            letter-spacing: -2px;
+
+            margin-bottom: 20px;
+        }
+
+        .hero p {
+            max-width: 700px;
+
+            color: #d6e3ee;
+
+            font-size: 16px;
+
+            line-height: 1.75;
+        }
+
+        /* BADGE */
+
+        .semester-badge {
+            min-width: 190px;
+
+            padding: 21px 23px;
+
+            border-radius: 18px;
+
+            background: rgba(255,255,255,0.1);
+
+            border: 1px solid rgba(255,255,255,0.16);
+
+            backdrop-filter: blur(8px);
+        }
+
+        .badge-icon {
+            font-size: 24px;
+
+            margin-bottom: 10px;
+        }
+
+        .semester-badge strong {
+            display: block;
+
+            font-size: 15px;
+        }
+
+        .semester-badge span {
+            color: #b9ccdc;
+
+            font-size: 13px;
+        }
+
+        /* MAIN */
+
+        .container {
+            max-width: 1200px;
+
+            margin: -46px auto 60px;
+
+            padding: 0 20px;
+
+            position: relative;
+
+            z-index: 3;
+        }
+
+        /* STATS */
+
+        .stats {
+            display: grid;
+
+            grid-template-columns:
+                repeat(4, 1fr);
+
+            background: white;
+
+            border: 1px solid rgba(15,47,79,0.06);
+
+            border-radius: 18px;
+
+            box-shadow:
+                0 15px 40px rgba(20,47,73,0.11);
+
+            overflow: hidden;
+
+            margin-bottom: 38px;
+        }
+
+        .stat {
+            display: flex;
+
+            align-items: center;
+
+            gap: 14px;
+
+            padding: 22px 24px;
+        }
+
+        .stat + .stat {
+            border-left: 1px solid var(--border);
+        }
+
+        .stat-icon {
+            width: 42px;
+            height: 42px;
+
+            flex: 0 0 42px;
+
+            display: grid;
+            place-items: center;
+
+            border-radius: 12px;
+
+            background: var(--teal-soft);
+
+            color: var(--teal-dark);
+
+            font-size: 18px;
+        }
+
+        .stat strong {
+            display: block;
+
+            color: var(--text);
+
+            font-size: 15px;
+        }
+
+        .stat span {
+            display: block;
+
+            color: var(--muted);
+
+            font-size: 12px;
+
+            margin-top: 2px;
+        }
+
+        /* SEARCH */
+
+        .tools {
+            display: flex;
+
+            align-items: center;
+
+            gap: 12px;
+
+            margin-bottom: 28px;
+
+            flex-wrap: wrap;
+        }
+
+        .search-box {
+            position: relative;
+
+            flex: 1 1 360px;
+        }
+
+        .search-box input {
+            width: 100%;
+
+            height: 48px;
+
+            border: 1px solid var(--border);
+
+            border-radius: 12px;
+
+            background: white;
+
+            padding: 0 18px 0 44px;
+
+            font-size: 14px;
+
+            color: var(--text);
+
+            outline: none;
+
+            transition:
+                border-color 0.2s ease,
+                box-shadow 0.2s ease;
+        }
+
+        .search-box input:focus {
+            border-color: var(--teal);
+
+            box-shadow:
+                0 0 0 3px rgba(12,159,148,0.1);
+        }
+
+        .search-icon {
+            position: absolute;
+
+            left: 16px;
+            top: 50%;
+
+            transform: translateY(-50%);
+
+            color: #91a0ad;
+
+            font-size: 17px;
+        }
+
+        /* FILTERS */
+
+        .filters {
+            display: flex;
+
+            gap: 7px;
+
+            flex-wrap: wrap;
+        }
+
+        .filter {
+            border: 1px solid var(--border);
+
+            background: white;
+
+            color: #657586;
+
+            border-radius: 9px;
+
+            padding: 9px 13px;
+
+            font-size: 12px;
+
+            font-weight: 700;
+
+            cursor: pointer;
+
+            transition:
+                background 0.2s ease,
+                color 0.2s ease,
+                border-color 0.2s ease;
+        }
+
+        .filter:hover {
+            border-color: #c7d8df;
+        }
+
+        .filter.active {
+            background: var(--teal);
+
+            border-color: var(--teal);
+
+            color: white;
+        }
+
+        /* RESOURCE GRID */
+
+        .resource-grid {
+            display: grid;
+
+            grid-template-columns:
+                repeat(3, 1fr);
+
+            gap: 22px;
+        }
+
+        .resource-card {
+            background: white;
+
+            border: 1px solid rgba(20,52,80,0.06);
+
+            border-radius: 18px;
+
+            padding: 24px;
+
+            box-shadow:
+                0 7px 24px rgba(25,50,75,0.07);
+
+            transition:
+                transform 0.2s ease,
+                box-shadow 0.2s ease,
+                border-color 0.2s ease;
+        }
+
+        .resource-card:hover {
+            transform: translateY(-4px);
+
+            box-shadow:
+                0 14px 32px rgba(25,50,75,0.11);
+
+            border-color:
+                rgba(12,159,148,0.16);
+        }
+
+        .resource-header {
+            margin-bottom: 20px;
+        }
+
+        .course-code {
+            display: inline-flex;
+
+            align-items: center;
+
+            background: var(--teal-soft);
+
+            color: var(--teal-dark);
+
+            font-weight: 800;
+
+            font-size: 12px;
+
+            letter-spacing: 0.4px;
+
+            padding: 7px 11px;
+
+            border-radius: 9px;
+
+            margin-bottom: 13px;
+        }
+
+        .resource-header h2 {
+            font-size: 19px;
+
+            line-height: 1.3;
+
+            letter-spacing: -0.3px;
+
+            margin-bottom: 7px;
+        }
+
+        .resource-header p {
+            color: var(--muted);
+
+            font-size: 13px;
+
+            line-height: 1.55;
+        }
+
+        /* PDF LIST */
+
+        .pdf-list {
+            border: 1px solid var(--border);
+
+            border-radius: 12px;
+
+            overflow: hidden;
+
+            background: #fafcfd;
+        }
+
+        .pdf-row {
+            display: flex;
+
+            align-items: center;
+
+            justify-content: space-between;
+
+            gap: 12px;
+
+            padding: 13px;
+
+            border-bottom: 1px solid var(--border);
+        }
+
+        .pdf-row:last-child {
+            border-bottom: 0;
+        }
+
+        .pdf-info {
+            min-width: 0;
+
+            display: flex;
+
+            align-items: center;
+
+            gap: 10px;
+        }
+
+        .pdf-icon {
+            width: 34px;
+            height: 34px;
+
+            flex: 0 0 34px;
+
+            display: grid;
+
+            place-items: center;
+
+            border-radius: 9px;
+
+            background: #fff0f0;
+
+            color: #d94c4c;
+
+            font-size: 11px;
+
+            font-weight: 900;
+        }
+
+        .pdf-name {
+            min-width: 0;
+        }
+
+        .pdf-name strong {
+            display: block;
+
+            font-size: 12px;
+
+            color: var(--text);
+
+            white-space: nowrap;
+
+            overflow: hidden;
+
+            text-overflow: ellipsis;
+        }
+
+        .pdf-name span {
+            display: block;
+
+            font-size: 10px;
+
+            color: #97a3ad;
+
+            margin-top: 2px;
+        }
+
+        .view-btn {
+            flex: 0 0 auto;
+
+            text-decoration: none;
+
+            padding: 7px 10px;
+
+            border-radius: 7px;
+
+            background: white;
+
+            border: 1px solid var(--border);
+
+            color: var(--teal-dark);
+
+            font-size: 11px;
+
+            font-weight: 750;
+        }
+
+        .view-btn:hover {
+            background: var(--teal-soft);
+
+            border-color: #c9e8e4;
+        }
+
+        .empty-resource {
+            padding: 18px 14px;
+
+            text-align: center;
+
+            color: #8c99a5;
+
+            font-size: 12px;
+
+            line-height: 1.5;
+        }
+
+        /* FOOTER */
+
+        footer {
+            text-align: center;
+
+            padding: 10px 20px 35px;
+
+            color: #7b8794;
+
+            font-size: 13px;
+        }
+
+        /* TABLET */
+
+        @media (max-width: 950px) {
+
+            .nav-links {
+                gap: 17px;
+            }
+
+            .hero-content {
+                grid-template-columns: 1fr;
+
+                padding-top: 40px;
+            }
+
+            .semester-badge {
+                width: fit-content;
+            }
+
+            .stats {
+                grid-template-columns:
+                    repeat(2, 1fr);
+            }
+
+            .stat:nth-child(3) {
+                border-left: 0;
+
+                border-top:
+                    1px solid var(--border);
+            }
+
+            .stat:nth-child(4) {
+                border-top:
+                    1px solid var(--border);
+            }
+
+            .resource-grid {
+                grid-template-columns:
+                    repeat(2, 1fr);
+            }
+        }
+
+        /* MOBILE */
+
+        @media (max-width: 650px) {
+
+            .nav {
+                padding: 16px 20px;
+
+                align-items: center;
+
+                gap: 14px;
+            }
+
+            .brand {
+                font-size: 16px;
+
+                gap: 8px;
+            }
+
+            .brand-mark {
+                width: 34px;
+                height: 34px;
+
+                border-radius: 10px;
+            }
+
+            .nav-links {
+                gap: 16px;
+
+                flex-shrink: 0;
+            }
+
+            .nav-links a {
+                font-size: 13px;
+
+                white-space: nowrap;
+            }
+
+            .hero-content {
+                padding: 30px 20px 56px;
+
+                gap: 28px;
+            }
+
+            .eyebrow {
+                font-size: 11px;
+
+                letter-spacing: 1.8px;
+
+                margin-bottom: 11px;
+            }
+
+            .hero h1 {
+                font-size:
+                    clamp(34px, 9.5vw, 46px);
+
+                line-height: 1.02;
+
+                letter-spacing: -1.4px;
+
+                margin-bottom: 15px;
+            }
+
+            .hero p {
+                font-size: 14px;
+
+                line-height: 1.6;
+            }
+
+            .semester-badge {
+                min-width: 0;
+
+                width: 100%;
+
+                max-width: 270px;
+
+                padding: 15px 18px;
+
+                border-radius: 15px;
+
+                display: grid;
+
+                grid-template-columns:
+                    auto 1fr;
+
+                grid-template-rows:
+                    auto auto;
+
+                column-gap: 12px;
+
+                align-items: center;
+            }
+
+            .badge-icon {
+                grid-row: 1 / 3;
+
+                font-size: 22px;
+
+                margin: 0;
+            }
+
+            .semester-badge strong {
+                font-size: 14px;
+            }
+
+            .semester-badge span {
+                font-size: 12px;
+            }
+
+            .container {
+                margin-top: -30px;
+            }
+
+            .stats {
+                grid-template-columns: 1fr;
+
+                margin-bottom: 30px;
+
+                border-radius: 16px;
+            }
+
+            .stat {
+                padding: 17px 20px;
+            }
+
+            .stat-icon {
+                width: 38px;
+                height: 38px;
+
+                flex-basis: 38px;
+            }
+
+            .tools {
+                display: block;
+
+                margin-bottom: 22px;
+            }
+
+            .search-box {
+                margin-bottom: 10px;
+            }
+
+            .filters {
+                overflow-x: auto;
+
+                flex-wrap: nowrap;
+
+                padding-bottom: 4px;
+            }
+
+            .filter {
+                flex: 0 0 auto;
+            }
+
+            .resource-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .resource-card {
+                padding: 22px;
+            }
+
+            .pdf-name strong {
+                max-width: 145px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- HERO -->
+
+    <header class="hero">
+
+        <nav class="nav">
+
+            <a class="brand" href="index.html">
+
+                <span class="brand-mark">
+                    ▰
+                </span>
+
+                <span>
+                    Miva Revision Hub
+                </span>
+
+            </a>
+
+
+            <div class="nav-links">
+
+                <a href="index.html">
+                    Semester 2
+                </a>
+
+                <a href="resources.html" class="active">
+                    Resources
+                </a>
+
+            </div>
+
+        </nav>
+
+
+        <div class="hero-content">
+
+            <div>
+
+                <div class="eyebrow">
+                    MIVA OPEN UNIVERSITY
+                </div>
+
+                <h1>
+                    Course Resources
+                </h1>
+
+                <p>
+                    Access lecture slides and other study materials for all
+                    Semester 2 Business Management courses.
+                    View your PDFs directly from the revision hub.
+                </p>
+
+            </div>
+
+
+            <div class="semester-badge">
+
+                <div class="badge-icon">
+                    🎓
+                </div>
+
+                <strong>
+                    Semester 2
+                </strong>
+
+                <span>
+                    100 Level
+                </span>
+
+            </div>
+
+        </div>
+
+    </header>
+
+
+    <!-- MAIN -->
+
+    <main class="container">
+
+
+        <!-- STATS -->
+
+        <section class="stats">
+
+            <div class="stat">
+
+                <div class="stat-icon">
+                    ▦
+                </div>
+
+                <div>
+
+                    <strong>
+                        7 Courses
+                    </strong>
+
+                    <span>
+                        Slides and resources
+                    </span>
+
+                </div>
+
+            </div>
+
+
+            <div class="stat">
+
+                <div class="stat-icon">
+                    ▤
+                </div>
+
+                <div>
+
+                    <strong>
+                        PDF Slides
+                    </strong>
+
+                    <span>
+                        View directly on site
+                    </span>
+
+                </div>
+
+            </div>
+
+
+            <div class="stat">
+
+                <div class="stat-icon">
+                    ⌕
+                </div>
+
+                <div>
+
+                    <strong>
+                        Easy Search
+                    </strong>
+
+                    <span>
+                        Find resources quickly
+                    </span>
+
+                </div>
+
+            </div>
+
+
+            <div class="stat">
+
+                <div class="stat-icon">
+                    ↓
+                </div>
+
+                <div>
+
+                    <strong>
+                        Quick Access
+                    </strong>
+
+                    <span>
+                        View or download
+                    </span>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- SEARCH / FILTERS -->
+
+        <section class="tools">
+
+            <div class="search-box">
+
+                <span class="search-icon">
+                    ⌕
+                </span>
+
+                <input
+                    type="search"
+                    id="searchInput"
+                    placeholder="Search for a course or resource..."
+                    autocomplete="off"
+                >
+
+            </div>
+
+
+            <div class="filters">
+
+                <button
+                    class="filter active"
+                    data-filter="all"
+                    type="button"
+                >
+                    All Courses
+                </button>
+
+                <button
+                    class="filter"
+                    data-filter="AMS"
+                    type="button"
+                >
+                    AMS
+                </button>
+
+                <button
+                    class="filter"
+                    data-filter="BUA"
+                    type="button"
+                >
+                    BUA
+                </button>
+
+                <button
+                    class="filter"
+                    data-filter="ECO"
+                    type="button"
+                >
+                    ECO
+                </button>
+
+                <button
+                    class="filter"
+                    data-filter="GST"
+                    type="button"
+                >
+                    GST
+                </button>
+
+            </div>
+
+        </section>
+
+
+        <!-- RESOURCE CARDS -->
+
+        <section class="resource-grid" id="resourceGrid">
+
+
+            <!-- AMS 102 -->
+
+            <article
+                class="resource-card"
+                data-course="AMS"
+                data-search="AMS 102 Basic Mathematics"
+            >
+
+                <div class="resource-header">
+
+                    <span class="course-code">
+                        AMS 102
+                    </span>
+
+                    <h2>
+                        Basic Mathematics
+                    </h2>
+
+                    <p>
+                        Lecture slides and study resources for Basic Mathematics.
+                    </p>
+
+                </div>
+
+
+                <div class="pdf-list">
+
+                    <div class="empty-resource">
+                        No PDF resources uploaded yet.
+                    </div>
+
+                </div>
+
+            </article>
+
+
+            <!-- AMS 104 -->
+
+            <article
+                class="resource-card"
+                data-course="AMS"
+                data-search="AMS 104 Principles of Project Management"
+            >
+
+                <div class="resource-header">
+
+                    <span class="course-code">
+                        AMS 104
+                    </span>
+
+                    <h2>
+                        Principles of Project Management
+                    </h2>
+
+                    <p>
+                        Lecture slides and study resources for Project Management.
+                    </p>
+
+                </div>
+
+
+                <div class="pdf-list">
+
+                    <div class="empty-resource">
+                        No PDF resources uploaded yet.
+                    </div>
+
+                </div>
+
+            </article>
+
+
+            <!-- AMS 108 -->
+
+            <article
+                class="resource-card"
+                data-course="AMS"
+                data-search="AMS 108 Principles of Management II"
+            >
+
+                <div class="resource-header">
+
+                    <span class="course-code">
+                        AMS 108
+                    </span>
+
+                    <h2>
+                        Principles of Management II
+                    </h2>
+
+                    <p>
+                        Lecture slides and study resources for Management II.
+                    </p>
+
+                </div>
+
+
+                <div class="pdf-list">
+
+                    <div class="empty-resource">
+                        No PDF resources uploaded yet.
+                    </div>
+
+                </div>
+
+            </article>
+
+
+            <!-- BUA 102 -->
+
+            <article
+                class="resource-card"
+                data-course="BUA"
+                data-search="BUA 102 Introduction to Business II"
+            >
+
+                <div class="resource-header">
+
+                    <span class="course-code">
+                        BUA 102
+                    </span>
+
+                    <h2>
+                        Introduction to Business II
+                    </h2>
+
+                    <p>
+                        Lecture slides and study resources for Introduction to Business II.
+                    </p>
+
+                </div>
+
+
+                <div class="pdf-list">
+
+                    <div class="empty-resource">
+                        No PDF resources uploaded yet.
+                    </div>
+
+                </div>
+
+            </article>
+
+
+            <!-- ECO 102 -->
+
+            <article
+                class="resource-card"
+                data-course="ECO"
+                data-search="ECO 102 Principles of Economics II"
+            >
+
+                <div class="resource-header">
+
+                    <span class="course-code">
+                        ECO 102
+                    </span>
+
+                    <h2>
+                        Principles of Economics II
+                    </h2>
+
+                    <p>
+                        Lecture slides and study resources for Economics II.
+                    </p>
+
+                </div>
+
+
+                <div class="pdf-list">
+
+                    <div class="empty-resource">
+                        No PDF resources uploaded yet.
+                    </div>
+
+                </div>
+
+            </article>
+
+
+            <!-- GST 112 -->
+
+            <article
+                class="resource-card"
+                data-course="GST"
+                data-search="GST 112 Nigerian Peoples and Culture"
+            >
+
+                <div class="resource-header">
+
+                    <span class="course-code">
+                        GST 112
+                    </span>
+
+                    <h2>
+                        Nigerian Peoples and Culture
+                    </h2>
+
+                    <p>
+                        Lecture slides and study resources covering Nigerian peoples and culture.
+                    </p>
+
+                </div>
+
+
+                <div class="pdf-list">
+
+                    <div class="empty-resource">
+                        No PDF resources uploaded yet.
+                    </div>
+
+                </div>
+
+            </article>
+
+
+            <!-- GST 122 -->
+
+            <article
+                class="resource-card"
+                data-course="GST"
+                data-search="GST 122 Communication Skills in English II"
+            >
+
+                <div class="resource-header">
+
+                    <span class="course-code">
+                        GST 122
+                    </span>
+
+                    <h2>
+                        Communication Skills in English II
+                    </h2>
+
+                    <p>
+                        Lecture slides and study resources for Communication Skills in English II.
+                    </p>
+
+                </div>
+
+
+                <div class="pdf-list">
+
+                    <div class="empty-resource">
+                        No PDF resources uploaded yet.
+                    </div>
+
+                </div>
+
+            </article>
+
+
+        </section>
+
+    </main>
+
+
+    <footer>
+        Miva Revision Hub · Business Management · 100 Level · Semester 2
+    </footer>
+
+
+    <!-- SEARCH / FILTER SCRIPT -->
+
+    <script>
+
+        const searchInput =
+            document.getElementById("searchInput");
+
+        const filters =
+            document.querySelectorAll(".filter");
+
+        const cards =
+            document.querySelectorAll(".resource-card");
+
+
+        let activeFilter = "all";
+
+
+        function updateResources() {
+
+            const searchTerm =
+                searchInput.value
+                    .trim()
+                    .toLowerCase();
+
+
+            cards.forEach(card => {
+
+                const course =
+                    card.dataset.course;
+
+                const searchableText =
+                    card.dataset.search.toLowerCase();
+
+
+                const matchesFilter =
+                    activeFilter === "all" ||
+                    course === activeFilter;
+
+
+                const matchesSearch =
+                    searchTerm === "" ||
+                    searchableText.includes(searchTerm);
+
+
+                if (
+                    matchesFilter &&
+                    matchesSearch
+                ) {
+
+                    card.style.display = "";
+
+                } else {
+
+                    card.style.display = "none";
+
+                }
+
+            });
+
+        }
+
+
+        searchInput.addEventListener(
+            "input",
+            updateResources
+        );
+
+
+        filters.forEach(filter => {
+
+            filter.addEventListener(
+                "click",
+                () => {
+
+                    filters.forEach(button => {
+                        button.classList.remove("active");
+                    });
+
+
+                    filter.classList.add("active");
+
+
+                    activeFilter =
+                        filter.dataset.filter;
+
+
+                    updateResources();
+
+                }
+            );
+
+        });
+
+    </script>
+
+</body>
+</html>
