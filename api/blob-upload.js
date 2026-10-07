@@ -1,79 +1,124 @@
-import { put } from "@vercel/blob";
+import { handleUpload } from "@vercel/blob/client";
 
-export default async function handler(req, res) {
-    if (req.method !== "POST") {
-        return res.status(405).json({
-            error: "Method not allowed"
-        });
+export default async function handler(request) {
+    if (request.method !== "POST") {
+        return new Response(
+            JSON.stringify({ error: "Method not allowed" }),
+            {
+                status: 405,
+                headers: {
+                    "Content-Type": "application/json"
+                }
+            }
+        );
     }
 
     try {
-        const session = req.headers["x-admin-session"];
+        const session = request.headers["x-admin-session"];
 
         if (!session) {
-            return res.status(401).json({
-                error: "Admin login required."
-            });
+            return new Response(
+                JSON.stringify({
+                    error: "Admin login required."
+                }),
+                {
+                    status: 401,
+                    headers: {
+                        "Content-Type": "application/json"
+                    }
+                }
+            );
         }
 
-        const {
-            course,
-            week,
-            resourceName
-        } = req.body || {};
+        const body = await request.json();
 
-        if (!course || !week || !resourceName) {
-            return res.status(400).json({
-                error: "Course, week and resource name are required."
-            });
-        }
+        const jsonResponse = await handleUpload({
+            body,
+            request,
 
-        const sessionParts = session.split(".");
-        if (sessionParts.length !== 2) {
-            return res.status(401).json({
-                error: "Invalid admin session."
-            });
-        }
+            onBeforeGenerateToken: async (
+                pathname,
+                clientPayload
+            ) => {
+                const sessionParts = session.split(".");
 
-        const timestamp = Number(sessionParts[0]);
+                if (sessionParts.length !== 2) {
+                    throw new Error("Invalid admin session.");
+                }
 
-        if (
-            !timestamp ||
-            Date.now() - timestamp > 2 * 60 * 60 * 1000
-        ) {
-            return res.status(401).json({
-                error: "Admin session expired."
-            });
-        }
+                const timestamp = Number(sessionParts[0]);
 
-        const file = req.body.file;
+                if (
+                    !timestamp ||
+                    Date.now() - timestamp > 2 * 60 * 60 * 1000
+                ) {
+                    throw new Error("Admin session expired.");
+                }
 
-        if (!file) {
-            return res.status(400).json({
-                error: "PDF file is required."
-            });
-        }
+                let payload = {};
 
-        const blob = await put(
-            `resources/${course}/${week}/${resourceName}.pdf`,
-            file,
+                try {
+                    payload = JSON.parse(clientPayload || "{}");
+                } catch {
+                    throw new Error("Invalid upload information.");
+                }
+
+                if (
+                    !payload.course ||
+                    !payload.week ||
+                    !payload.resourceName
+                ) {
+                    throw new Error(
+                        "Course, week and resource name are required."
+                    );
+                }
+
+                return {
+                    allowedContentTypes: ["application/pdf"],
+                    addRandomSuffix: true,
+                    tokenPayload: JSON.stringify({
+                        course: payload.course,
+                        week: payload.week,
+                        resourceName: payload.resourceName
+                    })
+                };
+            },
+
+            onUploadCompleted: async ({
+                blob,
+                tokenPayload
+            }) => {
+                console.log(
+                    "Resource uploaded:",
+                    blob.url,
+                    tokenPayload
+                );
+            }
+        });
+
+        return new Response(
+            JSON.stringify(jsonResponse),
             {
-                access: "public",
-                addRandomSuffix: true
+                status: 200,
+                headers: {
+                    "Content-Type": "application/json"
+                }
             }
         );
-
-        return res.status(200).json({
-            success: true,
-            url: blob.url,
-            pathname: blob.pathname
-        });
 
     } catch (error) {
         console.error(error);
 
-        return res.status(500).json({
-            error: "Unable to upload resource."
-        });
+        return new Response(
+            JSON.stringify({
+                error: error.message || "Upload failed."
+            }),
+            {
+                status: 400,
+                headers: {
+                    "Content-Type": "application/json"
+                }
+            }
+        );
     }
 }
