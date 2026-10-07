@@ -1,0 +1,652 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Admin | Miva Revision Hub</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        :root {
+            --navy: #102f52;
+            --navy-dark: #0a223d;
+            --blue: #173f67;
+            --teal: #0c9f94;
+            --teal-dark: #087f77;
+            --page: #f5f7fa;
+            --text: #16324f;
+            --muted: #718096;
+            --border: #e5ebf1;
+            --white: #ffffff;
+        }
+
+        body {
+            font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont,
+                "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            background: var(--page);
+            color: var(--text);
+            min-height: 100vh;
+        }
+
+        .topbar {
+            background: var(--navy-dark);
+            padding: 20px 7%;
+        }
+
+        .topbar-inner {
+            max-width: 1180px;
+            margin: auto;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .brand {
+            color: white;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-weight: 700;
+        }
+
+        .brand-mark {
+            width: 38px;
+            height: 38px;
+            border-radius: 11px;
+            background: rgba(255,255,255,.12);
+            display: grid;
+            place-items: center;
+            font-size: 17px;
+        }
+
+        .back-link {
+            color: rgba(255,255,255,.75);
+            text-decoration: none;
+            font-size: 14px;
+        }
+
+        .back-link:hover {
+            color: white;
+        }
+
+        .page {
+            max-width: 760px;
+            margin: 60px auto;
+            padding: 0 22px;
+        }
+
+        .card {
+            background: white;
+            border: 1px solid var(--border);
+            border-radius: 22px;
+            padding: 38px;
+            box-shadow: 0 14px 40px rgba(16,47,82,.08);
+        }
+
+        .icon {
+            width: 54px;
+            height: 54px;
+            border-radius: 15px;
+            background: #e7f7f5;
+            color: var(--teal);
+            display: grid;
+            place-items: center;
+            font-size: 25px;
+            margin-bottom: 22px;
+        }
+
+        h1 {
+            font-size: 30px;
+            letter-spacing: -0.8px;
+            margin-bottom: 9px;
+        }
+
+        .subtitle {
+            color: var(--muted);
+            line-height: 1.6;
+            margin-bottom: 30px;
+        }
+
+        label {
+            display: block;
+            font-size: 14px;
+            font-weight: 700;
+            margin-bottom: 8px;
+        }
+
+        input,
+        select {
+            width: 100%;
+            padding: 14px 15px;
+            border: 1px solid var(--border);
+            border-radius: 11px;
+            font-size: 15px;
+            background: white;
+            color: var(--text);
+            outline: none;
+        }
+
+        input:focus,
+        select:focus {
+            border-color: var(--teal);
+            box-shadow: 0 0 0 3px rgba(12,159,148,.10);
+        }
+
+        .field {
+            margin-bottom: 20px;
+        }
+
+        button {
+            border: 0;
+            cursor: pointer;
+            border-radius: 11px;
+            padding: 14px 20px;
+            font-size: 15px;
+            font-weight: 700;
+        }
+
+        .primary {
+            width: 100%;
+            background: var(--teal);
+            color: white;
+        }
+
+        .primary:hover {
+            background: var(--teal-dark);
+        }
+
+        .message {
+            margin-top: 15px;
+            padding: 12px 14px;
+            border-radius: 10px;
+            font-size: 14px;
+            display: none;
+        }
+
+        .error {
+            display: block;
+            background: #fff1f1;
+            color: #b42318;
+        }
+
+        .success {
+            display: block;
+            background: #eaf8f5;
+            color: #087f77;
+        }
+
+        .upload-area {
+            border: 2px dashed #d7e0e8;
+            border-radius: 15px;
+            padding: 28px;
+            text-align: center;
+            margin-top: 8px;
+            background: #fafcfd;
+        }
+
+        .upload-area input {
+            border: 0;
+            padding: 10px 0;
+            background: transparent;
+        }
+
+        .hidden {
+            display: none;
+        }
+
+        .divider {
+            height: 1px;
+            background: var(--border);
+            margin: 28px 0;
+        }
+
+        .logout {
+            background: transparent;
+            border: 1px solid var(--border);
+            color: var(--text);
+            margin-top: 12px;
+            width: 100%;
+        }
+
+        @media (max-width: 650px) {
+            .topbar {
+                padding: 16px 20px;
+            }
+
+            .page {
+                margin: 35px auto;
+                padding: 0 16px;
+            }
+
+            .card {
+                padding: 25px 20px;
+                border-radius: 18px;
+            }
+
+            h1 {
+                font-size: 26px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+<header class="topbar">
+    <div class="topbar-inner">
+
+        <a href="index.html" class="brand">
+            <span class="brand-mark">▰</span>
+            <span>Miva Revision Hub</span>
+        </a>
+
+        <a href="resources.html" class="back-link">
+            ← Resources
+        </a>
+
+    </div>
+</header>
+
+
+<main class="page">
+
+    <!-- ADMIN LOGIN -->
+
+    <section class="card" id="loginCard">
+
+        <div class="icon">🔐</div>
+
+        <h1>Admin Access</h1>
+
+        <p class="subtitle">
+            Enter the administrator code to manage course resources.
+        </p>
+
+        <form id="loginForm">
+
+            <div class="field">
+
+                <label for="adminCode">
+                    Admin Code
+                </label>
+
+                <input
+                    type="password"
+                    id="adminCode"
+                    placeholder="Enter admin code"
+                    autocomplete="off"
+                    required
+                >
+
+            </div>
+
+            <button type="submit" class="primary">
+                Continue
+            </button>
+
+        </form>
+
+        <div id="loginMessage" class="message"></div>
+
+    </section>
+
+
+    <!-- UPLOAD PANEL -->
+
+    <section class="card hidden" id="uploadCard">
+
+        <div class="icon">📚</div>
+
+        <h1>Add Resource</h1>
+
+        <p class="subtitle">
+            Upload a PDF and assign it to the correct course and week.
+        </p>
+
+
+        <form id="uploadForm">
+
+            <div class="field">
+
+                <label for="course">
+                    Course
+                </label>
+
+                <select id="course" required>
+
+                    <option value="">Select course</option>
+
+                    <option value="AMS 102">
+                        AMS 102 — Basic Mathematics
+                    </option>
+
+                    <option value="AMS 104">
+                        AMS 104 — Principles of Project Management
+                    </option>
+
+                    <option value="AMS 108">
+                        AMS 108 — Principles of Management II
+                    </option>
+
+                    <option value="BUA 102">
+                        BUA 102 — Introduction to Business II
+                    </option>
+
+                    <option value="ECO 102">
+                        ECO 102 — Principles of Economics II
+                    </option>
+
+                    <option value="GST 112">
+                        GST 112 — Nigerian Peoples and Culture
+                    </option>
+
+                    <option value="GST 122">
+                        GST 122 — Communication Skills in English II
+                    </option>
+
+                </select>
+
+            </div>
+
+
+            <div class="field">
+
+                <label for="week">
+                    Week
+                </label>
+
+                <select id="week" required>
+
+                    <option value="">Select week</option>
+
+                    <option value="Weeks 1–4">
+                        Weeks 1–4
+                    </option>
+
+                    <option value="Weeks 5–8">
+                        Weeks 5–8
+                    </option>
+
+                    <option value="Weeks 9–12">
+                        Weeks 9–12
+                    </option>
+
+                </select>
+
+            </div>
+
+
+            <div class="field">
+
+                <label for="resourceName">
+                    Resource Name
+                </label>
+
+                <input
+                    type="text"
+                    id="resourceName"
+                    placeholder="e.g. Week 5 Lecture Notes"
+                    required
+                >
+
+            </div>
+
+
+            <div class="field">
+
+                <label>
+                    PDF File
+                </label>
+
+                <div class="upload-area">
+
+                    <p>
+                        Select a PDF from your computer
+                    </p>
+
+                    <input
+                        type="file"
+                        id="pdfFile"
+                        accept="application/pdf,.pdf"
+                        required
+                    >
+
+                </div>
+
+            </div>
+
+
+            <button type="submit" class="primary" id="uploadButton">
+                Upload Resource
+            </button>
+
+        </form>
+
+
+        <div id="uploadMessage" class="message"></div>
+
+        <div class="divider"></div>
+
+        <button class="logout" id="logoutButton">
+            Log Out
+        </button>
+
+    </section>
+
+</main>
+
+
+<script>
+
+    const loginForm = document.getElementById("loginForm");
+    const loginCard = document.getElementById("loginCard");
+    const uploadCard = document.getElementById("uploadCard");
+
+    const loginMessage = document.getElementById("loginMessage");
+    const uploadMessage = document.getElementById("uploadMessage");
+
+    const uploadForm = document.getElementById("uploadForm");
+    const uploadButton = document.getElementById("uploadButton");
+
+    const logoutButton = document.getElementById("logoutButton");
+
+
+    /*
+       ADMIN LOGIN
+       The actual code is NOT stored in this page.
+       The page sends it to our secure Vercel API.
+    */
+
+    loginForm.addEventListener("submit", async function(event) {
+
+        event.preventDefault();
+
+        const code = document.getElementById("adminCode").value;
+
+        loginMessage.className = "message";
+        loginMessage.style.display = "none";
+
+        try {
+
+            const response = await fetch("/api/admin-login", {
+
+                method: "POST",
+
+                headers: {
+                    "Content-Type": "application/json"
+                },
+
+                body: JSON.stringify({
+                    code: code
+                })
+
+            });
+
+            const data = await response.json();
+
+            if (!response.ok) {
+                throw new Error(data.error || "Invalid admin code.");
+            }
+
+            sessionStorage.setItem(
+                "miva_admin_session",
+                data.session
+            );
+
+            loginCard.classList.add("hidden");
+            uploadCard.classList.remove("hidden");
+
+        } catch (error) {
+
+            loginMessage.textContent = error.message;
+            loginMessage.className = "message error";
+
+        }
+
+    });
+
+
+    /*
+       PDF UPLOAD
+    */
+
+    uploadForm.addEventListener("submit", async function(event) {
+
+        event.preventDefault();
+
+        const file = document.getElementById("pdfFile").files[0];
+
+        if (!file) {
+            return;
+        }
+
+        if (file.type !== "application/pdf") {
+
+            uploadMessage.textContent =
+                "Please select a PDF file.";
+
+            uploadMessage.className = "message error";
+
+            return;
+        }
+
+        const session =
+            sessionStorage.getItem("miva_admin_session");
+
+        if (!session) {
+
+            uploadMessage.textContent =
+                "Your admin session has expired. Please log in again.";
+
+            uploadMessage.className = "message error";
+
+            return;
+        }
+
+        uploadButton.disabled = true;
+        uploadButton.textContent = "Uploading...";
+
+        uploadMessage.className = "message";
+        uploadMessage.style.display = "none";
+
+
+        const formData = new FormData();
+
+        formData.append("file", file);
+        formData.append(
+            "course",
+            document.getElementById("course").value
+        );
+
+        formData.append(
+            "week",
+            document.getElementById("week").value
+        );
+
+        formData.append(
+            "resourceName",
+            document.getElementById("resourceName").value
+        );
+
+
+        try {
+
+            const response = await fetch(
+                "/api/upload-resource",
+                {
+                    method: "POST",
+
+                    headers: {
+                        "x-admin-session": session
+                    },
+
+                    body: formData
+                }
+            );
+
+            const data = await response.json();
+
+            if (!response.ok) {
+                throw new Error(
+                    data.error || "Upload failed."
+                );
+            }
+
+
+            uploadMessage.textContent =
+                "Resource uploaded successfully.";
+
+            uploadMessage.className =
+                "message success";
+
+
+            uploadForm.reset();
+
+
+        } catch (error) {
+
+            uploadMessage.textContent =
+                error.message;
+
+            uploadMessage.className =
+                "message error";
+
+        } finally {
+
+            uploadButton.disabled = false;
+            uploadButton.textContent =
+                "Upload Resource";
+
+        }
+
+    });
+
+
+    /*
+       LOG OUT
+    */
+
+    logoutButton.addEventListener("click", function() {
+
+        sessionStorage.removeItem(
+            "miva_admin_session"
+        );
+
+        uploadCard.classList.add("hidden");
+        loginCard.classList.remove("hidden");
+
+        document.getElementById("adminCode").value = "";
+
+    });
+
+</script>
+
+</body>
+</html>
