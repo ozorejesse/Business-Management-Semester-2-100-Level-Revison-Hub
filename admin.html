@@ -271,6 +271,7 @@
         }
 
         @media (max-width: 650px) {
+
             .topbar {
                 padding: 16px 20px;
             }
@@ -288,6 +289,7 @@
             h1 {
                 font-size: 26px;
             }
+
         }
     </style>
 </head>
@@ -295,34 +297,58 @@
 <body>
 
 <header class="topbar">
+
     <div class="topbar-inner">
 
         <a href="index.html" class="brand">
-            <span class="brand-mark">▰</span>
-            <span>Miva Revision Hub</span>
+
+            <span class="brand-mark">
+                ▰
+            </span>
+
+            <span>
+                Miva Revision Hub
+            </span>
+
         </a>
 
-        <a href="resources.html" class="back-link">
+
+        <a
+            href="resources.html"
+            class="back-link"
+        >
             ← Resources
         </a>
 
     </div>
+
 </header>
 
 
 <main class="page">
 
+
     <!-- ADMIN LOGIN -->
 
-    <section class="card" id="loginCard">
+    <section
+        class="card"
+        id="loginCard"
+    >
 
-        <div class="icon">🔐</div>
+        <div class="icon">
+            🔐
+        </div>
 
-        <h1>Admin Access</h1>
+
+        <h1>
+            Admin Access
+        </h1>
+
 
         <p class="subtitle">
             Enter the administrator code to manage course resources.
         </p>
+
 
         <form id="loginForm">
 
@@ -342,24 +368,42 @@
 
             </div>
 
-            <button type="submit" class="primary">
+
+            <button
+                type="submit"
+                class="primary"
+            >
                 Continue
             </button>
 
         </form>
 
-        <div id="loginMessage" class="message"></div>
+
+        <div
+            id="loginMessage"
+            class="message"
+        ></div>
 
     </section>
 
 
+
     <!-- UPLOAD PANEL -->
 
-    <section class="card hidden" id="uploadCard">
+    <section
+        class="card hidden"
+        id="uploadCard"
+    >
 
-        <div class="icon">📚</div>
+        <div class="icon">
+            📚
+        </div>
 
-        <h1>Add Resource</h1>
+
+        <h1>
+            Add Resource
+        </h1>
+
 
         <p class="subtitle">
             Upload one or multiple PDFs and assign them to the correct course and week.
@@ -368,39 +412,55 @@
 
         <form id="uploadForm">
 
+
+            <!-- COURSE -->
+
             <div class="field">
 
                 <label for="course">
                     Course
                 </label>
 
-                <select id="course" required>
 
-                    <option value="">Select course</option>
+                <select
+                    id="course"
+                    required
+                >
+
+                    <option value="">
+                        Select course
+                    </option>
+
 
                     <option value="AMS 102">
                         AMS 102 — Basic Mathematics
                     </option>
 
+
                     <option value="AMS 104">
                         AMS 104 — Principles of Project Management
                     </option>
+
 
                     <option value="AMS 108">
                         AMS 108 — Principles of Management II
                     </option>
 
+
                     <option value="BUA 102">
                         BUA 102 — Introduction to Business II
                     </option>
+
 
                     <option value="ECO 102">
                         ECO 102 — Principles of Economics II
                     </option>
 
+
                     <option value="GST 112">
                         GST 112 — Nigerian Peoples and Culture
                     </option>
+
 
                     <option value="GST 122">
                         GST 122 — Communication Skills in English II
@@ -411,23 +471,35 @@
             </div>
 
 
+
+            <!-- WEEK -->
+
             <div class="field">
 
                 <label for="week">
                     Week
                 </label>
 
-                <select id="week" required>
 
-                    <option value="">Select week</option>
+                <select
+                    id="week"
+                    required
+                >
+
+                    <option value="">
+                        Select week
+                    </option>
+
 
                     <option value="Weeks 1–4">
                         Weeks 1–4
                     </option>
 
+
                     <option value="Weeks 5–8">
                         Weeks 5–8
                     </option>
+
 
                     <option value="Weeks 9–12">
                         Weeks 9–12
@@ -438,14 +510,26 @@
             </div>
 
 
+
+            <!-- RESOURCE NAME -->
+
             <div class="field">
 
                 <label for="resourceName">
+
                     Resource Name
-                    <span style="font-weight: 500; opacity: 0.65;">
+
+                    <span
+                        style="
+                            font-weight: 500;
+                            opacity: 0.65;
+                        "
+                    >
                         (optional for batch uploads)
                     </span>
+
                 </label>
+
 
                 <input
                     type="text"
@@ -456,17 +540,22 @@
             </div>
 
 
+
+            <!-- PDF FILES -->
+
             <div class="field">
 
                 <label>
                     PDF Files
                 </label>
 
+
                 <div class="upload-area">
 
                     <p>
                         Select one or multiple PDFs from your computer
                     </p>
+
 
                     <input
                         type="file"
@@ -475,6 +564,7 @@
                         multiple
                         required
                     >
+
 
                     <div
                         id="uploadFileList"
@@ -485,6 +575,9 @@
 
             </div>
 
+
+
+            <!-- UPLOAD BUTTON -->
 
             <button
                 type="submit"
@@ -518,77 +611,91 @@
 </main>
 
 
-<script type="module">
 
-    import {
-        upload
-    } from "https://esm.sh/@vercel/blob@2.6.1/client";
+<script>
 
+
+    /*
+     * ELEMENTS
+     */
 
     const loginForm =
         document.getElementById(
             "loginForm"
         );
 
+
     const loginCard =
         document.getElementById(
             "loginCard"
         );
+
 
     const uploadCard =
         document.getElementById(
             "uploadCard"
         );
 
+
     const loginMessage =
         document.getElementById(
             "loginMessage"
         );
+
 
     const uploadMessage =
         document.getElementById(
             "uploadMessage"
         );
 
+
     const uploadForm =
         document.getElementById(
             "uploadForm"
         );
+
 
     const uploadButton =
         document.getElementById(
             "uploadButton"
         );
 
+
     const logoutButton =
         document.getElementById(
             "logoutButton"
         );
+
 
     const pdfFile =
         document.getElementById(
             "pdfFile"
         );
 
+
     const uploadFileList =
         document.getElementById(
             "uploadFileList"
         );
+
 
     const course =
         document.getElementById(
             "course"
         );
 
+
     const week =
         document.getElementById(
             "week"
         );
 
+
     const resourceName =
         document.getElementById(
             "resourceName"
         );
+
 
 
     /*
@@ -601,6 +708,7 @@
 
             event.preventDefault();
 
+
             const code =
                 document
                     .getElementById(
@@ -609,8 +717,10 @@
                     .value
                     .trim();
 
+
             loginMessage.className =
                 "message";
+
 
             loginMessage.style.display =
                 "none";
@@ -622,7 +732,9 @@
                     await fetch(
                         "/api/admin-login",
                         {
-                            method: "POST",
+
+                            method:
+                                "POST",
 
                             headers: {
                                 "Content-Type":
@@ -633,6 +745,7 @@
                                 JSON.stringify({
                                     code
                                 })
+
                         }
                     );
 
@@ -675,6 +788,7 @@
                 loginMessage.textContent =
                     error.message;
 
+
                 loginMessage.className =
                     "message error";
 
@@ -684,8 +798,9 @@
     );
 
 
+
     /*
-     * SHOW SELECTED FILES
+     * DISPLAY SELECTED FILES
      */
 
     pdfFile.addEventListener(
@@ -720,9 +835,11 @@
 
 
                 item.innerHTML = `
+
                     <div class="upload-file-name">
                         ${escapeHtml(file.name)}
                     </div>
+
 
                     <div
                         class="upload-file-status"
@@ -731,12 +848,16 @@
                         Waiting to upload
                     </div>
 
+
                     <div class="upload-progress">
+
                         <div
                             class="upload-progress-bar"
                             id="file-progress-${index}"
                         ></div>
+
                     </div>
+
                 `;
 
 
@@ -748,6 +869,7 @@
         );
 
     }
+
 
 
     /*
@@ -786,8 +908,7 @@
 
 
             /*
-             * Make sure at least one file
-             * has been selected.
+             * FILE CHECK
              */
 
             if (!files.length) {
@@ -801,8 +922,7 @@
 
 
             /*
-             * Make sure course and week
-             * have been selected.
+             * COURSE / WEEK CHECK
              */
 
             if (
@@ -819,8 +939,7 @@
 
 
             /*
-             * Make sure the admin is
-             * still logged in.
+             * SESSION CHECK
              */
 
             if (!session) {
@@ -845,7 +964,7 @@
 
 
             /*
-             * Validate every selected file.
+             * PDF VALIDATION
              */
 
             const invalidFile =
@@ -875,8 +994,7 @@
 
 
             /*
-             * Maximum size per PDF:
-             * 50 MB.
+             * SIZE VALIDATION
              */
 
             const maxSize =
@@ -887,8 +1005,10 @@
                 files.find(
                     function(file) {
 
-                        return file.size >
-                            maxSize;
+                        return (
+                            file.size >
+                            maxSize
+                        );
 
                     }
                 );
@@ -905,7 +1025,7 @@
 
 
             /*
-             * Start upload.
+             * START UPLOAD
              */
 
             uploadButton.disabled =
@@ -925,11 +1045,9 @@
             const failed = [];
 
 
+
             /*
-             * Upload each PDF.
-             *
-             * They are uploaded one at a time
-             * so each file gets its own progress.
+             * UPLOAD EACH FILE
              */
 
             for (
@@ -955,12 +1073,13 @@
 
 
                 /*
-                 * If only one PDF is selected
-                 * and a custom name was entered,
-                 * use that name.
+                 * Resource name
                  *
-                 * For batches, automatically use
-                 * each PDF's filename.
+                 * Single file:
+                 * use custom name if provided.
+                 *
+                 * Multiple files:
+                 * use each filename.
                  */
 
                 const name =
@@ -979,7 +1098,7 @@
 
 
                 /*
-                 * Generate a unique pathname.
+                 * Blob pathname
                  */
 
                 const pathname =
@@ -997,72 +1116,102 @@
 
                 try {
 
-                    await upload(
-                        pathname,
+
+                    /*
+                     * STEP 1
+                     *
+                     * Ask our secure API for
+                     * a temporary signed URL.
+                     */
+
+                    const prepareResponse =
+                        await fetch(
+                            "/api/blob-upload",
+                            {
+
+                                method:
+                                    "POST",
+
+                                headers: {
+                                    "Content-Type":
+                                        "application/json"
+                                },
+
+                                body:
+                                    JSON.stringify({
+
+                                        session,
+
+                                        pathname,
+
+                                        course:
+                                            selectedCourse,
+
+                                        week:
+                                            selectedWeek
+
+                                    })
+
+                            }
+                        );
+
+
+                    const prepareData =
+                        await prepareResponse.json();
+
+
+                    if (
+                        !prepareResponse.ok
+                    ) {
+
+                        throw new Error(
+                            prepareData.error ||
+                            "Unable to prepare upload."
+                        );
+
+                    }
+
+
+                    if (
+                        !prepareData.presignedUrl
+                    ) {
+
+                        throw new Error(
+                            "No upload URL was returned by the server."
+                        );
+
+                    }
+
+
+                    /*
+                     * STEP 2
+                     *
+                     * Upload the PDF directly
+                     * to Vercel Blob.
+                     */
+
+                    status.textContent =
+                        "Uploading... 0%";
+
+
+                    await uploadFileDirectly(
+                        prepareData.presignedUrl,
                         file,
-                        {
+                        function(percentage) {
 
-                            access:
-                                "public",
-
-
-                            handleUploadUrl:
-                                "/api/blob-upload",
+                            progress.style.width =
+                                `${percentage}%`;
 
 
-                            clientPayload:
-                                JSON.stringify({
-                                    session,
-
-                                    course:
-                                        selectedCourse,
-
-                                    week:
-                                        selectedWeek,
-
-                                    resourceName:
-                                        name
-                                }),
-
-
-                            /*
-                             * Use multipart uploads
-                             * for reliable larger PDFs.
-                             */
-
-                            multipart:
-                                true,
-
-
-                            /*
-                             * Update the progress
-                             * for this specific file.
-                             */
-
-                            onUploadProgress:
-                                function(event) {
-
-                                    const percentage =
-                                        Math.round(
-                                            event.percentage
-                                        );
-
-
-                                    progress.style.width =
-                                        `${percentage}%`;
-
-
-                                    status.textContent =
-                                        `Uploading... ${percentage}%`;
-
-                                }
+                            status.textContent =
+                                `Uploading... ${percentage}%`;
 
                         }
                     );
 
 
                     /*
-                     * Upload succeeded.
+                     * SUCCESS
                      */
 
                     successful++;
@@ -1101,7 +1250,7 @@
 
 
             /*
-             * Finish the batch.
+             * FINISHED
              */
 
             uploadButton.disabled =
@@ -1113,7 +1262,7 @@
 
 
             /*
-             * All files succeeded.
+             * RESULT MESSAGE
              */
 
             if (
@@ -1136,11 +1285,6 @@
                 uploadForm.reset();
 
 
-            /*
-             * Some succeeded and
-             * some failed.
-             */
-
             } else if (
                 successful > 0
             ) {
@@ -1152,10 +1296,6 @@
                 uploadMessage.className =
                     "message error";
 
-
-            /*
-             * Everything failed.
-             */
 
             } else {
 
@@ -1172,13 +1312,169 @@
     );
 
 
+
     /*
-     * HELPERS
+     * DIRECT BLOB UPLOAD
+     *
+     * Uses the temporary signed PUT URL
+     * generated by /api/blob-upload.
+     */
+
+    function uploadFileDirectly(
+        url,
+        file,
+        onProgress
+    ) {
+
+        return new Promise(
+            function(resolve, reject) {
+
+                const xhr =
+                    new XMLHttpRequest();
+
+
+                /*
+                 * Open PUT request
+                 */
+
+                xhr.open(
+                    "PUT",
+                    url,
+                    true
+                );
+
+
+                /*
+                 * Tell Blob this is a PDF.
+                 */
+
+                xhr.setRequestHeader(
+                    "Content-Type",
+                    "application/pdf"
+                );
+
+
+                /*
+                 * Upload progress
+                 */
+
+                xhr.upload.addEventListener(
+                    "progress",
+                    function(event) {
+
+                        if (
+                            !event.lengthComputable
+                        ) {
+
+                            return;
+
+                        }
+
+
+                        const percentage =
+                            Math.round(
+                                (
+                                    event.loaded /
+                                    event.total
+                                ) * 100
+                            );
+
+
+                        onProgress(
+                            percentage
+                        );
+
+                    }
+                );
+
+
+                /*
+                 * Upload completed
+                 */
+
+                xhr.addEventListener(
+                    "load",
+                    function() {
+
+                        if (
+                            xhr.status >= 200 &&
+                            xhr.status < 300
+                        ) {
+
+                            resolve();
+
+                        } else {
+
+                            reject(
+                                new Error(
+                                    `Blob upload failed (${xhr.status}).`
+                                )
+                            );
+
+                        }
+
+                    }
+                );
+
+
+                /*
+                 * Network error
+                 */
+
+                xhr.addEventListener(
+                    "error",
+                    function() {
+
+                        reject(
+                            new Error(
+                                "Network error during upload."
+                            )
+                        );
+
+                    }
+                );
+
+
+                /*
+                 * Upload cancelled
+                 */
+
+                xhr.addEventListener(
+                    "abort",
+                    function() {
+
+                        reject(
+                            new Error(
+                                "Upload was cancelled."
+                            )
+                        );
+
+                    }
+                );
+
+
+                /*
+                 * Start upload
+                 */
+
+                xhr.send(
+                    file
+                );
+
+            }
+        );
+
+    }
+
+
+
+    /*
+     * SLUGIFY
      */
 
     function slugify(value) {
 
-        return value
+        return String(value)
             .toLowerCase()
             .trim()
             .replace(
@@ -1192,9 +1488,14 @@
     }
 
 
+
+    /*
+     * ESCAPE HTML
+     */
+
     function escapeHtml(value) {
 
-        return value
+        return String(value)
             .replace(
                 /&/g,
                 "&amp;"
@@ -1219,6 +1520,11 @@
     }
 
 
+
+    /*
+     * UPLOAD ERROR
+     */
+
     function showUploadError(
         message
     ) {
@@ -1226,10 +1532,12 @@
         uploadMessage.textContent =
             message;
 
+
         uploadMessage.className =
             "message error";
 
     }
+
 
 
     /*
