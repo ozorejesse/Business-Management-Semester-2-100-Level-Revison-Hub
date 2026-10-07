@@ -168,6 +168,23 @@
 
             background: #48c7ba;
         }
+        .admin-link {
+    background: var(--teal);
+    color: white;
+    padding: 9px 13px;
+    border-radius: 9px;
+    font-size: 12px;
+    font-weight: 750;
+    transition: background 0.2s ease;
+}
+
+.admin-link:hover {
+    background: var(--teal-dark);
+}
+
+.admin-link::after {
+    display: none;
+}
 
         /* HERO CONTENT */
 
@@ -905,17 +922,34 @@
             </a>
 
 
-            <div class="nav-links">
+<div class="nav-links">
 
-                <a href="index.html">
-                    Semester 2
-                </a>
+    <a href="index.html">
+        Semester 2
+    </a>
 
-                <a href="resources.html" class="active">
-                    Resources
-                </a>
+    <a href="resources.html" class="active">
+        Resources
+    </a>
 
-            </div>
+    <a href="admin.html" class="admin-link">
+        + Add Resources
+    </a>
+
+</div>
+    <a href="index.html">
+        Semester 2
+    </a>
+
+    <a href="resources.html" class="active">
+        Resources
+    </a>
+
+    <a href="admin.html" class="admin-link">
+        + Add Resources
+    </a>
+
+</div>
 
         </nav>
 
@@ -1395,96 +1429,317 @@
 
     <script>
 
-        const searchInput =
-            document.getElementById("searchInput");
+    const searchInput =
+        document.getElementById("searchInput");
 
-        const filters =
-            document.querySelectorAll(".filter");
+    const filters =
+        document.querySelectorAll(".filter");
 
-        const cards =
-            document.querySelectorAll(".resource-card");
+    const cards =
+        document.querySelectorAll(".resource-card");
+
+    let activeFilter = "all";
 
 
-        let activeFilter = "all";
+    async function loadResources() {
 
+        try {
 
-        function updateResources() {
+            const response =
+                await fetch("/api/resources");
 
-            const searchTerm =
-                searchInput.value
-                    .trim()
-                    .toLowerCase();
+            const data =
+                await response.json();
+
+            if (!response.ok) {
+                throw new Error(
+                    data.error ||
+                    "Unable to load resources."
+                );
+            }
+
+            const resources =
+                data.resources || [];
 
 
             cards.forEach(card => {
 
-                const course =
-                    card.dataset.course;
+                const pdfList =
+                    card.querySelector(".pdf-list");
 
-                const searchableText =
-                    card.dataset.search.toLowerCase();
+                pdfList.innerHTML = "";
 
-
-                const matchesFilter =
-                    activeFilter === "all" ||
-                    course === activeFilter;
+            });
 
 
-                const matchesSearch =
-                    searchTerm === "" ||
-                    searchableText.includes(searchTerm);
+            resources.forEach(resource => {
+
+                const card =
+                    Array.from(cards).find(card => {
+
+                        return card.dataset.search
+                            .toLowerCase()
+                            .startsWith(
+                                resource.course.toLowerCase()
+                            );
+
+                    });
 
 
-                if (
-                    matchesFilter &&
-                    matchesSearch
-                ) {
+                if (!card) {
+                    return;
+                }
 
-                    card.style.display = "";
 
-                } else {
+                const pdfList =
+                    card.querySelector(".pdf-list");
 
-                    card.style.display = "none";
+
+                const row =
+                    document.createElement("div");
+
+                row.className = "pdf-row";
+
+
+                const info =
+                    document.createElement("div");
+
+                info.className = "pdf-info";
+
+
+                const icon =
+                    document.createElement("div");
+
+                icon.className = "pdf-icon";
+
+                icon.textContent = "PDF";
+
+
+                const name =
+                    document.createElement("div");
+
+                name.className = "pdf-name";
+
+
+                const strong =
+                    document.createElement("strong");
+
+                strong.textContent =
+                    resource.resourceName;
+
+
+                const meta =
+                    document.createElement("span");
+
+                meta.textContent =
+                    `${resource.week} · ${formatFileSize(resource.size)}`;
+
+
+                name.appendChild(strong);
+                name.appendChild(meta);
+
+
+                info.appendChild(icon);
+                info.appendChild(name);
+
+
+                const view =
+                    document.createElement("a");
+
+                view.className = "view-btn";
+
+                view.href =
+                    resource.url;
+
+                view.target = "_blank";
+
+                view.rel =
+                    "noopener noreferrer";
+
+                view.textContent = "View";
+
+
+                row.appendChild(info);
+                row.appendChild(view);
+
+                pdfList.appendChild(row);
+
+            });
+
+
+            cards.forEach(card => {
+
+                const pdfList =
+                    card.querySelector(".pdf-list");
+
+
+                if (pdfList.children.length === 0) {
+
+                    const empty =
+                        document.createElement("div");
+
+                    empty.className =
+                        "empty-resource";
+
+                    empty.textContent =
+                        "No PDF resources uploaded yet.";
+
+                    pdfList.appendChild(empty);
 
                 }
 
             });
 
+
+            updateResources();
+
+
+        } catch (error) {
+
+            console.error(error);
+
+
+            cards.forEach(card => {
+
+                const pdfList =
+                    card.querySelector(".pdf-list");
+
+                pdfList.innerHTML = "";
+
+
+                const errorMessage =
+                    document.createElement("div");
+
+                errorMessage.className =
+                    "empty-resource";
+
+                errorMessage.textContent =
+                    "Unable to load resources. Please try again later.";
+
+                pdfList.appendChild(errorMessage);
+
+            });
+
         }
 
+    }
 
-        searchInput.addEventListener(
-            "input",
-            updateResources
+
+    function formatFileSize(bytes) {
+
+        if (!bytes) {
+            return "PDF";
+        }
+
+        if (bytes < 1024 * 1024) {
+
+            return (
+                Math.round(bytes / 1024) +
+                " KB"
+            );
+
+        }
+
+        return (
+            (bytes / (1024 * 1024))
+                .toFixed(1) +
+            " MB"
         );
 
-
-        filters.forEach(filter => {
-
-            filter.addEventListener(
-                "click",
-                () => {
-
-                    filters.forEach(button => {
-                        button.classList.remove("active");
-                    });
+    }
 
 
-                    filter.classList.add("active");
+    function updateResources() {
+
+        const searchTerm =
+            searchInput.value
+                .trim()
+                .toLowerCase();
 
 
-                    activeFilter =
-                        filter.dataset.filter;
+        cards.forEach(card => {
+
+            const course =
+                card.dataset.course;
 
 
-                    updateResources();
+            const searchableText =
+                card.dataset.search
+                    .toLowerCase();
 
-                }
-            );
+
+            const resourceText =
+                card.querySelector(".pdf-list")
+                    .textContent
+                    .toLowerCase();
+
+
+            const matchesFilter =
+                activeFilter === "all" ||
+                course === activeFilter;
+
+
+            const matchesSearch =
+                searchTerm === "" ||
+                searchableText.includes(searchTerm) ||
+                resourceText.includes(searchTerm);
+
+
+            if (
+                matchesFilter &&
+                matchesSearch
+            ) {
+
+                card.style.display = "";
+
+            } else {
+
+                card.style.display = "none";
+
+            }
 
         });
 
-    </script>
+    }
+
+
+    searchInput.addEventListener(
+        "input",
+        updateResources
+    );
+
+
+    filters.forEach(filter => {
+
+        filter.addEventListener(
+            "click",
+            () => {
+
+                filters.forEach(button => {
+
+                    button.classList.remove("active");
+
+                });
+
+
+                filter.classList.add("active");
+
+
+                activeFilter =
+                    filter.dataset.filter;
+
+
+                updateResources();
+
+            }
+        );
+
+    });
+
+
+    loadResources();
+
+</script>
 
 </body>
 </html>
