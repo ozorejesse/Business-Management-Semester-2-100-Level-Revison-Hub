@@ -459,135 +459,33 @@
 
 
     /*
-       ADMIN LOGIN
-       The actual code is NOT stored in this page.
-       The page sends it to our secure Vercel API.
+        ADMIN LOGIN
     */
 
     loginForm.addEventListener("submit", async function(event) {
 
         event.preventDefault();
 
-        const code = document.getElementById("adminCode").value;
+        const code =
+            document.getElementById("adminCode").value.trim();
 
         loginMessage.className = "message";
         loginMessage.style.display = "none";
 
         try {
 
-            const response = await fetch("/api/admin-login", {
-
-                method: "POST",
-
-                headers: {
-                    "Content-Type": "application/json"
-                },
-
-                body: JSON.stringify({
-                    code: code
-                })
-
-            });
-
-            const data = await response.json();
-
-            if (!response.ok) {
-                throw new Error(data.error || "Invalid admin code.");
-            }
-
-            sessionStorage.setItem(
-                "miva_admin_session",
-                data.session
-            );
-
-            loginCard.classList.add("hidden");
-            uploadCard.classList.remove("hidden");
-
-        } catch (error) {
-
-            loginMessage.textContent = error.message;
-            loginMessage.className = "message error";
-
-        }
-
-    });
-
-
-    /*
-       PDF UPLOAD
-    */
-
-    uploadForm.addEventListener("submit", async function(event) {
-
-        event.preventDefault();
-
-        const file = document.getElementById("pdfFile").files[0];
-
-        if (!file) {
-            return;
-        }
-
-        if (file.type !== "application/pdf") {
-
-            uploadMessage.textContent =
-                "Please select a PDF file.";
-
-            uploadMessage.className = "message error";
-
-            return;
-        }
-
-        const session =
-            sessionStorage.getItem("miva_admin_session");
-
-        if (!session) {
-
-            uploadMessage.textContent =
-                "Your admin session has expired. Please log in again.";
-
-            uploadMessage.className = "message error";
-
-            return;
-        }
-
-        uploadButton.disabled = true;
-        uploadButton.textContent = "Uploading...";
-
-        uploadMessage.className = "message";
-        uploadMessage.style.display = "none";
-
-
-        const formData = new FormData();
-
-        formData.append("file", file);
-        formData.append(
-            "course",
-            document.getElementById("course").value
-        );
-
-        formData.append(
-            "week",
-            document.getElementById("week").value
-        );
-
-        formData.append(
-            "resourceName",
-            document.getElementById("resourceName").value
-        );
-
-
-        try {
-
             const response = await fetch(
-                "/api/upload-resource",
+                "/api/admin-login",
                 {
                     method: "POST",
 
                     headers: {
-                        "x-admin-session": session
+                        "Content-Type": "application/json"
                     },
 
-                    body: formData
+                    body: JSON.stringify({
+                        code: code
+                    })
                 }
             );
 
@@ -595,34 +493,27 @@
 
             if (!response.ok) {
                 throw new Error(
-                    data.error || "Upload failed."
+                    data.error || "Invalid admin code."
                 );
             }
 
+            sessionStorage.setItem(
+                "miva_admin_session",
+                data.session
+            );
 
-            uploadMessage.textContent =
-                "Resource uploaded successfully.";
+            loginForm.reset();
 
-            uploadMessage.className =
-                "message success";
-
-
-            uploadForm.reset();
-
+            loginCard.classList.add("hidden");
+            uploadCard.classList.remove("hidden");
 
         } catch (error) {
 
-            uploadMessage.textContent =
+            loginMessage.textContent =
                 error.message;
 
-            uploadMessage.className =
+            loginMessage.className =
                 "message error";
-
-        } finally {
-
-            uploadButton.disabled = false;
-            uploadButton.textContent =
-                "Upload Resource";
 
         }
 
@@ -630,23 +521,355 @@
 
 
     /*
-       LOG OUT
+        PDF UPLOAD
     */
 
-    logoutButton.addEventListener("click", function() {
+    uploadForm.addEventListener(
+        "submit",
+        async function(event) {
 
-        sessionStorage.removeItem(
-            "miva_admin_session"
+            event.preventDefault();
+
+            const file =
+                document.getElementById("pdfFile").files[0];
+
+            const course =
+                document.getElementById("course").value;
+
+            const week =
+                document.getElementById("week").value;
+
+            const resourceName =
+                document.getElementById("resourceName").value.trim();
+
+            const session =
+                sessionStorage.getItem(
+                    "miva_admin_session"
+                );
+
+
+            if (!file) {
+                showUploadError(
+                    "Please select a PDF file."
+                );
+                return;
+            }
+
+
+            if (
+                file.type !== "application/pdf" &&
+                !file.name.toLowerCase().endsWith(".pdf")
+            ) {
+                showUploadError(
+                    "Please select a PDF file."
+                );
+                return;
+            }
+
+
+            const maxSize =
+                25 * 1024 * 1024;
+
+            if (file.size > maxSize) {
+                showUploadError(
+                    "PDF is too large. Maximum file size is 25 MB."
+                );
+                return;
+            }
+
+
+            if (!course || !week || !resourceName) {
+                showUploadError(
+                    "Please complete all resource details."
+                );
+                return;
+            }
+
+
+            if (!session) {
+                showUploadError(
+                    "Your admin session has expired. Please log in again."
+                );
+
+                uploadCard.classList.add("hidden");
+                loginCard.classList.remove("hidden");
+
+                return;
+            }
+
+
+            uploadButton.disabled = true;
+            uploadButton.textContent =
+                "Preparing upload...";
+
+            uploadMessage.className = "message";
+            uploadMessage.style.display = "none";
+
+
+            try {
+
+                /*
+                    STEP 1
+                    Ask our secure API for a
+                    temporary Blob upload URL.
+                */
+
+                const prepareResponse =
+                    await fetch(
+                        "/api/blob-upload",
+                        {
+                            method: "POST",
+
+                            headers: {
+                                "Content-Type":
+                                    "application/json"
+                            },
+
+                            body: JSON.stringify({
+                                session: session,
+                                course: course,
+                                week: week,
+                                resourceName:
+                                    resourceName,
+                                fileSize:
+                                    file.size
+                            })
+                        }
+                    );
+
+
+                const uploadData =
+                    await prepareResponse.json();
+
+
+                if (!prepareResponse.ok) {
+
+                    throw new Error(
+                        uploadData.error ||
+                        "Unable to prepare upload."
+                    );
+
+                }
+
+
+                /*
+                    STEP 2
+                    Upload the actual PDF
+                    directly to Vercel Blob.
+                */
+
+                uploadButton.textContent =
+                    "Uploading 0%";
+
+
+                await uploadFile(
+                    uploadData.presignedUrl,
+                    file
+                );
+
+
+                /*
+                    Upload completed.
+                */
+
+                uploadMessage.textContent =
+                    "Resource uploaded successfully.";
+
+                uploadMessage.className =
+                    "message success";
+
+
+                uploadForm.reset();
+
+
+                uploadButton.textContent =
+                    "Upload Resource";
+
+
+            } catch (error) {
+
+                console.error(error);
+
+                uploadMessage.textContent =
+                    error.message ||
+                    "Upload failed.";
+
+                uploadMessage.className =
+                    "message error";
+
+            } finally {
+
+                uploadButton.disabled = false;
+
+                if (
+                    uploadButton.textContent ===
+                    "Preparing upload..."
+                ) {
+                    uploadButton.textContent =
+                        "Upload Resource";
+                }
+
+            }
+
+        }
+    );
+
+
+    /*
+        DIRECT BLOB UPLOAD
+    */
+
+    function uploadFile(url, file) {
+
+        return new Promise(
+            function(resolve, reject) {
+
+                const xhr =
+                    new XMLHttpRequest();
+
+
+                xhr.open(
+                    "PUT",
+                    url,
+                    true
+                );
+
+
+                xhr.setRequestHeader(
+                    "Content-Type",
+                    "application/pdf"
+                );
+
+
+                xhr.upload.addEventListener(
+                    "progress",
+                    function(event) {
+
+                        if (!event.lengthComputable) {
+                            return;
+                        }
+
+                        const percentage =
+                            Math.round(
+                                (event.loaded /
+                                    event.total) *
+                                100
+                            );
+
+                        uploadButton.textContent =
+                            `Uploading ${percentage}%`;
+
+                    }
+                );
+
+
+                xhr.addEventListener(
+                    "load",
+                    function() {
+
+                        if (
+                            xhr.status >= 200 &&
+                            xhr.status < 300
+                        ) {
+                            resolve();
+                        } else {
+                            reject(
+                                new Error(
+                                    "Vercel Blob rejected the upload."
+                                )
+                            );
+                        }
+
+                    }
+                );
+
+
+                xhr.addEventListener(
+                    "error",
+                    function() {
+
+                        reject(
+                            new Error(
+                                "Network error during upload."
+                            )
+                        );
+
+                    }
+                );
+
+
+                xhr.addEventListener(
+                    "abort",
+                    function() {
+
+                        reject(
+                            new Error(
+                                "Upload was cancelled."
+                            )
+                        );
+
+                    }
+                );
+
+
+                xhr.send(file);
+
+            }
         );
 
-        uploadCard.classList.add("hidden");
-        loginCard.classList.remove("hidden");
+    }
 
-        document.getElementById("adminCode").value = "";
 
-    });
+    /*
+        ERROR MESSAGE
+    */
+
+    function showUploadError(message) {
+
+        uploadMessage.textContent =
+            message;
+
+        uploadMessage.className =
+            "message error";
+
+    }
+
+
+    /*
+        LOG OUT
+    */
+
+    logoutButton.addEventListener(
+        "click",
+        function() {
+
+            sessionStorage.removeItem(
+                "miva_admin_session"
+            );
+
+            uploadCard.classList.add(
+                "hidden"
+            );
+
+            loginCard.classList.remove(
+                "hidden"
+            );
+
+            document.getElementById(
+                "adminCode"
+            ).value = "";
+
+            uploadForm.reset();
+
+            uploadMessage.className =
+                "message";
+
+            uploadMessage.style.display =
+                "none";
+
+        }
+    );
 
 </script>
-
 </body>
 </html>
