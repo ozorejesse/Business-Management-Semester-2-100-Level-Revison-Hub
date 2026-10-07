@@ -1,3 +1,5 @@
+import crypto from "crypto";
+
 export default async function handler(req, res) {
     if (req.method !== "POST") {
         return res.status(405).json({
@@ -20,9 +22,14 @@ export default async function handler(req, res) {
             });
         }
 
-        const session = Buffer.from(
-            `${process.env.ADMIN_CODE}:${Date.now()}`
-        ).toString("base64");
+        const timestamp = Date.now().toString();
+
+        const signature = crypto
+            .createHmac("sha256", process.env.ADMIN_CODE)
+            .update(timestamp)
+            .digest("hex");
+
+        const session = `${timestamp}.${signature}`;
 
         return res.status(200).json({
             success: true,
@@ -30,6 +37,8 @@ export default async function handler(req, res) {
         });
 
     } catch (error) {
+        console.error(error);
+
         return res.status(500).json({
             error: "Unable to process login."
         });
