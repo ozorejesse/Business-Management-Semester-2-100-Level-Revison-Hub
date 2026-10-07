@@ -12,36 +12,256 @@
             padding: 0;
         }
 
+        :root {
+            --navy: #102f52;
+            --navy-dark: #0a223d;
+            --blue: #173f67;
+            --teal: #0c9f94;
+            --teal-dark: #087f77;
+            --teal-soft: #e3f6f3;
+            --page: #f5f7fa;
+            --text: #16324f;
+            --muted: #718096;
+            --border: #e5ebf1;
+            --white: #ffffff;
+        }
+
         body {
-            font-family: Arial, Helvetica, sans-serif;
-            background: #f5f7fa;
-            color: #17365d;
+            font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI",
+                Roboto, Helvetica, Arial, sans-serif;
+            background: var(--page);
+            color: var(--text);
+            line-height: 1.5;
+        }
+
+        a {
+            color: inherit;
         }
 
         .hero {
-            background: linear-gradient(135deg, #173f67, #0d2d4d);
+            position: relative;
+            overflow: hidden;
+            background:
+                radial-gradient(circle at 82% 18%, rgba(61, 151, 181, 0.18), transparent 27%),
+                linear-gradient(135deg, #173f67 0%, #0d2d4d 58%, #091f38 100%);
             color: white;
-            text-align: center;
-            padding: 55px 20px 65px;
+        }
+
+        .hero::before,
+        .hero::after {
+            content: "";
+            position: absolute;
+            border: 1px solid rgba(255,255,255,0.07);
+            transform: rotate(35deg);
+            pointer-events: none;
+        }
+
+        .hero::before {
+            width: 430px;
+            height: 430px;
+            right: -170px;
+            top: -220px;
+            border-radius: 80px;
+        }
+
+        .hero::after {
+            width: 280px;
+            height: 280px;
+            left: -150px;
+            bottom: -210px;
+            border-radius: 60px;
+        }
+
+        .nav {
+            position: relative;
+            z-index: 2;
+            max-width: 1200px;
+            margin: auto;
+            padding: 22px 20px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 30px;
+        }
+
+        .brand {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            text-decoration: none;
+            font-weight: 750;
+            letter-spacing: -0.2px;
+            white-space: nowrap;
+        }
+
+        .brand-mark {
+            width: 36px;
+            height: 36px;
+            border-radius: 11px;
+            display: grid;
+            place-items: center;
+            background: rgba(255,255,255,0.12);
+            border: 1px solid rgba(255,255,255,0.16);
+            font-size: 18px;
+        }
+
+        .nav-links {
+            display: flex;
+            align-items: center;
+            gap: 28px;
+        }
+
+        .nav-links a {
+            position: relative;
+            text-decoration: none;
+            color: #dce8f4;
+            font-size: 14px;
+            font-weight: 600;
+            padding: 7px 0;
+        }
+
+        .nav-links a.active {
+            color: white;
+        }
+
+        .nav-links a.active::after {
+            content: "";
+            position: absolute;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            height: 2px;
+            border-radius: 4px;
+            background: #48c7ba;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 1;
+            max-width: 1200px;
+            margin: auto;
+            padding: 50px 20px 92px;
+            display: grid;
+            grid-template-columns: minmax(0, 1fr) auto;
+            align-items: center;
+            gap: 50px;
+        }
+
+        .eyebrow {
+            color: #6bd4c9;
+            font-size: 12px;
+            font-weight: 800;
+            letter-spacing: 2.2px;
+            margin-bottom: 14px;
         }
 
         .hero h1 {
-            font-size: 42px;
-            margin-bottom: 15px;
+            max-width: 760px;
+            font-size: clamp(38px, 5vw, 62px);
+            line-height: 1.04;
+            letter-spacing: -2px;
+            margin-bottom: 20px;
         }
 
         .hero p {
-            font-size: 17px;
-            line-height: 1.7;
-            max-width: 750px;
-            margin: auto;
-            color: #dce8f4;
+            max-width: 700px;
+            color: #d6e3ee;
+            font-size: 16px;
+            line-height: 1.75;
+        }
+
+        .semester-badge {
+            min-width: 190px;
+            padding: 21px 23px;
+            border-radius: 18px;
+            background: rgba(255,255,255,0.1);
+            border: 1px solid rgba(255,255,255,0.16);
+            backdrop-filter: blur(8px);
+        }
+
+        .badge-icon {
+            font-size: 24px;
+            margin-bottom: 10px;
+        }
+
+        .semester-badge strong {
+            display: block;
+            font-size: 15px;
+        }
+
+        .semester-badge span {
+            color: #b9ccdc;
+            font-size: 13px;
         }
 
         .container {
             max-width: 1200px;
-            margin: -30px auto 60px;
+            margin: -46px auto 60px;
             padding: 0 20px;
+            position: relative;
+            z-index: 3;
+        }
+
+        .stats {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            background: white;
+            border: 1px solid rgba(15, 47, 79, 0.06);
+            border-radius: 18px;
+            box-shadow: 0 15px 40px rgba(20, 47, 73, 0.11);
+            overflow: hidden;
+            margin-bottom: 38px;
+        }
+
+        .stat {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            padding: 22px 24px;
+        }
+
+        .stat + .stat {
+            border-left: 1px solid var(--border);
+        }
+
+        .stat-icon {
+            width: 42px;
+            height: 42px;
+            flex: 0 0 42px;
+            display: grid;
+            place-items: center;
+            border-radius: 12px;
+            background: var(--teal-soft);
+            color: var(--teal-dark);
+            font-size: 18px;
+        }
+
+        .stat strong {
+            display: block;
+            color: var(--text);
+            font-size: 15px;
+        }
+
+        .stat span {
+            display: block;
+            color: var(--muted);
+            font-size: 12px;
+            margin-top: 2px;
+        }
+
+        .section-heading {
+            margin-bottom: 20px;
+        }
+
+        .section-heading h2 {
+            font-size: 25px;
+            letter-spacing: -0.5px;
+        }
+
+        .section-heading p {
+            color: var(--muted);
+            font-size: 14px;
+            margin-top: 4px;
         }
 
         .courses {
@@ -51,93 +271,178 @@
         }
 
         .card {
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            min-height: 315px;
             background: white;
-            border-radius: 12px;
+            border: 1px solid rgba(20, 52, 80, 0.06);
+            border-radius: 18px;
             padding: 25px;
-            box-shadow: 0 4px 18px rgba(0,0,0,0.08);
-            transition: transform 0.2s ease, box-shadow 0.2s ease;
+            box-shadow: 0 7px 24px rgba(25, 50, 75, 0.07);
+            transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
         }
 
         .card:hover {
             transform: translateY(-4px);
-            box-shadow: 0 8px 25px rgba(0,0,0,0.12);
+            box-shadow: 0 14px 32px rgba(25, 50, 75, 0.11);
+            border-color: rgba(12, 159, 148, 0.16);
+        }
+
+        .card-top {
+            display: flex;
+            align-items: flex-start;
+            justify-content: space-between;
+            gap: 15px;
         }
 
         .code {
-            display: inline-block;
-            background: #dff4f1;
-            color: #008f83;
-            font-weight: bold;
-            font-size: 13px;
-            padding: 7px 12px;
-            border-radius: 20px;
-            margin-bottom: 15px;
+            display: inline-flex;
+            align-items: center;
+            background: var(--teal-soft);
+            color: var(--teal-dark);
+            font-weight: 800;
+            font-size: 12px;
+            letter-spacing: 0.4px;
+            padding: 7px 11px;
+            border-radius: 9px;
         }
 
         .card h2 {
-            font-size: 21px;
-            margin-bottom: 12px;
-            line-height: 1.35;
+            font-size: 20px;
+            line-height: 1.3;
+            letter-spacing: -0.3px;
+            margin: 18px 0 9px;
         }
 
         .card p {
-            color: #66788a;
+            color: var(--muted);
             font-size: 14px;
-            line-height: 1.6;
+            line-height: 1.65;
             margin-bottom: 20px;
         }
 
         .buttons {
             display: flex;
             flex-wrap: wrap;
-            gap: 8px;
+            gap: 7px;
+            margin-top: auto;
         }
 
         .buttons a,
         .coming-soon {
-            display: inline-block;
-            padding: 10px 13px;
-            border-radius: 6px;
-            font-size: 13px;
-            font-weight: bold;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 38px;
+            padding: 9px 12px;
+            border-radius: 9px;
+            font-size: 12px;
+            font-weight: 750;
             text-decoration: none;
         }
 
         .buttons a {
-            background: #0c9f94;
+            background: var(--teal);
             color: white;
+            box-shadow: 0 4px 10px rgba(12, 159, 148, 0.18);
         }
 
         .buttons a:hover {
-            background: #087f77;
+            background: var(--teal-dark);
         }
 
         .coming-soon {
-            background: #e9edf1;
-            color: #8a96a3;
-            cursor: default;
+            background: #f8fafb;
+            border: 1px solid var(--border);
+            color: #99a5b1;
         }
 
         footer {
             text-align: center;
-            padding: 30px 20px;
+            padding: 10px 20px 35px;
             color: #7b8794;
             font-size: 13px;
         }
 
-        @media (max-width: 900px) {
+        @media (max-width: 950px) {
+            .nav-links {
+                gap: 17px;
+            }
+
+            .hero-content {
+                grid-template-columns: 1fr;
+                padding-top: 40px;
+            }
+
+            .semester-badge {
+                width: fit-content;
+            }
+
+            .stats {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .stat:nth-child(3) {
+                border-left: 0;
+                border-top: 1px solid var(--border);
+            }
+
+            .stat:nth-child(4) {
+                border-top: 1px solid var(--border);
+            }
+
             .courses {
                 grid-template-columns: repeat(2, 1fr);
             }
         }
 
-        @media (max-width: 600px) {
+        @media (max-width: 650px) {
+            .nav {
+                align-items: flex-start;
+            }
+
+            .nav-links {
+                gap: 17px;
+            }
+
+            .hero-content {
+                padding: 34px 20px 80px;
+            }
+
+            .hero h1 {
+                font-size: clamp(35px, 10vw, 48px);
+                letter-spacing: -1.5px;
+            }
+
+            .hero p {
+                font-size: 15px;
+            }
+
+            .container {
+                margin-top: -38px;
+            }
+
+            .stats {
+                grid-template-columns: 1fr;
+            }
+
+            .stat,
+            .stat + .stat {
+                border-left: 0;
+                border-top: 1px solid var(--border);
+            }
+
+            .stat:first-child {
+                border-top: 0;
+            }
+
             .courses {
                 grid-template-columns: 1fr;
             }
 
-            .hero h1 {
-                font-size: 32px;
+            .card {
+                min-height: auto;
             }
         }
     </style>
@@ -146,130 +451,436 @@
 <body>
 
     <header class="hero">
-        <h1>Miva Revision Hub | Business Management 100 Level Semester 2</h1>
-        <p>
-            Interactive revision materials, course summaries and study resources
-            for Miva Open University 100-level Semester 2 Business Management students.
-        </p>
+
+        <nav class="nav">
+
+            <a class="brand" href="#">
+                <span class="brand-mark">▰</span>
+                <span>Miva Revision Hub</span>
+            </a>
+
+            <div class="nav-links">
+                <a href="#" class="active">Semester 2</a>
+                <a href="#">Resources</a>
+            </div>
+
+        </nav>
+
+        <div class="hero-content">
+
+            <div>
+
+                <div class="eyebrow">
+                    MIVA OPEN UNIVERSITY
+                </div>
+
+                <h1>
+                    Business Management 100 Level
+                </h1>
+
+                <p>
+                    Interactive revision materials, course summaries and study resources
+                    for Miva Open University 100-level Semester 2 Business Management students.
+                </p>
+
+            </div>
+
+            <div class="semester-badge">
+
+                <div class="badge-icon">
+                    🎓
+                </div>
+
+                <strong>
+                    Semester 2
+                </strong>
+
+                <span>
+                    100 Level
+                </span>
+
+            </div>
+
+        </div>
+
     </header>
 
+
     <main class="container">
-        <section class="courses">
 
-            <!-- AMS 102 -->
-            <div class="card">
-                <span class="code">AMS 102</span>
-                <h2>Basic Mathematics</h2>
-                <p>
-                    Course summaries and revision materials covering the
-                    semester's mathematics topics.
-                </p>
+        <section class="stats" aria-label="Semester overview">
 
-                <div class="buttons">
-                    <a href="AMS%20102%20Week%201%20-%20Week%204.html">Weeks 1–4</a>
-                    <span class="coming-soon">Weeks 5–8</span>
-                    <span class="coming-soon">Weeks 9–12</span>
+            <div class="stat">
+
+                <div class="stat-icon">
+                    ▦
                 </div>
+
+                <div>
+                    <strong>
+                        7 Courses
+                    </strong>
+
+                    <span>
+                        In this semester
+                    </span>
+                </div>
+
             </div>
 
-            <!-- AMS 104 -->
-            <div class="card">
-                <span class="code">AMS 104</span>
-                <h2>Principles of Project Management</h2>
-                <p>
-                    Revision summaries covering the key principles and concepts
-                    of project management.
-                </p>
 
-                <div class="buttons">
-                    <a href="AMS%20104%20Week%201%20-%20Week%204.html">Weeks 1–4</a>
-                    <span class="coming-soon">Weeks 5–8</span>
-                    <span class="coming-soon">Weeks 9–12</span>
+            <div class="stat">
+
+                <div class="stat-icon">
+                    ▤
                 </div>
+
+                <div>
+                    <strong>
+                        Weeks 1–4
+                    </strong>
+
+                    <span>
+                        Currently active
+                    </span>
+                </div>
+
             </div>
 
-            <!-- AMS 108 -->
-            <div class="card">
-                <span class="code">AMS 108</span>
-                <h2>Principles of Management II</h2>
-                <p>
-                    Course summaries and study materials for Principles of
-                    Management II.
-                </p>
 
-                <div class="buttons">
-                    <a href="AMS%20108%20Week%201%20-%20Week%204.html">Weeks 1–4</a>
-                    <span class="coming-soon">Weeks 5–8</span>
-                    <span class="coming-soon">Weeks 9–12</span>
+            <div class="stat">
+
+                <div class="stat-icon">
+                    ◷
                 </div>
+
+                <div>
+                    <strong>
+                        Weeks 5–8
+                    </strong>
+
+                    <span>
+                        Coming next
+                    </span>
+                </div>
+
             </div>
 
-            <!-- BUA 102 -->
-            <div class="card">
-                <span class="code">BUA 102</span>
-                <h2>Introduction to Business II</h2>
-                <p>
-                    Revision materials and summaries for Introduction to
-                    Business II.
-                </p>
 
-                <div class="buttons">
-                    <a href="BUA%20102%20Week%201%20-%20Week%204.html">Weeks 1–4</a>
-                    <span class="coming-soon">Weeks 5–8</span>
-                    <span class="coming-soon">Weeks 9–12</span>
+            <div class="stat">
+
+                <div class="stat-icon">
+                    ☷
                 </div>
-            </div>
 
-            <!-- ECO 102 -->
-            <div class="card">
-                <span class="code">ECO 102</span>
-                <h2>Principles of Economics II</h2>
-                <p>
-                    Economics II summaries and revision materials for the
-                    second semester.
-                </p>
+                <div>
+                    <strong>
+                        Weeks 9–12
+                    </strong>
 
-                <div class="buttons">
-                    <a href="ECO%20102%20Week%201%20-%20Week%204.html">Weeks 1–4</a>
-                    <span class="coming-soon">Weeks 5–8</span>
-                    <span class="coming-soon">Weeks 9–12</span>
+                    <span>
+                        Later in semester
+                    </span>
                 </div>
-            </div>
 
-            <!-- GST 112 -->
-            <div class="card">
-                <span class="code">GST 112</span>
-                <h2>Nigerian Peoples and Culture</h2>
-                <p>
-                    Course summaries and revision materials covering Nigerian
-                    peoples, culture and society.
-                </p>
-
-                <div class="buttons">
-                    <a href="GST%20112%20Week%201%20-%20Week%204.html">Weeks 1–4</a>
-                    <span class="coming-soon">Weeks 5–8</span>
-                    <span class="coming-soon">Weeks 9–12</span>
-                </div>
-            </div>
-
-            <!-- GST 122 -->
-            <div class="card">
-                <span class="code">GST 122</span>
-                <h2>Communication Skills in English II</h2>
-                <p>
-                    Revision materials and summaries for Communication Skills
-                    in English II.
-                </p>
-
-                <div class="buttons">
-                    <a href="GST%20122%20Week%201%20-%20Week%204.html">Weeks 1–4</a>
-                    <span class="coming-soon">Weeks 5–8</span>
-                    <span class="coming-soon">Weeks 9–12</span>
-                </div>
             </div>
 
         </section>
+
+
+        <div class="section-heading">
+
+            <h2>
+                Semester 2 Courses
+            </h2>
+
+            <p>
+                Choose a course to start revising its available weekly materials.
+            </p>
+
+        </div>
+
+
+        <section class="courses">
+
+
+            <!-- AMS 102 -->
+
+            <div class="card">
+
+                <div class="card-top">
+
+                    <span class="code">
+                        AMS 102
+                    </span>
+
+                </div>
+
+                <h2>
+                    Basic Mathematics
+                </h2>
+
+                <p>
+                    Course summaries and revision materials covering the semester's mathematics topics.
+                </p>
+
+                <div class="buttons">
+
+                    <a href="AMS%20102%20Week%201%20-%20Week%204.html">
+                        Weeks 1–4
+                    </a>
+
+                    <span class="coming-soon">
+                        Weeks 5–8
+                    </span>
+
+                    <span class="coming-soon">
+                        Weeks 9–12
+                    </span>
+
+                </div>
+
+            </div>
+
+
+            <!-- AMS 104 -->
+
+            <div class="card">
+
+                <div class="card-top">
+
+                    <span class="code">
+                        AMS 104
+                    </span>
+
+                </div>
+
+                <h2>
+                    Principles of Project Management
+                </h2>
+
+                <p>
+                    Revision summaries covering the key principles and concepts of project management.
+                </p>
+
+                <div class="buttons">
+
+                    <a href="AMS%20104%20Week%201%20-%20Week%204.html">
+                        Weeks 1–4
+                    </a>
+
+                    <span class="coming-soon">
+                        Weeks 5–8
+                    </span>
+
+                    <span class="coming-soon">
+                        Weeks 9–12
+                    </span>
+
+                </div>
+
+            </div>
+
+
+            <!-- AMS 108 -->
+
+            <div class="card">
+
+                <div class="card-top">
+
+                    <span class="code">
+                        AMS 108
+                    </span>
+
+                </div>
+
+                <h2>
+                    Principles of Management II
+                </h2>
+
+                <p>
+                    Course summaries and study materials for Principles of Management II.
+                </p>
+
+                <div class="buttons">
+
+                    <a href="AMS%20108%20Week%201%20-%20Week%204.html">
+                        Weeks 1–4
+                    </a>
+
+                    <span class="coming-soon">
+                        Weeks 5–8
+                    </span>
+
+                    <span class="coming-soon">
+                        Weeks 9–12
+                    </span>
+
+                </div>
+
+            </div>
+
+
+            <!-- BUA 102 -->
+
+            <div class="card">
+
+                <div class="card-top">
+
+                    <span class="code">
+                        BUA 102
+                    </span>
+
+                </div>
+
+                <h2>
+                    Introduction to Business II
+                </h2>
+
+                <p>
+                    Revision materials and summaries for Introduction to Business II.
+                </p>
+
+                <div class="buttons">
+
+                    <a href="BUA%20102%20Week%201%20-%20Week%204.html">
+                        Weeks 1–4
+                    </a>
+
+                    <span class="coming-soon">
+                        Weeks 5–8
+                    </span>
+
+                    <span class="coming-soon">
+                        Weeks 9–12
+                    </span>
+
+                </div>
+
+            </div>
+
+
+            <!-- ECO 102 -->
+
+            <div class="card">
+
+                <div class="card-top">
+
+                    <span class="code">
+                        ECO 102
+                    </span>
+
+                </div>
+
+                <h2>
+                    Principles of Economics II
+                </h2>
+
+                <p>
+                    Economics II summaries and revision materials for the second semester.
+                </p>
+
+                <div class="buttons">
+
+                    <a href="ECO%20102%20Week%201%20-%20Week%204.html">
+                        Weeks 1–4
+                    </a>
+
+                    <span class="coming-soon">
+                        Weeks 5–8
+                    </span>
+
+                    <span class="coming-soon">
+                        Weeks 9–12
+                    </span>
+
+                </div>
+
+            </div>
+
+
+            <!-- GST 112 -->
+
+            <div class="card">
+
+                <div class="card-top">
+
+                    <span class="code">
+                        GST 112
+                    </span>
+
+                </div>
+
+                <h2>
+                    Nigerian Peoples and Culture
+                </h2>
+
+                <p>
+                    Course summaries and revision materials covering Nigerian peoples, culture and society.
+                </p>
+
+                <div class="buttons">
+
+                    <a href="GST%20112%20Week%201%20-%20Week%204.html">
+                        Weeks 1–4
+                    </a>
+
+                    <span class="coming-soon">
+                        Weeks 5–8
+                    </span>
+
+                    <span class="coming-soon">
+                        Weeks 9–12
+                    </span>
+
+                </div>
+
+            </div>
+
+
+            <!-- GST 122 -->
+
+            <div class="card">
+
+                <div class="card-top">
+
+                    <span class="code">
+                        GST 122
+                    </span>
+
+                </div>
+
+                <h2>
+                    Communication Skills in English II
+                </h2>
+
+                <p>
+                    Revision materials and summaries for Communication Skills in English II.
+                </p>
+
+                <div class="buttons">
+
+                    <a href="GST%20122%20Week%201%20-%20Week%204.html">
+                        Weeks 1–4
+                    </a>
+
+                    <span class="coming-soon">
+                        Weeks 5–8
+                    </span>
+
+                    <span class="coming-soon">
+                        Weeks 9–12
+                    </span>
+
+                </div>
+
+            </div>
+
+
+        </section>
+
     </main>
+
 
     <footer>
         Miva Revision Hub · Business Management · 100 Level · Semester 2
