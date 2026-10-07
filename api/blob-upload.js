@@ -1,10 +1,10 @@
 import crypto from "crypto";
-import { issueSignedToken, presignUrl } from "@vercel/blob";
+import { handleUpload } from "@vercel/blob/client";
 
-const MAX_FILE_SIZE = 25 * 1024 * 1024;
 const SESSION_MAX_AGE = 2 * 60 * 60 * 1000;
+const MAX_FILE_SIZE = 50 * 1024 * 1024;
 
-function verifySession(session) {
+function verifyAdminSession(session) {
     if (!session || !process.env.ADMIN_CODE) {
         return false;
     }
@@ -15,136 +15,206 @@ function verifySession(session) {
         return false;
     }
 
-    const timestamp = Number(parts[0]);
-    const signature = parts[1];
+    const [timestamp, signature] = parts;
 
-    if (!timestamp || !signature) {
+    const timestampNumber = Number(timestamp);
+
+    if (!timestampNumber) {
         return false;
     }
 
-    const age = Date.now() - timestamp;
-
-    if (age < 0 || age > SESSION_MAX_AGE) {
+    if (Date.now() - timestampNumber > SESSION_MAX_AGE) {
         return false;
     }
 
     const expectedSignature = crypto
         .createHmac("sha256", process.env.ADMIN_CODE)
-        .update(String(timestamp))
+        .update(timestamp)
         .digest("hex");
 
-    if (signature.length !== expectedSignature.length) {
+    try {
+        return crypto.timingSafeEqual(
+            Buffer.from(signature, "utf8"),
+            Buffer.from(expectedSignature, "utf8")
+        );
+    } catch {
         return false;
     }
-
-    return crypto.timingSafeEqual(
-        Buffer.from(signature),
-        Buffer.from(expectedSignature)
-    );
 }
 
 function slugify(value) {
-    return String(value)
-        .trim()
+    return value
         .toLowerCase()
+        .trim()
         .replace(/[^a-z0-9]+/g, "-")
         .replace(/^-+|-+$/g, "");
 }
 
+function cleanResourceName(name) {
+    return name
+        .trim()
+        .replace(/\.pdf$/i, "")
+        .replace(/[<>:"/\\|?*\x00-\x1F]/g, "-")
+        .replace(/\s+/g, " ")
+        .slice(0, 150);
+}
+
 export default async function handler(request) {
     if (request.method !== "POST") {
-        return Response.json(
-            { error: "Method not allowed" },
-            { status: 405 }
+        return new Response(
+            JSON.stringify({
+                error: "Method not allowed."
+            }),
+            {
+                status: 405,
+                headers: {
+                    "Content-Type": "application/json"
+                }
+            }
         );
     }
 
     try {
-        const {
-            session,
-            course,
-            week,
-            resourceName,
-            fileSize
-        } = await request.json();
+        const body = await request.json();
 
-        if (!verifySession(session)) {
-            return Response.json(
-                { error: "Invalid or expired admin session." },
-                { status: 401 }
+        /*
+         * The admin session is intentionally sent inside clientPayload.
+         * upload() does not expose arbitrary request headers to the
+         * handleUpload endpoint, so we verify the signed session here.
+         */
+        const clientPayload = body?.payload?.clientPayload;
+
+        let payload;
+
+        try {
+            payload = JSON.parse(clientPayload || "{}");
+        } catch {
+            throw new Error("Invalid upload information.");
+        }
+
+        if (!verifyAdminSession(payload.session)) {
+            return new Response(
+                JSON.stringify({
+                    error: "Admin login required or session expired."
+                }),
+                {
+                    status: 401,
+                    headers: {
+                        "Content-Type": "application/json"
+                    }
+                }
             );
         }
 
-        if (!course || !week || !resourceName) {
-            return Response.json(
-                {
-                    error:
+        const jsonResponse = await handleUpload({
+            body,
+            request,
+
+            onBeforeGenerateToken: async (
+                pathname,
+                clientPayload,
+                multipart
+            ) => {
+                let uploadData;
+
+                try {
+                    uploadData = JSON.parse(clientPayload || "{}");
+                } catch {
+                    throw new Error("Invalid upload information.");
+                }
+
+                if (!verifyAdminSession(uploadData.session)) {
+                    throw new Error(
+                        "Admin login required or session expired."
+                    );
+                }
+
+                if (
+                    !uploadData.course ||
+                    !uploadData.week ||
+                    !uploadData.resourceName
+                ) {
+                    throw new Error(
                         "Course, week and resource name are required."
-                },
-                { status: 400 }
-            );
-        }
+                    );
+                }
 
-        if (!fileSize || fileSize <= 0) {
-            return Response.json(
-                { error: "A PDF file is required." },
-                { status: 400 }
-            );
-        }
+                const resourceName = cleanResourceName(
+                    uploadData.resourceName
+                );
 
-        if (fileSize > MAX_FILE_SIZE) {
-            return Response.json(
-                {
-                    error:
-                        "PDF is too large. Maximum file size is 25 MB."
-                },
-                { status: 400 }
-            );
-        }
+                if (!resourceName) {
+                    throw new Error(
+                        "A valid resource name is required."
+                    );
+                }
 
-        const pathname =
-            `resources/${slugify(course)}/` +
-            `${slugify(week)}/` +
-            `${Date.now()}-${crypto.randomUUID()}-` +
-            `${slugify(resourceName)}.pdf`;
+                const courseSlug = slugify(uploadData.course);
+                const weekSlug = slugify(uploadData.week);
+                const resourceSlug = slugify(resourceName);
 
-        const validUntil =
-            Date.now() + 15 * 60 * 1000;
+                const safePathname =
+                    `resources/${courseSlug}/${weekSlug}/` +
+                    `${Date.now()}-${crypto.randomUUID()}-${resourceSlug}.pdf`;
 
-        const token = await issueSignedToken({
-            pathname,
-            operations: ["put"],
-            validUntil,
-            allowedContentTypes: ["application/pdf"],
-            maximumSizeInBytes: MAX_FILE_SIZE
+                return {
+                    pathname: safePathname,
+
+                    allowedContentTypes: [
+                        "application/pdf"
+                    ],
+
+                    maximumSizeInBytes: MAX_FILE_SIZE,
+
+                    multipart: Boolean(multipart),
+
+                    addRandomSuffix: false,
+
+                    tokenPayload: JSON.stringify({
+                        course: uploadData.course,
+                        week: uploadData.week,
+                        resourceName
+                    })
+                };
+            },
+
+            onUploadCompleted: async ({
+                blob,
+                tokenPayload
+            }) => {
+                console.log(
+                    "Resource uploaded:",
+                    blob.url,
+                    tokenPayload
+                );
+            }
         });
 
-        const { presignedUrl } = await presignUrl(token, {
-            pathname,
-            operation: "put",
-            validUntil
-        });
-
-        const publicUrl = new URL(presignedUrl);
-        publicUrl.search = "";
-
-        return Response.json({
-            success: true,
-            presignedUrl,
-            url: publicUrl.toString(),
-            pathname
-        });
+        return new Response(
+            JSON.stringify(jsonResponse),
+            {
+                status: 200,
+                headers: {
+                    "Content-Type": "application/json"
+                }
+            }
+        );
 
     } catch (error) {
-        console.error(error);
+        console.error("Blob upload error:", error);
 
-        return Response.json(
-            {
+        return new Response(
+            JSON.stringify({
                 error:
-                    error.message ||
-                    "Unable to prepare upload."
-            },
-            { status: 500 }
+                    error?.message ||
+                    "Upload failed."
+            }),
+            {
+                status: 400,
+                headers: {
+                    "Content-Type": "application/json"
+                }
+            }
         );
     }
 }
