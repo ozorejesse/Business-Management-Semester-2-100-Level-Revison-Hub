@@ -16,14 +16,16 @@ function verifyAdminSession(session) {
     }
 
     const [timestamp, signature] = parts;
-
     const timestampNumber = Number(timestamp);
 
     if (!timestampNumber) {
         return false;
     }
 
-    if (Date.now() - timestampNumber > SESSION_MAX_AGE) {
+    if (
+        Date.now() - timestampNumber > SESSION_MAX_AGE ||
+        timestampNumber > Date.now() + 60 * 1000
+    ) {
         return false;
     }
 
@@ -43,7 +45,7 @@ function verifyAdminSession(session) {
 }
 
 function slugify(value) {
-    return value
+    return String(value)
         .toLowerCase()
         .trim()
         .replace(/[^a-z0-9]+/g, "-")
@@ -51,7 +53,7 @@ function slugify(value) {
 }
 
 function cleanResourceName(name) {
-    return name
+    return String(name || "")
         .trim()
         .replace(/\.pdf$/i, "")
         .replace(/[<>:"/\\|?*\x00-\x1F]/g, "-")
@@ -77,131 +79,169 @@ export default async function handler(request) {
     try {
         const body = await request.json();
 
-        /*
-         * The admin session is intentionally sent inside clientPayload.
-         * upload() does not expose arbitrary request headers to the
-         * handleUpload endpoint, so we verify the signed session here.
-         */
-        const clientPayload = body?.payload?.clientPayload;
+        const clientPayload =
+            body?.payload?.clientPayload;
 
         let payload;
 
         try {
-            payload = JSON.parse(clientPayload || "{}");
+            payload = JSON.parse(
+                clientPayload || "{}"
+            );
         } catch {
-            throw new Error("Invalid upload information.");
+            throw new Error(
+                "Invalid upload information."
+            );
         }
 
         if (!verifyAdminSession(payload.session)) {
             return new Response(
                 JSON.stringify({
-                    error: "Admin login required or session expired."
+                    error:
+                        "Admin login required or session expired."
                 }),
                 {
                     status: 401,
                     headers: {
-                        "Content-Type": "application/json"
+                        "Content-Type":
+                            "application/json"
                     }
                 }
             );
         }
 
-        const jsonResponse = await handleUpload({
-            body,
-            request,
+        const jsonResponse =
+            await handleUpload({
+                body,
+                request,
 
-            onBeforeGenerateToken: async (
-                pathname,
-                clientPayload,
-                multipart
-            ) => {
-                let uploadData;
+                onBeforeGenerateToken:
+                    async (
+                        pathname,
+                        incomingPayload,
+                        multipart
+                    ) => {
 
-                try {
-                    uploadData = JSON.parse(clientPayload || "{}");
-                } catch {
-                    throw new Error("Invalid upload information.");
-                }
+                        let uploadData;
 
-                if (!verifyAdminSession(uploadData.session)) {
-                    throw new Error(
-                        "Admin login required or session expired."
-                    );
-                }
+                        try {
+                            uploadData = JSON.parse(
+                                incomingPayload || "{}"
+                            );
+                        } catch {
+                            throw new Error(
+                                "Invalid upload information."
+                            );
+                        }
 
-                if (
-                    !uploadData.course ||
-                    !uploadData.week ||
-                    !uploadData.resourceName
-                ) {
-                    throw new Error(
-                        "Course, week and resource name are required."
-                    );
-                }
+                        if (
+                            !verifyAdminSession(
+                                uploadData.session
+                            )
+                        ) {
+                            throw new Error(
+                                "Admin login required or session expired."
+                            );
+                        }
 
-                const resourceName = cleanResourceName(
-                    uploadData.resourceName
-                );
+                        if (
+                            !uploadData.course ||
+                            !uploadData.week ||
+                            !uploadData.resourceName
+                        ) {
+                            throw new Error(
+                                "Course, week and resource name are required."
+                            );
+                        }
 
-                if (!resourceName) {
-                    throw new Error(
-                        "A valid resource name is required."
-                    );
-                }
+                        const resourceName =
+                            cleanResourceName(
+                                uploadData.resourceName
+                            );
 
-                const courseSlug = slugify(uploadData.course);
-                const weekSlug = slugify(uploadData.week);
-                const resourceSlug = slugify(resourceName);
+                        if (!resourceName) {
+                            throw new Error(
+                                "A valid resource name is required."
+                            );
+                        }
 
-                const safePathname =
-                    `resources/${courseSlug}/${weekSlug}/` +
-                    `${Date.now()}-${crypto.randomUUID()}-${resourceSlug}.pdf`;
+                        const expectedPrefix =
+                            `resources/${slugify(
+                                uploadData.course
+                            )}/${slugify(
+                                uploadData.week
+                            )}/`;
 
-                return {
-                    pathname: safePathname,
+                        if (
+                            typeof pathname !== "string" ||
+                            !pathname.startsWith(
+                                expectedPrefix
+                            ) ||
+                            !pathname
+                                .toLowerCase()
+                                .endsWith(".pdf")
+                        ) {
+                            throw new Error(
+                                "Invalid resource upload path."
+                            );
+                        }
 
-                    allowedContentTypes: [
-                        "application/pdf"
-                    ],
+                        return {
+                            allowedContentTypes: [
+                                "application/pdf"
+                            ],
 
-                    maximumSizeInBytes: MAX_FILE_SIZE,
+                            maximumSizeInBytes:
+                                MAX_FILE_SIZE,
 
-                    multipart: Boolean(multipart),
+                            multipart:
+                                Boolean(multipart),
 
-                    addRandomSuffix: false,
+                            addRandomSuffix:
+                                false,
 
-                    tokenPayload: JSON.stringify({
-                        course: uploadData.course,
-                        week: uploadData.week,
-                        resourceName
-                    })
-                };
-            },
+                            tokenPayload:
+                                JSON.stringify({
+                                    course:
+                                        uploadData.course,
+                                    week:
+                                        uploadData.week,
+                                    resourceName
+                                })
+                        };
+                    },
 
-            onUploadCompleted: async ({
-                blob,
-                tokenPayload
-            }) => {
-                console.log(
-                    "Resource uploaded:",
-                    blob.url,
-                    tokenPayload
-                );
-            }
-        });
+                onUploadCompleted:
+                    async ({
+                        blob,
+                        tokenPayload
+                    }) => {
+
+                        console.log(
+                            "Resource uploaded:",
+                            blob.url,
+                            tokenPayload
+                        );
+                    }
+            });
 
         return new Response(
             JSON.stringify(jsonResponse),
             {
                 status: 200,
                 headers: {
-                    "Content-Type": "application/json"
+                    "Content-Type":
+                        "application/json"
                 }
             }
         );
 
     } catch (error) {
-        console.error("Blob upload error:", error);
+
+        console.error(
+            "Blob upload error:",
+            error
+        );
 
         return new Response(
             JSON.stringify({
@@ -212,7 +252,8 @@ export default async function handler(request) {
             {
                 status: 400,
                 headers: {
-                    "Content-Type": "application/json"
+                    "Content-Type":
+                        "application/json"
                 }
             }
         );
