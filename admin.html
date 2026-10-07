@@ -152,13 +152,18 @@
             font-weight: 700;
         }
 
+        button:disabled {
+            cursor: not-allowed;
+            opacity: 0.65;
+        }
+
         .primary {
             width: 100%;
             background: var(--teal);
             color: white;
         }
 
-        .primary:hover {
+        .primary:hover:not(:disabled) {
             background: var(--teal-dark);
         }
 
@@ -201,6 +206,52 @@
             display: none;
         }
 
+        .upload-file-list {
+            margin-top: 14px;
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .upload-file-item {
+            padding: 10px 12px;
+            background: #f8fafc;
+            border: 1px solid var(--border);
+            border-radius: 10px;
+            text-align: left;
+        }
+
+        .upload-file-name {
+            font-size: 13px;
+            font-weight: 700;
+            color: var(--text);
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .upload-file-status {
+            margin-top: 4px;
+            font-size: 11px;
+            color: var(--muted);
+        }
+
+        .upload-progress {
+            width: 100%;
+            height: 5px;
+            margin-top: 7px;
+            background: #e5ebf1;
+            border-radius: 999px;
+            overflow: hidden;
+        }
+
+        .upload-progress-bar {
+            width: 0%;
+            height: 100%;
+            background: var(--teal);
+            transition: width 0.15s ease;
+        }
+
         .divider {
             height: 1px;
             background: var(--border);
@@ -213,6 +264,10 @@
             color: var(--text);
             margin-top: 12px;
             width: 100%;
+        }
+
+        .logout:hover {
+            background: #f8fafc;
         }
 
         @media (max-width: 650px) {
@@ -307,7 +362,7 @@
         <h1>Add Resource</h1>
 
         <p class="subtitle">
-            Upload a PDF and assign it to the correct course and week.
+            Upload one or multiple PDFs and assign them to the correct course and week.
         </p>
 
 
@@ -387,13 +442,15 @@
 
                 <label for="resourceName">
                     Resource Name
+                    <span style="font-weight: 500; opacity: 0.65;">
+                        (optional for batch uploads)
+                    </span>
                 </label>
 
                 <input
                     type="text"
                     id="resourceName"
-                    placeholder="e.g. Week 5 Lecture Notes"
-                    required
+                    placeholder="Leave blank to use each PDF filename"
                 >
 
             </div>
@@ -402,39 +459,57 @@
             <div class="field">
 
                 <label>
-                    PDF File
+                    PDF Files
                 </label>
 
                 <div class="upload-area">
 
                     <p>
-                        Select a PDF from your computer
+                        Select one or multiple PDFs from your computer
                     </p>
 
                     <input
                         type="file"
                         id="pdfFile"
                         accept="application/pdf,.pdf"
+                        multiple
                         required
                     >
+
+                    <div
+                        id="uploadFileList"
+                        class="upload-file-list"
+                    ></div>
 
                 </div>
 
             </div>
 
 
-            <button type="submit" class="primary" id="uploadButton">
-                Upload Resource
+            <button
+                type="submit"
+                class="primary"
+                id="uploadButton"
+            >
+                Upload Resources
             </button>
 
         </form>
 
 
-        <div id="uploadMessage" class="message"></div>
+        <div
+            id="uploadMessage"
+            class="message"
+        ></div>
+
 
         <div class="divider"></div>
 
-        <button class="logout" id="logoutButton">
+
+        <button
+            class="logout"
+            id="logoutButton"
+        >
             Log Out
         </button>
 
@@ -443,180 +518,109 @@
 </main>
 
 
-<script>
+<script type="module">
 
-    const loginForm = document.getElementById("loginForm");
-    const loginCard = document.getElementById("loginCard");
-    const uploadCard = document.getElementById("uploadCard");
-
-    const loginMessage = document.getElementById("loginMessage");
-    const uploadMessage = document.getElementById("uploadMessage");
-
-    const uploadForm = document.getElementById("uploadForm");
-    const uploadButton = document.getElementById("uploadButton");
-
-    const logoutButton = document.getElementById("logoutButton");
+    import {
+        upload
+    } from "https://esm.sh/@vercel/blob@2.6.1/client";
 
 
-    /*
-        ADMIN LOGIN
-    */
+    const loginForm =
+        document.getElementById(
+            "loginForm"
+        );
 
-    loginForm.addEventListener("submit", async function(event) {
+    const loginCard =
+        document.getElementById(
+            "loginCard"
+        );
 
-        event.preventDefault();
+    const uploadCard =
+        document.getElementById(
+            "uploadCard"
+        );
 
-        const code =
-            document.getElementById("adminCode").value.trim();
+    const loginMessage =
+        document.getElementById(
+            "loginMessage"
+        );
 
-        loginMessage.className = "message";
-        loginMessage.style.display = "none";
+    const uploadMessage =
+        document.getElementById(
+            "uploadMessage"
+        );
 
-        try {
+    const uploadForm =
+        document.getElementById(
+            "uploadForm"
+        );
 
-            const response = await fetch(
-                "/api/admin-login",
-                {
-                    method: "POST",
+    const uploadButton =
+        document.getElementById(
+            "uploadButton"
+        );
 
-                    headers: {
-                        "Content-Type": "application/json"
-                    },
+    const logoutButton =
+        document.getElementById(
+            "logoutButton"
+        );
 
-                    body: JSON.stringify({
-                        code: code
-                    })
-                }
-            );
+    const pdfFile =
+        document.getElementById(
+            "pdfFile"
+        );
 
-            const data = await response.json();
+    const uploadFileList =
+        document.getElementById(
+            "uploadFileList"
+        );
 
-            if (!response.ok) {
-                throw new Error(
-                    data.error || "Invalid admin code."
-                );
-            }
+    const course =
+        document.getElementById(
+            "course"
+        );
 
-            sessionStorage.setItem(
-                "miva_admin_session",
-                data.session
-            );
+    const week =
+        document.getElementById(
+            "week"
+        );
 
-            loginForm.reset();
-
-            loginCard.classList.add("hidden");
-            uploadCard.classList.remove("hidden");
-
-        } catch (error) {
-
-            loginMessage.textContent =
-                error.message;
-
-            loginMessage.className =
-                "message error";
-
-        }
-
-    });
+    const resourceName =
+        document.getElementById(
+            "resourceName"
+        );
 
 
     /*
-        PDF UPLOAD
-    */
+     * ADMIN LOGIN
+     */
 
-    uploadForm.addEventListener(
+    loginForm.addEventListener(
         "submit",
         async function(event) {
 
             event.preventDefault();
 
-            const file =
-                document.getElementById("pdfFile").files[0];
+            const code =
+                document
+                    .getElementById(
+                        "adminCode"
+                    )
+                    .value
+                    .trim();
 
-            const course =
-                document.getElementById("course").value;
+            loginMessage.className =
+                "message";
 
-            const week =
-                document.getElementById("week").value;
-
-            const resourceName =
-                document.getElementById("resourceName").value.trim();
-
-            const session =
-                sessionStorage.getItem(
-                    "miva_admin_session"
-                );
-
-
-            if (!file) {
-                showUploadError(
-                    "Please select a PDF file."
-                );
-                return;
-            }
-
-
-            if (
-                file.type !== "application/pdf" &&
-                !file.name.toLowerCase().endsWith(".pdf")
-            ) {
-                showUploadError(
-                    "Please select a PDF file."
-                );
-                return;
-            }
-
-
-            const maxSize =
-                25 * 1024 * 1024;
-
-            if (file.size > maxSize) {
-                showUploadError(
-                    "PDF is too large. Maximum file size is 25 MB."
-                );
-                return;
-            }
-
-
-            if (!course || !week || !resourceName) {
-                showUploadError(
-                    "Please complete all resource details."
-                );
-                return;
-            }
-
-
-            if (!session) {
-                showUploadError(
-                    "Your admin session has expired. Please log in again."
-                );
-
-                uploadCard.classList.add("hidden");
-                loginCard.classList.remove("hidden");
-
-                return;
-            }
-
-
-            uploadButton.disabled = true;
-            uploadButton.textContent =
-                "Preparing upload...";
-
-            uploadMessage.className = "message";
-            uploadMessage.style.display = "none";
+            loginMessage.style.display =
+                "none";
 
 
             try {
 
-                /*
-                    STEP 1
-                    Ask our secure API for a
-                    temporary Blob upload URL.
-                */
-
-                const prepareResponse =
+                const response =
                     await fetch(
-                        "/api/blob-upload",
+                        "/api/admin-login",
                         {
                             method: "POST",
 
@@ -625,89 +629,54 @@
                                     "application/json"
                             },
 
-                            body: JSON.stringify({
-                                session: session,
-                                course: course,
-                                week: week,
-                                resourceName:
-                                    resourceName,
-                                fileSize:
-                                    file.size
-                            })
+                            body:
+                                JSON.stringify({
+                                    code
+                                })
                         }
                     );
 
 
-                const uploadData =
-                    await prepareResponse.json();
+                const data =
+                    await response.json();
 
 
-                if (!prepareResponse.ok) {
+                if (!response.ok) {
 
                     throw new Error(
-                        uploadData.error ||
-                        "Unable to prepare upload."
+                        data.error ||
+                        "Invalid admin code."
                     );
 
                 }
 
 
-                /*
-                    STEP 2
-                    Upload the actual PDF
-                    directly to Vercel Blob.
-                */
-
-                uploadButton.textContent =
-                    "Uploading 0%";
-
-
-                await uploadFile(
-                    uploadData.presignedUrl,
-                    file
+                sessionStorage.setItem(
+                    "miva_admin_session",
+                    data.session
                 );
 
 
-                /*
-                    Upload completed.
-                */
-
-                uploadMessage.textContent =
-                    "Resource uploaded successfully.";
-
-                uploadMessage.className =
-                    "message success";
+                loginForm.reset();
 
 
-                uploadForm.reset();
+                loginCard.classList.add(
+                    "hidden"
+                );
 
 
-                uploadButton.textContent =
-                    "Upload Resource";
+                uploadCard.classList.remove(
+                    "hidden"
+                );
 
 
             } catch (error) {
 
-                console.error(error);
+                loginMessage.textContent =
+                    error.message;
 
-                uploadMessage.textContent =
-                    error.message ||
-                    "Upload failed.";
-
-                uploadMessage.className =
+                loginMessage.className =
                     "message error";
-
-            } finally {
-
-                uploadButton.disabled = false;
-
-                if (
-                    uploadButton.textContent ===
-                    "Preparing upload..."
-                ) {
-                    uploadButton.textContent =
-                        "Upload Resource";
-                }
 
             }
 
@@ -716,103 +685,64 @@
 
 
     /*
-        DIRECT BLOB UPLOAD
-    */
+     * SHOW SELECTED FILES
+     */
 
-    function uploadFile(url, file) {
-
-        return new Promise(
-            function(resolve, reject) {
-
-                const xhr =
-                    new XMLHttpRequest();
+    pdfFile.addEventListener(
+        "change",
+        renderSelectedFiles
+    );
 
 
-                xhr.open(
-                    "PUT",
-                    url,
-                    true
+    function renderSelectedFiles() {
+
+        uploadFileList.innerHTML =
+            "";
+
+
+        const files =
+            Array.from(
+                pdfFile.files || []
+            );
+
+
+        files.forEach(
+            function(file, index) {
+
+                const item =
+                    document.createElement(
+                        "div"
+                    );
+
+
+                item.className =
+                    "upload-file-item";
+
+
+                item.innerHTML = `
+                    <div class="upload-file-name">
+                        ${escapeHtml(file.name)}
+                    </div>
+
+                    <div
+                        class="upload-file-status"
+                        id="file-status-${index}"
+                    >
+                        Waiting to upload
+                    </div>
+
+                    <div class="upload-progress">
+                        <div
+                            class="upload-progress-bar"
+                            id="file-progress-${index}"
+                        ></div>
+                    </div>
+                `;
+
+
+                uploadFileList.appendChild(
+                    item
                 );
-
-
-                xhr.setRequestHeader(
-                    "Content-Type",
-                    "application/pdf"
-                );
-
-
-                xhr.upload.addEventListener(
-                    "progress",
-                    function(event) {
-
-                        if (!event.lengthComputable) {
-                            return;
-                        }
-
-                        const percentage =
-                            Math.round(
-                                (event.loaded /
-                                    event.total) *
-                                100
-                            );
-
-                        uploadButton.textContent =
-                            `Uploading ${percentage}%`;
-
-                    }
-                );
-
-
-                xhr.addEventListener(
-                    "load",
-                    function() {
-
-                        if (
-                            xhr.status >= 200 &&
-                            xhr.status < 300
-                        ) {
-                            resolve();
-                        } else {
-                            reject(
-                                new Error(
-                                    "Vercel Blob rejected the upload."
-                                )
-                            );
-                        }
-
-                    }
-                );
-
-
-                xhr.addEventListener(
-                    "error",
-                    function() {
-
-                        reject(
-                            new Error(
-                                "Network error during upload."
-                            )
-                        );
-
-                    }
-                );
-
-
-                xhr.addEventListener(
-                    "abort",
-                    function() {
-
-                        reject(
-                            new Error(
-                                "Upload was cancelled."
-                            )
-                        );
-
-                    }
-                );
-
-
-                xhr.send(file);
 
             }
         );
@@ -821,10 +751,477 @@
 
 
     /*
-        ERROR MESSAGE
-    */
+     * PDF UPLOAD
+     */
 
-    function showUploadError(message) {
+    uploadForm.addEventListener(
+        "submit",
+        async function(event) {
+
+            event.preventDefault();
+
+
+            const files =
+                Array.from(
+                    pdfFile.files || []
+                );
+
+
+            const selectedCourse =
+                course.value;
+
+
+            const selectedWeek =
+                week.value;
+
+
+            const customName =
+                resourceName.value.trim();
+
+
+            const session =
+                sessionStorage.getItem(
+                    "miva_admin_session"
+                );
+
+
+            /*
+             * Make sure at least one file
+             * has been selected.
+             */
+
+            if (!files.length) {
+
+                showUploadError(
+                    "Please select at least one PDF."
+                );
+
+                return;
+            }
+
+
+            /*
+             * Make sure course and week
+             * have been selected.
+             */
+
+            if (
+                !selectedCourse ||
+                !selectedWeek
+            ) {
+
+                showUploadError(
+                    "Please select a course and week."
+                );
+
+                return;
+            }
+
+
+            /*
+             * Make sure the admin is
+             * still logged in.
+             */
+
+            if (!session) {
+
+                showUploadError(
+                    "Your admin session has expired. Please log in again."
+                );
+
+
+                uploadCard.classList.add(
+                    "hidden"
+                );
+
+
+                loginCard.classList.remove(
+                    "hidden"
+                );
+
+
+                return;
+            }
+
+
+            /*
+             * Validate every selected file.
+             */
+
+            const invalidFile =
+                files.find(
+                    function(file) {
+
+                        return (
+                            file.type !==
+                                "application/pdf" &&
+                            !file.name
+                                .toLowerCase()
+                                .endsWith(".pdf")
+                        );
+
+                    }
+                );
+
+
+            if (invalidFile) {
+
+                showUploadError(
+                    `"${invalidFile.name}" is not a PDF.`
+                );
+
+                return;
+            }
+
+
+            /*
+             * Maximum size per PDF:
+             * 50 MB.
+             */
+
+            const maxSize =
+                50 * 1024 * 1024;
+
+
+            const oversizedFile =
+                files.find(
+                    function(file) {
+
+                        return file.size >
+                            maxSize;
+
+                    }
+                );
+
+
+            if (oversizedFile) {
+
+                showUploadError(
+                    `"${oversizedFile.name}" is larger than 50 MB.`
+                );
+
+                return;
+            }
+
+
+            /*
+             * Start upload.
+             */
+
+            uploadButton.disabled =
+                true;
+
+
+            uploadMessage.className =
+                "message";
+
+
+            uploadMessage.style.display =
+                "none";
+
+
+            let successful = 0;
+
+            const failed = [];
+
+
+            /*
+             * Upload each PDF.
+             *
+             * They are uploaded one at a time
+             * so each file gets its own progress.
+             */
+
+            for (
+                let index = 0;
+                index < files.length;
+                index++
+            ) {
+
+                const file =
+                    files[index];
+
+
+                const status =
+                    document.getElementById(
+                        `file-status-${index}`
+                    );
+
+
+                const progress =
+                    document.getElementById(
+                        `file-progress-${index}`
+                    );
+
+
+                /*
+                 * If only one PDF is selected
+                 * and a custom name was entered,
+                 * use that name.
+                 *
+                 * For batches, automatically use
+                 * each PDF's filename.
+                 */
+
+                const name =
+                    files.length === 1 &&
+                    customName
+                        ? customName
+                        : file.name.replace(
+                            /\.pdf$/i,
+                            ""
+                        );
+
+
+                const safeName =
+                    slugify(name) ||
+                    "resource";
+
+
+                /*
+                 * Generate a unique pathname.
+                 */
+
+                const pathname =
+                    `resources/${slugify(selectedCourse)}/${slugify(selectedWeek)}/` +
+                    `${Date.now()}-${crypto.randomUUID()}-${safeName}.pdf`;
+
+
+                status.textContent =
+                    "Preparing upload...";
+
+
+                uploadButton.textContent =
+                    `Uploading ${index + 1} of ${files.length}...`;
+
+
+                try {
+
+                    await upload(
+                        pathname,
+                        file,
+                        {
+
+                            access:
+                                "public",
+
+
+                            handleUploadUrl:
+                                "/api/blob-upload",
+
+
+                            clientPayload:
+                                JSON.stringify({
+                                    session,
+
+                                    course:
+                                        selectedCourse,
+
+                                    week:
+                                        selectedWeek,
+
+                                    resourceName:
+                                        name
+                                }),
+
+
+                            /*
+                             * Use multipart uploads
+                             * for reliable larger PDFs.
+                             */
+
+                            multipart:
+                                true,
+
+
+                            /*
+                             * Update the progress
+                             * for this specific file.
+                             */
+
+                            onUploadProgress:
+                                function(event) {
+
+                                    const percentage =
+                                        Math.round(
+                                            event.percentage
+                                        );
+
+
+                                    progress.style.width =
+                                        `${percentage}%`;
+
+
+                                    status.textContent =
+                                        `Uploading... ${percentage}%`;
+
+                                }
+
+                        }
+                    );
+
+
+                    /*
+                     * Upload succeeded.
+                     */
+
+                    successful++;
+
+
+                    progress.style.width =
+                        "100%";
+
+
+                    status.textContent =
+                        "Uploaded successfully";
+
+
+                } catch (error) {
+
+                    console.error(
+                        "Upload failed:",
+                        error
+                    );
+
+
+                    failed.push(
+                        file.name
+                    );
+
+
+                    status.textContent =
+                        `Failed: ${
+                            error.message ||
+                            "Upload failed"
+                        }`;
+
+                }
+
+            }
+
+
+            /*
+             * Finish the batch.
+             */
+
+            uploadButton.disabled =
+                false;
+
+
+            uploadButton.textContent =
+                "Upload Resources";
+
+
+            /*
+             * All files succeeded.
+             */
+
+            if (
+                successful ===
+                files.length
+            ) {
+
+                uploadMessage.textContent =
+                    `${successful} resource${
+                        successful === 1
+                            ? ""
+                            : "s"
+                    } uploaded successfully.`;
+
+
+                uploadMessage.className =
+                    "message success";
+
+
+                uploadForm.reset();
+
+
+            /*
+             * Some succeeded and
+             * some failed.
+             */
+
+            } else if (
+                successful > 0
+            ) {
+
+                uploadMessage.textContent =
+                    `${successful} uploaded successfully. ${failed.length} failed.`;
+
+
+                uploadMessage.className =
+                    "message error";
+
+
+            /*
+             * Everything failed.
+             */
+
+            } else {
+
+                uploadMessage.textContent =
+                    "No files were uploaded.";
+
+
+                uploadMessage.className =
+                    "message error";
+
+            }
+
+        }
+    );
+
+
+    /*
+     * HELPERS
+     */
+
+    function slugify(value) {
+
+        return value
+            .toLowerCase()
+            .trim()
+            .replace(
+                /[^a-z0-9]+/g,
+                "-"
+            )
+            .replace(
+                /^-+|-+$/g,
+                "");
+
+    }
+
+
+    function escapeHtml(value) {
+
+        return value
+            .replace(
+                /&/g,
+                "&amp;"
+            )
+            .replace(
+                /</g,
+                "&lt;"
+            )
+            .replace(
+                />/g,
+                "&gt;"
+            )
+            .replace(
+                /"/g,
+                "&quot;"
+            )
+            .replace(
+                /'/g,
+                "&#039;"
+            );
+
+    }
+
+
+    function showUploadError(
+        message
+    ) {
 
         uploadMessage.textContent =
             message;
@@ -836,8 +1233,8 @@
 
 
     /*
-        LOG OUT
-    */
+     * LOG OUT
+     */
 
     logoutButton.addEventListener(
         "click",
@@ -847,22 +1244,34 @@
                 "miva_admin_session"
             );
 
+
             uploadCard.classList.add(
                 "hidden"
             );
+
 
             loginCard.classList.remove(
                 "hidden"
             );
 
-            document.getElementById(
-                "adminCode"
-            ).value = "";
+
+            document
+                .getElementById(
+                    "adminCode"
+                )
+                .value = "";
+
 
             uploadForm.reset();
 
+
+            uploadFileList.innerHTML =
+                "";
+
+
             uploadMessage.className =
                 "message";
+
 
             uploadMessage.style.display =
                 "none";
@@ -871,5 +1280,6 @@
     );
 
 </script>
+
 </body>
 </html>
