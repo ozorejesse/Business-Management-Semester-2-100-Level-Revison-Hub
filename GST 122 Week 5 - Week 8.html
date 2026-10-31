@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>GST 122: Communication in English II Master Suite (Week 5–8)</title>
+<style>
+:root{--bg:#f8fafc;--sf:#fff;--tx:#1e293b;--bd:#e2e8f0;--pr:#2563eb;--ph:#1d4ed8;--ok:#16a34a;--okb:#f0fdf4;--okd:#bbf7d0;--er:#dc2626;--erb:#fef2f2;--erd:#fecaca;--bgb:#e2e8f0;--bt:#475569;--hv:#f1f5f9;--sm:#f1f5f9}
+[data-theme=dark]{--bg:#0f172a;--sf:#1e293b;--tx:#f8fafc;--bd:#334155;--pr:#3b82f6;--ph:#60a5fa;--ok:#4ade80;--okb:#064e3b;--okd:#047857;--er:#f87171;--erb:#7f1d1d;--erd:#991b1b;--bgb:#334155;--bt:#cbd5e1;--hv:#334155;--sm:#0f172a}
+body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Arial,sans-serif;background:var(--bg);color:var(--tx);margin:0;padding:20px;line-height:1.6;transition:.3s}
+.c{max-width:980px;margin:0 auto;background:var(--sf);padding:30px;border-radius:12px;box-shadow:0 4px 6px -1px rgba(0,0,0,.1)}
+.h{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:10px;margin-bottom:20px}
+h1{color:var(--pr);margin:0;font-size:1.6rem}
+.nav{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:25px;border-bottom:2px solid var(--bd);padding-bottom:10px}
+.tb{background:none;border:none;color:var(--tx);font-size:14px;font-weight:600;padding:8px 14px;cursor:pointer;border-radius:6px}
+.tb.on{background:var(--pr);color:#fff}
+.tg{background:none;border:1px solid var(--bd);color:var(--tx);padding:8px 12px;border-radius:6px;cursor:pointer;font-weight:600}
+select,.sb,button.ab{padding:10px 14px;font-size:14px;border-radius:6px;border:1px solid var(--bd);background:var(--sf);color:var(--tx)}
+button.ab{background:var(--pr);color:#fff;border:none;font-weight:600;cursor:pointer}
+button.ab:hover{background:var(--ph)}
+.sb{width:100%;box-sizing:border-box;margin-bottom:20px;font-size:15px}
+.ct{display:flex;gap:10px;align-items:center;flex-wrap:wrap;margin-bottom:20px}
+.sw,.qd,.pn{border:1px solid var(--bd);border-radius:8px;padding:22px;margin-bottom:20px;background:var(--sf)}
+.sw h2{color:var(--pr);margin-top:0;border-bottom:2px solid var(--bd);padding-bottom:8px;font-size:1.2rem}
+.kp{background:var(--sm);border-left:4px solid var(--pr);padding:12px 16px;margin:12px 0;border-radius:0 6px 6px 0;font-size:14px}
+.pd{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:12px;margin-bottom:20px}
+.pc{border:1px solid var(--bd);border-radius:8px;padding:12px;text-align:center}
+.sco{font-size:1.5rem;font-weight:700;color:var(--pr)}
+.bd{display:inline-block;padding:2px 8px;font-size:12px;font-weight:600;border-radius:4px;background:var(--bgb);color:var(--bt);margin-bottom:8px}
+.qt{font-weight:600;margin-bottom:12px}
+.op{display:flex;flex-direction:column;gap:8px}
+.ol{display:flex;align-items:center;padding:10px 14px;border:1px solid var(--bd);border-radius:6px;cursor:pointer}
+.ol:hover{background:var(--hv)}.ol input{margin-right:12px}
+.ex,.mf{display:none;margin-top:12px;padding:12px;border-radius:6px;font-size:14px}
+.ex.ok,.mf.ok{display:block;background:var(--okb);border:1px solid var(--okd);color:var(--ok)}
+.ex.no,.mf.no{display:block;background:var(--erb);border:1px solid var(--erd);color:var(--er)}
+.mg{display:grid;grid-template-columns:1fr 1fr;gap:20px}.col{display:flex;flex-direction:column;gap:10px}
+.mc{padding:14px 16px;border:1px solid var(--bd);border-radius:8px;cursor:pointer;user-select:none;min-height:50px;display:flex;align-items:center;font-weight:500}
+.mc:hover{border-color:var(--pr)}.mc.sel{border:2px solid var(--pr);background:var(--hv)}
+.mc.done{border-color:var(--ok);background:var(--okb);color:var(--ok);cursor:default;opacity:.85}
+.mc.bad{border-color:var(--er);background:var(--erb)}
+.si{padding:12px;border-left:4px solid var(--pr);background:var(--sm);border-radius:0 6px 6px 0;margin-top:10px}
+.fc{max-width:500px;margin:20px auto;height:250px;border:1px solid var(--bd);border-radius:12px;display:flex;flex-direction:column;justify-content:center;align-items:center;padding:24px;text-align:center;cursor:pointer;box-sizing:border-box;user-select:none}
+.fc small{font-size:12px;color:var(--bt);text-transform:uppercase;letter-spacing:1px;margin-bottom:10px}
+.fc div{font-size:1.2rem;font-weight:600}
+.fr{display:flex;justify-content:center;gap:10px}
+.v{display:none}.v.on{display:block}
+.sw h3{font-size:1rem;margin:18px 0 4px;color:var(--bt)}.sw ul{margin:4px 0 0;padding-left:22px}.sw li{margin-bottom:5px}
+@media(max-width:600px){.mg{grid-template-columns:1fr}.c{padding:18px}}
+</style></head><body>
+<div class="c">
+<div class="h"><h1>GST 122: Communication in English II (Week 5–8)</h1><button class="tg" id="thm">🌙 Night Mode</button></div>
+<div class="nav" id="nav"></div>
+
+<div id="s" class="v on"><input class="sb" id="q" placeholder="⚡ Search across Weeks 5–8..."><div id="sl"></div></div>
+
+<div id="z" class="v">
+<div class="pd" id="dash"></div>
+<div class="ct"><select id="ts" onchange="gen()"><option value="all">All weeks (mixed)</option><option value="5">Week 5: Pre-writing &amp; Post-writing</option><option value="6">Week 6: Summary, Letters &amp; Reports</option><option value="7">Week 7: Comprehension (SQ3R)</option><option value="8">Week 8: Vocabulary Expansion</option></select>
+<button class="ab" onclick="gen()">Generate Quiz</button><button class="ab" onclick="gen(1)">Retry Missed</button></div>
+<div id="qc"></div></div>
+
+<div id="m" class="v"><p><b id="ms"></b> · Click a term, then its matching description.</p><div class="mf" id="mf"></div>
+<div class="ct"><button class="ab" onclick="resetM()">Restart Game</button></div>
+<div class="mg"><div class="col" id="lc"></div><div class="col" id="rc"></div></div></div>
+
+<div id="e" class="v"><div class="pn"><div class="ct"><select id="ec" onchange="fillE()"></select><select id="ei" onchange="showE()"></select></div><div id="el"></div></div></div>
+
+<div id="f" class="v"><div class="fc" onclick="flip()"><small id="fl"></small><div id="fcn"></div></div>
+<p style="text-align:center" id="fp"></p>
+<div class="fr" style="margin-bottom:12px"><button class="ab" onclick="nav(-1)">◀ Previous</button><button class="ab" onclick="nav(1)">Next ▶</button><button class="ab" onclick="newDeck();show()">🔀 Shuffle</button></div>
+<div class="fr"><button class="ab" style="background:var(--er)" onclick="rate('hard')">🔴 Hard</button><button class="ab" style="background:#d97706" onclick="rate('med')">🟡 Medium</button><button class="ab" style="background:var(--ok)" onclick="rate('easy')">🟢 Easy</button></div></div>
+</div>
+<script>
+const $=id=>document.getElementById(id),sh=a=>[...a].sort(()=>Math.random()-.5);
+const T={5:"Pre-writing & Post-writing",6:"Summary, Letters & Reports",7:"Comprehension: SQ3R",8:"Vocabulary Expansion"};
+
+const S=[
+[5,"Pre-writing & Post-writing","Covers both ends of the writing process: the planning activities before drafting and the revising, editing and polishing activities after the first draft.",[
+["Why plan and revise?",["Impactful writing needs a cohesive set of <b>pre-writing, during-writing and post-writing</b> activities with a seamless flow through the whole process.","Objectives: apply advanced pre-writing (mind mapping, free-writing, concept clustering); analyse and refine macro-structure (logical flow, coherence between paragraphs, a well-built argument); and write concisely and precisely by removing redundancies and refining terminology."]],
+["What pre-writing is",["The phase that precedes the actual composition: strategic activities to <b>generate and organise ideas, establish a purpose and build a preliminary framework</b>.","Time invested here improves the clarity, coherence and overall quality of the final piece."]],
+["Pre-writing techniques (with examples)",["<b>Brainstorming:</b> divergent thinking through mind mapping, free-writing or clustering; e.g. listing causes, effects and solutions before an essay on climate change.","<b>Freewriting:</b> unstructured writing that uncovers unexpected details, such as a novelist exploring a character’s backstory.","<b>Research:</b> gathering information first, e.g. types, benefits and challenges of renewable energy.","<b>Mind mapping:</b> branches for positive and negative aspects of social media to see connections.","<b>Outlining:</b> key points, evidence and logical flow before a speech.","<b>Identifying audience and purpose:</b> executives or stakeholders; inform or persuade; this shapes tone, style and content.","<b>Storyboarding:</b> a filmmaker plans the sequence of scenes visually.","<b>Drafting questions:</b> a journalist lists interview questions to cover relevant topics.","<b>Clustering:</b> a poet associates words and images around a central theme.","<b>Listing:</b> similarities and differences for a compare-and-contrast essay."]],
+["What post-writing is",["Everything after the initial draft: a meticulous process of revising, editing and refining for clarity, coherence and adherence to academic conventions.","These activities are essential for a polished, final version."]],
+["Post-writing activities (with examples)",["<b>Revision:</b> revisit the introduction so it captures attention and previews the content; reorganise paragraphs for flow.","<b>Editing for grammar and style:</b> a journalist removes errors and keeps sentence structure and style consistent.","<b>Peer review:</b> swap drafts for feedback on clarity, argument strength and weak areas.","<b>Proofreading:</b> catch typographical errors, misspellings and punctuation mistakes.","<b>Feedback from instructors or editors:</b> constructive criticism on plot, argument and structure.","<b>Checking citations and references:</b> accuracy and formatting, vital for academic integrity.","<b>Polishing transitions:</b> smooth, logical links between paragraphs and ideas.","<b>Formatting and presentation:</b> font size, margins and spacing for professionalism.","<b>Finalising conclusions:</b> make sure they summarise key points with a clear closing statement.","<b>Publishing or submitting:</b> the end of the process and the hand-over to the audience."]],
+["Key takeaways",["Pre-writing = exploration, organisation and planning; post-writing = critical examination of the draft for content, style, grammar and presentation.","Further reading: Mogahed (2013) on planning pre-writing activities; Pahey, Matsumura and Valdés (2004) on the process approach to writing."]]]],
+
+[6,"Summary, Letters & Reports","Shows the steps for three types of writing. The lesson compares summarising to drawing a concise map, letter writing to composing a message to a friend, and report writing to planning an expedition.",[
+["The three types of writing",["<b>Summary:</b> a condensed version of a larger text that highlights the main ideas, key points and essential information.","<b>Letter:</b> a written message to a specific person or group, formal or informal, used to convey information, express feelings, make requests or maintain connections.","<b>Report:</b> a formal document presenting detailed information, analysis, findings and conclusions on a specific topic, with sections such as introduction, methodology, findings, conclusions and recommendations."]],
+["Steps to writing a summary",["Read the text carefully.","Identify the thesis or main idea.","Highlight key points (supporting details and examples).","Condense the information in your own words, focusing on brevity and clarity.","Maintain the structure (logical order) of the original.","Eliminate unnecessary details unless crucial to the main idea.","Check for coherence.","Review and revise for conciseness, accuracy and clarity."]],
+["Steps to writing a letter",["Identify purpose and audience.","Choose the right format (formal, informal, business).","Begin with a greeting (salutation).","Introduction: state the purpose for writing.","Body: organised paragraphs, one specific point each.","Keep a respectful, appropriate tone (politeness and tone).","Closing: summarise the main points and express gratitude or goodwill.","Closing salutation and signature.","Review and edit for grammar, clarity and coherence."]],
+["Steps to writing a report",["Define the purpose.","Research and gather information.","Outline the structure (introduction, methodology, findings, conclusions, recommendations).","Write an introduction (topic, purpose, scope).","Present the methodology (how data was gathered, for transparency and reliability).","Analyse and present findings with evidence, using graphs, charts or tables.","Draw conclusions.","Make recommendations, if applicable.","Write a summary of the main points and outcomes.","Include references and appendices.","Review and revise for clarity, coherence and accuracy."]],
+["Sample summary",["A long passage on politics (power, ideology, elections, legislatures, lobbying) is reduced to a short paragraph that keeps the main ideas: power dynamics, elections as pivotal moments, the ideological spectrum, legislatures shaping policy, and the influence of lobbying and vested interests."]],
+["Sample letter (letter of appreciation)",["Parts: <b>greeting</b> (“Dear Mr Azeez,”), <b>opening sentence</b> (“I hope this letter finds you well.”), <b>purpose</b> (to express gratitude for support and collaboration on a recent project), <b>closing</b> (“Yours sincerely”) and <b>signature</b>.","It combines a warm greeting, a clearly stated purpose, appreciation and a polite close."]],
+["Sample report (global poverty)",["<b>Introduction:</b> poverty as a persistent challenge; aims to analyse causes, consequences and solutions.","<b>Methodology:</b> systematic review of national and international statistical agencies, research institutions and NGOs.","<b>Findings:</b> rates declining but regional variation (Sub-Saharan Africa and parts of Asia higher); lack of education, healthcare and economic opportunity sustains poverty.","<b>Conclusions:</b> needs multifaceted interventions; <b>recommendations:</b> invest in education and healthcare, targeted development, social safety nets, and collaboration between governments, NGOs and the private sector."]],
+["Key takeaways",["Summarising distils the main ideas with brevity, clarity and coherence.","Letters need purpose, audience, format, politeness and tone.","Reports need a structured approach with defined sections."]]]],
+
+[7,"Comprehension: SQ3R","SQ3R is a systematic reading strategy that improves comprehension and retention of complex texts. It stands for Survey, Question, Read, Recite and Review.",[
+["Reading strategies",["Techniques readers use to enhance comprehension, retention and effectiveness with written text; they help process information, extract meaning and understand material more deeply.","SQ3R is one of these strategies. Objectives: apply SQ3R to complex academic texts, form thought-provoking questions, seek answers and connections, and recognise its use across disciplines."]],
+["Survey",["Quickly scan the whole text before detailed reading; look at <b>headings, subheadings, images</b> and other overview features.","Gives a sense of the text’s structure and main ideas.","Example: in a history textbook, look at chapter titles, subtitles and illustration captions to see the periods and key events covered."]],
+["Question",["You ask questions (you do not answer the passage’s questions) based on what you found in the survey; they guide reading and focus attention on critical information.","Example: after surveying a scientific paper, ask “What is the primary hypothesis being tested?” or “What methods are used to collect data?”","Mid-lesson question: why focus on your own questions? Because they direct your reading and keep you actively engaged."]],
+["Read",["Read the actual text with two goals: (1) read to answer the questions you generated; (2) read to engage with the material for a fuller understanding.","Highlighting key points while reading helps identify main ideas."]],
+["Recite",["“Vocalise your thoughts”: verbally explain the key points, words and concepts from the text.","In the example, you restate the highlighted points and more, since they form the basis of the excerpt’s main idea."]],
+["Review",["Create summaries, outlines or notes to reinforce understanding; organised notes make later review easier.","This step keeps a deep understanding over time so you can recall and apply it in exams or discussions."]],
+["Worked example: The Renaissance",["Survey: the chapter title and opening paragraph show a 14th–17th century cultural and intellectual movement in Europe.","Question: What were its primary characteristics? How did it affect European society? Why does the shift from medieval traditions to humanism and individualism matter? What did da Vinci, Michelangelo and Shakespeare contribute?","Read and recite: revival of classical art, literature and learning; focus on humanism and individualism; notable figures."]],
+["Key takeaways",["Survey (scan structure) → Question (your own questions) → Read (seek answers) → Recite (explain aloud) → Review (notes and revisit).","Further reading: Adler and Van Doren (1972), <i>How to Read a Book</i>; Armstrong (1982), <i>Study Is Hard Work</i>."]]]],
+
+[8,"Vocabulary Expansion","Vocabulary expansion is the process of increasing the range of words and expressions you can use. This lesson covers its benefits, strategies and a list of academic terms.",[
+["Why vocabulary matters",["<b>Communication skills:</b> precise, effective expression with fewer misunderstandings.","<b>Intellectual growth:</b> learning words means learning meanings, contexts and usage, which stimulates critical thinking.","<b>Academic achievement:</b> easier comprehension and analysis of complex texts; helps in language arts, literature and standardised tests.","<b>Professional success:</b> clearer, more persuasive communication and better writing.","<b>Cultural competence:</b> exposure to different cultures and ideas.","<b>Lifelong learning:</b> a continuous process beyond formal education.","<b>Reading and writing proficiency:</b> choosing the right words improves understanding and impact."]],
+["Strategies for expansion",["Read widely and regularly to meet new words in different contexts.","Use dictionaries, thesauruses and language-learning apps.","Use new words in conversations, discussions and debates.","Play word games and join language activities (e.g. crosswords)."]],
+["Teaching and learning terms",["<b>Pedagogy:</b> the method and practice of teaching.","<b>Curriculum:</b> the subjects in a course of study; the content and structure of a programme.","<b>Lecture:</b> an educational talk to an audience, typically in a university course.","<b>Seminar:</b> a small group in advanced study and research under a professor.","<b>Mentorship:</b> guidance from an experienced person to a less experienced one.","<b>Scholarship:</b> academic achievement, or a grant supporting a student’s education.","<b>Prerequisite:</b> a course or condition required before a more advanced course.","<b>Academician:</b> a person engaged in academic study or research.","<b>Tenure:</b> job security granted to a teacher after a probationary period.","<b>Rubric:</b> guidelines or criteria for evaluating and grading assignments."]],
+["Thinking and knowledge terms",["<b>Epistemology:</b> the branch of philosophy on the nature, origin and scope of knowledge.","<b>Metacognition:</b> thinking about one’s own thinking processes.","<b>Syllogism:</b> reasoning that draws a conclusion from two premises (deductive).","<b>Synthesis:</b> combining different ideas or information into a new, integrated understanding.","<b>Exegesis:</b> critical explanation or interpretation, especially of a text.","<b>Semiotics:</b> the study of signs and symbols and their role in communication.","<b>Interdisciplinary:</b> involving multiple academic disciplines.","<b>Academic rigor:</b> the level of challenge, thoroughness and intellectual engagement expected.","<b>Quantitative analysis:</b> examining data through numerical and statistical methods."]],
+["Writing and research terms",["<b>Research:</b> systematic investigation of materials and sources to establish facts and reach new conclusions.","<b>Thesis:</b> a statement put forward to be proved, or a long essay involving personal research for an advanced degree.","<b>Dissertation:</b> a long essay or thesis required for a higher degree.","<b>Citation:</b> a reference to a source, giving credit to the original author and avoiding plagiarism.","<b>Peer review:</b> evaluation of scholarly work by experts in the same field before publication.","<b>Lexicon:</b> the vocabulary of a person, language or branch of knowledge.","<b>Didactic:</b> intended to instruct, often in an overly moralistic way.","<b>Didacticism:</b> emphasising moral or educational messages in literature, art or teaching."]],
+["Speech and sound terms",["<b>Elocution:</b> the skill of clear and expressive speech, especially public speaking.","<b>Cacophony:</b> a harsh, discordant mixture of sounds or voices."]],
+["Key takeaways",["A rich, nuanced vocabulary is an investment in language proficiency and cognitive ability.","The lesson ends with a crossword practising these words (scholarship, peer, synthesis, rubric, interdisciplinary; lexicon, research, lecture, metacognition, didacticism)."]]]]];
+
+const Q=[
+[5,"Which phase of writing precedes the actual composition?","Pre-writing",["Post-writing","Proofreading","Publishing"],"Pre-writing generates and organises ideas and builds a preliminary framework."],
+[5,"Which technique uses branches to visualise connections between ideas?","Mind mapping",["Proofreading","Peer review","Formatting"],"E.g. branches for positive and negative aspects of social media."],
+[5,"A novelist exploring a character’s backstory through unstructured writing is using:","Freewriting",["Outlining","Clustering","Listing"],"Freewriting helps discover unexpected details and insights."],
+[5,"A filmmaker planning the sequence of scenes visually is using:","Storyboarding",["Clustering","Freewriting","Listing"],"It helps organise the narrative structure."],
+[5,"A poet associating words and images around a central theme is using:","Clustering",["Outlining","Drafting questions","Listing"],"Clustering allows creative exploration of a theme."],
+[5,"Considering whether readers are executives or stakeholders and whether to inform or persuade is:","Identifying audience and purpose",["Proofreading","Formatting","Storyboarding"],"It influences tone, style and content."],
+[5,"Post-writing takes place:","After the initial draft is completed",["Before brainstorming","During research only","While outlining"],"It involves revising, editing and refining."],
+[5,"Which activity catches typographical errors, misspellings and punctuation mistakes?","Proofreading",["Revision","Peer review","Polishing transitions"],"It ensures an error-free final product."],
+[5,"Exchanging drafts with a classmate for feedback is called:","Peer review",["Proofreading","Freewriting","Storyboarding"],"It gives insight into clarity and the strength of arguments."],
+[5,"Checking citations and references mainly protects:","Academic integrity",["Creative exploration","Visual appeal","Audience analysis"],"Accuracy and proper formatting are crucial."],
+[6,"A condensed version of a larger text that highlights the main ideas is a:","Summary",["Report","Letter","Paragraph"],"It gives a brief overview without unnecessary details."],
+[6,"What is the first step in writing a summary?","Read the text carefully",["Condense the information","Add your own opinions","Write the conclusion"],"You must first understand the main ideas and key points."],
+[6,"In a summary, key points should be written:","In your own words",["By copying sentences","With new examples added","In a different order"],"Focus on brevity and clarity while keeping the original structure."],
+[6,"After choosing the letter format, the next step is to:","Begin with a greeting",["Write the closing salutation","Sign the letter","Add references"],"Identify purpose and audience, choose the format, then greet the recipient."],
+[6,"Which is the final step of writing a letter?","Review and edit",["Introduction","Body","Closing salutation"],"Check grammar, clarity and coherence."],
+[6,"Which report section describes how data was gathered?","Methodology",["Introduction","Recommendations","Appendices"],"It ensures transparency and reliability."],
+[6,"A formal document presenting detailed findings and conclusions on a specific issue is a:","Report",["Letter","Summary","Paragraph"],"It often has introduction, methodology, findings, conclusions and recommendations."],
+[6,"In writing a report, what follows drawing conclusions?","Make recommendations (if applicable)",["Write an introduction","Present the methodology","Define the purpose"],"Recommendations are based on the conclusions."],
+[6,"Where are the sources used in a report acknowledged?","References, with extra material in appendices",["The introduction only","The findings only","The greeting"],"Include references and appendices before the final review."],
+[6,"What was the purpose of the sample letter to Mr Azeez?","To express gratitude for support on a project",["To request a loan","To apply for a job","To complain about service"],"It was a letter of appreciation."],
+[7,"SQ3R stands for:","Survey, Question, Read, Recite, Review",["Scan, Quote, Read, Revise, Reflect","Summarise, Question, Read, Repeat, Rewrite","Survey, Quote, Reread, Recall, Review"],"It is a systematic reading strategy."],
+[7,"During the Survey step, you look at:","Headings, subheadings and images",["Only the last paragraph","Every word in detail","Only the references"],"This gives an overview of the text."],
+[7,"The purpose of the survey is to get:","A sense of the text’s structure and main ideas",["A full set of notes","The answers to exam questions","A word-for-word memory"],"It is done before detailed reading."],
+[7,"In the Question step, you:","Generate your own questions",["Answer the passage’s questions","Read word by word","Recite aloud"],"Your questions guide reading toward critical information."],
+[7,"Which is an example question after surveying a scientific paper?","What is the primary hypothesis being tested?",["How long is the paper?","Who printed the journal?","What colour is the cover?"],"Another example: What methods are used to collect data?"],
+[7,"The two main goals of the Read step are to:","Answer your questions and engage for fuller understanding",["Memorise every sentence and copy notes","Skim and skip sections","Find typing errors"],"Reading is purposeful, not passive."],
+[7,"In the Recite step, you:","Verbally explain key points, words and concepts",["Rewrite the text word for word","Only highlight text","Skip the difficult parts"],"“Vocalise your thoughts!”"],
+[7,"In the Review step, you:","Create summaries, outlines or notes",["Survey the headings again","Ask entirely new questions","Read the text aloud"],"Organised notes help you review."],
+[7,"Why is Review important?","It maintains deep understanding over time for recall in exams",["It replaces reading","It is only for novels","It makes reading faster"],"It supports long-term retention."],
+[7,"The Renaissance chapter example covers roughly which period?","14th to 17th century",["10th to 12th century","18th to 20th century","5th to 8th century"],"A cultural and intellectual movement that impacted Europe."],
+[8,"Pedagogy means:","The method and practice of teaching",["The study of signs","The skill of public speaking","Reasoning from premises"],"E.g. innovative pedagogy using interactive online modules."],
+[8,"Epistemology is the branch of philosophy concerned with:","The nature, origin and scope of knowledge",["The study of signs","Moral teaching","The art of teaching"],"How knowledge evolves and paradigms shift."],
+[8,"Elocution refers to:","Clear, expressive speech, especially public speaking",["A long essay","A harsh mixture of sounds","Thinking about thinking"],"It covers pronunciation, intonation and effective communication."],
+[8,"A harsh, discordant mixture of sounds is a:","Cacophony",["Lexicon","Syllogism","Rubric"],"E.g. a busy cafeteria full of clattering dishes and ringing phones."],
+[8,"Semiotics is the study of:","Signs and symbols and their role in communication",["Teaching methods","Tenure","Citations"],"Used in literature classes to study narrative and symbols."],
+[8,"Metacognition means:","Thinking about one’s own thinking",["Guidance by an experienced person","Evaluation by experts","Analysis through numbers"],"Teachers prompt students to reflect on their strategies."],
+[8,"Peer review is:","Evaluation of scholarly work by experts in the same field",["Job security for professors","A list of grading criteria","A required prior course"],"It happens before publication to ensure quality and validity."],
+[8,"A rubric is:","A set of criteria used to evaluate and grade assignments",["A long essay for a degree","A small advanced study group","A reference to a source"],"It makes expectations and grading transparent."],
+[8,"Tenure is:","Job security granted after a probationary period",["A grant for education","A combination of ideas","An educational talk"],"A major milestone in an academic career."],
+[8,"Which is a listed strategy for expanding vocabulary?","Reading widely and regularly",["Avoiding discussions","Using only familiar words","Skipping unfamiliar words"],"Also: dictionaries and apps, conversations, and word games."]];
+
+const P=[
+["Mind mapping","Branches that visualise connections between ideas","Used e.g. for the pros and cons of social media."],
+["Freewriting","Unstructured writing to discover unexpected details","A novelist can explore a character’s backstory."],
+["Storyboarding","Visual plan of the sequence of scenes","A filmmaker plans the narrative structure."],
+["Clustering","Associating words around a central theme","A poet generates ideas for a poem."],
+["Proofreading","Catching typos, misspellings and punctuation errors","A final check before submission."],
+["Peer review (writing)","Feedback on a draft from a classmate","Shows clarity and the strength of arguments."],
+["Methodology","Report section describing how data was gathered","It ensures transparency and reliability."],
+["Closing salutation","Polite closing phrase and signature of a letter","For example “Yours sincerely”."],
+["Survey","SQ3R step of scanning headings and images","It gives a sense of structure and main ideas."],
+["Recite","SQ3R step of verbally explaining key points","“Vocalise your thoughts”."],
+["Review","SQ3R step of creating summaries and notes","It supports long-term retention."],
+["Pedagogy","The method and practice of teaching","An academic term."],
+["Lexicon","The vocabulary of a person, language or field","E.g. the lexicon of artificial intelligence."],
+["Syllogism","A conclusion drawn from two premises","A form of deductive reasoning."],
+["Rubric","Criteria used to grade assignments","It clarifies expectations."],
+["Interdisciplinary","Involving multiple academic fields","It integrates diverse perspectives."]];
+
+const E={
+"Pre-writing Techniques":[
+["Brainstorming",["Divergent thinking using mind maps, free-writing or clustering.","Example: list causes, effects and solutions before an essay on climate change."]],
+["Freewriting",["Unstructured writing that reveals unexpected details and insights.","Example: a novelist explores a character’s backstory."]],
+["Research",["Gather information before writing.","Example: types, benefits and challenges of renewable energy."]],
+["Mind Mapping",["Branches show connections between ideas.","Example: positive and negative aspects of social media."]],
+["Outlining",["List key points, evidence and a logical flow.","Example: a speaker plans a speech."]],
+["Audience and Purpose",["Decide who you are writing for and why (inform or persuade).","This shapes tone, style and content."]],
+["Storyboarding",["A visual sequence of scenes or ideas.","Example: a filmmaker plans a movie."]],
+["Drafting Questions",["Prepare questions before gathering information.","Example: a journalist drafts interview questions."]],
+["Clustering",["Associate words or images around a central theme.","Example: a poet generates ideas for a poem."]],
+["Listing",["Write down similarities and differences.","Example: a compare-and-contrast essay on two historical figures."]]],
+"Post-writing Stages":[
+["Revision",["Revisit the introduction and reorganise paragraphs for flow and coherence."]],
+["Editing for Grammar and Style",["Remove errors, improve sentence structure and keep a consistent style."]],
+["Peer Review",["Exchange drafts for feedback on clarity, arguments and weak areas."]],
+["Proofreading",["Catch typographical errors, misspellings and punctuation mistakes."]],
+["Feedback from Instructors or Editors",["Constructive criticism on plot, argument and structure."]],
+["Checking Citations and References",["Verify accuracy and formatting to maintain academic integrity."]],
+["Polishing Transitions",["Ensure smooth, logical links between paragraphs and ideas."]],
+["Formatting and Presentation",["Font size, margins and spacing for professionalism."]],
+["Finalising Conclusions",["Summarise key points with a clear closing statement."]],
+["Publishing or Submitting",["Share the finished work with its audience; this ends the writing process."]]],
+"Writing Types: Steps":[
+["Summary: 8 Steps",["Read carefully → identify the main idea → highlight key points → condense in your own words.","Maintain structure → remove unnecessary detail → check coherence → review and revise."]],
+["Letter: Key Parts",["Greeting → opening sentence → purpose → body → closing → signature.","Keep a respectful tone and review for errors."]],
+["Letter: 9 Steps",["Purpose and audience → format → greeting → introduction → body.","Politeness and tone → closing → closing salutation → review and edit."]],
+["Report: 11 Steps",["Define purpose → research → outline → introduction → methodology → findings.","Conclusions → recommendations → summary → references and appendices → review and revise."]],
+["Sample Report Sections",["Introduction, methodology, findings, conclusions, recommendations and summary, shown with a global poverty example."]]],
+"SQ3R Method":[
+["Survey",["Scan headings, subheadings and images for structure and main ideas.","Example: chapter titles and captions in a history textbook."]],
+["Question",["Write your own questions from the survey.","Example: “What is the primary hypothesis being tested?”"]],
+["Read",["Read to answer your questions and to engage for fuller understanding."]],
+["Recite",["Verbally explain key points, words and concepts from the text."]],
+["Review",["Create summaries, outlines or notes to keep understanding over time."]]],
+"Vocabulary in Use":[
+["Pedagogy",["Method and practice of teaching.","Usage: innovative pedagogy with interactive online modules and case studies."]],
+["Epistemology",["Branch of philosophy on the nature, origin and scope of knowledge.","Usage: a thesis on the epistemology of scientific breakthroughs."]],
+["Didactic",["Intended to instruct, often overly moralistic.","Usage: a didactic lecture made engaging with examples."]],
+["Elocution",["Skill of clear, expressive speech.","Usage: an elocution competition on pronunciation and intonation."]],
+["Lexicon",["Vocabulary of a person, language or field.","Usage: “machine learning” entered AI’s lexicon."]],
+["Cacophony",["A harsh, discordant mixture of sounds.","Usage: a cafeteria full of chatter, clattering dishes and ringing phones."]],
+["Syllogism",["Conclusion drawn from two premises.","Usage: a philosopher’s syllogism shows the logical progression of ideas."]],
+["Semiotics",["Study of signs and symbols.","Usage: literature students explore the semiotics of narrative structures."]],
+["Metacognition",["Thinking about one’s own thinking.","Usage: students reflect on problem-solving strategies before class discussion."]],
+["Synthesis",["Combining ideas into a new, integrated understanding.","Usage: a paper synthesising diverse perspectives."]],
+["Exegesis",["Critical explanation of a text.","Usage: a thesis on the exegesis of ancient manuscripts."]],
+["Peer Review",["Expert evaluation before publication.","Usage: an article underwent rigorous peer review."]]]};
+
+const F=[
+["Pre-writing","The phase before composition: generating and organising ideas, setting a purpose and building a framework.",5],
+["Post-writing","After the first draft: revising, editing and refining for clarity, coherence and conventions.",5],
+["Mind mapping","Branches showing connections between ideas, e.g. pros and cons of social media.",5],
+["Freewriting","Unstructured writing that uncovers unexpected details.",5],
+["Clustering","Associating words and images around a central theme.",5],
+["Storyboarding","A visual plan of scene sequence, e.g. for a film.",5],
+["Proofreading","Catching typographical, spelling and punctuation errors.",5],
+["Polishing transitions","Making links between paragraphs smooth and logical.",5],
+["Summary (writing type)","A condensed version highlighting the main ideas and key points.",6],
+["Summary steps","Read, find main idea, highlight, condense, keep structure, cut detail, check coherence, revise.",6],
+["Letter steps","Purpose and audience, format, greeting, introduction, body, tone, closing, signature, review.",6],
+["Report steps","Purpose, research, outline, introduction, methodology, findings, conclusions, recommendations, summary, references.",6],
+["Parts of the sample letter","Greeting, opening sentence, purpose, closing, signature.",6],
+["SQ3R","Survey, Question, Read, Recite, Review: a systematic reading strategy.",7],
+["Survey","Scan headings, subheadings and images for structure and main ideas.",7],
+["Question (SQ3R)","Create your own questions from the survey to guide reading.",7],
+["Read (SQ3R)","Read to answer your questions and to engage for a fuller understanding.",7],
+["Recite","Verbally explain key points, words and concepts.",7],
+["Review (SQ3R)","Make summaries, outlines or notes to keep long-term understanding.",7],
+["Pedagogy","The method and practice of teaching.",8],
+["Epistemology","Philosophy of the nature, origin and scope of knowledge.",8],
+["Didactic","Intended to instruct, often in an overly moralistic way.",8],
+["Elocution","Clear, expressive speech, especially public speaking.",8],
+["Lexicon","The vocabulary of a person, language or field.",8],
+["Cacophony","A harsh, discordant mixture of sounds.",8],
+["Syllogism","A conclusion drawn from two premises.",8],
+["Semiotics","The study of signs and symbols.",8],
+["Metacognition","Thinking about one’s own thinking.",8],
+["Rubric","Criteria for evaluating and grading assignments.",8],
+["Tenure","Job security after a probationary period.",8]];
+
+let M={},X=[];
+try{M=JSON.parse(localStorage.getItem("g122b_m"))||{};X=JSON.parse(localStorage.getItem("g122b_x"))||[]}catch(e){}
+function save(){try{localStorage.setItem("g122b_m",JSON.stringify(M));localStorage.setItem("g122b_x",JSON.stringify(X))}catch(e){}ui()}
+function ui(){for(const w in T){const m=M[w]||{c:0,t:0};$("m"+w).textContent=(m.t?Math.round(m.c/m.t*100):0)+"%"}}
+
+function tab(k){document.querySelectorAll(".v").forEach(v=>v.classList.toggle("on",v.id==k));document.querySelectorAll(".tb").forEach(b=>b.classList.toggle("on",b.dataset.k==k));if(k=="m")resetM();if(k=="f")show()}
+$("thm").onclick=()=>{const d=document.body.dataset.theme=="dark";if(d)delete document.body.dataset.theme;else document.body.dataset.theme="dark";$("thm").textContent=d?"🌙 Night Mode":"☀️ Light Mode"};
+$("q").oninput=()=>{const v=$("q").value.toLowerCase();document.querySelectorAll(".sw").forEach(e=>e.style.display=e.innerText.toLowerCase().includes(v)?"block":"none")};
+
+let cur=[];
+function gen(r){const t=$("ts").value,all=Q.map((_,i)=>i);
+ if(r){cur=[...X];if(!cur.length){alert("No missed questions recorded yet!");return}}
+ else cur=t=="all"?sh(all).slice(0,30):all.filter(i=>Q[i][0]==t);
+ const c=$("qc");c.innerHTML="";
+ cur.forEach((qi,n)=>{const q=Q[qi],d=document.createElement("div");d.className="qd";
+  d.innerHTML=`<span class="bd">Week ${q[0]} · ${T[q[0]]}</span><div class="qt">${n+1}. ${q[1]}</div><div class="op"></div><div class="ex"></div>`;
+  const op=d.querySelector(".op"),ex=d.querySelector(".ex");
+  sh([q[2],...q[3]]).forEach(o=>{const l=document.createElement("label");l.className="ol";l.innerHTML='<input type="radio" name="q'+n+'">';l.append(o);
+   l.firstChild.onchange=()=>{d.querySelectorAll("input").forEach(i=>i.disabled=true);
+    const m=M[q[0]]||(M[q[0]]={c:0,t:0});m.t++;
+    if(o==q[2]){m.c++;ex.className="ex ok";ex.innerHTML="<b>Correct!</b> "+q[4];X=X.filter(x=>x!=qi)}
+    else{ex.className="ex no";ex.innerHTML="<b>Incorrect.</b> Correct answer: <b>"+q[2]+"</b><br>"+q[4];if(!X.includes(qi))X.push(qi)}
+    save()};op.appendChild(l)});
+  c.appendChild(d)})}
+
+let L=null,R=null,mn=0,cp=[];
+function resetM(){cp=sh(P).slice(0,8);mn=0;L=R=null;$("mf").style.display="none";$("ms").textContent="Matches Found: 0 / "+cp.length;
+ [["lc",0],["rc",1]].forEach(([id,s])=>{const c=$(id);c.innerHTML="";sh(cp.map((_,i)=>i)).forEach(i=>{const d=document.createElement("div");d.className="mc";d.textContent=cp[i][s];d.onclick=()=>pick(d,i,s);c.appendChild(d)})})}
+function pick(d,i,s){if(d.classList.contains("done"))return;
+ document.querySelectorAll(s?"#rc .mc":"#lc .mc").forEach(x=>x.classList.remove("sel"));d.classList.add("sel");
+ if(s)R={d,i};else L={d,i};
+ if(!L||!R)return;const f=$("mf");f.style.display="block";
+ if(L.i==R.i){L.d.className="mc done";R.d.className="mc done";f.className="mf ok";f.innerHTML="<b>Correct Match!</b><br>"+cp[L.i][0]+" ⟺ "+cp[L.i][1]+"<br>"+cp[L.i][2];mn++;$("ms").textContent="Matches Found: "+mn+" / "+cp.length}
+ else{const a=L.d,b=R.d;a.classList.add("bad");b.classList.add("bad");f.className="mf no";f.innerHTML="<b>Incorrect pair.</b> Try again!";setTimeout(()=>{a.classList.remove("bad","sel");b.classList.remove("bad","sel")},800)}
+ L=R=null}
+
+function fillE(){$("ei").innerHTML=E[$("ec").value].map((x,i)=>`<option value="${i}">${x[0]}</option>`).join("");showE()}
+function showE(){const x=E[$("ec").value][$("ei").value];$("el").innerHTML=`<div class="si"><b>${x[0]}</b></div>`+x[1].map(s=>`<div class="si">${s}</div>`).join("")}
+
+let dk=[],fl=false;
+function newDeck(){dk=sh(F.map((_,i)=>i))}
+function show(){const f=F[dk[0]];fl=false;$("fl").textContent="WEEK "+f[2]+" CONCEPT (Click to Flip)";$("fcn").textContent=f[0];$("fp").textContent=dk.length+" card(s) left this round"}
+function flip(){const f=F[dk[0]];fl=!fl;$("fl").textContent=fl?"EXPLANATION / SIGNIFICANCE":"WEEK "+f[2]+" CONCEPT (Click to Flip)";$("fcn").textContent=fl?f[1]:f[0]}
+function nav(d){if(d>0)dk.push(dk.shift());else dk.unshift(dk.pop());show()}
+document.addEventListener("keydown",e=>{if(!$("f").classList.contains("on"))return;
+ if(e.key=="ArrowRight")nav(1);else if(e.key=="ArrowLeft")nav(-1);else if(e.key==" "){e.preventDefault();flip()}});
+function rate(r){const c=dk.shift();if(r=="hard")dk.splice(Math.min(2,dk.length),0,c);else if(r=="med")dk.splice(Math.min(5,dk.length),0,c);if(!dk.length)newDeck();show()}
+
+$("nav").innerHTML=[["s","📖 Summaries"],["z","📝 Quiz & Mastery"],["m","🧩 Matching Game"],["e","🔍 Writing & Vocabulary Explorer"],["f","🎴 Flashcards"]].map((t,i)=>`<button class="tb${i?"":" on"}" data-k="${t[0]}" onclick="tab('${t[0]}')">${t[1]}</button>`).join("");
+$("dash").innerHTML=Object.keys(T).map(w=>`<div class="pc"><div>Week ${w}</div><div class="sco" id="m${w}">0%</div></div>`).join("");
+$("sl").innerHTML=S.map(s=>`<div class="sw"><h2>Week ${s[0]}: ${s[1]}</h2><p>${s[2]}</p>`+s[3].map(x=>`<h3>${x[0]}</h3><ul>${x[1].map(t=>`<li>${t}</li>`).join("")}</ul>`).join("")+`</div>`).join("");
+$("ec").innerHTML=Object.keys(E).map(k=>`<option>${k}</option>`).join("");
+ui();gen();fillE();newDeck();
+</script></body></html>
