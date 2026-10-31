@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>GST 112: Nigerian Peoples & Culture Master Suite (Week 5–8)</title>
+<style>
+:root{--bg:#f8fafc;--sf:#fff;--tx:#1e293b;--bd:#e2e8f0;--pr:#0d9488;--ph:#0f766e;--ok:#16a34a;--okb:#f0fdf4;--okd:#bbf7d0;--er:#dc2626;--erb:#fef2f2;--erd:#fecaca;--bgb:#ccfbf1;--bt:#0f766e;--hv:#f1f5f9;--sm:#f1f5f9}
+[data-theme=dark]{--bg:#0f172a;--sf:#1e293b;--tx:#f8fafc;--bd:#334155;--pr:#2dd4bf;--ph:#14b8a6;--ok:#4ade80;--okb:#064e3b;--okd:#047857;--er:#f87171;--erb:#7f1d1d;--erd:#991b1b;--bgb:#134e4a;--bt:#2dd4bf;--hv:#334155;--sm:#0f172a}
+body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Arial,sans-serif;background:var(--bg);color:var(--tx);margin:0;padding:20px;line-height:1.6;transition:.3s}
+.c{max-width:980px;margin:0 auto;background:var(--sf);padding:30px;border-radius:12px;box-shadow:0 4px 6px -1px rgba(0,0,0,.1)}
+.h{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:10px;margin-bottom:20px}
+h1{color:var(--pr);margin:0;font-size:1.6rem}
+.nav{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:25px;border-bottom:2px solid var(--bd);padding-bottom:10px}
+.tb{background:none;border:none;color:var(--tx);font-size:14px;font-weight:600;padding:8px 14px;cursor:pointer;border-radius:6px}
+.tb.on{background:var(--pr);color:#fff}
+.tg{background:none;border:1px solid var(--bd);color:var(--tx);padding:8px 12px;border-radius:6px;cursor:pointer;font-weight:600}
+select,.sb,button.ab{padding:10px 14px;font-size:14px;border-radius:6px;border:1px solid var(--bd);background:var(--sf);color:var(--tx)}
+button.ab{background:var(--pr);color:#fff;border:none;font-weight:600;cursor:pointer}
+button.ab:hover{background:var(--ph)}
+.sb{width:100%;box-sizing:border-box;margin-bottom:20px;font-size:15px}
+.ct{display:flex;gap:10px;align-items:center;flex-wrap:wrap;margin-bottom:20px}
+.sw,.qd,.pn{border:1px solid var(--bd);border-radius:8px;padding:22px;margin-bottom:20px;background:var(--sf)}
+.sw h2{color:var(--pr);margin-top:0;border-bottom:2px solid var(--bd);padding-bottom:8px;font-size:1.2rem}
+.kp{background:var(--sm);border-left:4px solid var(--pr);padding:12px 16px;margin:12px 0;border-radius:0 6px 6px 0;font-size:14px}
+.pd{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:12px;margin-bottom:20px}
+.pc{border:1px solid var(--bd);border-radius:8px;padding:12px;text-align:center}
+.sco{font-size:1.5rem;font-weight:700;color:var(--pr)}
+.bd{display:inline-block;padding:2px 8px;font-size:12px;font-weight:600;border-radius:4px;background:var(--bgb);color:var(--bt);margin-bottom:8px}
+.qt{font-weight:600;margin-bottom:12px}
+.op{display:flex;flex-direction:column;gap:8px}
+.ol{display:flex;align-items:center;padding:10px 14px;border:1px solid var(--bd);border-radius:6px;cursor:pointer}
+.ol:hover{background:var(--hv)}.ol input{margin-right:12px}
+.ex,.mf{display:none;margin-top:12px;padding:12px;border-radius:6px;font-size:14px}
+.ex.ok,.mf.ok{display:block;background:var(--okb);border:1px solid var(--okd);color:var(--ok)}
+.ex.no,.mf.no{display:block;background:var(--erb);border:1px solid var(--erd);color:var(--er)}
+.mg{display:grid;grid-template-columns:1fr 1fr;gap:20px}.col{display:flex;flex-direction:column;gap:10px}
+.mc{padding:14px 16px;border:1px solid var(--bd);border-radius:8px;cursor:pointer;user-select:none;min-height:50px;display:flex;align-items:center;font-weight:500}
+.mc:hover{border-color:var(--pr)}.mc.sel{border:2px solid var(--pr);background:var(--hv)}
+.mc.done{border-color:var(--ok);background:var(--okb);color:var(--ok);cursor:default;opacity:.85}
+.mc.bad{border-color:var(--er);background:var(--erb)}
+.si{padding:12px;border-left:4px solid var(--pr);background:var(--sm);border-radius:0 6px 6px 0;margin-top:10px}
+.fc{max-width:500px;margin:20px auto;height:250px;border:1px solid var(--bd);border-radius:12px;display:flex;flex-direction:column;justify-content:center;align-items:center;padding:24px;text-align:center;cursor:pointer;box-sizing:border-box;user-select:none}
+.fc small{font-size:12px;color:var(--bt);text-transform:uppercase;letter-spacing:1px;margin-bottom:10px}
+.fc div{font-size:1.2rem;font-weight:600}
+.fr{display:flex;justify-content:center;gap:10px}
+.v{display:none}.v.on{display:block}
+.sw h3{font-size:1rem;margin:18px 0 4px;color:var(--bt)}.sw ul{margin:4px 0 0;padding-left:22px}.sw li{margin-bottom:5px}
+@media(max-width:600px){.mg{grid-template-columns:1fr}.c{padding:18px}}
+</style></head><body>
+<div class="c">
+<div class="h"><h1>GST 112: Nigerian Peoples & Culture (Week 5–8)</h1><button class="tg" id="thm">🌙 Night Mode</button></div>
+<div class="nav" id="nav"></div>
+
+<div id="s" class="v on"><input class="sb" id="q" placeholder="⚡ Search across Weeks 5–8..."><div id="sl"></div></div>
+
+<div id="z" class="v">
+<div class="pd" id="dash"></div>
+<div class="ct"><select id="ts" onchange="gen()"><option value="all">All weeks (mixed)</option><option value="5">Week 5: Military & Civil War</option><option value="6">Week 6: Economy</option><option value="7">Week 7: Human Rights</option><option value="8">Week 8: Citizenship</option></select>
+<button class="ab" onclick="gen()">Generate Quiz</button><button class="ab" onclick="gen(1)">Retry Missed</button></div>
+<div id="qc"></div></div>
+
+<div id="m" class="v"><p><b id="ms"></b> · Click a term, then its matching description.</p><div class="mf" id="mf"></div>
+<div class="ct"><button class="ab" onclick="resetM()">Restart Game</button></div>
+<div class="mg"><div class="col" id="lc"></div><div class="col" id="rc"></div></div></div>
+
+<div id="e" class="v"><div class="pn"><div class="ct"><select id="ec" onchange="fillE()"></select><select id="ei" onchange="showE()"></select></div><div id="el"></div></div></div>
+
+<div id="f" class="v"><div class="fc" onclick="flip()"><small id="fl"></small><div id="fcn"></div></div>
+<p style="text-align:center" id="fp"></p>
+<div class="fr" style="margin-bottom:12px"><button class="ab" onclick="nav(-1)">◀ Previous</button><button class="ab" onclick="nav(1)">Next ▶</button><button class="ab" onclick="newDeck();show()">🔀 Shuffle</button></div>
+<div class="fr"><button class="ab" style="background:var(--er)" onclick="rate('hard')">🔴 Hard</button><button class="ab" style="background:#d97706" onclick="rate('med')">🟡 Medium</button><button class="ab" style="background:var(--ok)" onclick="rate('easy')">🟢 Easy</button></div></div>
+</div>
+<script>
+const $=id=>document.getElementById(id),sh=a=>[...a].sort(()=>Math.random()-.5);
+const T={5:"Military Rule & the Civil War",6:"Modern Economic Realities",7:"Human Rights Abuses",8:"Citizenship & Civic Duties"};
+
+const S=[
+[5,"Military Rule & the Civil War","Covers Nigeria’s independence, the failed search for national unity, the 1966 coups, the pogrom, the 1967–70 civil war, the later coups to 1993, and the legacy of military rule.",[
+["Independence and the national question",["Nigeria became independent from Britain on <b>October 1, 1960</b>.","The <b>national question</b>: What is Nigeria? Who are Nigerians? How do we build a meaningful national identity?","The <b>regional system</b> weakened national consciousness: national power came from first holding regional power, which fed the fear of domination.","Efforts at unity (a strong central state, a state-run development economy) failed because of official corruption, rigged elections, ethnic baiting, bullying and thuggery in the First Republic."]],
+["Art and the national question",["Writers promoted unity: Chinua Achebe (<i>Things Fall Apart</i>, 1958), Amos Tutuola (<i>The Palm-Wine Drinkard</i>, 1952), Wole Soyinka (<i>A Dance of the Forest</i>, 1960).","Sculptors Uche Okeke, Susanne Wenger and Felix Idubor drew on pre-colonial traditions and motifs.","Plays and universities had multi-ethnic casts and populations, but the national question still went unsolved and ethnic tensions ended in civil war."]],
+["Economy and development corporations (1960–66)",["The <b>First National Development Plan (1962–68)</b> focused on agriculture, industry and education.","1960–66 shifts: agriculture fell from 63.4% to 55.6% of GNP; manufacturing rose from 3.6% to 6.2%; mining from 0.9% to 4.8%; distribution from 9.1% to 14%; national income grew about 5% a year.","The 1966 coup ended development planning.","The Richards Constitution introduced <b>regionalism</b> (adopted in the First Republic). Regional development corporations (Western, Eastern and Northern Nigeria) drove growth by focusing on comparative advantage: West – cocoa and timber; East – palm oil; North – groundnut."]],
+["Politics of the First Republic",["Instability came from the 1959 election, fear of dominance, the quota system and uneven project allocation.","Crises: the Western Region crisis, creation of the Mid-Western Region, the 1962–63 census crisis, the 1964 election crisis (UPGA vs NNA) and the 1965 Western Region election."]],
+["First coup (January 15, 1966) and Ironsi",["Led by the “five majors”: Nzeogwu, Ifeajuna, Okafor, Anuforo and Ademoyega, who blamed tribalism and corruption.","Killed Prime Minister Balewa, the Sardauna of Sokoto, Finance Minister Okotie-Eboh, Western Premier Akintola and senior officers such as Brigadiers Maimalari and Ademulegun. Very few easterners died, so it was labelled an “Igbo coup”.","The plotters failed to seize power; acting Senate President Nwafor Orizu handed power to Maj-Gen <b>Aguiyi-Ironsi</b>, who suspended the constitution and set up an interim military government.","Ironsi aimed to restore order, end regionalism, tribalism and corruption; he appointed military governors (e.g. Ojukwu in the East). The coup was popular in the south.","<b>Ironsi’s gaffes:</b> he released the plotters, surrounded himself with Igbo advisers, promoted Igbo officers faster, and issued the Unification Decree (Decree No. 34), so northerners feared domination."]],
+["Countercoup, pogrom and secession (1966–67)",["<b>July 29, 1966:</b> northern officers killed Ironsi in Ibadan. Lt-Col <b>Yakubu Gowon</b> became head of state and repealed Decree 34. Gowon and Ojukwu clashed over seniority.","<b>Pogrom:</b> about 80,000–100,000 easterners were killed in the north, prompting revenge killings in the East and a mass return of Igbos.","Ojukwu pushed for secession; talks such as the <b>Aburi Accord</b> failed, and he declared Biafra independent on <b>May 30, 1967</b>."]],
+["The civil war (1967–70)",["Federal reasons to resist: belief in Nigerian unity, fear of fragmentation, and Biafra leaving with the oil-producing states.","Gowon declared a state of emergency and created <b>12 states</b>; only one of the three Eastern states was mainly Igbo. A coastal blockade and a currency change caused malnutrition, inflation and economic strangulation.","Biafra used images of starving children as evidence of genocide and won international sympathy, which prolonged the war.","<b>International stance:</b> the OAU treated it as a conflict between two nations; the US and UK stayed neutral; the USSR backed the federal government with aircraft and advisers; Tanzania, Gabon, Ivory Coast and Zambia recognised Biafra in 1968; France and Portugal supplied Biafra; Israel and China sympathised; the Catholic Church and Red Cross gave aid.","<b>End:</b> Biafra was overrun by January 1970; Ojukwu fled to Ivory Coast and Effiong surrendered to Gowon in Lagos on January 12, 1970.","<b>Legacy:</b> up to 3 million dead and 3 million displaced; Gowon declared “no winner, no vanquished”."]],
+["Later coups (1975–1993)",["<b>1975:</b> Gowon promised to end military rule by October 1, 1976 but postponed it in 1974. Officers led by Col. Joseph Garba removed him in a bloodless coup; Murtala Muhammed became Head of State with Obasanjo as deputy.","<b>1976 (Dimka):</b> Lt-Col Buka Suka Dimka assassinated Murtala Muhammed, citing corruption. It failed without senior officers’ support; Obasanjo took over and handed power to Shehu Shagari’s civilian government.","<b>1983 (Buhari):</b> after Shagari’s re-election, Maj-Gen Buhari acted against an “inept and corrupt” government.","<b>1985 (Babangida):</b> he cited Buhari’s “rigid and uncompromising” rule; Buhari was detained until 1988 and Idiagbon was under house arrest for three years. Babangida promised civil rule but moved the handover date three times and ruled until 1993.","<b>1990 (Orkar):</b> a failed coup on April 20; Major Gideon Orkar seized the radio station and announced the south’s secession; crushed within 10 hours, with 42 executed in July.","<b>1993 (Abacha):</b> after the annulment of June 12, Babangida handed over to Shonekan’s interim government; Abacha overthrew it on November 17, 1993.","<b>End of military rule:</b> Abacha died in 1998; Abdulsalami Abubakar ran the shortest transition; Obasanjo, released from prison, beat Olu Falae in 1999 and became the elected president of the Fourth Republic."]],
+["Pros and cons of military rule",["<b>Pros:</b> kept Nigeria as one, infrastructure development, relocation of the FCT to Abuja, creation of states, bold policies such as NYSC and ECOWAS, and Murtala Muhammed’s deliberate foreign policy.","<b>Cons:</b> responsible for the civil war, corruption and impoverishment, no checks and balances, uncoordinated policy, lack of administrative acumen, killings and human-rights violations, press suppression, economic uncertainty from coups, mismanaged oil boom, being stooges of bodies like the IMF, and disregard for the rule of law and judiciary.","<b>Verdict:</b> military intervention derailed progress and left criminality, abuse of the rule of law and underdevelopment. Awolowo said the best military government cannot be better than the worst civilian one."]]]],
+
+[6,"Modern Economic Realities","Traces Nigeria’s economy from the agrarian independence era through the oil boom, SAP and democracy, then the causes of today’s problems and proposed solutions.",[
+["Introduction",["Nigeria is Africa’s most populous and largest country: 140,431,790 people in the 2006 census and about 180 million by 2015, the sixth most populous nation after China, India, the USA, Indonesia and Brazil.","Rich in resources: crude oil, gold, tin, iron ore, niobium, lead, zinc, limestone and salt, plus arable land for palm oil, cocoa, groundnut, beans, melon, maize and rice.","Agriculture was the economic hub until oil in commercial quantity shifted Nigeria from an agriculture-dependent to a crude-oil-dependent nation."]],
+["Nigeria at independence",["Agriculture was over 50% of GDP before independence and absorbed over 75% of the workforce in 1960.","Development corporations were central to the regional political structure.","GDP growth jumped from 1.89% (1960) to 4.89% (1965). Nigeria was tipped to be among the 20 largest economies by 1980, ahead of Malaysia; today the reverse is true."]],
+["Post-civil war period",["The coups and civil war truncated progress; the military government destroyed the economic structure on which the regional system rested.","In the 1970s oil boom the government did not save; Nigeria abandoned agriculture for easy oil money.","When the oil market crashed, Nigeria struggled in the mid-1980s and the Buhari regime introduced austerity. The IMF pressed African countries, including Nigeria, to adopt the <b>Structural Adjustment Programme (SAP)</b>."]],
+["The SAP era",["SAP further weakened the economy and the naira began a downward slide.","It destroyed the manufacturing base: imported goods flooded the market and local products could not compete on price and quality.","During another oil boom in the 1990s, Head of State Sani Abacha looted the treasury and kept the funds in foreign banks."]],
+["Democracy and the economy",["After 1999, GDP growth rose from 0.58% to 6.59% (Premium Times, 2023).","Under Obasanjo, Nigeria got $20 billion in debt relief and reserves passed $64 billion.","After Yar’Adua’s death, Goodluck Jonathan spent the savings recklessly; reserves fell to $34 billion by 2015 even though oil stayed above $100 for most of his term.","US shale oil reduced demand for Nigerian crude; in 2014 the US, the largest buyer, announced reduced purchases. Analyst Olivier Jakob predicted Nigerian crude might need discounts to reach Asian markets.","With production down and India replacing the US as chief buyer, the budget has been in deficit and the country borrows to balance it; austerity measures have followed."]],
+["Causes of Nigeria’s economic woes",["Over-dependence on crude oil for government revenue.","Corruption.","Banking-sector insider abuses, breaches of the corporate governance code and many non-performing loans; capital-market round-tripping that crashed share prices.","Poor economic policies.","Violence and oil-pipeline vandalism.","Weak planning and policy direction, late budget implementation and unguided utterances by officials."]],
+["Solutions and conclusion",["Economic diversification and economic tutelage from a metropolitan state.","Curb corruption and cut the cost of governance.","Electricity to boost manufacturing, industrial parks and clusters, and higher local refining capacity.","Improve the political-economic structure, collect taxes effectively and invest in tourism.","<b>Conclusion:</b> problems will worsen without diversification away from crude, as renewable energy grows. Nigeria’s people are a vital resource, so government should invest more in them."]]]],
+
+[7,"Human Rights Abuses","Defines human rights and abuses, shows where rights are protected in Nigerian law, and examines five common abuses.",[
+["What human rights are",["Rights inherent to all human beings regardless of race, sex, nationality, ethnicity, language, religion or any other status.","Article 1 of the UN Declaration of Human Rights says all people are born free and equal in dignity and rights, endowed with reason and conscience, and should act in a spirit of brotherhood.","Examples: right to life and liberty, freedom from slavery and torture, freedom of opinion and expression, right to work and education, equality before the law, protection from discrimination, equal pay for equal work."]],
+["Human rights in Nigeria",["Found in <b>Chapter IV (Sections 33–46)</b> of the 1999 Constitution; the African Charter on Human and Peoples’ Rights is also enforceable in Nigerian courts.","Rights include freedom of religion, freedom of speech, right to education, freedom of movement and right to life."]],
+["Human rights abuses",["An abuse is anything that harms someone’s human rights, including harm to people, communities and the environment.","The 1979 Constitution introduced Fundamental Objectives and Directive Principles of State Policy and Fundamental Human Rights, but shortcomings and inhibitions remain in the 2009 Rules.","The National Human Rights Commission received <b>1,701,519</b> complaints in 2021, up from <b>1,287,280</b> in 2020."]],
+["Extra-judicial killings",["Security forces, especially police and military, have been implicated in extra-judicial killings, torture and excessive force.","The <b>#EndSARS</b> protests of October 2020 brought international attention to police brutality.","Examples include killings by law-enforcement officials and non-state actors, death sentences, and deaths in custody from force or failure to protect life."]],
+["Rape",["A serious abuse worldwide, including Nigeria. Government and civil organisations are working on it, but stigma, underreporting, inadequate legal frameworks, poor access to justice and limited survivor support remain.","About 367,000 women- and gender-related issues were recorded in 2021."]],
+["Freedom of expression",["The government is criticised for restricting freedom of speech and the press, including online media; critics reported threats, intimidation, arrest, detention and sometimes violence.","Security services detained and harassed journalists, sometimes for reporting on corruption and security.","The National Broadcasting Commission (NBC) regulates broadcasting; the government used its oversight to clamp down on television and radio stations."]],
+["Child marriage",["A discriminatory practice affecting mostly girls and prohibited under international law. A State violates international law if it fails to set and enforce a minimum marriage age (equal for boys and girls), fails to act with due diligence to prevent it, or involves public officials in it.","43% of Nigerian girls marry before 18 and 16% before 15 (Aliogo, 2023)."]],
+["Domestic violence",["The <b>Violence Against Persons (Prohibition) Act (2015)</b> criminalises various forms of abuse and provides for reporting, prosecution and survivor support.","Challenges: underreporting due to stigma, weak enforcement, limited awareness and education, and too few accessible support services."]],
+["Conclusion",["A nation’s attitude to human rights shows its leaders’ values; signing treaties does not validate rights.","International documents are standards; every government agency must enforce the constitutional norms, and penalties should apply regardless of socioeconomic class."]]]],
+
+[8,"Citizenship & Civic Duties","Explains citizenship, how Nigerians acquire, renounce and lose it, and the civic duties the Constitution imposes.",[
+["What citizenship is",["The state of being a citizen, plus the rights, obligations and advantages that come with it: to live, work, vote and pay taxes in a nation.","Usually granted where you are born; immigrants must apply.","It is often confused with nationality, which is wider in scope."]],
+["History in Nigeria",["There were no Nigerian citizens before independence; the Constitution has provided for citizenship since then.","Key laws: the Nigeria Citizenship Act 1960, the Nigerian Citizenship Act 1961, the 1979 Constitution and the 1999 Constitution (as amended), whose <b>Chapter III</b> provides extensively for citizenship."]],
+["Citizenship by birth",["A person is a Nigerian citizen by birth if both parents, either parent, or any one grandparent is Nigerian."]],
+["Citizenship by registration",["Open to a non-Nigerian woman married to a Nigerian, and to every person of full age and capacity born outside Nigeria whose grandparent is a Nigerian citizen.","The applicant must prove to the President good character, a clear intention to live in Nigeria, and that they have taken the Oath of Allegiance in the <b>Seventh Schedule</b>."]],
+["Citizenship by naturalisation",["The formal process of granting citizenship to a foreign national who meets the legal criteria; for Nigeria, the requirements are in <b>Section 27</b> of the 1999 Constitution.","A certificate of grant of citizenship by naturalisation is issued; it is how a foreigner who has lived long in Nigeria can become a citizen."]],
+["Dual citizenship",["Allowed: a foreigner who is a citizen of another country by birth may also become Nigerian by registration or naturalisation, and a Nigerian by birth may acquire another citizenship without renouncing Nigerian citizenship."]],
+["Renunciation",["A Nigerian of full age may renounce citizenship by making the prescribed declaration and take another country’s citizenship.","The President may refuse to register the declaration, especially when Nigeria is at war or when it is contrary to public policy."]],
+["Loss of citizenship",["The President may deprive a person who is not a citizen by birth or registration if they are sentenced to at least <b>3 years</b> in prison within <b>7 years</b> of naturalisation.","Persons who acquired citizenship by naturalisation or registration may lose it if they are disloyal by act or speech, trade or do business with an enemy country at war with Nigeria, assist that enemy, or communicate unlawfully with it to harm Nigeria."]],
+["Civic responsibilities",["Duties and obligations expected of citizens for the betterment of society and the functioning of the country: obey the law, protect public property, pay taxes, render national service, be loyal and respect others’ rights.","<b>Section 24 of the 1999 Constitution</b> makes it every citizen’s duty to: (A) abide by the Constitution and respect its ideals, institutions, the flag, anthem, pledge and legitimate authorities; (B) enhance the power, prestige and good name of Nigeria, defend it and render national service; (C) respect others’ dignity and rights and live in unity and harmony; (D) contribute positively to their community; (E) assist lawful agencies in maintaining law and order; (F) declare income honestly and pay tax promptly.","<b>Conclusion:</b> civic responsibility is both a legal obligation and a moral duty that promotes active citizenship and national development."]]]]];
+
+const Q=[
+[5,"Who led the five majors in the first coup of January 15, 1966?","Major Chukwuma Nzeogwu",["Yakubu Gowon","Murtala Muhammed","Buka Suka Dimka"],"Nzeogwu led the five majors who overthrew Balewa’s civilian government."],
+[5,"Which policy deepened northern fears of Igbo domination and led to the July 1966 countercoup?","The Unification Decree (Decree No. 34)",["The Richards Constitution","The Aburi Accord","The creation of 12 states"],"Ironsi’s policies, including Decree 34, made northerners fear domination."],
+[5,"Why did officers overthrow Gowon in 1975?","He postponed the return to civilian rule",["He lost the civil war","He annulled an election","He was accused of ending regionalism"],"Gowon had promised civil rule by October 1, 1976, then postponed it in 1974."],
+[5,"How many men were executed in July 1990 after the failed Orkar coup?","42",["12","60","100"],"42 soldiers and civilians were arrested, convicted and executed."],
+[5,"When did Ojukwu declare Biafra’s independence?","May 30, 1967",["January 15, 1966","July 29, 1966","January 12, 1970"],"After the Aburi talks failed, Ojukwu declared secession, leading to war."],
+[5,"Who surrendered to Gowon in Lagos on January 12, 1970?","Philip Effiong",["Odumegwu Ojukwu","Aguiyi-Ironsi","Gideon Orkar"],"Ojukwu fled to Ivory Coast; Effiong surrendered, ending the war."],
+[6,"What share of the workforce did agriculture absorb in 1960?","Over 75%",["About 25%","About 50%","Under 10%"],"Agriculture was the hub of the economy before oil."],
+[6,"What did the government fail to do during the 1970s oil boom?","Save for rainy days",["Export crude oil","Join the IMF","Create regional corporations"],"Easy oil money meant no savings and a drift from agriculture, hurting Nigeria in the mid-1980s."],
+[6,"Which IMF-backed programme flooded Nigeria with imports and weakened local manufacturing?","Structural Adjustment Programme (SAP)",["First National Development Plan","Operation Feed the Nation","Marshall Plan"],"SAP made local products uncompetitive and the naira began to fall."],
+[6,"After 1999, GDP growth rose from 0.58% to:","6.59%",["4.89%","3.59%","9.59%"],"Obasanjo also won $20 billion in debt relief, and reserves passed $64 billion."],
+[6,"Which country replaced the US as the major buyer of Nigeria’s crude?","India",["China","The UK","Japan"],"US shale oil cut demand for Nigerian crude from 2014."],
+[7,"Where are fundamental human rights found in the 1999 Constitution?","Chapter IV, Sections 33–46",["Chapter II, Sections 13–24","Chapter I, Sections 1–3","Chapter VII, Sections 230–279"],"Chapter IV covers fundamental rights, enforceable in Nigerian courts."],
+[7,"Which October 2020 protest drew global attention to police brutality?","#EndSARS",["#BringBackOurGirls","#OccupyNigeria","#ChildNotBride"],"It highlighted extra-judicial killings, torture and excessive force."],
+[7,"How did NHRC complaints in 2021 compare with 2020?","Higher (1,701,519 vs 1,287,280)",["Lower than 2020","The same as 2020","Not recorded"],"Rights complaints increased in 2021."],
+[7,"Which 2015 law criminalised domestic and other abuse?","Violence Against Persons (Prohibition) Act",["Freedom of Information Act","Cybercrimes Act","Land Use Act"],"Enforcement remains weak because of stigma and low awareness."],
+[7,"What share of Nigerian girls are married before 18?","43%",["16%","25%","60%"],"16% marry before age 15 (Aliogo, 2023)."],
+[8,"Which is NOT a way to become a Nigerian citizen?","By purchase",["By birth","By registration","By naturalisation"],"The Constitution recognises birth, registration and naturalisation."],
+[8,"A person is Nigerian by birth if:","Any one of their grandparents is Nigerian",["Born in Nigeria to two foreign parents","They have lived in Nigeria for 5 years","They hold a Nigerian visa"],"Both parents, either parent or any grandparent being Nigerian qualifies."],
+[8,"When can the President refuse registration of a renunciation of citizenship?","When Nigeria is at war",["When the citizen wants to study abroad","When the citizen moves to a neighbouring country","When the citizen reaches a certain age"],"Also refusable where the declaration is contrary to public policy."],
+[8,"A naturalised citizen may be deprived of citizenship if jailed for at least how long within 7 years?","3 years",["1 year","5 years","10 years"],"Disloyalty or aiding an enemy at war are other grounds."],
+[8,"Which section lists the duties of every citizen, including paying tax promptly?","Section 24",["Section 27","Section 33","Section 46"],"Section 27 covers naturalisation."],
+[5,"Who became head of state after the July 1966 countercoup?","Yakubu Gowon",["Aguiyi-Ironsi","Odumegwu Ojukwu","Murtala Muhammed"],"Gowon was selected to lead and quickly repealed Decree 34."],
+[5,"Which acting Senate President handed power to Ironsi after the first coup?","Nwafor Orizu",["Abubakar Tafawa Balewa","Ladoke Akintola","Yakubu Gowon"],"Ironsi then suspended the constitution and formed an interim military government."],
+[5,"How many states did Gowon create after Biafra’s declaration?","12",["3","6","19"],"Only one of the three Eastern states was mainly Igbo, isolating the Igbos."],
+[5,"Which is listed as a pro of military rule?","Relocation of the FCT to Abuja",["Suppression of the press","Mismanagement of the oil boom","Lack of checks and balances"],"Other pros: kept Nigeria one, created states, started NYSC and ECOWAS."],
+[6,"Who looted the treasury during the 1990s oil boom, according to the lesson?","Sani Abacha",["Muhammadu Buhari","Yakubu Gowon","Olusegun Obasanjo"],"He kept the funds in foreign banks."],
+[6,"How much debt relief did Nigeria get under Obasanjo?","$20 billion",["$5 billion","$34 billion","$64 billion"],"Reserves also rose above $64 billion."],
+[6,"What were Nigeria’s foreign reserves in 2015?","$34 billion",["$64 billion","$20 billion","$100 billion"],"Savings were spent recklessly under Goodluck Jonathan despite oil above $100."],
+[6,"During which years did GDP growth rise from 1.89% to 4.89%?","1960 to 1965",["1970 to 1975","1980 to 1985","1999 to 2005"],"Nigeria was tipped to be a top-20 economy by 1980."],
+[6,"Which is listed as a solution to Nigeria’s economic woes?","Provide electricity to boost manufacturing",["Rely more on crude exports","Import more finished goods","Raise the cost of governance"],"Other solutions: diversification, industrial parks, local refining, tax collection, tourism."],
+[7,"Which Article of the UN Declaration says all people are born free and equal in dignity and rights?","Article 1",["Article 5","Article 19","Article 26"],"People should act towards one another in a spirit of brotherhood."],
+[7,"Which body regulates broadcast media and was used to clamp down on stations?","National Broadcasting Commission (NBC)",["National Human Rights Commission","Nigerian Press Council","NITDA"],"The government used regulatory oversight to restrict press freedom."],
+[7,"What percentage of Nigerian girls marry before age 15?","16%",["43%","5%","30%"],"43% marry before 18 (Aliogo, 2023)."],
+[7,"Which constitution introduced Fundamental Objectives, Directive Principles and Fundamental Human Rights?","The 1979 Constitution",["The 1960 Independence Constitution","The 1963 Constitution","The Richards Constitution"],"Shortcomings remain in the 2009 Rules."],
+[7,"Which is a challenge in tackling domestic violence in Nigeria?","Underreporting due to social stigma",["Too many support services","Excessive public awareness","No law exists on abuse"],"The VAPP Act exists, but enforcement and awareness are weak."],
+[8,"Which constitutional chapter provides extensively for citizenship?","Chapter III",["Chapter IV","Chapter I","Chapter VI"],"Chapter IV covers fundamental rights."],
+[8,"In which Schedule is the Oath of Allegiance found?","Seventh Schedule",["First Schedule","Third Schedule","Fifth Schedule"],"It is required for citizenship by registration."],
+[8,"Citizenship by registration is open to:","A non-Nigerian woman married to a Nigerian",["Any foreign student","A foreign investor","A man resident for two years"],"Also adults born abroad with a Nigerian grandparent."],
+[8,"A Nigerian by birth who acquires another citizenship:","Keeps Nigerian citizenship",["Must renounce Nigerian citizenship","Automatically loses it","Becomes stateless"],"Dual citizenship is allowed."],
+[8,"Which of these is a civic responsibility?","Payment of taxes",["Owning property","Attending university","Joining a political party"],"Others: obey the law, protect public property, national service, loyalty, respect for others’ rights."]];
+
+const P=[
+["Nzeogwu","Led the five majors in the January 1966 coup","He claimed tribalism and corruption as the reasons."],
+["Decree No. 34","Ironsi’s unification policy","It stoked northern fears and the countercoup."],
+["Aburi Accord","Failed negotiation before Biafra’s declaration","Ojukwu declared secession on May 30, 1967."],
+["Dimka","Failed 1976 coup that killed Murtala Muhammed","It lacked support from senior officers."],
+["SAP","IMF programme that flooded Nigeria with imports","Local manufacturing collapsed."],
+["Chapter IV","Fundamental human rights (ss. 33–46)","Rights are enforceable in Nigerian courts."],
+["VAPP Act (2015)","Criminalises domestic abuse","It provides reporting, prosecution and survivor support."],
+["Section 24","Duties of every citizen","Includes honest income declaration and prompt tax."],
+["Nwafor Orizu","Handed power to Ironsi","He was acting Senate President after the first coup."],
+["Aguiyi-Ironsi","Head of the first military government","He was killed in the July 1966 countercoup."],
+["Gideon Orkar","Announced the south’s secession in 1990","The coup failed within 10 hours."],
+["Seventh Schedule","Contains the Oath of Allegiance","Needed for citizenship by registration."],
+["Section 27","Naturalisation requirements","A certificate of naturalisation is then issued."],
+["#EndSARS","October 2020 protests against police brutality","They drew international attention."],
+["NBC","Regulator used to clamp down on broadcasters","It monitors and regulates broadcast media."],
+["Abacha","Looted the treasury in the 1990s oil boom","He kept the funds in foreign banks."]];
+
+const E={
+"Coups and Regimes":[
+["First Coup (Jan 15, 1966)",["Five majors under Nzeogwu cited tribalism and corruption.","Balewa, the Sardauna, Okotie-Eboh, Akintola and senior officers were killed.","Power passed to Maj-Gen Aguiyi-Ironsi; widely labelled an “Igbo coup”."]],
+["Countercoup (Jul 29, 1966)",["Northern officers killed Ironsi in Ibadan.","Causes: fear of Igbo domination, Ironsi’s handling of the plotters, Decree 34, revenge.","Gowon became head of state and repealed Decree 34."]],
+["Murtala Muhammed (1975)",["Bloodless coup led by Col. Joseph Garba after Gowon postponed civil rule.","Murtala became Head of State; Obasanjo his deputy."]],
+["Dimka Coup (1976)",["Lt-Col Buka Suka Dimka assassinated Murtala, citing corruption.","It failed; Obasanjo took over and handed power to Shagari."]],
+["Buhari Coup (1983)",["Maj-Gen Muhammadu Buhari acted after Shagari’s re-election.","Reason given: an “inept and corrupt” government."]],
+["Babangida Coup (1985)",["Cited Buhari’s “rigid and uncompromising” rule; bloodless.","Shifted the handover date three times and ruled until 1993."]],
+["Orkar Coup (1990)",["Failed attack on Dodan Barracks; Maj Gideon Orkar announced the south’s secession.","Crushed within 10 hours; 42 men executed."]],
+["Abacha Coup (Nov 17, 1993)",["Overthrew Shonekan three months into the interim government.","Abacha died in 1998; Abdulsalami Abubakar oversaw the transition to Obasanjo in 1999."]],
+["Ironsi’s Regime (1966)",["Suspended the constitution and set up an interim military government to end regionalism, tribalism and corruption.","Appointed military governors (Ojukwu in the East); his gaffes included releasing plotters, Igbo advisers and Decree 34."]],
+["Military Rule: Pros and Cons",["Pros: unity, states, Abuja, NYSC, ECOWAS, infrastructure, Murtala’s foreign policy.","Cons: civil war, corruption, no checks, press suppression, killings, mismanaged oil boom, disregard for the judiciary."]]],
+"Road to the Civil War":[
+["The Pogrom (1966)",["About 80,000–100,000 easterners were massacred in the north, sparking revenge killings in the East.","Igbos returned to the East en masse and Ojukwu pushed for secession."]],
+["Secession (May 30, 1967)",["Aburi talks failed and Ojukwu declared Biafra.","Gowon declared emergency and created 12 states, blockaded the coast and changed the currency."]],
+["The End and Legacy (1970)",["Biafra collapsed in January 1970; Effiong surrendered on January 12.","Up to 3 million died and 3 million were displaced; “no winner, no vanquished.”"]],
+["State Creation and Blockade",["12 states created; only one of three Eastern states was mainly Igbo.","Coastal blockade and currency change caused malnutrition and inflation but won Biafra sympathy."]],
+["International Involvement",["OAU treated it as a war between two nations; US and UK neutral; USSR backed Nigeria.","Tanzania, Gabon, Ivory Coast and Zambia recognised Biafra; France and Portugal supplied it; Red Cross and Catholic Church gave aid."]]],
+"Economic Eras":[
+["Independence (1960–66)",["Agriculture employed over 75% of workers; GDP growth rose from 1.89% to 4.89%.","Regional development corporations drove growth."]],
+["Oil Boom and Austerity",["No savings and a drift from farming; the oil crunch brought austerity under Buhari."]],
+["SAP Era",["The naira weakened and imports destroyed local manufacturing.","Abacha looted the treasury in the 1990s boom."]],
+["Democracy (1999–)",["Growth rose from 0.58% to 6.59%; $20bn debt relief; reserves above $64bn.","Reserves fell to $34bn by 2015; US cut purchases, India became top buyer, deficits followed."]],
+["Causes of Economic Woes",["Oil dependence, corruption, banking and capital-market abuses, poor policy, pipeline vandalism, weak planning."]],
+["Solutions",["Diversification, curb corruption, electricity for manufacturing, industrial parks, local refining, lower cost of governance, tax collection, tourism."]]],
+"Citizenship":[
+["By Birth",["Both parents, either parent or any grandparent is Nigerian."]],
+["By Registration",["Non-Nigerian women married to Nigerians, and adults born abroad with a Nigerian grandparent.","Needs good character, intent to reside, and the Oath of Allegiance (Seventh Schedule)."]],
+["By Naturalisation",["Section 27: long-term foreign residents meeting the criteria receive a certificate."]],
+["Dual Citizenship",["Allowed for registered/naturalised citizens, and birth citizens may acquire another nationality."]],
+["Renunciation and Loss",["Adults may renounce, but the President can refuse in war or against public policy.","Naturalised citizens can be deprived if jailed 3+ years within 7 years; disloyalty or aiding an enemy are other grounds."]],
+["Civic Duties (Section 24)",["Abide by the Constitution and respect national symbols; defend Nigeria and render national service.","Respect others’ rights, contribute to the community, assist law and order, declare income honestly and pay tax promptly."]],
+["Citizenship vs Nationality",["Nationality has a wider scope than citizenship; there were no Nigerian citizens before independence."]]],
+"Human Rights Abuses":[
+["Extra-judicial Killings",["Police and military implicated in killings, torture and excessive force; #EndSARS (Oct 2020)."]],
+["Rape",["Stigma, underreporting, weak legal frameworks, poor access to justice and limited support."]],
+["Freedom of Expression",["Journalists detained and harassed; the NBC used regulation to clamp down on stations."]],
+["Child Marriage",["43% of girls marry before 18, 16% before 15 (Aliogo, 2023); banned under international law."]],
+["Domestic Violence",["VAPP Act (2015) criminalises abuse, but stigma and weak enforcement persist."]],
+["What Human Rights Are",["Inherent to all people regardless of race, sex, nationality, ethnicity, language or religion; include life, liberty, expression, work and education."]],
+["Rights in Nigeria",["Chapter IV (ss. 33–46) of the 1999 Constitution plus the African Charter: religion, speech, education, movement and life."]]]};
+
+const F=[
+["Chukwuma Nzeogwu","Led the five majors in the January 15, 1966 coup.",5],
+["Decree No. 34","Ironsi’s unification policy; repealed by Gowon after the countercoup.",5],
+["Third Coup (1975)","Garba-led bloodless coup after Gowon delayed civil rule; Murtala became Head of State.",5],
+["Orkar Coup (1990)","Failed coup; Orkar announced southern secession; 42 executed.",5],
+["Aburi Accord","Failed talks between Ojukwu and Gowon before Biafra’s declaration.",5],
+["Pogrom (1966)","About 80,000–100,000 easterners killed in the north.",5],
+["Military rule: pros","Kept Nigeria one, created states, moved FCT to Abuja, started NYSC and ECOWAS.",5],
+["Structural Adjustment Programme","IMF programme that weakened the naira and destroyed local manufacturing.",6],
+["Economic woes: causes","Oil dependence, corruption, banking abuses, poor policy, pipeline vandalism, weak planning.",6],
+["Chapter IV, 1999 Constitution","Fundamental human rights (ss. 33–46).",7],
+["VAPP Act (2015)","Criminalises domestic abuse and provides for reporting and survivor support.",7],
+["Citizenship routes","Birth, registration, naturalisation (s. 27).",8],
+["Section 24","Duties of every citizen: obey the Constitution, defend Nigeria, respect others, pay tax promptly.",8],
+["Renunciation limits","The President may refuse it during war or if contrary to public policy.",8],
+["Nwafor Orizu","Acting Senate President who handed power to Ironsi after the first coup.",5],
+["Ironsi’s gaffes","Released the plotters, relied on Igbo advisers, promoted Igbo officers faster, issued Decree 34.",5],
+["Yakubu Gowon","Head of state from the July 1966 countercoup; repealed Decree 34; “no winner, no vanquished”.",5],
+["State creation (1967)","12 states, a coastal blockade and a currency change to isolate and strangle Biafra.",5],
+["Biafra’s backers","Tanzania, Gabon, Ivory Coast and Zambia recognised it; France and Portugal supplied it.",5],
+["Military rule: cons","Corruption, no checks and balances, press suppression, killings, oil-boom mismanagement.",5],
+["Development corporations","Regional bodies built on comparative advantage: West cocoa and timber, East palm oil, North groundnut.",6],
+["First National Development Plan","1962–68 plan for agriculture, industry and education; ended by the 1966 coup.",6],
+["Foreign reserves","Above $64bn under Obasanjo; down to $34bn by 2015.",6],
+["Economic solutions","Diversification, curb corruption, electricity, industrial parks, local refining, tax collection, tourism.",6],
+["#EndSARS","October 2020 protests that drew global attention to police brutality.",7],
+["NHRC complaints","1,701,519 in 2021 compared with 1,287,280 in 2020.",7],
+["Child marriage","43% of girls marry before 18 and 16% before 15; prohibited under international law.",7],
+["Citizenship by registration","Non-Nigerian woman married to a Nigerian, or adult born abroad with a Nigerian grandparent; Oath of Allegiance.",8],
+["Loss of citizenship","Jailed 3+ years within 7 years of naturalisation; disloyalty; aiding an enemy at war.",8],
+["Dual citizenship","Allowed for registered or naturalised citizens; birth citizens keep Nigeria if they acquire another nationality.",8]];
+
+let M={},X=[];
+try{M=JSON.parse(localStorage.getItem("g112b_m"))||{};X=JSON.parse(localStorage.getItem("g112b_x"))||[]}catch(e){}
+function save(){try{localStorage.setItem("g112b_m",JSON.stringify(M));localStorage.setItem("g112b_x",JSON.stringify(X))}catch(e){}ui()}
+function ui(){for(const w in T){const m=M[w]||{c:0,t:0};$("m"+w).textContent=(m.t?Math.round(m.c/m.t*100):0)+"%"}}
+
+function tab(k){document.querySelectorAll(".v").forEach(v=>v.classList.toggle("on",v.id==k));document.querySelectorAll(".tb").forEach(b=>b.classList.toggle("on",b.dataset.k==k));if(k=="m")resetM();if(k=="f")show()}
+$("thm").onclick=()=>{const d=document.body.dataset.theme=="dark";if(d)delete document.body.dataset.theme;else document.body.dataset.theme="dark";$("thm").textContent=d?"🌙 Night Mode":"☀️ Light Mode"};
+$("q").oninput=()=>{const v=$("q").value.toLowerCase();document.querySelectorAll(".sw").forEach(e=>e.style.display=e.innerText.toLowerCase().includes(v)?"block":"none")};
+
+let cur=[];
+function gen(r){const t=$("ts").value,all=Q.map((_,i)=>i);
+ if(r){cur=[...X];if(!cur.length){alert("No missed questions recorded yet!");return}}
+ else cur=t=="all"?sh(all).slice(0,30):all.filter(i=>Q[i][0]==t);
+ const c=$("qc");c.innerHTML="";
+ cur.forEach((qi,n)=>{const q=Q[qi],d=document.createElement("div");d.className="qd";
+  d.innerHTML=`<span class="bd">Week ${q[0]} · ${T[q[0]]}</span><div class="qt">${n+1}. ${q[1]}</div><div class="op"></div><div class="ex"></div>`;
+  const op=d.querySelector(".op"),ex=d.querySelector(".ex");
+  sh([q[2],...q[3]]).forEach(o=>{const l=document.createElement("label");l.className="ol";l.innerHTML='<input type="radio" name="q'+n+'">';l.append(o);
+   l.firstChild.onchange=()=>{d.querySelectorAll("input").forEach(i=>i.disabled=true);
+    const m=M[q[0]]||(M[q[0]]={c:0,t:0});m.t++;
+    if(o==q[2]){m.c++;ex.className="ex ok";ex.innerHTML="<b>Correct!</b> "+q[4];X=X.filter(x=>x!=qi)}
+    else{ex.className="ex no";ex.innerHTML="<b>Incorrect.</b> Correct answer: <b>"+q[2]+"</b><br>"+q[4];if(!X.includes(qi))X.push(qi)}
+    save()};op.appendChild(l)});
+  c.appendChild(d)})}
+
+let L=null,R=null,mn=0,cp=[];
+function resetM(){cp=sh(P).slice(0,8);mn=0;L=R=null;$("mf").style.display="none";$("ms").textContent="Matches Found: 0 / "+cp.length;
+ [["lc",0],["rc",1]].forEach(([id,s])=>{const c=$(id);c.innerHTML="";sh(cp.map((_,i)=>i)).forEach(i=>{const d=document.createElement("div");d.className="mc";d.textContent=cp[i][s];d.onclick=()=>pick(d,i,s);c.appendChild(d)})})}
+function pick(d,i,s){if(d.classList.contains("done"))return;
+ document.querySelectorAll(s?"#rc .mc":"#lc .mc").forEach(x=>x.classList.remove("sel"));d.classList.add("sel");
+ if(s)R={d,i};else L={d,i};
+ if(!L||!R)return;const f=$("mf");f.style.display="block";
+ if(L.i==R.i){L.d.className="mc done";R.d.className="mc done";f.className="mf ok";f.innerHTML="<b>Correct Match!</b><br>"+cp[L.i][0]+" ⟺ "+cp[L.i][1]+"<br>"+cp[L.i][2];mn++;$("ms").textContent="Matches Found: "+mn+" / "+cp.length}
+ else{const a=L.d,b=R.d;a.classList.add("bad");b.classList.add("bad");f.className="mf no";f.innerHTML="<b>Incorrect pair.</b> Try again!";setTimeout(()=>{a.classList.remove("bad","sel");b.classList.remove("bad","sel")},800)}
+ L=R=null}
+
+function fillE(){$("ei").innerHTML=E[$("ec").value].map((x,i)=>`<option value="${i}">${x[0]}</option>`).join("");showE()}
+function showE(){const x=E[$("ec").value][$("ei").value];$("el").innerHTML=`<div class="si"><b>${x[0]}</b></div>`+x[1].map(s=>`<div class="si">${s}</div>`).join("")}
+
+let dk=[],fl=false;
+function newDeck(){dk=sh(F.map((_,i)=>i))}
+function show(){const f=F[dk[0]];fl=false;$("fl").textContent="WEEK "+f[2]+" CONCEPT (Click to Flip)";$("fcn").textContent=f[0];$("fp").textContent=dk.length+" card(s) left this round"}
+function flip(){const f=F[dk[0]];fl=!fl;$("fl").textContent=fl?"EXPLANATION / SIGNIFICANCE":"WEEK "+f[2]+" CONCEPT (Click to Flip)";$("fcn").textContent=fl?f[1]:f[0]}
+function nav(d){if(d>0)dk.push(dk.shift());else dk.unshift(dk.pop());show()}
+document.addEventListener("keydown",e=>{if(!$("f").classList.contains("on"))return;
+ if(e.key=="ArrowRight")nav(1);else if(e.key=="ArrowLeft")nav(-1);else if(e.key==" "){e.preventDefault();flip()}});
+function rate(r){const c=dk.shift();if(r=="hard")dk.splice(Math.min(2,dk.length),0,c);else if(r=="med")dk.splice(Math.min(5,dk.length),0,c);if(!dk.length)newDeck();show()}
+
+$("nav").innerHTML=[["s","📖 Summaries"],["z","📝 Quiz & Mastery"],["m","🧩 Matching Game"],["e","🔍 Scenario Explorer"],["f","🎴 Flashcards"]].map((t,i)=>`<button class="tb${i?"":" on"}" data-k="${t[0]}" onclick="tab('${t[0]}')">${t[1]}</button>`).join("");
+$("dash").innerHTML=Object.keys(T).map(w=>`<div class="pc"><div>Week ${w}</div><div class="sco" id="m${w}">0%</div></div>`).join("");
+$("sl").innerHTML=S.map(s=>`<div class="sw"><h2>Week ${s[0]}: ${s[1]}</h2><p>${s[2]}</p>`+s[3].map(x=>`<h3>${x[0]}</h3><ul>${x[1].map(t=>`<li>${t}</li>`).join("")}</ul>`).join("")+`</div>`).join("");
+$("ec").innerHTML=Object.keys(E).map(k=>`<option>${k}</option>`).join("");
+ui();gen();fillE();newDeck();
+</script></body></html>
