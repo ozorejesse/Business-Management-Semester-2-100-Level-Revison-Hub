@@ -1,0 +1,438 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ECO 102 Weeks 5–9 | Principles of Economics II Revision Suite</title>
+<script>
+window.MathJax = { tex: {inlineMath: [['$','$'], ['\\(','\\)']]} };
+</script>
+<script async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+<style>
+:root{--bg:#f7f8fb;--surface:#fff;--text:#1e293b;--muted:#64748b;--border:#e2e8f0;--primary:#2563eb;--primary2:#1d4ed8;--soft:#eff6ff;--good:#15803d;--goodbg:#f0fdf4;--bad:#b91c1c;--badbg:#fef2f2;--shadow:0 8px 26px rgba(15,23,42,.07)}
+:root[data-theme="dark"]{--bg:#0f172a;--surface:#1e293b;--text:#f1f5f9;--muted:#a8b5c7;--border:#334155;--primary:#60a5fa;--primary2:#3b82f6;--soft:#172b49;--good:#4ade80;--goodbg:#123526;--bad:#fca5a5;--badbg:#451e25;--shadow:0 8px 26px rgba(0,0,0,.2)}
+*{box-sizing:border-box}body{margin:0;padding:20px;background:var(--bg);color:var(--text);font:15px/1.68 Inter,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;transition:.2s}
+.container{max-width:1120px;margin:auto}.hero{padding:30px 32px;border-radius:18px;background:linear-gradient(125deg,#102f52,#1e4b76 65%,#2563eb);color:white;box-shadow:var(--shadow);display:flex;justify-content:space-between;align-items:center;gap:20px;flex-wrap:wrap}
+.hero h1{font-size:clamp(1.5rem,3vw,2.25rem);line-height:1.2;margin:0 0 8px}.hero p{margin:0;color:#dbeafe;max-width:720px}.theme-toggle,.tab-btn,.action-btn,.secondary-btn{border:0;border-radius:9px;padding:11px 15px;font-weight:700;cursor:pointer;font-size:14px}.theme-toggle{background:#fff;color:#173c60}.nav-tabs{display:flex;flex-wrap:wrap;gap:8px;margin:20px 0}.tab-btn{background:var(--surface);border:1px solid var(--border);color:var(--text)}.tab-btn.active{background:var(--primary);border-color:var(--primary);color:white}.view-section{display:none}.view-section.active{display:block}.panel,.summary-week,.solver-panel{background:var(--surface);border:1px solid var(--border);border-radius:14px;padding:24px;margin:0 0 18px;box-shadow:var(--shadow)}h2{font-size:1.35rem;line-height:1.3;margin:0 0 12px;color:var(--primary)}h3{font-size:1.05rem;margin:22px 0 8px}h4{margin:14px 0 5px}p{margin:8px 0 12px}.muted,.small{color:var(--muted)}.small{font-size:.88rem}.summary-week{border-left:5px solid var(--primary)}.summary-week h2{margin-bottom:5px}.summary-week ul{padding-left:22px}.summary-week li{margin:6px 0}.callout,.formula-box{padding:14px 16px;background:var(--soft);border:1px solid var(--border);border-radius:10px;margin:14px 0}.formula-box{font-weight:650;overflow-x:auto}.tag{display:inline-block;padding:3px 9px;border-radius:999px;background:var(--soft);color:var(--primary);font-size:12px;font-weight:700;margin:0 5px 5px 0}.search-box,input,select{width:100%;padding:12px 13px;border:1px solid var(--border);border-radius:9px;background:var(--surface);color:var(--text);font:inherit}.search-box{margin:0 0 18px}.controls{display:flex;gap:10px;align-items:center;flex-wrap:wrap;margin:12px 0 18px}.controls select{max-width:340px}.action-btn{background:var(--primary);color:white}.action-btn:hover{background:var(--primary2)}.secondary-btn{background:var(--soft);border:1px solid var(--border);color:var(--text)}.question{border:1px solid var(--border);border-radius:11px;padding:16px;margin:12px 0}.question p{font-weight:650}.option{display:block;padding:8px 10px;border-radius:8px;margin:5px 0;cursor:pointer}.option:hover{background:var(--soft)}.option input{width:auto;margin-right:8px}.feedback{padding:10px 12px;border-radius:8px;margin-top:8px;display:none}.feedback.correct{display:block;background:var(--goodbg);color:var(--good)}.feedback.incorrect{display:block;background:var(--badbg);color:var(--bad)}.score-board{font-weight:800;color:var(--primary)}.progress-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:10px;margin:14px 0}.progress-card{padding:13px;background:var(--soft);border:1px solid var(--border);border-radius:10px}.progress-card strong{display:block;font-size:1.2rem;color:var(--primary)}.matching-container{display:grid;grid-template-columns:1fr 1fr;gap:12px}.match-column{display:grid;gap:8px}.match-card{padding:12px;border:1px solid var(--border);border-radius:9px;background:var(--surface);color:var(--text);cursor:pointer;text-align:left}.match-card.selected{outline:2px solid var(--primary);background:var(--soft)}.match-card.wrong{border-color:#dc2626;background:#fee2e2;color:#991b1b}.match-card.matched{opacity:.55;border-color:var(--good);cursor:default}.flashcard-wrapper{max-width:620px;margin:20px auto}.flashcard{min-height:260px;border:1px solid var(--border);border-radius:16px;background:var(--soft);display:flex;flex-direction:column;justify-content:center;align-items:center;padding:28px;text-align:center;cursor:pointer;box-shadow:var(--shadow)}.card-label{font-size:12px;color:var(--primary);font-weight:800;letter-spacing:1px;margin-bottom:14px}.card-content{font-size:1.25rem;font-weight:700}.flashcard-controls{display:flex;justify-content:center;gap:9px;flex-wrap:wrap}.calc-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:12px}.calc-field label{display:block;font-weight:700;margin-bottom:6px}.result{margin-top:16px;padding:16px;background:var(--soft);border:1px solid var(--border);border-radius:10px}.result strong{color:var(--primary)}.table-wrap{overflow-x:auto}table{border-collapse:collapse;width:100%;margin:12px 0}td,th{border:1px solid var(--border);padding:9px;text-align:left}th{background:var(--soft)}.footer{text-align:center;color:var(--muted);padding:22px;font-size:.88rem}
+@media(max-width:650px){body{padding:10px}.hero{padding:23px 20px}.panel,.summary-week,.solver-panel{padding:17px}.matching-container{grid-template-columns:1fr 1fr;gap:8px}.match-card{font-size:12px;padding:9px}.tab-btn{flex:1 1 45%;font-size:12px;padding:10px 8px}.controls select{max-width:100%}}
+@media print{body{background:white;color:#111}.nav-tabs,.theme-toggle,.controls button{display:none!important}.view-section{display:block!important}.panel,.summary-week{box-shadow:none;break-inside:avoid}}
+</style>
+</head>
+<body>
+<div class="container">
+<header class="hero">
+ <div><div class="tag" style="background:#dbeafe;color:#173c60">MIVA • SEMESTER 2</div><h1>ECO 102: Principles of Economics II</h1><p>Weeks 5, 6, 7 and 9 — expanded lecture summaries, worked examples, practice questions and revision tools.</p></div>
+ <button class="theme-toggle" id="themeBtn" type="button" aria-label="Switch to night mode" onclick="window.toggleTheme()">🌙 Night Mode</button>
+</header>
+<div class="nav-tabs">
+<button class="tab-btn active" onclick="switchTab('summaries')">📖 Comprehensive Summaries</button>
+<button class="tab-btn" onclick="switchTab('quiz')">📝 Quiz & Mastery</button>
+<button class="tab-btn" onclick="switchTab('matching')">🧩 Matching Game</button>
+<button class="tab-btn" onclick="switchTab('solver')">🔍 Economics Calculator</button>
+<button class="tab-btn" onclick="switchTab('flashcards')">🎴 Flashcards</button>
+</div>
+
+<section id="summariesTab" class="view-section active">
+<input id="summarySearch" class="search-box" placeholder="Search topics, formulas or keywords..." oninput="filterSummaries()">
+<div id="summaryList">
+<article class="summary-week searchable">
+<h2>Week 5: Addressing Inflation and Inflationary Trends in Selected Economies</h2>
+<p><span class="tag">Inflation</span><span class="tag">Monetary policy</span><span class="tag">Fiscal policy</span><span class="tag">International comparison</span></p>
+<p><strong>Learning objectives:</strong> Explain ways of addressing inflation; discuss policy interventions; explain why inflation varies across countries; and analyse those variations.</p>
+<h3>1. Meaning and effects of inflation</h3>
+<p>Inflation is the rate at which the prices of goods and services increase over time. It is a general rise in prices, not simply the increase in the price of one isolated product. Inflation affects households, firms and the economy as a whole.</p>
+<ul>
+<li><strong>Purchasing power:</strong> When the general price level rises, a given amount of money buys fewer goods and services. If income does not rise at the same pace as prices, the real purchasing power of households falls.</li>
+<li><strong>Consumer confidence:</strong> High and unpredictable inflation makes it harder for consumers to plan spending. Uncertainty about future prices can reduce confidence and make people reluctant to spend.</li>
+<li><strong>Business profitability:</strong> Rising input and operating costs can squeeze business margins, especially when firms cannot pass all cost increases to customers.</li>
+<li><strong>Investment:</strong> Uncertainty about future costs, prices and interest rates can discourage investment.</li>
+<li><strong>Economic stability:</strong> Severe inflation can contribute to instability and social unrest.</li>
+</ul>
+<p>The lecture identifies supply-chain disruptions, strong demand for goods and services, and geopolitical events such as the war in Ukraine as factors associated with rising inflation. It also refers to demand-pull and cost-push inflation when explaining why inflation differs between countries.</p>
+<h3>2. Main ways of addressing inflation</h3>
+<ul>
+<li><strong>Setting an inflation target:</strong> A central bank announces a desired inflation rate and aims to keep inflation close to it over the medium term. The lecture notes that some central banks use a target around 2%; this is an illustration, not a universal target for every country.</li>
+<li><strong>Conducting monetary policy:</strong> Central banks influence the money supply, interest rates and economic activity. Adjusting policy rates and conducting open market operations are examples of tools used to manage inflationary pressure.</li>
+<li><strong>Interest-rate policy:</strong> A central bank may raise its policy interest rate to cool an overheating economy. Higher borrowing costs can reduce borrowing, spending and investment, easing demand pressure.</li>
+<li><strong>Open market operations:</strong> Central banks buy or sell government securities. Selling securities withdraws money from the financial system, tends to raise interest rates and can curb inflation. Buying securities has the opposite effect.</li>
+<li><strong>Quantitative tightening (QT):</strong> A central bank reduces the size of its balance sheet, for example by selling assets. This can absorb excess liquidity from the financial system.</li>
+<li><strong>Forward guidance:</strong> The central bank communicates its future policy intentions. Clear communication about its commitment to controlling inflation can influence expectations among the public and financial markets.</li>
+<li><strong>Coordination with fiscal policy:</strong> Monetary policy can be complemented by government taxation and spending decisions. The lecture presents coordination between fiscal and monetary policy as a way to pursue price stability.</li>
+<li><strong>Inflation forecasting:</strong> Central banks analyse economic indicators and inflation expectations to assess future price pressures and make informed policy decisions.</li>
+<li><strong>Exchange-rate policies:</strong> A stronger domestic currency can reduce the domestic cost of imported goods, potentially lowering imported inflation. The lecture notes that exchange-rate policies may be used to influence inflation.</li>
+<li><strong>Supply-side policies:</strong> Improving productivity, removing regulatory bottlenecks and enhancing competition can address root causes of rising production costs and help reduce cost-push inflation.</li>
+</ul>
+<div class="callout"><strong>Remember the direction of open market operations:</strong> Selling securities → less money/liquidity in the system → upward pressure on interest rates → reduced inflationary pressure. Buying securities generally works in the opposite direction.</div>
+<h3>3. Taxation as a fiscal-policy response</h3>
+<p>The lecture's answer to its mid-lesson question explains three channels through which taxation can help address inflation:</p>
+<ul>
+<li><strong>Reducing disposable income:</strong> Higher personal taxes reduce the disposable income available to households. Lower disposable income can reduce consumer spending and cool excessive demand.</li>
+<li><strong>Supply-side tax policies:</strong> Lower corporate taxes or tax incentives for businesses may improve efficiency and productivity. Stronger productive capacity can help an economy meet demand without generating as much inflationary pressure.</li>
+<li><strong>Budget surpluses:</strong> Higher tax revenue can contribute to a budget surplus. The surplus may be used to pay down debt or fund infrastructure, supporting fiscal discipline and reducing inflationary pressure.</li>
+</ul>
+<h3>4. Why inflation varies across countries</h3>
+<p>Inflation occurs in countries around the world, but it does not occur at the same rate or intensity. The lecture groups the explanations into economic conditions, policy choices, exchange rates, supply-and-demand dynamics and demographic factors.</p>
+<ul>
+<li><strong>Economic conditions:</strong> Strong economic growth can increase demand for goods and services and create inflationary pressure.</li>
+<li><strong>Monetary policy:</strong> Differences in interest rates, money-supply growth and other central-bank tools can produce different inflation outcomes.</li>
+<li><strong>Fiscal policy:</strong> Government spending and taxation affect aggregate demand. Excessive government spending may add to inflationary pressure.</li>
+<li><strong>Exchange rates:</strong> A depreciating currency can make imported goods more expensive, particularly in countries that are net importers.</li>
+<li><strong>Supply shocks:</strong> Natural disasters, geopolitical events and production-chain disruptions can reduce supply and push prices upward.</li>
+<li><strong>Demand changes:</strong> Differences in consumer and business spending patterns influence total demand and price levels.</li>
+<li><strong>Population growth:</strong> Different population growth rates can change demand for goods and services.</li>
+<li><strong>Age structure:</strong> The age composition of a population can affect consumption patterns and economic activity.</li>
+</ul>
+<h3>5. Comparing selected economies: what the lecture charts show</h3>
+<p><strong>Chart on page 12–13:</strong> The lecture compares the GDP-deflator inflation rates of Nigeria, South Africa, the United Kingdom and the United States over 2010–2020. It describes Nigeria as having the highest inflation rate among the four for much of the period, although Nigeria's rate was below South Africa's between 2013 and 2015. The United States had the lowest rate in 2020, while the United Kingdom had the lowest rate for most of 2010–2019.</p>
+<div class="callout"><strong>Important chart detail:</strong> The comparison uses the GDP deflator and the period 2010–2020. Do not treat the historical chart as current inflation data.</div>
+<h3>6. Quick revision points</h3>
+<ul><li>Inflation reduces the purchasing power of money when prices rise.</li><li>Central banks may use interest rates, open market operations, quantitative tightening, forward guidance and forecasting.</li><li>Fiscal policy can complement monetary policy through taxation and government spending.</li><li>Exchange rates, supply shocks, demand changes, economic conditions and demographics help explain cross-country differences.</li></ul>
+<h3>7. Lecture questions to practise</h3>
+<p><strong>Why is it necessary to tackle inflation?</strong> A strong answer should cover consumer confidence and price stability, protecting purchasing power, and interest-rate stability.</p>
+<p><strong>Discuss taxation as a fiscal-policy tool against inflation.</strong> Explain how higher taxes can reduce disposable income and consumption, how supply-side tax incentives may improve productive capacity, and how budget surpluses can support fiscal discipline.</p>
+</article>
+
+<article class="summary-week searchable">
+<h2>Week 6: Computing Unemployment Rates and Addressing Unemployment</h2>
+<p><span class="tag">Labour force</span><span class="tag">Unemployment rate</span><span class="tag">Labour-force ratio</span><span class="tag">Employment policy</span></p>
+<p><strong>Learning objectives:</strong> Explain the labour force; interpret the labour-force–population ratio; compute the unemployment rate; and discuss techniques for addressing unemployment.</p>
+<h3>1. Why unemployment matters</h3>
+<p>Unemployment is an important economic indicator because it reflects the condition of a country's labour market. It affects individual livelihoods and has wider implications for economic well-being. A country's unemployment figures help show how effectively its available workforce is being used.</p>
+<h3>2. Meaning of the labour force</h3>
+<p>The labour force, also called the workforce, is the total number of people who are either employed or actively seeking employment in a particular country, region or economic sector. It is one of the factor inputs owned by households and is central to labour-market analysis.</p>
+<div class="formula-box">Labour Force = Number of Employed Individuals + Number of Unemployed Individuals</div>
+<p>The labour force is divided into two main groups:</p>
+<ul>
+<li><strong>Employed individuals:</strong> People who have jobs and are currently working, part-time or full-time, for pay or profit. The lecture also includes people temporarily absent from work because of illness, vacation or personal obligations.</li>
+<li><strong>Unemployed individuals:</strong> People without jobs who are available for work and actively seeking employment. Examples of active job search include submitting applications, attending interviews and registering with employment agencies.</li>
+</ul>
+<div class="callout"><strong>Classification matters:</strong> A person without a job is not automatically counted as unemployed under the lecture's definition. They must also be available for work and actively seeking employment.</div>
+<p>The lecture notes that retirees, students and people with disabilities may not be part of the labour force if they are not actively seeking employment. It also notes that discouraged workers who have stopped looking for work may not be included in official labour-force figures.</p>
+<h3>3. Labour-force–population ratio</h3>
+<p>This ratio expresses the labour force as a percentage of the working-age population. It helps assess the level of economic activity and the extent to which the available working-age population is employed or actively seeking work.</p>
+<div class="formula-box">Labour-force–population ratio = (Labour Force ÷ Working-age Population) × 100</div>
+<p><strong>Interpretation:</strong> If the ratio is 60%, it means that 60% of the working-age population is in the labour force — either employed or actively seeking employment. It does not mean that 60% are employed, because unemployed job-seekers are also included in the labour force.</p>
+<h3>4. Computing the unemployment rate</h3>
+<p>The unemployment rate measures the percentage of the labour force that is unemployed. The denominator is the labour force, not the total population and not only the employed population.</p>
+<div class="formula-box">Unemployment Rate = (Number of Unemployed ÷ Labour Force) × 100%</div>
+<h4>Worked example from the lecture</h4>
+<p>A country has a labour force of 150 million people, of whom 10 million are unemployed.</p>
+<ol>
+<li>Identify unemployed people = 10 million.</li>
+<li>Identify the labour force = 150 million.</li>
+<li>Divide: 10 ÷ 150 = 0.0667 (approximately).</li>
+<li>Convert to a percentage: 0.0667 × 100 = <strong>6.67%</strong>.</li>
+</ol>
+<div class="callout"><strong>Common mistake:</strong> Do not divide unemployed people by the total population when calculating the unemployment rate. Use the labour force as the denominator.</div>
+<h3>5. Techniques for addressing unemployment</h3>
+<p>The lecture emphasises a combination of short-term interventions and long-term strategies. Governments, businesses, educational institutions and communities all have roles to play.</p>
+<ul>
+<li><strong>Invest in education and skill development:</strong> Equip people with skills needed in changing industries. Cooperation between schools and industry can help make training relevant to labour-market demand.</li>
+<li><strong>Promote entrepreneurship:</strong> Support people who want to start businesses through resources, financial incentives and a favourable business environment. New businesses can create employment opportunities.</li>
+<li><strong>Labour-market flexibility:</strong> Enable businesses to adapt to changing economic conditions while balancing the needs of employers and employees.</li>
+<li><strong>Government policies and stimulus:</strong> Fiscal and monetary policies can stimulate economic activity. Infrastructure projects, tax incentives and targeted stimulus packages can create jobs and increase economic activity.</li>
+<li><strong>Workforce training and reskilling:</strong> Provide training that helps workers adapt to new industries and technologies and remain competitive.</li>
+<li><strong>Community-development initiatives:</strong> Design employment initiatives around the specific needs and challenges of local economies and regions.</li>
+<li><strong>Monitoring and evaluation:</strong> Regularly assess whether unemployment-reduction programmes are working. Use evidence to adjust policies as conditions change.</li>
+<li><strong>Social safety nets:</strong> Provide financial support, unemployment benefits, job-placement services and help for people returning to work after job loss.</li>
+</ul>
+<h3>6. Quick revision points</h3>
+<ul><li>Labour force = employed + unemployed active job-seekers.</li><li>Unemployed people must be available for work and actively seeking it.</li><li>Unemployment rate uses the labour force as its denominator.</li><li>The labour-force–population ratio uses the working-age population as its denominator.</li><li>Education, entrepreneurship, flexibility, stimulus, reskilling, community initiatives, evaluation and safety nets are approaches identified in the lecture.</li></ul>
+<h3>7. Worked interpretation practice</h3>
+<p>If a working-age population is 500,000 and the labour force is 300,000, the labour-force–population ratio is (300,000 ÷ 500,000) × 100 = 60%. This is an illustrative calculation applying the lecture's formula.</p>
+</article>
+
+<article class="summary-week searchable">
+<h2>Week 7: Types of Taxation and Taxes Across Selected Countries</h2>
+<p><span class="tag">Regressive tax</span><span class="tag">Progressive tax</span><span class="tag">Proportional tax</span><span class="tag">Tax revenue</span></p>
+<p><strong>Learning objectives:</strong> Explain regressive, progressive and proportional taxation; explain why tax income varies across countries; and analyse tax variations across countries.</p>
+<h3>1. Meaning of taxation and tax base</h3>
+<p>Taxation is the process of collecting money from individuals and businesses to finance government spending. Tax revenue supports public goods and services such as education, healthcare, infrastructure and national defence.</p>
+<p>A <strong>tax base</strong> is the income on which a tax is imposed. The lecture stresses that government must understand what is being taxed in order to administer a tax appropriately. Countries differ in both the level of taxation and the types of taxes imposed.</p>
+<h3>2. The three main tax structures</h3>
+<h4>Regressive tax</h4>
+<p>A regressive tax affects low-income earners more heavily than higher-income earners. The tax rate decreases as the tax base increases; there is an inverse relationship between the tax rate and the taxpayer's ability to pay. The lecture gives poll tax, lump-sum tax and Pigovian taxes as examples.</p>
+<p><strong>How to read the diagram (page 5):</strong> The plotted tax rate falls as the tax base/income rises. A lower-income taxpayer therefore faces a higher rate than a higher-income taxpayer in the regressive illustration.</p>
+<h4>Progressive tax</h4>
+<p>A progressive tax is structured according to taxpayers' ability to pay. The tax burden is lower for low-income earners and higher for richer taxpayers; the tax rate increases as income rises. The lecture describes income brackets or thresholds, where different rates apply to different income levels. Examples listed in the lecture include capital-gains tax, luxury sales tax and estate tax.</p>
+<p><strong>How to read the diagram (page 7):</strong> The tax-rate curve rises as the tax base increases, illustrating that a higher income level is associated with a higher tax rate.</p>
+<h4>Proportional tax</h4>
+<p>A proportional tax applies the same tax rate to all income groups. The amount paid in money can differ because incomes differ, but the percentage rate remains constant. The lecture notes that the burden may be heavier on poorer households because they tend to spend a higher fraction of income on consumables — described as a higher marginal propensity to consume.</p>
+<p><strong>How to read the diagram (page 9):</strong> The tax rate is shown as a horizontal line: the tax base changes, but the rate remains constant.</p>
+<div class="table-wrap"><table><thead><tr><th>Tax structure</th><th>How the rate behaves as income rises</th><th>Who faces the higher rate?</th></tr></thead><tbody>
+<tr><td>Regressive</td><td>Falls</td><td>Lower-income earners</td></tr><tr><td>Progressive</td><td>Rises</td><td>Higher-income earners</td></tr><tr><td>Proportional</td><td>Remains constant</td><td>Same percentage for all income groups</td></tr>
+</tbody></table></div>
+<h3>3. Forms of tax by tax base</h3>
+<ul>
+<li><strong>Income tax:</strong> Tax on financial income earned by labour.</li>
+<li><strong>Corporate tax:</strong> Tax on financial income earned by business units.</li>
+<li><strong>Capital-gains tax:</strong> Tax imposed on profits from financial or physical assets.</li>
+<li><strong>Property tax:</strong> Tax imposed on the value of properties.</li>
+<li><strong>Inheritance tax:</strong> Tax imposed on bequeathed properties or valuables.</li>
+<li><strong>Sales tax:</strong> A consumption tax on the sale of goods and/or services, typically collected at the point of sale by the seller and passed to government.</li>
+<li><strong>Value-added tax (VAT):</strong> A tax on the value added to goods and services at each stage of production and distribution. The lecture notes that VAT is used in Europe and elsewhere, including Nigeria.</li>
+</ul>
+<h3>4. Why tax income varies across countries</h3>
+<p>Even countries with similar national income or tax bases may generate different tax income. The lecture identifies several reasons:</p>
+<ul>
+<li><strong>Tax base / national income level:</strong> The amount of income or activity available to be taxed influences potential revenue.</li>
+<li><strong>Efficiency of tax administration:</strong> The ability to assess, collect and manage taxes affects how much revenue is realised.</li>
+<li><strong>Tax evasion:</strong> Evasion reduces the revenue actually collected.</li>
+<li><strong>Judicial structure and penalties:</strong> The ability of the judiciary to penalise tax evaders can influence compliance.</li>
+<li><strong>Tax-compliance policies:</strong> Rules and administrative practices that support compliance affect collections.</li>
+<li><strong>Country-specific differences:</strong> The lecture notes that observed and unobserved differences between countries can produce different revenue outcomes even when national income levels are similar.</li>
+</ul>
+<h3>5. Comparing selected countries: what the lecture charts show</h3>
+<p><strong>Graph A (pages 15–17):</strong> This chart presents tax income after deduction of product subsidies. The lecture observes Nigeria's blue line as the highest and the United Kingdom's orange line as the lowest among the displayed countries. It warns that this does not necessarily prove that Nigeria has the highest net tax performance or that the UK has the lowest tax income: differences in subsidy spending and the number of subsidised products are not fully revealed by the chart.</p>
+<p><strong>Graph B (pages 18–19):</strong> This chart compares tax revenue as a ratio of GDP for Nigeria, South Africa, the United States and the United Kingdom. The lecture describes Nigeria's tax-to-GDP ratio as declining from 2011 through 2020. The United States is described as relatively constant, with an increase in later years. The United Kingdom and South Africa are described as increasing over the period and having ratios higher than Nigeria and the United States.</p>
+<div class="callout"><strong>How to interpret carefully:</strong> The lecture cautions that the charts do not reveal every factor behind tax revenue or subsidies. A chart can show a trend, but it may not be sufficient on its own to prove why the trend occurred.</div>
+<h3>6. Quick revision points</h3>
+<ul><li>Regressive: rate falls as income rises; lower-income earners face the higher rate.</li><li>Progressive: rate rises as income rises; higher-income earners face the higher rate.</li><li>Proportional: the same percentage rate applies to every income group.</li><li>Tax income varies with the tax base, administration, evasion, judicial enforcement and compliance policies.</li><li>Tax-to-GDP compares tax revenue with the size of the economy.</li></ul>
+</article>
+
+<article class="summary-week searchable">
+<h2>Week 9: Money and Central Banks</h2>
+<p><span class="tag">Central banking</span><span class="tag">CBN</span><span class="tag">Monetary policy</span><span class="tag">Money supply</span></p>
+<p><strong>Learning objectives:</strong> Explore the history and evolution of central banking; discuss the roles and functions of the Central Bank; and highlight the relationship between money and central banks.</p>
+<h3>1. History and evolution of central banking</h3>
+<p>The lecture traces the origin of central banking to the 17th century. Sveriges Riksbank in Sweden was established in 1668 and is described in the lecture as the world's first central bank. Other central banks later followed in England, France and other European countries.</p>
+<p>Nigeria's central-banking history is linked to its colonial past. Before independence, the West African Currency Board served as the monetary authority. The need for a more centralised and independent monetary institution led to the establishment of the Central Bank of Nigeria.</p>
+<h3>2. Key milestones of the Central Bank of Nigeria</h3>
+<ul>
+<li><strong>Establishment:</strong> The CBN was established in 1958 as Nigeria's central monetary authority.</li>
+<li><strong>Commencement of operations:</strong> It became fully operational on 1 July 1959 and assumed the functions of the West African Currency Board.</li>
+<li><strong>Currency issuance and control:</strong> It took control of currency issuance to support the stability and integrity of the Nigerian naira.</li>
+<li><strong>Monetary-policy implementation:</strong> It has played a role in formulating and implementing monetary policy to pursue economic stability.</li>
+<li><strong>Bank supervision and regulation:</strong> It supervises and regulates the Nigerian banking sector to support the soundness of financial institutions.</li>
+<li><strong>Foreign-exchange management:</strong> It manages foreign-exchange reserves and participates in the foreign-exchange market.</li>
+<li><strong>Adaptation to economic changes:</strong> Its policies have responded to challenges such as inflation, exchange-rate fluctuations and economic downturns.</li>
+<li><strong>Innovation and technology:</strong> The lecture notes the CBN's adoption of technological innovations, including digital-currency initiatives, to improve financial-system efficiency.</li>
+</ul>
+<h3>3. Roles and functions of a central bank</h3>
+<p>Central banks oversee a country's monetary system and implement monetary policy. The lecture describes them as the government's bank and the bankers' bank, with an important role in maintaining economic stability.</p>
+<ul>
+<li><strong>Monetary-policy formulation:</strong> Formulates and implements policy to pursue objectives such as price stability, full employment and economic growth. Tools mentioned include interest rates, open market operations and reserve requirements.</li>
+<li><strong>Currency issuance:</strong> Has the exclusive authority to issue and manage the national currency and ensure an adequate currency supply for the economy.</li>
+<li><strong>Banker to the government:</strong> Manages government accounts, handles transactions and facilitates government borrowing when necessary.</li>
+<li><strong>Banker's bank / lender of last resort:</strong> Provides emergency funding to financial institutions during crises, helping support banking-system stability.</li>
+<li><strong>Custodian of foreign-exchange reserves:</strong> Manages a country's foreign-exchange reserves and may participate in foreign-exchange markets to help stabilise the currency's value.</li>
+<li><strong>Regulation and supervision:</strong> Regulates and supervises financial institutions to protect the stability and integrity of the banking system.</li>
+<li><strong>Payment-systems oversight:</strong> Oversees payment systems so financial transactions can be secure and efficient.</li>
+</ul>
+<h3>4. Money and central banks</h3>
+<p>The lecture explains that the development of money and the central-banking system are connected. The money market — described in the lecture as the market for local currency — is primarily influenced by a cost: the interest rate.</p>
+<p>A central bank is a financial institution with the privilege of controlling the production and distribution of money and credit in an economy. The lecture describes central banks as politically independent and non-market-based.</p>
+<p>However, the central bank should not be confused with the money market itself. It is the monetary authority, but money-market outcomes depend on many market factors. The lecture distinguishes a central bank from other banks through its legal monopoly over issuing banknotes and its authority to regulate commercial banks.</p>
+<div class="callout"><strong>Key distinction:</strong> A commercial bank provides banking services to households and businesses. A central bank is the monetary authority: it issues currency, formulates monetary policy and supervises the banking system.</div>
+<h3>5. Quick revision timeline</h3>
+<ul><li><strong>1668:</strong> Sveriges Riksbank established in Sweden, identified by the lecture as the first central bank.</li><li><strong>Before Nigerian independence:</strong> West African Currency Board served as the monetary authority.</li><li><strong>1958:</strong> Central Bank of Nigeria established.</li><li><strong>1 July 1959:</strong> CBN became fully operational and assumed the functions of the West African Currency Board.</li></ul>
+<h3>6. Quick revision points</h3>
+<ul><li>Central banks oversee the monetary system and implement monetary policy.</li><li>The CBN is Nigeria's central monetary authority.</li><li>Central banks issue currency, act as the government's bank and bankers' bank, manage reserves, supervise financial institutions and oversee payment systems.</li><li>The central bank is not the money market itself; market outcomes are influenced by wider market factors.</li></ul>
+</article>
+</div>
+</section>
+
+<section id="quizTab" class="view-section">
+<div class="panel">
+<h2>Quiz & Mastery</h2>
+<p class="muted">There are 30 mixed questions across the four uploaded weeks and a separate 10-question set for each week. Each question includes feedback after you submit.</p>
+<div class="progress-grid" id="progressGrid"></div>
+<div class="controls"><label for="quizMode"><strong>Choose a quiz:</strong></label><select id="quizMode" onchange="startQuiz(this.value)"><option value="mixed">Mixed revision — 30 questions</option><option value="5">Week 5 — Inflation (10 questions)</option><option value="6">Week 6 — Unemployment (10 questions)</option><option value="7">Week 7 — Taxation (10 questions)</option><option value="9">Week 9 — Money & Central Banks (10 questions)</option></select><button class="action-btn" onclick="startQuiz()">Generate Quiz</button><button class="secondary-btn" onclick="retryMissed()">Retry missed</button></div>
+<div id="quizContainer"></div>
+</div>
+</section>
+
+<section id="matchingTab" class="view-section">
+<div class="panel"><h2>Matching Game</h2><p>Match each economic term with its correct meaning. Select one card from each column.</p><div class="controls"><button class="action-btn" onclick="resetMatchingGame()">New / Reset Game</button><span class="score-board" id="matchingScore">Matches found: 0 / 10</span></div><p id="matchingFeedback" class="muted"></p><div class="matching-container"><div class="match-column" id="leftCol"></div><div class="match-column" id="rightCol"></div></div></div>
+</section>
+
+<section id="solverTab" class="view-section">
+<div class="solver-panel">
+<h2>Interactive Economics Calculator</h2><p class="muted">Choose a calculation connected to the lecture material. Enter values to see the formula, working and result.</p>
+<div class="controls"><label for="calcType"><strong>Calculator:</strong></label><select id="calcType" onchange="renderCalc()"><option value="unemployment">Unemployment rate</option><option value="labour">Labour-force–population ratio</option><option value="tax">Tax amount and effective rate</option><option value="inflation">Percentage change in price level</option></select></div>
+<div id="calcInputs" class="calc-grid"></div><button class="action-btn" style="margin-top:14px" onclick="calculate()">Calculate</button><div id="calcResult" class="result" aria-live="polite">Choose a calculator and enter the required values.</div>
+</div>
+</section>
+
+<section id="flashcardsTab" class="view-section">
+<div class="panel"><h2>Flashcards</h2><p class="muted">Tap the card to reveal the definition or explanation, then rate how well you know it.</p><div class="flashcard-wrapper"><div class="flashcard" id="flashcard" onclick="flipCard()"><div class="card-label" id="fcLabel">CONCEPT • TAP TO FLIP</div><div class="card-content" id="fcContent">Press Next Card to begin.</div></div></div><div class="flashcard-controls"><button class="secondary-btn" onclick="rateCard('hard')">🔴 Hard</button><button class="secondary-btn" onclick="rateCard('medium')">🟡 Getting there</button><button class="secondary-btn" onclick="rateCard('easy')">🟢 Easy</button><button class="action-btn" onclick="nextCard()">Next Card →</button></div><p id="fcProgress" class="muted" style="text-align:center"></p></div>
+</section>
+<div class="footer">ECO 102 • Principles of Economics II • Revision material based on the uploaded Miva lecture PDFs for Weeks 5, 6, 7 and 9. Week 8 is intentionally not included.</div>
+</div>
+<script>
+function toggleTheme() {
+    const root = document.documentElement;
+    const button = document.getElementById('themeBtn');
+    const isDark = root.dataset.theme === 'dark';
+
+    if (isDark) {
+        root.removeAttribute('data-theme');
+        button.textContent = '🌙 Night Mode';
+        button.setAttribute('aria-label', 'Switch to night mode');
+    } else {
+        root.dataset.theme = 'dark';
+        button.textContent = '☀️ Light Mode';
+        button.setAttribute('aria-label', 'Switch to light mode');
+    }
+}
+window.toggleTheme = toggleTheme;
+
+function switchTab(n) {
+    const names = ['summaries', 'quiz', 'matching', 'solver', 'flashcards'];
+    document.querySelectorAll('.tab-btn').forEach((button, index) => {
+        button.classList.toggle('active', names[index] === n);
+    });
+    document.querySelectorAll('.view-section').forEach(section => section.classList.remove('active'));
+    const target = document.getElementById(n + 'Tab');
+    if (target) target.classList.add('active');
+    if (n === 'matching') resetMatchingGame();
+    if (n === 'solver') renderCalc();
+    if (n === 'flashcards') loadFlashcard();
+}
+window.switchTab = switchTab;
+
+function filterSummaries(){let q=document.getElementById('summarySearch').value.toLowerCase();document.querySelectorAll('.searchable').forEach(e=>e.style.display=e.innerText.toLowerCase().includes(q)?'block':'none')}
+const questions=[
+{w:5,q:"According to the lecture, inflation is best described as:",o:["A fall in the general price level","The rate of increase in prices of goods and services over time","An increase in one product's price only","A fall in the money supply"],a:1,e:"The lecture defines inflation as the rate of increase in the prices of goods and services over time."},
+{w:5,q:"Which is a possible consequence of high and unpredictable inflation?",o:["Higher purchasing power","Greater price certainty","Erosion of purchasing power","Guaranteed investment growth"],a:2,e:"When prices rise, a given amount of money buys fewer goods and services."},
+{w:5,q:"A central bank raises its policy interest rate to cool an overheating economy. What is the expected effect?",o:["Borrowing becomes cheaper","Borrowing becomes more expensive and spending may fall","Money supply must increase","Imports become free"],a:1,e:"Higher interest rates make borrowing more expensive and can reduce spending and investment."},
+{w:5,q:"When a central bank sells government securities in open market operations, the lecture says this:",o:["Increases money supply","Reduces money supply and can raise interest rates","Has no possible effect on liquidity","Always increases imports"],a:1,e:"Selling securities withdraws money from the system and can raise interest rates."},
+{w:5,q:"Quantitative tightening involves:",o:["Increasing the central-bank balance sheet by buying assets","Reducing the size of the central-bank balance sheet by selling assets","Reducing all taxes to zero","Fixing wages"],a:1,e:"The lecture describes QT as reducing the balance sheet, for example by selling assets."},
+{w:5,q:"What is forward guidance?",o:["A tax paid in advance","Communication about future central-bank policy intentions","A method of measuring unemployment","A type of sales tax"],a:1,e:"Forward guidance communicates the central bank's future policy intentions and can shape expectations."},
+{w:5,q:"A stronger domestic currency may reduce inflation because it can:",o:["Raise import prices","Lower import prices","Increase the cost of all local goods automatically","Eliminate demand"],a:1,e:"The lecture notes that a stronger domestic currency can lower import prices."},
+{w:5,q:"Which of these is identified as a demographic factor influencing inflation?",o:["Age structure","Court penalties","Tax filing forms","Banknote design"],a:0,e:"Population growth and age structure can influence demand and consumption patterns."},
+{w:5,q:"The lecture's historical comparison of inflation rates uses which measure?",o:["Unemployment rate","GDP deflator","Tax-to-GDP ratio","Labour-force ratio"],a:1,e:"The lecture states that inflation in its comparison is measured by the GDP deflator."},
+{w:5,q:"How can higher personal income taxes help combat demand-driven inflation?",o:["By increasing disposable income","By reducing household disposable income and consumption","By increasing imports","By removing the central bank"],a:1,e:"Higher personal taxes can reduce disposable income and cool excessive consumer demand."},
+{w:6,q:"The labour force consists of:",o:["Only people with full-time jobs","Employed people plus unemployed people actively seeking work","Every resident including retirees","Only people receiving unemployment benefits"],a:1,e:"The labour force is the total number employed plus unemployed active job-seekers."},
+{w:6,q:"Which person fits the lecture's definition of unemployed?",o:["A person without a job who is available and actively applying for jobs","A retiree not seeking work","A student not seeking employment","A person on annual leave"],a:0,e:"A person must have no job, be available for work and actively seek employment."},
+{w:6,q:"Which person is counted as employed in the lecture?",o:["Someone temporarily absent due to illness from their job","Someone who has never sought work","A retiree","A person unavailable for work"],a:0,e:"The lecture includes people temporarily absent from work due to illness, vacation or personal obligations."},
+{w:6,q:"The formula for labour force is:",o:["Employed − unemployed","Employed + unemployed","Population − employed","Unemployed ÷ population"],a:1,e:"Labour force = number employed + number unemployed."},
+{w:6,q:"The labour-force–population ratio uses which denominator?",o:["Total exports","Working-age population","Number of unemployed","Government spending"],a:1,e:"The ratio divides the labour force by the working-age population and multiplies by 100."},
+{w:6,q:"A country has a labour force of 150 million and 10 million unemployed. What is the unemployment rate?",o:["15%","10%","6.67%","1.5%"],a:2,e:"(10 ÷ 150) × 100 = approximately 6.67%."},
+{w:6,q:"Why might discouraged workers not appear in official labour-force figures?",o:["They are always employed","They have stopped actively seeking employment","They work part-time","They are business owners"],a:1,e:"The lecture notes that discouraged workers who have given up looking may not be counted in the labour force."},
+{w:6,q:"If labour force is 300,000 and working-age population is 500,000, the labour-force–population ratio is:",o:["40%","50%","60%","80%"],a:2,e:"(300,000 ÷ 500,000) × 100 = 60%."},
+{w:6,q:"Which policy approach can create jobs by supporting new business ventures?",o:["Promoting entrepreneurship","Discouraging skills development","Stopping infrastructure projects","Removing job placement services"],a:0,e:"The lecture recommends supporting entrepreneurship because new ventures can contribute to job creation."},
+{w:6,q:"Which measure is a social safety net mentioned in the lecture?",o:["Unemployment benefits and job-placement services","A higher exchange rate only","Open market sales","Inheritance tax"],a:0,e:"The lecture mentions unemployment benefits, job placement and support for reintegration into work."},
+{w:7,q:"A regressive tax is one in which the tax rate:",o:["Rises as income rises","Falls as the tax base increases","Remains the same for everyone","Is always zero"],a:1,e:"The lecture defines a regressive tax as having a decreasing rate as the tax base increases."},
+{w:7,q:"A progressive tax:",o:["Applies one fixed rate to everyone","Has a rate that increases as income rises","Has a rate that decreases as income rises","Is collected only on imports"],a:1,e:"Progressive taxation increases the tax rate as taxable income increases."},
+{w:7,q:"A proportional tax is characterised by:",o:["A constant tax rate across income groups","A falling tax rate","A rising tax rate","No tax base"],a:0,e:"The same percentage rate applies to all income groups."},
+{w:7,q:"Which tax structure places a higher tax rate on lower-income earners?",o:["Progressive","Proportional","Regressive","None"],a:2,e:"Regressive taxation has a higher rate for lower-income earners."},
+{w:7,q:"The lecture defines a tax base as:",o:["The amount spent on roads","The income on which a tax is imposed","The total population","The rate of inflation"],a:1,e:"A tax base is the income on which a tax is incident."},
+{w:7,q:"Which is a consumption tax collected at the point of sale?",o:["Sales tax","Inheritance tax","Property tax","Capital-gains tax"],a:0,e:"Sales tax is imposed on the sale of goods or services and is typically collected at point of sale."},
+{w:7,q:"VAT is described in the lecture as a tax on:",o:["Only wages","Value added at each stage of production and distribution","Only inherited property","The number of workers"],a:1,e:"VAT taxes value added to goods and services through production and distribution."},
+{w:7,q:"Which factor can reduce actual tax revenue collected?",o:["Tax evasion","Efficient administration","Compliance","Effective enforcement"],a:0,e:"Tax evasion reduces the amount of tax revenue actually collected."},
+{w:7,q:"In Graph B, the lecture describes Nigeria's tax-to-GDP ratio from 2011 to 2020 as:",o:["Consistently increasing","Declining","Exactly constant","Always zero"],a:1,e:"The lecture describes a decline in Nigeria's tax revenue as a ratio of GDP over that period."},
+{w:7,q:"Why does the lecture warn against drawing absolute conclusions from Graph A?",o:["It contains no countries","Subsidy details and other factors are not fully revealed","It measures unemployment","It is a forecast"],a:1,e:"The graph does not reveal all details, including the number of subsidised products or full tax-revenue context."},
+{w:9,q:"Which institution is identified in the lecture as the world's first central bank?",o:["Central Bank of Nigeria","Sveriges Riksbank","Bank of England","West African Currency Board"],a:1,e:"The lecture identifies Sveriges Riksbank, established in Sweden in 1668."},
+{w:9,q:"In what year was the Central Bank of Nigeria established?",o:["1668","1958","1959","1960"],a:1,e:"The CBN was established in 1958."},
+{w:9,q:"When did the CBN become fully operational?",o:["1 July 1959","1 January 1958","1 October 1960","31 December 1965"],a:0,e:"The lecture states that it became fully operational on 1 July 1959."},
+{w:9,q:"What monetary authority did Nigeria use before the CBN?",o:["Sveriges Riksbank","West African Currency Board","Federal Reserve","Commercial Banks Association"],a:1,e:"Before independence, Nigeria used the West African Currency Board as its monetary authority."},
+{w:9,q:"Which role describes the central bank providing emergency funding to financial institutions?",o:["Tax collector","Lender of last resort","Retail merchant","Insurance broker"],a:1,e:"The central bank acts as the bankers' bank and lender of last resort."},
+{w:9,q:"Which is a central-bank function listed in the lecture?",o:["Issuing the national currency","Setting every shop's prices","Owning all private businesses","Employing every job-seeker"],a:0,e:"Central banks have the exclusive authority to issue and manage national currency."},
+{w:9,q:"The central bank acts as banker to the government by:",o:["Managing government accounts and transactions","Selling household groceries","Issuing private company shares","Hiring all civil servants"],a:0,e:"The lecture describes managing government accounts, handling transactions and facilitating borrowing."},
+{w:9,q:"Which function concerns managing a country's foreign-exchange reserves?",o:["Custodian of foreign-exchange reserves","Labour-market flexibility","Inheritance taxation","Community development"],a:0,e:"Central banks manage foreign-exchange reserves and may participate in foreign-exchange markets."},
+{w:9,q:"The lecture says the money market for local currency is primarily ruled by which cost?",o:["Rent","Interest rate","Property tax","Wage rate"],a:1,e:"The lecture identifies the interest rate as the primary cost in the money market."},
+{w:9,q:"Which statement best distinguishes a central bank from the money market?",o:["The central bank is the market itself","The central bank is the monetary authority; market outcomes depend on many factors","The central bank only sells goods","The money market issues all banknotes"],a:1,e:"The lecture cautions that the central bank is not the money market; it is the monetary authority."}
+];
+let currentQuiz=[],missedQuestions=[],answers={};
+function shuffle(a){return [...a].sort(()=>Math.random()-.5)}
+function startQuiz(mode){let m=mode||document.getElementById('quizMode').value;currentQuiz=m==='mixed'?shuffle(questions).slice(0,30):questions.filter(q=>q.w===Number(m));answers={};renderQuiz();document.getElementById('quizContainer').scrollIntoView({behavior:'smooth',block:'start'})}
+function renderQuiz(){let c=document.getElementById('quizContainer');c.innerHTML='';currentQuiz.forEach((q,i)=>{let box=document.createElement('div');box.className='question';box.innerHTML=`<div class="small">Question ${i+1} • Week ${q.w}</div><p>${q.q}</p>${q.o.map((o,j)=>`<label class="option"><input type="radio" name="q${i}" value="${j}"> ${String.fromCharCode(65+j)}. ${o}</label>`).join('')}<div class="feedback" id="fb${i}"></div>`;c.appendChild(box)});let b=document.createElement('button');b.className='action-btn';b.textContent='Submit answers';b.onclick=gradeQuiz;c.appendChild(b);let score=document.createElement('div');score.id='quizScore';score.className='score-board';score.style.marginTop='15px';c.appendChild(score)}
+function gradeQuiz(){let correct=0;missedQuestions=[];currentQuiz.forEach((q,i)=>{let chosen=document.querySelector(`input[name="q${i}"]:checked`);let fb=document.getElementById('fb'+i);let val=chosen?Number(chosen.value):-1;if(val===q.a){correct++;fb.className='feedback correct';fb.innerHTML='Correct. '+q.e}else{missedQuestions.push(q);fb.className='feedback incorrect';fb.innerHTML=`Not quite. Correct answer: ${String.fromCharCode(65+q.a)}. ${q.o[q.a]}. ${q.e}`}});document.getElementById('quizScore').textContent=`Your score: ${correct} / ${currentQuiz.length} (${Math.round(correct/currentQuiz.length*100)}%)`;updateProgress()}
+function retryMissed(){if(!missedQuestions.length){alert('There are no missed questions yet. Complete a quiz first.');return}currentQuiz=shuffle(missedQuestions);answers={};renderQuiz()}
+function updateProgress(){let g=document.getElementById('progressGrid');g.innerHTML=[5,6,7,9].map(w=>{let n=questions.filter(q=>q.w===w).length;return `<div class="progress-card">Week ${w}<strong>${n} questions available</strong><span class="small">${({5:'Inflation',6:'Unemployment',7:'Taxation',9:'Money & Central Banks'})[w]}</span></div>`}).join('')}
+const pairs=[["Inflation","Rate of increase in prices over time"],["Labour force","Employed people plus unemployed active job-seekers"],["Unemployment rate","Unemployed ÷ labour force × 100"],["Progressive tax","Tax rate rises as income rises"],["Regressive tax","Tax rate falls as income rises"],["Proportional tax","Same tax rate across income groups"],["Tax base","Income on which a tax is imposed"],["VAT","Tax on value added at stages of production/distribution"],["Forward guidance","Communication of future central-bank policy intentions"],["Lender of last resort","Emergency funding support to financial institutions"]];
+let matchLeft=null,matched=0;
+function resetMatchingGame() {
+    matched = 0;
+    matchLeft = null;
+    const feedback = document.getElementById('matchingFeedback');
+    const score = document.getElementById('matchingScore');
+    const leftColumn = document.getElementById('leftCol');
+    const rightColumn = document.getElementById('rightCol');
+
+    feedback.textContent = 'Select a term on the left, then choose its definition on the right.';
+    score.textContent = 'Matches found: 0 / 10';
+    leftColumn.innerHTML = '';
+    rightColumn.innerHTML = '';
+
+    const leftItems = shuffle(pairs.map((pair, id) => ({ text: pair[0], id })));
+    const rightItems = shuffle(pairs.map((pair, id) => ({ text: pair[1], id })));
+
+    leftItems.forEach(item => {
+        const button = document.createElement('button');
+        button.type = 'button';
+        button.className = 'match-card';
+        button.textContent = item.text;
+        button.dataset.id = item.id;
+        button.addEventListener('click', () => chooseMatch(button, 'left'));
+        leftColumn.appendChild(button);
+    });
+
+    rightItems.forEach(item => {
+        const button = document.createElement('button');
+        button.type = 'button';
+        button.className = 'match-card';
+        button.textContent = item.text;
+        button.dataset.id = item.id;
+        button.addEventListener('click', () => chooseMatch(button, 'right'));
+        rightColumn.appendChild(button);
+    });
+}
+
+function chooseMatch(button, side) {
+    const feedback = document.getElementById('matchingFeedback');
+    const score = document.getElementById('matchingScore');
+
+    if (button.classList.contains('matched')) return;
+
+    if (side === 'left') {
+        document.querySelectorAll('#leftCol .match-card').forEach(card => card.classList.remove('selected'));
+        button.classList.add('selected');
+        matchLeft = button;
+        feedback.textContent = 'Now select the definition that matches "' + button.textContent + '".';
+        return;
+    }
+
+    if (!matchLeft) {
+        feedback.textContent = 'Choose a term from the left column first.';
+        return;
+    }
+
+    if (matchLeft.dataset.id === button.dataset.id) {
+        matchLeft.classList.remove('selected');
+        matchLeft.classList.add('matched');
+        button.classList.add('matched');
+        matched += 1;
+        score.textContent = 'Matches found: ' + matched + ' / 10';
+        feedback.textContent = matched === 10
+            ? 'Excellent — all 10 pairs matched!'
+            : 'Correct match. Choose another term.';
+        matchLeft = null;
+    } else {
+        feedback.textContent = 'That definition does not match. Try again.';
+        button.classList.add('wrong');
+        window.setTimeout(() => button.classList.remove('wrong'), 500);
+    }
+}
+window.resetMatchingGame = resetMatchingGame;
+
+function renderCalc(){let t=document.getElementById('calcType').value;let fields={unemployment:[['unemployed','Number unemployed'],['labour','Labour force']],labour:[['labour','Labour force'],['working','Working-age population']],tax:[['income','Taxable income / base'],['rate','Tax rate (%)']],inflation:[['old','Original price index / price'],['new','New price index / price']]}[t];document.getElementById('calcInputs').innerHTML=fields.map(f=>`<div class="calc-field"><label for="${f[0]}">${f[1]}</label><input type="number" min="0" step="any" id="${f[0]}" placeholder="Enter value"></div>`).join('');document.getElementById('calcResult').textContent='Enter the values, then select Calculate.'}
+function calculate(){let t=document.getElementById('calcType').value,v=id=>Number(document.getElementById(id).value);let a,b,result,formula,steps;if(t==='unemployment'){a=v('unemployed');b=v('labour');if(!b||a>b||a<0)return document.getElementById('calcResult').textContent='Enter a valid labour force greater than zero and unemployed people not exceeding the labour force.';result=a/b*100;formula='(Unemployed ÷ Labour Force) × 100';steps=`(${a} ÷ ${b}) × 100 = ${result.toFixed(2)}%`}else if(t==='labour'){a=v('labour');b=v('working');if(!b||a>b||a<0)return document.getElementById('calcResult').textContent='Enter a valid working-age population greater than zero and labour force not exceeding it.';result=a/b*100;formula='(Labour Force ÷ Working-age Population) × 100';steps=`(${a} ÷ ${b}) × 100 = ${result.toFixed(2)}%`}else if(t==='tax'){a=v('income');b=v('rate');if(a<0||b<0||b>100)return document.getElementById('calcResult').textContent='Enter a non-negative income and a tax rate from 0 to 100.';result=a*b/100;formula='Tax amount = Taxable income × Tax rate ÷ 100';steps=`${a} × ${b} ÷ 100 = ${result.toFixed(2)}; effective rate = ${b}%`}else{a=v('old');b=v('new');if(a<=0||b<0)return document.getElementById('calcResult').textContent='Enter a positive original price/index and a non-negative new value.';result=(b-a)/a*100;formula='Percentage change = ((New − Original) ÷ Original) × 100';steps=`((${b} − ${a}) ÷ ${a}) × 100 = ${result.toFixed(2)}%`}document.getElementById('calcResult').innerHTML=`<strong>Formula:</strong> ${formula}<br><strong>Working:</strong> ${steps}<br><strong>Result:</strong> ${t==='tax'?result.toFixed(2):result.toFixed(2)+'%'}${t==='inflation'?'<p class="small">A positive result indicates an increase in the price/index; a negative result indicates a decrease. This simple percentage-change calculator is for practice, not a substitute for an official inflation index.</p>':''}`}
+const flashcards=[
+["Inflation","The rate of increase in the prices of goods and services over time."],["Inflation targeting","A central-bank framework that sets a target inflation rate and aims to keep inflation near it."],["Interest-rate policy","Using policy interest rates to influence borrowing, spending and inflationary pressure."],["Open market operations","Central-bank purchases or sales of government securities to influence money and liquidity."],["Quantitative tightening","Reducing the central-bank balance sheet, for example by selling assets."],["Forward guidance","Communication about future central-bank policy intentions."],["Supply-side policies","Policies that improve productivity, remove bottlenecks and enhance competition."],["GDP deflator","The measure used in the lecture's 2010–2020 inflation comparison."],["Labour force","The number of employed people plus unemployed people actively seeking work."],["Employed individual","A person working for pay or profit, including someone temporarily absent from work."],["Unemployed individual","A person without a job who is available and actively seeking employment."],["Labour force formula","Labour Force = Employed + Unemployed."],["Labour-force–population ratio","(Labour Force ÷ Working-age Population) × 100."],["Unemployment rate","(Number of Unemployed ÷ Labour Force) × 100%."],["Discouraged worker","A person who has stopped actively seeking employment and may not be counted in the labour force."],["Entrepreneurship support","Encouraging and resourcing new business ventures to contribute to job creation."],["Regressive tax","A tax whose rate falls as the tax base/income rises."],["Progressive tax","A tax whose rate increases as taxable income rises."],["Proportional tax","A tax that applies the same percentage rate to all income groups."],["Tax base","The income on which a tax is imposed."],["Income tax","Tax on financial income earned by labour."],["Corporate tax","Tax on financial income earned by business units."],["Capital-gains tax","Tax on profits from financial or physical assets."],["Property tax","Tax imposed on the value of properties."],["Inheritance tax","Tax imposed on bequeathed properties or valuables."],["Sales tax","Consumption tax on sales of goods or services, typically collected at point of sale."],["VAT","Tax on value added at each stage of production and distribution."],["Tax-to-GDP ratio","Tax revenue expressed as a ratio or percentage of GDP."],["Sveriges Riksbank","Sweden's central bank, established in 1668 and identified as the first central bank."],["CBN establishment","The Central Bank of Nigeria was established in 1958."],["CBN operational date","The CBN became fully operational on 1 July 1959."],["West African Currency Board","The monetary authority used in Nigeria before the CBN."],["Lender of last resort","A central-bank role providing emergency funding to financial institutions."],["Banker to government","Managing government accounts, transactions and facilitating borrowing."],["Foreign-exchange reserves","Reserves managed by the central bank to support foreign-exchange functions."],["Payment-systems oversight","Central-bank oversight intended to support secure and efficient financial transactions."],["Money market interest rate","The lecture identifies the interest rate as the primary cost in the money market."]];
+let fcIndex=0,fcFlip=false,fcOrder=shuffle(flashcards.map((_,i)=>i));
+function loadFlashcard(){let f=flashcards[fcOrder[fcIndex]];fcFlip=false;document.getElementById('fcLabel').textContent='CONCEPT • TAP TO FLIP';document.getElementById('fcContent').textContent=f[0];document.getElementById('fcProgress').textContent=`Card ${fcIndex+1} of ${flashcards.length}`}
+function flipCard(){let f=flashcards[fcOrder[fcIndex]];fcFlip=!fcFlip;document.getElementById('fcLabel').textContent=fcFlip?'DEFINITION / EXPLANATION':'CONCEPT • TAP TO FLIP';document.getElementById('fcContent').textContent=fcFlip?f[1]:f[0]}
+function nextCard(){fcIndex=(fcIndex+1)%flashcards.length;loadFlashcard()}
+function rateCard(r){nextCard()}
+window.addEventListener('DOMContentLoaded', () => {
+    updateProgress();
+    startQuiz('mixed');
+    renderCalc();
+    loadFlashcard();
+    resetMatchingGame();
+});
+</script>
+</body>
+</html>
