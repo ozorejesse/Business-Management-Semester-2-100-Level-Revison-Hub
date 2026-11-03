@@ -24,6 +24,8 @@
             --muted: #718096;
             --border: #e5ebf1;
             --white: #ffffff;
+            --gold: #d97706;
+            --gold-soft: #fef3c7;
         }
 
         body {
@@ -388,6 +390,30 @@
             color: #99a5b1;
         }
 
+        /* SPECIAL MASTER BUTTON */
+        .master-tool-btn {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            width: 100%;
+            margin-top: 12px;
+            padding: 12px;
+            background: linear-gradient(135deg, var(--navy) 0%, var(--blue) 100%);
+            color: white;
+            text-decoration: none;
+            border-radius: 10px;
+            font-weight: 800;
+            font-size: 13px;
+            box-shadow: 0 4px 12px rgba(16, 47, 82, 0.25);
+            transition: transform 0.2s ease;
+        }
+
+        .master-tool-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 16px rgba(16, 47, 82, 0.35);
+        }
+
         /* FOOTER */
 
         footer {
@@ -680,6 +706,11 @@
                     </a>
 
                 </div>
+
+                <!-- NEW MASTER TOOL LINK -->
+                <a href="AMS 102 | Ultimate Maths Solving Master.html" class="master-tool-btn" target="_blank" rel="noopener noreferrer">
+                    ⭐ Launch Ultimate Solving Master
+                </a>
 
             </div>
 
