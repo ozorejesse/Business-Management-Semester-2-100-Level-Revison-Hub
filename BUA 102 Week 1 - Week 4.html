@@ -1,1068 +1,212 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>BUA 102: Introduction to Business II - Master Study Suite</title>
-    <style>
-        :root {
-            --bg-color: #f8fafc;
-            --surface-color: #ffffff;
-            --text-color: #1e293b;
-            --border-color: #e2e8f0;
-            --primary-color: #2563eb;
-            --primary-hover: #1d4ed8;
-            --success-color: #16a34a;
-            --success-bg: #f0fdf4;
-            --success-border: #bbf7d0;
-            --error-color: #dc2626;
-            --error-bg: #fef2f2;
-            --error-border: #fecaca;
-            --badge-bg: #e2e8f0;
-            --badge-text: #475569;
-            --card-hover: #f1f5f9;
-            --summary-bg: #f1f5f9;
-        }
-
-        [data-theme="dark"] {
-            --bg-color: #0f172a;
-            --surface-color: #1e293b;
-            --text-color: #f8fafc;
-            --border-color: #334155;
-            --primary-color: #3b82f6;
-            --primary-hover: #60a5fa;
-            --success-color: #4ade80;
-            --success-bg: #064e3b;
-            --success-border: #047857;
-            --error-color: #f87171;
-            --error-bg: #7f1d1d;
-            --error-border: #991b1b;
-            --badge-bg: #334155;
-            --badge-text: #cbd5e1;
-            --card-hover: #334155;
-            --summary-bg: #0f172a;
-        }
-
-        body {
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-            background-color: var(--bg-color);
-            color: var(--text-color);
-            margin: 0;
-            padding: 20px;
-            transition: background-color 0.3s, color 0.3s;
-            line-height: 1.6;
-        }
-
-        .container {
-            max-width: 950px;
-            margin: 0 auto;
-            background: var(--surface-color);
-            padding: 30px;
-            border-radius: 12px;
-            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
-        }
-
-        .header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 20px;
-            flex-wrap: wrap;
-            gap: 10px;
-        }
-
-        h1 {
-            color: var(--primary-color);
-            margin: 0;
-            font-size: 1.8rem;
-        }
-
-        .nav-tabs {
-            display: flex;
-            gap: 8px;
-            margin-bottom: 25px;
-            border-bottom: 2px solid var(--border-color);
-            padding-bottom: 10px;
-            flex-wrap: wrap;
-        }
-
-        .tab-btn {
-            background: none;
-            border: none;
-            color: var(--text-color);
-            font-size: 14px;
-            font-weight: 600;
-            padding: 8px 14px;
-            cursor: pointer;
-            border-radius: 6px;
-            transition: background 0.2s, color 0.2s;
-        }
-
-        .tab-btn.active {
-            background-color: var(--primary-color);
-            color: #ffffff;
-        }
-
-        .theme-toggle {
-            background: none;
-            border: 1px solid var(--border-color);
-            color: var(--text-color);
-            padding: 8px 12px;
-            border-radius: 6px;
-            cursor: pointer;
-            font-weight: 600;
-        }
-
-        .controls {
-            display: flex;
-            gap: 10px;
-            align-items: center;
-            margin-bottom: 20px;
-            flex-wrap: wrap;
-        }
-
-        select, input[type="text"], input[type="number"], button.action-btn {
-            padding: 10px 14px;
-            font-size: 14px;
-            border-radius: 6px;
-            border: 1px solid var(--border-color);
-            background-color: var(--surface-color);
-            color: var(--text-color);
-        }
-
-        button.action-btn {
-            background-color: var(--primary-color);
-            color: white;
-            border: none;
-            font-weight: 600;
-            cursor: pointer;
-        }
-
-        button.action-btn:hover {
-            background-color: var(--primary-hover);
-        }
-
-        .search-box {
-            width: 100%;
-            margin-bottom: 20px;
-            padding: 12px;
-            box-sizing: border-box;
-            border-radius: 6px;
-            border: 1px solid var(--border-color);
-            background: var(--surface-color);
-            color: var(--text-color);
-            font-size: 15px;
-        }
-
-        .summary-week {
-            border: 1px solid var(--border-color);
-            border-radius: 8px;
-            padding: 24px;
-            margin-bottom: 25px;
-            background-color: var(--surface-color);
-        }
-
-        .summary-week h2 {
-            color: var(--primary-color);
-            margin-top: 0;
-            border-bottom: 2px solid var(--border-color);
-            padding-bottom: 8px;
-        }
-
-        .summary-week h3 {
-            color: var(--text-color);
-            font-size: 1.1rem;
-            margin-top: 15px;
-            margin-bottom: 5px;
-        }
-
-        .summary-week ul {
-            margin-top: 5px;
-            padding-left: 20px;
-        }
-
-        .summary-week li {
-            margin-bottom: 6px;
-        }
-
-        .formula-box {
-            background-color: var(--summary-bg);
-            border-left: 4px solid var(--primary-color);
-            padding: 12px 16px;
-            margin: 12px 0;
-            font-family: "Courier New", Courier, monospace;
-            border-radius: 0 6px 6px 0;
-        }
-
-        .progress-dashboard {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-            gap: 12px;
-            margin-bottom: 20px;
-        }
-
-        .progress-card {
-            border: 1px solid var(--border-color);
-            border-radius: 8px;
-            padding: 12px 16px;
-            background: var(--surface-color);
-            text-align: center;
-        }
-
-        .progress-card .score {
-            font-size: 1.5rem;
-            font-weight: bold;
-            color: var(--primary-color);
-        }
-
-        .question-card {
-            border: 1px solid var(--border-color);
-            border-radius: 8px;
-            padding: 20px;
-            margin-bottom: 20px;
-            background-color: var(--surface-color);
-        }
-
-        .question-title {
-            font-weight: 600;
-            margin-bottom: 12px;
-            color: var(--text-color);
-        }
-
-        .options {
-            display: flex;
-            flex-direction: column;
-            gap: 8px;
-            margin-bottom: 10px;
-        }
-
-        .option-label {
-            display: flex;
-            align-items: center;
-            padding: 10px 14px;
-            border: 1px solid var(--border-color);
-            border-radius: 6px;
-            cursor: pointer;
-            transition: background 0.15s;
-        }
-
-        .option-label:hover {
-            background-color: var(--card-hover);
-        }
-
-        .option-label input {
-            margin-right: 12px;
-        }
-
-        .explanation {
-            display: none;
-            margin-top: 12px;
-            padding: 12px;
-            border-radius: 6px;
-            font-size: 14px;
-            line-height: 1.5;
-        }
-
-        .explanation.correct {
-            display: block;
-            background-color: var(--success-bg);
-            border: 1px solid var(--success-border);
-            color: var(--success-color);
-        }
-
-        .explanation.incorrect {
-            display: block;
-            background-color: var(--error-bg);
-            border: 1px solid var(--error-border);
-            color: var(--error-color);
-        }
-
-        .badge {
-            display: inline-block;
-            padding: 2px 8px;
-            font-size: 12px;
-            font-weight: 600;
-            border-radius: 4px;
-            background: var(--badge-bg);
-            color: var(--badge-text);
-            margin-bottom: 8px;
-        }
-
-        .matching-container {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 20px;
-            margin-top: 15px;
-        }
-
-        .match-column {
-            display: flex;
-            flex-direction: column;
-            gap: 10px;
-        }
-
-        .match-card {
-            padding: 14px 16px;
-            border: 1px solid var(--border-color);
-            border-radius: 8px;
-            background: var(--surface-color);
-            cursor: pointer;
-            user-select: none;
-            transition: border-color 0.2s, background 0.2s;
-            min-height: 50px;
-            display: flex;
-            align-items: center;
-            font-weight: 500;
-        }
-
-        .match-card:hover { border-color: var(--primary-color); }
-        .match-card.selected { border: 2px solid var(--primary-color); background-color: var(--card-hover); }
-        .match-card.matched { border-color: var(--success-color); background-color: var(--success-bg); color: var(--success-color); cursor: default; opacity: 0.8; }
-        .match-card.wrong { border-color: var(--error-color); background-color: var(--error-bg); }
-
-        .matching-feedback {
-            margin-bottom: 20px;
-            padding: 16px;
-            border-radius: 8px;
-            font-size: 15px;
-            display: none;
-            line-height: 1.5;
-        }
-
-        .solver-panel {
-            border: 1px solid var(--border-color);
-            border-radius: 8px;
-            padding: 20px;
-            background: var(--surface-color);
-            margin-bottom: 20px;
-        }
-
-        .scenario-inputs {
-            display: flex;
-            gap: 10px;
-            align-items: center;
-            margin-top: 15px;
-            margin-bottom: 15px;
-            flex-wrap: wrap;
-        }
-
-        .step-list {
-            display: flex;
-            flex-direction: column;
-            gap: 10px;
-            margin-top: 15px;
-        }
-
-        .step-item {
-            padding: 12px;
-            border-left: 4px solid var(--primary-color);
-            background: var(--summary-bg);
-            border-radius: 0 6px 6px 0;
-        }
-
-        .flashcard-wrapper {
-            perspective: 1000px;
-            max-width: 500px;
-            margin: 20px auto;
-        }
-
-        .flashcard {
-            width: 100%;
-            height: 250px;
-            border: 1px solid var(--border-color);
-            border-radius: 12px;
-            background: var(--surface-color);
-            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            padding: 24px;
-            text-align: center;
-            cursor: pointer;
-            box-sizing: border-box;
-            user-select: none;
-            transition: transform 0.2s;
-        }
-
-        .flashcard:hover {
-            transform: translateY(-2px);
-        }
-
-        .flashcard .card-label {
-            font-size: 12px;
-            color: var(--badge-text);
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            margin-bottom: 10px;
-        }
-
-        .flashcard .card-content {
-            font-size: 1.2rem;
-            font-weight: 600;
-        }
-
-        .flashcard-controls {
-            display: flex;
-            justify-content: center;
-            gap: 10px;
-            margin-top: 15px;
-        }
-
-        .view-section { display: none; }
-        .view-section.active { display: block; }
-        .score-board { font-weight: bold; color: var(--primary-color); }
-    </style>
-</head>
-<body>
-
-<div class="container">
-    <div class="header">
-        <h1>BUA 102: Introduction to Business II Master Suite</h1>
-        <button class="theme-toggle" onclick="toggleTheme()" id="themeBtn">🌙 Night Mode</button>
-    </div>
-
-    <div class="nav-tabs">
-        <button class="tab-btn active" onclick="switchTab('summaries')">📖 Comprehensive Summaries</button>
-        <button class="tab-btn" onclick="switchTab('quiz')">📝 Quiz & Mastery (20 Questions)</button>
-        <button class="tab-btn" onclick="switchTab('matching')">🧩 Matching Game</button>
-        <button class="tab-btn" onclick="switchTab('solver')">🔍 Business & Operations Analyzer</button>
-        <button class="tab-btn" onclick="switchTab('flashcards')">🎴 Flashcards</button>
-    </div>
-
-    <!-- TAB 1: SUMMARIES -->
-    <div id="summariesTab" class="view-section active">
-        <input type="text" id="summarySearch" class="search-box" placeholder="⚡ Search across BUA 102 Week 1 to Week 4 topics..." oninput="filterSummaries()">
-        
-        <div id="summaryList">
-            <div class="summary-week searchable">
-                <h2>Week 1: Marketing Function, Environment and Marketing Mix</h2>
-                <p>Covers the foundational marketing concept, overarching goals, exchange mechanics, detailed functions, internal/external environments, and the core 4 Ps marketing mix[cite: 1].</p>
-                
-                <h3>Key Concepts & Breakdown</h3>
-                <ul>
-                    <li><strong>Marketing Concept:</strong> The process of getting appropriate goods, services, or ideas to target audiences at the right place, time, and price, using proper promotion and suitable employees[cite: 1].</li>
-                    <li><strong>Goals of Marketing:</strong> Creation of utility, cost reduction, price stability, maximizing customer satisfaction, maximizing quality of life, and maximizing choice[cite: 1].</li>
-                    <li><strong>Exchange Mechanics:</strong> Occurs when two parties give something of value to each other to satisfy respective needs or wants[cite: 1].</li>
-                    <li><strong>Marketing Functions:</strong> Divided into Exchange Functions (buying/selling activities)[cite: 1], Physical Supply Functions (transportation & storage)[cite: 1], and Facilitating Functions (financing, risk-taking, market information, standardization & grading, pricing, branding, packaging, salesmanship, advertising)[cite: 1].</li>
-                    <li><strong>Marketing Environment Forces:</strong> Internal controllable forces (resources like 7Ms: men, money, machine, material, minute, media, margin)[cite: 1], Micro partially-controllable forces (customers, competitors, suppliers, intermediaries, publics)[cite: 1], and Macro uncontrollable forces (demographic, economic, socio-cultural, technological, ecological, political/legal, competitive)[cite: 1].</li>
-                    <li><strong>The 4 Ps Marketing Mix:</strong> Product (brand name, packaging, image), Price (delivering fair customer value), Place (shipping, channels, stores), and Promotion (communicating product benefits)[cite: 1].</li>
-                </ul>
-
-                <div class="formula-box">
-                    Marketing Focus Matrix: Target Market ➔ Consumer Need ➔ Integrated Marketing ➔ Profit via Satisfaction[cite: 1]<br>
-                    Internal Resources (7 Ms): Men + Money + Machine + Material + Minute + Media + Margin[cite: 1]
-                </div>
-            </div>
-
-            <div class="summary-week searchable">
-                <h2>Week 2: Product Planning and Marketing Mix in Details</h2>
-                <p>Explores internal product planning processes, product attributes, product life cycle stages, elastic vs inelastic pricing demand, promotion mix components, salesmanship, and channel distribution levels[cite: 2].</p>
-                
-                <h3>Key Concepts & Breakdown</h3>
-                <ul>
-                    <li><strong>Product Planning & Dimensions:</strong> Decisions to develop and release products at optimal times to meet needs and maximize profit[cite: 2]. Includes Managerial, Consumer, and Societal dimensions[cite: 2].</li>
-                    <li><strong>Product Attributes:</strong> Physical features, utilities, brand/package/label, design (color, shape, size), price, service, company image, and safety[cite: 2].</li>
-                    <li><strong>Product Life Cycle (PLC):</strong> 6 key stages: Development ➔ Introduction ➔ Growth ➔ Maturity ➔ Saturation ➔ Decline[cite: 2]. Innovation and product improvements can alter the cycle[cite: 2].</li>
-                    <li><strong>Necessities & Maturity:</strong> Products like salt and water stay in maturity indefinitely because they are necessities with inelastic demand and lack close substitutes[cite: 2].</li>
-                    <li><strong>Promotion Mix:</strong> Advertising (mass paid non-personal), Publicity (unpaid news stimulation), Personal Selling (face-to-face interaction), and Sales Promotion (short-term incentives, displays, shows)[cite: 2].</li>
-                    <li><strong>Salesmanship:</strong> Direct personal contact inducing/assisting buyers[cite: 2]. Viewed as an Art (study/skills), Science (systematized theory), and Profession (proficient code of conduct)[cite: 2].</li>
-                </ul>
-
-                <div class="formula-box">
-                    PLC Curve: Development ➔ Introduction ➔ Growth ➔ Maturity ➔ Saturation ➔ Decline[cite: 2]<br>
-                    Economist Price Formula: Money (Price) = Bundle of Perceived Expectations / Satisfaction[cite: 2]
-                </div>
-            </div>
-
-            <div class="summary-week searchable">
-                <h2>Week 3: Distribution Channels in Supply Chain</h2>
-                <p>Examines direct and indirect multi-tiered channel architectures, distributor roles to end-consumers, retailers, and OEMs, as well as critical selection criteria for distribution design[cite: 3].</p>
-                
-                <h3>Key Concepts & Breakdown</h3>
-                <ul>
-                    <li><strong>Distribution vs Physical Distribution:</strong> Distribution gets the right product to the right customer at the right place and time[cite: 3]. Physical distribution is the actual movement along that path[cite: 3].</li>
-                    <li><strong>Channel Structures:</strong> Direct (supplier to customer directly)[cite: 3], One-Tier (uses 1 intermediary e.g. overseas agents)[cite: 3], Two-Tier (manufacturer to cash & carry wholesaler to kiosk to customer)[cite: 3], Multiple-Tier (multiple dealers e.g. single cigarette/sachet soap sales)[cite: 3], and OEM Channels (supplier components embedded in another manufacturer's finished product)[cite: 3].</li>
-                    <li><strong>Distributor Roles to Retailers:</strong> Demand Generation (channel financing, marketing funds, training)[cite: 3], Supply Fulfillment (bulk breaking, outbound/reverse logistics)[cite: 3], Market Intelligence (sales-out reporting)[cite: 3], and Outsourced Services (warranty management)[cite: 3].</li>
-                    <li><strong>Channel Choice Criteria:</strong> Product characteristics (perishable vs durable, unit value)[cite: 3], Market factors (size, industrial vs consumer)[cite: 3], Middlemen cooperation[cite: 3], Company financial strength[cite: 3], and Environmental/Economic conditions (recession favors shorter channels)[cite: 3].</li>
-                </ul>
-
-                <div class="formula-box">
-                    One-Tier = Manufacturer ➔ Intermediary/Retailer ➔ Consumer[cite: 3]<br>
-                    Two-Tier = Manufacturer ➔ Wholesaler/Cash & Carry ➔ Retailer ➔ Consumer[cite: 3]
-                </div>
-            </div>
-
-            <div class="summary-week searchable">
-                <h2>Week 4: Production and Operations Management</h2>
-                <p>Analyzes production systems, historic contributors to scientific management, strategic/operational/control decision tiers, product/process design types, and technology selection factors[cite: 4].</p>
-                
-                <h3>Key Concepts & Breakdown</h3>
-                <ul>
-                    <li><strong>Production System Components:</strong> Production System (overall input-output conversion)[cite: 4], Conversion Sub-system (transformation mechanics)[cite: 4], and Control Sub-system (monitoring outputs for corrective feedback)[cite: 4].</li>
-                    <li><strong>Key Pioneers of Scientific Management:</strong>
-                        <ul>
-                            <li><em>F.W. Taylor:</em> Scientific management principles, exception principle, time study[cite: 4].</li>
-                            <li><em>Frank & Lilian Gilbreth:</em> Motion study, fatigue studies, human factors, employee selection[cite: 4].</li>
-                            <li><em>Henry L. Gantt:</em> Gantt charts, incentive pay systems, humanistic labor training[cite: 4].</li>
-                            <li><em>Carl G. Barth:</em> Mathematical analysis, slide rules, feeds & speeds studies[cite: 4].</li>
-                        </ul>
-                    </li>
-                    <li><strong>Production Decision Tiers:</strong> Strategic (long-term facility location, technology selection)[cite: 4], Operating (aggregate planning, scheduling, inventory control)[cite: 4], and Control Decisions (quality control, human efficiency, maintenance)[cite: 4].</li>
-                    <li><strong>Product & Process Design:</strong> Functional Design (performance capability)[cite: 4], Form Design (aesthetics/appearance)[cite: 4], Process Design (overall operational sequence)[cite: 4], and Production Design (manufacturability/producibility focus)[cite: 4].</li>
-                    <li><strong>Technology Selection:</strong> Driven internally by available funds and plant capacity[cite: 4]; driven externally by innovation, diffusion, substitution, and syndication[cite: 4].</li>
-                </ul>
-
-                <div class="formula-box">
-                    System Architecture: Inputs ➔ Conversion Sub-System ➔ Finished Outputs[cite: 4]<br>
-                    Feedback Control: Output Monitoring ➔ Signal Feedback ➔ Corrective Action[cite: 4]
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- TAB 2: QUIZ -->
-    <div id="quizTab" class="view-section">
-        <div class="progress-dashboard">
-            <div class="progress-card"><div>Week 1: Marketing</div><div class="score" id="m_mod1">0%</div></div>
-            <div class="progress-card"><div>Week 2: Product & Mix</div><div class="score" id="m_mod2">0%</div></div>
-            <div class="progress-card"><div>Week 3: Supply Distribution</div><div class="score" id="m_mod3">0%</div></div>
-            <div class="progress-card"><div>Week 4: Operations & Tech</div><div class="score" id="m_mod4">0%</div></div>
-        </div>
-
-        <div class="controls">
-            <label for="topicSelect"><strong>Select Topic:</strong></label>
-            <select id="topicSelect">
-                <option value="1">Week 1: Marketing Function & Environment (5 Questions)</option>
-                <option value="2">Week 2: Product Planning & Mix (5 Questions)</option>
-                <option value="3">Week 3: Distribution Channels (5 Questions)</option>
-                <option value="4">Week 4: Production & Operations (5 Questions)</option>
-                <option value="all" selected>All 4 Weeks Combined (20 Questions)</option>
-            </select>
-            <button class="action-btn" onclick="generateQuiz(false)">Generate Quiz</button>
-            <button class="action-btn" style="background-color: var(--error-color)" onclick="generateQuiz(true)">🎯 Retry Missed Questions</button>
-        </div>
-
-        <div id="quizContainer"></div>
-    </div>
-
-    <!-- TAB 3: MATCHING GAME -->
-    <div id="matchingTab" class="view-section">
-        <div class="controls">
-            <button class="action-btn" onclick="resetMatchingGame()">Reset / New Cards</button>
-            <div id="matchingScore" class="score-board">Matches Found: 0 / 0</div>
-        </div>
-
-        <div id="matchingFeedback" class="matching-feedback"></div>
-
-        <div class="matching-container">
-            <div class="match-column" id="leftCol"></div>
-            <div class="match-column" id="rightCol"></div>
-        </div>
-    </div>
-
-    <!-- TAB 4: INTERACTIVE ANALYZER -->
-    <div id="solverTab" class="view-section">
-        <div class="solver-panel">
-            <h2>BUA 102 Business & Operations Analyzer</h2>
-            <p>Select a scenario engine below to evaluate marketing dynamics, distribution logic, PLC stages, or operational decision levels[cite: 1, 2, 3, 4].</p>
-            
-            <div class="controls">
-                <label for="scenarioType"><strong>Analysis Engine:</strong></label>
-                <select id="scenarioType" onchange="renderScenarioInputs()">
-                    <option value="marketing_env">Marketing Environment Classifier</option>
-                    <option value="plc_stage">Product Life Cycle & Elasticity Inspector</option>
-                    <option value="channel_structure">Supply Chain Channel Recommender</option>
-                    <option value="operations_decision">Operations Management Decision Analyzer</option>
-                </select>
-            </div>
-
-            <div class="scenario-inputs" id="scenarioInputs"></div>
-
-            <button class="action-btn" onclick="solveAndDraw()">Analyze Scenario</button>
-
-            <div class="step-list" id="stepList"></div>
-        </div>
-    </div>
-
-    <!-- TAB 5: FLASHCARDS -->
-    <div id="flashcardsTab" class="view-section">
-        <div class="flashcard-wrapper">
-            <div class="flashcard" id="flashcard" onclick="flipCard()">
-                <div class="card-label" id="fcLabel">CONCEPT (Click to Flip)</div>
-                <div class="card-content" id="fcContent">Click start to load deck</div>
-            </div>
-        </div>
-
-        <div class="flashcard-controls">
-            <button class="action-btn" style="background-color: var(--error-color)" onclick="rateCard('hard')">🔴 Hard</button>
-            <button class="action-btn" style="background-color: #d97706" onclick="rateCard('medium')">🟡 Medium</button>
-            <button class="action-btn" style="background-color: var(--success-color)" onclick="rateCard('easy')">🟢 Easy</button>
-        </div>
-    </div>
-
-</div>
-
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>BUA 102 | Introduction to Business II (Weeks 1-4)</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&family=Playfair+Display:wght@600;700&display=swap');
+:root{--ink:#172b3a;--muted:#667887;--blue:#173e5b;--blue2:#2c6385;--pale:#eef4f7;--paper:#fff;--line:#dce5ea;--accent:#a77d65;--shadow:0 10px 28px rgba(26,52,69,.09)}
+*{box-sizing:border-box}body{margin:0;background:#f3f5f6;color:var(--ink);font-family:'DM Sans',Arial,sans-serif;line-height:1.65}
+.hero{background:linear-gradient(135deg,#725d50,#9a7a64 55%,#5b493f);color:white;padding:34px max(22px,calc((100% - 1120px)/2)) 38px;position:relative;overflow:hidden}
+.hero:after{content:"";position:absolute;inset:0;background:repeating-linear-gradient(55deg,transparent 0 36px,rgba(255,255,255,.045) 37px 39px);pointer-events:none}
+.hero-inner{max-width:1120px;margin:auto;position:relative;z-index:1}.brand{font-size:12px;letter-spacing:1.6px;text-transform:uppercase;opacity:.9}.hero h1{font:700 clamp(30px,5vw,48px) 'Playfair Display',serif;line-height:1.12;margin:30px 0 10px}.hero p{max-width:700px;color:#f5eae2;margin:0}.hero-meta{display:flex;gap:10px;flex-wrap:wrap;margin-top:20px}.pill{border:1px solid #ffffff55;border-radius:30px;padding:5px 12px;font-size:12px;background:#ffffff12}
+.topbar{background:white;border-bottom:1px solid var(--line);position:sticky;top:0;z-index:10}.nav{max-width:1120px;margin:auto;display:flex;gap:6px;padding:10px 16px;overflow-x:auto}.nav button,.theme{border:0;background:transparent;color:#506575;padding:10px 13px;border-radius:9px;font:600 13px 'DM Sans';white-space:nowrap;cursor:pointer}.nav button.active{background:var(--pale);color:var(--blue)}.theme{margin-left:auto;border:1px solid var(--line)}
+main{max-width:1120px;margin:28px auto;padding:0 18px 70px}.panel{display:none}.panel.active{display:block}.intro{margin-bottom:22px}.eyebrow{font-size:11px;text-transform:uppercase;letter-spacing:1.5px;color:var(--accent);font-weight:800}.intro h2{font:700 29px 'Playfair Display';margin:4px 0}.muted{color:var(--muted)}
+.toolbar{display:flex;gap:10px;flex-wrap:wrap;margin:18px 0}.toolbar input,.toolbar select{padding:12px 14px;border:1px solid var(--line);border-radius:10px;background:white;color:var(--ink);font:inherit;min-width:190px;flex:1}
+.week-grid{display:grid;grid-template-columns:1fr;gap:18px}.card{background:var(--paper);border:1px solid var(--line);border-radius:15px;padding:21px;box-shadow:var(--shadow);margin-bottom:16px}.card h3{margin:0 0 8px;font-size:19px;color:var(--blue)}.card h4{margin:18px 0 6px;color:#805f4c;font-size:16px}.card p{margin:7px 0}.card ul{padding-left:21px;margin:8px 0}.tag{display:inline-block;background:#f3eae4;color:#795944;border-radius:30px;padding:4px 10px;font-size:11px;font-weight:700;margin-bottom:9px}
+.callout{border-left:4px solid var(--accent);background:#f8f3ef;padding:12px 15px;border-radius:0 9px 9px 0;margin:12px 0}.callout.warning{border-left-color:#c43d32;background:#fff0ed}
+.btn{background:var(--blue);color:white;border:0;border-radius:9px;padding:11px 16px;font-weight:700;cursor:pointer}.btn.secondary{background:#eaf0f3;color:var(--blue)}.btn:disabled{opacity:.45;cursor:not-allowed}
+.quiz-question{padding:17px 0;border-bottom:1px solid var(--line)}.quiz-question:last-child{border:0}.qtitle{font-weight:700;margin-bottom:10px}.option{display:block;width:100%;text-align:left;background:#f7f9fa;border:1px solid var(--line);padding:10px 12px;margin:7px 0;border-radius:9px;cursor:pointer;color:var(--ink);font:inherit}.option.correct{background:#e6f4eb;border-color:#5b9b70}.option.wrong{background:#fff0ed;border-color:#d77b6b}.feedback{font-size:13px;color:var(--muted);margin:7px 0}.progress{height:8px;background:#e8eef1;border-radius:9px;overflow:hidden}.progress span{display:block;height:100%;background:#4f8aab;width:0}
+.statrow{display:flex;gap:12px;flex-wrap:wrap}.stat{background:#f2f6f8;border-radius:10px;padding:12px 16px;min-width:115px}.stat strong{display:block;font-size:22px;color:var(--blue)}
+.flashcard{min-height:190px;display:grid;place-items:center;text-align:center;cursor:pointer;background:linear-gradient(145deg,#f7f2ed,#edf3f6);border:1px solid var(--line);border-radius:16px;padding:28px;font-size:21px;font-weight:700}.flash-actions{display:flex;gap:10px;justify-content:center;margin:15px}
+.match-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}.match{padding:14px;border:1px solid var(--line);border-radius:10px;background:#f7f9fa;cursor:pointer;text-align:left;color:var(--ink);font:inherit}.match.selected{outline:2px solid var(--blue2);background:#eaf2f6}.match.done{background:#e6f4eb;border-color:#75a887;cursor:default}
+.key-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}.key{background:#f6f8f9;border-radius:12px;padding:14px}.key b{display:block;color:var(--blue);margin-bottom:4px}
+body.dark{--ink:#e8eef2;--muted:#a9b7c0;--paper:#1d2b35;--line:#344650;--pale:#263b49;background:#121d25;color:var(--ink)}body.dark .topbar,body.dark .toolbar input,body.dark .toolbar select{background:#1d2b35;color:var(--ink)}body.dark .nav button{color:#c2d0d8}body.dark .option,body.dark .match,body.dark .key,body.dark .stat{background:#263944;color:var(--ink);border-color:#40535e}body.dark .flashcard{background:#263944;color:var(--ink)}body.dark .callout{background:#342e2a}body.dark .callout.warning{background:#3b2525}
+footer{text-align:center;color:var(--muted);font-size:12px;padding:30px}
+@media(max-width:720px){.key-grid{grid-template-columns:1fr}.hero{padding:25px 20px 30px}.nav{padding:8px}.nav button{padding:9px}.theme{margin-left:0}.match-grid{grid-template-columns:1fr}main{padding:0 13px 50px}.card{padding:17px}}
+
+.quiz-question{padding:18px 0;border-bottom:1px solid var(--line);scroll-margin-top:90px}
+.quiz-question .qtitle{font-size:15px;line-height:1.5}
+.quiz-question .option{transition:transform .16s ease,background .16s ease,border-color .16s ease}
+.quiz-question .option:disabled{cursor:default;opacity:1}
+.quiz-question .option.correct{background:#dff5e7!important;border:2px solid #27834c!important;color:#14532d!important}
+.quiz-question .option.wrong{background:#ffe5e1!important;border:2px solid #c43d32!important;color:#7f1d1d!important}
+.quiz-feedback{padding:10px 13px;border-radius:9px;margin-top:9px;font-size:13px}
+.quiz-feedback.good{background:#e5f5eb;color:#175c35}
+.quiz-feedback.bad{background:#fff0ed;color:#8a2922}
+.match{min-height:66px;font-weight:600;transition:background .18s,border-color .18s,transform .18s,box-shadow .18s}
+.match.selected{background:#dceefa!important;border:2px solid #23658c!important;color:#123e59!important;box-shadow:0 0 0 3px rgba(35,101,140,.16)}
+.match.done{background:#dff5e7!important;border:2px solid #27834c!important;color:#14532d!important;box-shadow:inset 0 0 0 1px #27834c;position:relative}
+.match.done:after{content:"  ✓ Matched";font-size:11px;font-weight:800;display:block;color:#17653a}
+.match.shake{animation:matchShake .42s ease;border:2px solid #d33b32!important;background:#ffe5e1!important;color:#7f1d1d!important}
+.match.pop{animation:matchPop .34s ease}
+@keyframes matchShake{0%,100%{transform:translateX(0)}20%,60%{transform:translateX(-7px)}40%,80%{transform:translateX(7px)}}
+@keyframes matchPop{0%{transform:scale(.94)}55%{transform:scale(1.045)}100%{transform:scale(1)}}
+body.dark .quiz-question .option{background:#263944;color:#edf4f7;border-color:#506571}
+body.dark .quiz-question .option.correct{background:#174b34!important;border-color:#4ade80!important;color:#dcfce7!important}
+body.dark .quiz-question .option.wrong{background:#5b2525!important;border-color:#fb7185!important;color:#ffe4e6!important}
+body.dark .quiz-feedback.good{background:#174b34;color:#dcfce7}
+body.dark .quiz-feedback.bad{background:#5b2525;color:#ffe4e6}
+body.dark .match{background:#263944!important;color:#f0f5f8!important;border:1px solid #627986}
+body.dark .match.selected{background:#174b63!important;color:#e0f2fe!important;border:2px solid #7dd3fc!important}
+body.dark .match.done{background:#174b34!important;color:#dcfce7!important;border:2px solid #4ade80!important}
+body.dark .match.done:after{color:#bbf7d0}
+body.dark .match.shake{background:#5b2525!important;color:#ffe4e6!important;border-color:#fb7185!important}
+</style></head><body>
+<header class="hero"><div class="hero-inner"><div class="brand">MIVA · BUA 102 · INTRODUCTION TO BUSINESS II</div><h1>Introduction to<br>Business II</h1><p>Semester revision hub for BUA 102 — master marketing, product planning, distribution, and production management.</p><div class="hero-meta"><span class="pill">BUA 102</span><span class="pill">Weeks 1–4</span><span class="pill">Comprehensive Questions</span><span class="pill">Expanded Summaries</span></div></div></header>
+<div class="topbar"><nav class="nav"><button class="active" data-tab="summaries">Comprehensive Summaries</button><button data-tab="quiz">Quiz &amp; Mastery</button><button data-tab="matching">Matching Game</button><button data-tab="keys">Key Concepts</button><button data-tab="flashcards">Flashcards</button><button class="theme" id="theme">☾ Theme</button></nav></div>
+<main>
+<section id="summaries" class="panel active"><div class="intro"><div class="eyebrow">Study notes · Weeks 1–4</div><h2>Comprehensive Summaries</h2><p class="muted">Search across the 4 weeks of lecture material or filter by week to revise detailed concepts, examples and rules.</p></div><div class="toolbar"><input id="search" placeholder="Search topics, terms or examples…"><select id="weekFilter"><option value="all">All weeks</option><option value="1">Week 1: Marketing Function & Environment</option><option value="2">Week 2: Product Planning & Marketing Mix</option><option value="3">Week 3: Distribution Channels</option><option value="4">Week 4: Production & Operations Management</option></select></div><div id="summaryList" class="week-grid"></div></section>
+<section id="quiz" class="panel"><div class="intro"><div class="eyebrow">Test your understanding</div><h2>Quiz &amp; Mastery</h2><p class="muted">Choose a specific week or take the full mixed quiz. Answers are marked immediately with explanations.</p></div><div class="toolbar"><select id="quizSelect"><option value="all">Full mixed quiz</option><option value="1">Week 1: Marketing Function & Environment</option><option value="2">Week 2: Product Planning & Marketing Mix</option><option value="3">Week 3: Distribution Channels</option><option value="4">Week 4: Production & Operations Management</option></select><button class="btn" id="startQuiz">Start quiz</button><button class="btn secondary" id="retryMissed">Retry missed</button></div><div class="statrow"><div class="stat"><strong id="score">0</strong><span class="muted">Correct</span></div><div class="stat"><strong id="answered">0</strong><span class="muted">Answered</span></div><div class="stat"><strong id="total">40</strong><span class="muted">Questions</span></div></div><div class="progress" style="margin:15px 0 20px"><span id="progress"></span></div><div id="quizArea" class="card"><p class="muted">Select a quiz and press Start quiz to begin.</p></div></section>
+<section id="matching" class="panel"><div class="intro"><div class="eyebrow">Active recall</div><h2>Matching Game</h2><p class="muted">Select a term, then select its matching definition. Match all pairs to complete the round.</p></div><div class="statrow"><div class="stat"><strong id="matchScore">0 / 16</strong><span class="muted">Pairs matched</span></div><button class="btn secondary" id="resetMatch">Restart game</button></div><div id="matchArea" class="match-grid" style="margin-top:18px"></div><p id="matchFeedback" class="feedback"></p></section>
+<section id="keys" class="panel"><div class="intro"><div class="eyebrow">Fast revision</div><h2>Key Concepts &amp; Quick Revision</h2><p class="muted">High-value distinctions and structures to remember before an assessment.</p></div><div class="key-grid" id="keyGrid"></div></section>
+<section id="flashcards" class="panel"><div class="intro"><div class="eyebrow">Recall practice</div><h2>Flashcards</h2><p class="muted">Try to recall the meaning before revealing the answer.</p></div><div class="statrow"><div class="stat"><strong id="flashCount">1 / 16</strong><span class="muted">Card</span></div></div><div class="flashcard" id="flashcard">Term</div><div class="flash-actions"><button class="btn secondary" id="prevFlash">← Previous</button><button class="btn" id="flipFlash">Reveal answer</button><button class="btn secondary" id="nextFlash">Next →</button></div></section>
+</main><footer>BUA 102 · Introduction to Business II · MIVA revision hub</footer>
 <script>
-    function toggleTheme() {
-        const currentTheme = document.body.getAttribute('data-theme');
-        const themeBtn = document.getElementById('themeBtn');
-        if (currentTheme === 'dark') {
-            document.body.removeAttribute('data-theme');
-            themeBtn.innerText = '🌙 Night Mode';
-        } else {
-            document.body.setAttribute('data-theme', 'dark');
-            themeBtn.innerText = '☀️ Light Mode';
-        }
-    }
-
-    function switchTab(tabName) {
-        document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));
-        document.querySelectorAll('.view-section').forEach(sec => sec.classList.remove('active'));
-
-        const tabs = ['summaries', 'quiz', 'matching', 'solver', 'flashcards'];
-        const index = tabs.indexOf(tabName);
-        document.querySelectorAll('.tab-btn')[index].classList.add('active');
-        document.getElementById(tabName + 'Tab').classList.add('active');
-
-        if (tabName === 'matching') resetMatchingGame();
-        if (tabName === 'solver') { renderScenarioInputs(); solveAndDraw(); }
-        if (tabName === 'flashcards') loadFlashcard();
-    }
-
-    function filterSummaries() {
-        const query = document.getElementById('summarySearch').value.toLowerCase();
-        document.querySelectorAll('.searchable').forEach(el => {
-            const text = el.innerText.toLowerCase();
-            el.style.display = text.includes(query) ? 'block' : 'none';
-        });
-    }
-
-    // MASTERY SYSTEM
-    let masteryData = JSON.parse(localStorage.getItem('bua102_mastery') || '{"1":{"c":0,"t":0},"2":{"c":0,"t":0},"3":{"c":0,"t":0},"4":{"c":0,"t":0}}');
-    let missedQuestions = JSON.parse(localStorage.getItem('bua102_missed') || '[]');
-
-    function saveMastery() {
-        localStorage.setItem('bua102_mastery', JSON.stringify(masteryData));
-        localStorage.setItem('bua102_missed', JSON.stringify(missedQuestions));
-        updateMasteryUI();
-    }
-
-    function updateMasteryUI() {
-        for (let m = 1; m <= 4; m++) {
-            const data = masteryData[m];
-            const pct = data && data.t > 0 ? Math.round((data.c / data.t) * 100) : 0;
-            const el = document.getElementById(`m_mod${m}`);
-            if (el) el.innerText = `${pct}%`;
-        }
-    }
-
-    function shuffle(arr) { return [...arr].sort(() => Math.random() - 0.5); }
-
-    // QUIZ BANK (5 questions per week = 20 total)
-    const quizBank = [
-        // Week 1
-        { mod: 1, title: "Which of the following represents an internal controllable resource (7 Ms) in marketing?", correct: "Money & Margin", options: ["Money & Margin", "Demographics", "Political Party Philosophy", "Competitors"], exp: "Internal controllable resources include Men, Money, Machine, Material, Minute, Media, and Margin[cite: 1]." },
-        { mod: 1, title: "What type of marketing environment includes suppliers, intermediaries, and customers?", correct: "Micro Marketing Environment", options: ["Micro Marketing Environment", "Macro Marketing Environment", "Internal Environment", "Ecology System"], exp: "Micro forces are external partially controllable entities including suppliers, intermediaries, and customers[cite: 1]." },
-        { mod: 1, title: "Collecting, communicating, and interpreting market information falls under which function?", correct: "Facilitating Function", options: ["Facilitating Function", "Physical Supply Function", "Exchange Function", "Production Sub-system"], exp: "Market information, financing, and risk-taking are facilitating marketing functions[cite: 1]." },
-        { mod: 1, title: "Which function of physical supply holds stock from production until actual use?", correct: "Storage", options: ["Storage", "Transportation", "Standardization", "Grading"], exp: "Storage holds goods from production time to consumption time[cite: 1]." },
-        { mod: 1, title: "What is the primary starting point in the marketing concept matrix?", correct: "Target Market", options: ["Target Market", "Integrated Marketing", "Factory Production", "Cost Reduction"], exp: "The marketing concept starts at the Target Market and focuses on Consumer Needs[cite: 1]." },
-
-        // Week 2
-        { mod: 2, title: "Why do essential products like salt and water remain in the maturity stage indefinitely?", correct: "They are necessities with inelastic demand", options: ["They are necessities with inelastic demand", "They have elastic demand with many substitutes", "They are luxury products", "High advertising budget drives perpetual growth"], exp: "Salt and water are necessities; price changes do not alter fundamental demand, so they stay in maturity[cite: 2]." },
-        { mod: 2, title: "At which stage of the Product Life Cycle (PLC) is sales turnover rate rapid with accelerating profit?", correct: "Growth Stage", options: ["Growth Stage", "Introduction Stage", "Saturation Stage", "Development Stage"], exp: "In the Growth stage, rate of sales increase is rapid and profits grow at an accelerated rate[cite: 2]." },
-        { mod: 2, title: "Non-personal, unpaid stimulation of demand by placing commercial news in media is:", correct: "Publicity", options: ["Publicity", "Advertising", "Personal Selling", "Salesmanship"], exp: "Publicity is non-personal unpaid stimulation of demand via significant media news[cite: 2]." },
-        { mod: 2, title: "Which dimension of the product concept deals with internally informed operational decisions?", correct: "Managerial Dimension", options: ["Managerial Dimension", "Consumer Dimension", "Societal Dimension", "Ecology Dimension"], exp: "The product concept spans Managerial, Consumer, and Societal dimensions[cite: 2]." },
-        { mod: 2, title: "In salesmanship, when performance skills are acquired through study and experience, it is an:", correct: "Art", options: ["Art", "Science", "Profession", "Automated Process"], exp: "Salesmanship is an Art because skills are acquired by study, observation, and experience[cite: 2]." },
-
-        // Week 3
-        { mod: 3, title: "A distribution system where a manufacturer sells directly to Cash and Carry, who sells to kiosks, is:", correct: "Two-Tier Distribution", options: ["Two-Tier Distribution", "Direct Distribution", "One-Tier Distribution", "OEM Channel"], exp: "Two-tier distribution connects manufacturer to wholesaler (Cash & Carry) to retailer (kiosk) to customer[cite: 3]." },
-        { mod: 3, title: "When a supplier's product (e.g. microchip) is built inside another manufacturer's final product, it uses an:", correct: "OEM Channel", options: ["OEM Channel", "One-Tier Channel", "Direct Retail Channel", "Reverse Logistics Channel"], exp: "Original Equipment Manufacturer (OEM) channels apply when one product is embedded inside another[cite: 3]." },
-        { mod: 3, title: "Which factor strongly encourages companies to use shorter and cheaper distribution channels?", correct: "Economic Recession / Depression", options: ["Economic Recession / Depression", "High market dispersion", "Low unit product value", "Industrial consumer expansion"], exp: "During recession or depression, shorter and cheaper distribution channels are encouraged[cite: 3]." },
-        { mod: 3, title: "Breaking bulk, outbound logistics, and channel credit risk are distributor roles performed for:", correct: "Retailers", options: ["Retailers", "End-Consumers", "Government Regulators", "Competitors"], exp: "Distributors support retailers via bulk breaking, logistics, and credit risk bearing[cite: 3]." },
-        { mod: 3, title: "Perishable or fragile goods generally require which type of distribution channel?", correct: "Shorter / Low-level channel", options: ["Shorter / Low-level channel", "Multi-tiered long channel", "Agent-wholesaler-retailer chain", "Cash and carry warehouse system"], exp: "Perishable or fragile products require a low level (shorter) distribution chain[cite: 3]." },
-
-        // Week 4
-        { mod: 4, title: "Which scientific management pioneer is famous for Motion Studies and contracting work?", correct: "Frank B. Gilbreth", options: ["Frank B. Gilbreth", "F.W. Taylor", "Henry L. Gantt", "Carl G. Barth"], exp: "Frank B. Gilbreth contributed motion studies and methods construction[cite: 4]." },
-        { mod: 4, title: "In production management, long-range facility location and capacity planning belong to:", correct: "Strategic Decisions", options: ["Strategic Decisions", "Operating Decisions", "Control Decisions", "Conversion Sub-systems"], exp: "Strategic decisions involve long-range plans, technology selection, and facility location[cite: 4]." },
-        { mod: 4, title: "Which aspect of design focuses on how easy and economical a product is to manufacture?", correct: "Production Design", options: ["Production Design", "Form Design", "Functional Design", "Ecology Design"], exp: "Production design is designing products specifically from the point of view of producibility[cite: 4]." },
-        { mod: 4, title: "What subsystem monitors a portion of production output to send feedback for corrective action?", correct: "Control Sub-system", options: ["Control Sub-system", "Conversion Sub-system", "Strategic Sub-system", "Manual Sub-system"], exp: "The control sub-system monitors output signals to provide feedback for corrective action[cite: 4]." },
-        { mod: 4, title: "Aggregate planning, master scheduling, and short-term shop floor control are examples of:", correct: "Operating Decisions", options: ["Operating Decisions", "Strategic Decisions", "Control Decisions", "Macro Environmental Decisions"], exp: "Operating decisions manage production planning, shop floor control, and inventory[cite: 4]." }
-    ];
-
-    let currentQuestions = [];
-
-    function generateQuiz(retryMissedOnly = false) {
-        const topic = document.getElementById('topicSelect').value;
-        if (retryMissedOnly) {
-            currentQuestions = [...missedQuestions];
-            if (currentQuestions.length === 0) {
-                alert("No missed questions recorded yet!");
-                return;
-            }
-        } else {
-            if (topic === 'all') {
-                currentQuestions = shuffle([...quizBank]);
-            } else {
-                const modNum = parseInt(topic);
-                currentQuestions = quizBank.filter(q => q.mod === modNum);
-            }
-        }
-        renderQuiz();
-    }
-
-    function renderQuiz() {
-        const container = document.getElementById('quizContainer');
-        container.innerHTML = '';
-
-        currentQuestions.forEach((q, qIndex) => {
-            const card = document.createElement('div');
-            card.className = 'question-card';
-            card.innerHTML = `
-                <span class="badge">Week ${q.mod}</span>
-                <div class="question-title">${qIndex + 1}. ${q.title}</div>
-                <div class="options">
-                    ${shuffle(q.options).map(opt => `
-                        <label class="option-label">
-                            <input type="radio" name="q_${qIndex}" value="${opt}" onchange="handleOptionSelect(${qIndex}, '${opt.replace(/'/g, "\\'")}', '${q.correct.replace(/'/g, "\\'")}', '${q.exp.replace(/'/g, "\\'")}', ${q.mod})">
-                            ${opt}
-                        </label>
-                    `).join('')}
-                </div>
-                <div class="explanation" id="exp_${qIndex}"></div>
-            `;
-            container.appendChild(card);
-        });
-    }
-
-    function handleOptionSelect(qIndex, selectedOpt, correctOpt, explanation, mod) {
-        const expDiv = document.getElementById(`exp_${qIndex}`);
-        document.querySelectorAll(`input[name="q_${qIndex}"]`).forEach(i => i.disabled = true);
-
-        if (!masteryData[mod]) masteryData[mod] = { c: 0, t: 0 };
-        masteryData[mod].t += 1;
-
-        if (selectedOpt === correctOpt) {
-            expDiv.className = 'explanation correct';
-            expDiv.innerHTML = `<strong>Correct!</strong> ${explanation}`;
-            masteryData[mod].c += 1;
-        } else {
-            expDiv.className = 'explanation incorrect';
-            expDiv.innerHTML = `<strong>Incorrect.</strong> Correct answer: <strong>${correctOpt}</strong>.<br>${explanation}`;
-            if (!missedQuestions.some(item => item.title === currentQuestions[qIndex].title)) {
-                missedQuestions.push(currentQuestions[qIndex]);
-            }
-        }
-        saveMastery();
-    }
-
-    // MATCHING GAME ENGINE
-    const rawPairs = [
-        { id: 0, left: "F.W. Taylor", right: "Scientific management principles & time study", explanation: "Taylor pioneered scientific principles and time studies[cite: 4]." },
-        { id: 1, left: "Two-Tier Distribution", right: "Manufacturer ➔ Wholesaler ➔ Retailer ➔ Consumer", explanation: "Utilizes Cash & Carry wholesalers to reach scattered stores[cite: 3]." },
-        { id: 2, left: "Inelastic Demand", right: "Necessities like salt and water staying in Maturity", explanation: "Lack of close substitutes maintains stable demand[cite: 2]." },
-        { id: 3, left: "Form Design", right: "Product shape, aesthetic appearance, and visual appeal", explanation: "Form design governs physical aesthetics and visual appeal[cite: 4]." },
-        { id: 4, left: "Micro Environment", right: "Partially controllable forces: Suppliers & Customers", explanation: "Consists of external entities interacting directly with the firm[cite: 1]." },
-        { id: 5, left: "Control Sub-system", right: "Monitors output feedback for corrective actions", explanation: "Provides loop signals to correct manufacturing variances[cite: 4]." }
-    ];
-
-    let leftSelected = null, rightSelected = null, matchesCount = 0;
-
-    function resetMatchingGame() {
-        matchesCount = 0;
-        leftSelected = null;
-        rightSelected = null;
-
-        const leftCol = document.getElementById('leftCol');
-        const rightCol = document.getElementById('rightCol');
-        const feedbackDiv = document.getElementById('matchingFeedback');
-        
-        leftCol.innerHTML = ''; 
-        rightCol.innerHTML = ''; 
-        feedbackDiv.style.display = 'none';
-
-        document.getElementById('matchingScore').innerText = `Matches Found: 0 / ${rawPairs.length}`;
-
-        const leftList = shuffle(rawPairs);
-        const rightList = shuffle(rawPairs);
-
-        leftList.forEach(item => {
-            const card = document.createElement('div');
-            card.className = 'match-card';
-            card.dataset.id = item.id;
-            card.innerText = item.left;
-            card.onclick = () => selectLeft(card, item);
-            leftCol.appendChild(card);
-        });
-
-        rightList.forEach(item => {
-            const card = document.createElement('div');
-            card.className = 'match-card';
-            card.dataset.id = item.id;
-            card.innerText = item.right;
-            card.onclick = () => selectRight(card, item);
-            rightCol.appendChild(card);
-        });
-    }
-
-    function selectLeft(card, item) {
-        if (card.classList.contains('matched')) return;
-        document.querySelectorAll('#leftCol .match-card').forEach(c => c.classList.remove('selected'));
-        leftSelected = { card, item };
-        card.classList.add('selected');
-        checkPairMatch();
-    }
-
-    function selectRight(card, item) {
-        if (card.classList.contains('matched')) return;
-        document.querySelectorAll('#rightCol .match-card').forEach(c => c.classList.remove('selected'));
-        rightSelected = { card, item };
-        card.classList.add('selected');
-        checkPairMatch();
-    }
-
-    function checkPairMatch() {
-        if (!leftSelected || !rightSelected) return;
-
-        const feedbackDiv = document.getElementById('matchingFeedback');
-        feedbackDiv.style.display = 'block';
-
-        if (leftSelected.item.id === rightSelected.item.id) {
-            leftSelected.card.className = 'match-card matched';
-            rightSelected.card.className = 'match-card matched';
-
-            feedbackDiv.style.backgroundColor = 'var(--success-bg)';
-            feedbackDiv.style.borderColor = 'var(--success-border)';
-            feedbackDiv.style.color = 'var(--success-color)';
-            feedbackDiv.innerHTML = `<strong>Correct Match!</strong><br>${leftSelected.item.left} ⟺ <code>${leftSelected.item.right}</code><br>${leftSelected.item.explanation}`;
-
-            matchesCount++;
-            document.getElementById('matchingScore').innerText = `Matches Found: ${matchesCount} / ${rawPairs.length}`;
-            leftSelected = null; rightSelected = null;
-        } else {
-            const l = leftSelected, r = rightSelected;
-            l.card.classList.add('wrong');
-            r.card.classList.add('wrong');
-
-            feedbackDiv.style.backgroundColor = 'var(--error-bg)';
-            feedbackDiv.style.borderColor = 'var(--error-border)';
-            feedbackDiv.style.color = 'var(--error-color)';
-            feedbackDiv.innerHTML = `<strong>Incorrect Pair.</strong> Try again!`;
-
-            setTimeout(() => {
-                l.card.classList.remove('wrong', 'selected');
-                r.card.classList.remove('wrong', 'selected');
-            }, 800);
-
-            leftSelected = null; rightSelected = null;
-        }
-    }
-
-    // INTERACTIVE BUA 102 ANALYZER
-    function renderScenarioInputs() {
-        const scenario = document.getElementById('scenarioType').value;
-        const container = document.getElementById('scenarioInputs');
-        container.innerHTML = '';
-
-        if (scenario === 'marketing_env') {
-            container.innerHTML = `
-                <label>Select Environmental Force: </label>
-                <select id="sc_env">
-                    <option value="7ms">Company Resources & Department Budgets</option>
-                    <option value="micro_cust">Suppliers, Retail Intermediaries & Customers</option>
-                    <option value="macro_demo">Demographics, Inflation Rate & Laws</option>
-                </select>
-            `;
-        } else if (scenario === 'plc_stage') {
-            container.innerHTML = `
-                <label>Select Product Type: </label>
-                <select id="sc_product">
-                    <option value="table_salt">Table Salt / Drinking Water</option>
-                    <option value="tech_gadget">New Smart Wearable Device</option>
-                    <option value="traditional_watch">Traditional Dial Wristwatch</option>
-                </select>
-            `;
-        } else if (scenario === 'channel_structure') {
-            container.innerHTML = `
-                <label>Select Product & Market Context: </label>
-                <select id="sc_channel">
-                    <option value="chewy_candy">Chewy Toffee (Thousands of scattered kiosks)</option>
-                    <option value="embedded_chip">Computer Processor Chip</option>
-                    <option value="custom_industrial">Custom Heavy Factory Machinery</option>
-                </select>
-            `;
-        } else if (scenario === 'operations_decision') {
-            container.innerHTML = `
-                <label>Select Management Task: </label>
-                <select id="sc_ops">
-                    <option value="facility_loc">Deciding new plant location & capacity</option>
-                    <option value="scheduling">Weekly shop-floor job scheduling</option>
-                    <option value="quality_control">Total Quality Control & equipment maintenance</option>
-                </select>
-            `;
-        }
-    }
-
-    function solveAndDraw() {
-        const scenario = document.getElementById('scenarioType').value;
-        const list = document.getElementById('stepList');
-        list.innerHTML = '';
-
-        if (scenario === 'marketing_env') {
-            const env = document.getElementById('sc_env').value;
-            let steps = [];
-
-            if (env === '7ms') {
-                steps = [
-                    "<strong>Classification:</strong> Internal Marketing Environment[cite: 1]",
-                    "<strong>Control Level:</strong> Fully Controllable Forces[cite: 1]",
-                    "<strong>Key Elements:</strong> 7 Ms (Men, Money, Machine, Material, Minute, Media, Margin)[cite: 1]",
-                    "<strong>Impact:</strong> Shapes corporate success strategy, departmental alignment, and company policies[cite: 1]."
-                ];
-            } else if (env === 'micro_cust') {
-                steps = [
-                    "<strong>Classification:</strong> Micro Marketing Environment[cite: 1]",
-                    "<strong>Control Level:</strong> Partially Controllable Forces[cite: 1]",
-                    "<strong>Key Entities:</strong> Suppliers, Competitors, Intermediaries, Publics, Trade Unions, Consumers[cite: 1]",
-                    "<strong>Impact:</strong> Directly impacts daily marketing transactions and channel dynamics[cite: 1]."
-                ];
-            } else {
-                steps = [
-                    "<strong>Classification:</strong> Macro Marketing Environment[cite: 1]",
-                    "<strong>Control Level:</strong> Uncontrollable External Forces[cite: 1]",
-                    "<strong>Pointers:</strong> Demographic, Economic, Socio-Cultural, Technological, Ecological, Political/Legal[cite: 1]",
-                    "<strong>Strategic Action:</strong> The firm must adapt strategies to align with uncontrollable external shifts[cite: 1]."
-                ];
-            }
-            steps.forEach(s => { const d = document.createElement('div'); d.className = 'step-item'; d.innerHTML = s; list.appendChild(d); });
-
-        } else if (scenario === 'plc_stage') {
-            const prod = document.getElementById('sc_product').value;
-            let steps = [];
-
-            if (prod === 'table_salt') {
-                steps = [
-                    "<strong>PLC Stage:</strong> Permanent Maturity Stage[cite: 2]",
-                    "<strong>Elasticity Profile:</strong> Inelastic Demand (Necessity)[cite: 2]",
-                    "<strong>Market Dynamic:</strong> Price fluctuations do not alter consumer usage[cite: 2].",
-                    "<strong>Conclusion:</strong> Always remains in maturity due to essential nature and absence of direct substitutes[cite: 2]."
-                ];
-            } else if (prod === 'tech_gadget') {
-                steps = [
-                    "<strong>PLC Stage:</strong> Introduction / Growth Transition[cite: 2]",
-                    "<strong>Promotional Focus:</strong> Heavy advertising & sales promotion needed to build awareness[cite: 2]",
-                    "<strong>Profit Trajectory:</strong> Rapidly increasing sales turnover and accelerating profit[cite: 2]",
-                    "<strong>Strategic Focus:</strong> Market penetration and feature enhancement[cite: 2]."
-                ];
-            } else {
-                steps = [
-                    "<strong>PLC Stage:</strong> Decline Stage[cite: 2]",
-                    "<strong>Driver:</strong> Technological substitution (e.g. digital watches/smartphones replacing traditional dials)[cite: 1, 2]",
-                    "<strong>Market Dynamic:</strong> Product becomes gradually obsolete[cite: 2]",
-                    "<strong>Remedy:</strong> Requires innovation or product improvement to alter life cycle curve[cite: 2]."
-                ];
-            }
-            steps.forEach(s => { const d = document.createElement('div'); d.className = 'step-item'; d.innerHTML = s; list.appendChild(d); });
-
-        } else if (scenario === 'channel_structure') {
-            const ch = document.getElementById('sc_channel').value;
-            let steps = [];
-
-            if (ch === 'chewy_candy') {
-                steps = [
-                    "<strong>Recommended Channel:</strong> Two-Tier Distribution System[cite: 3]",
-                    "<strong>Path:</strong> Manufacturer ➔ Cash & Carry Wholesaler ➔ Kiosk / Shop ➔ Consumer[cite: 3]",
-                    "<strong>Rationale:</strong> Direct selling to thousands of tiny kiosks is prohibitively expensive in salesforce infrastructure[cite: 3].",
-                    "<strong>Wholesaler Role:</strong> Provides bulk breaking and local inventory storage[cite: 3]."
-                ];
-            } else if (ch === 'embedded_chip') {
-                steps = [
-                    "<strong>Recommended Channel:</strong> OEM (Original Equipment Manufacturer) Channel[cite: 3]",
-                    "<strong>Path:</strong> Component Supplier ➔ OEM Manufacturer ➔ Assembled End Product ➔ User[cite: 3]",
-                    "<strong>Rationale:</strong> The product is an embedded input that forms part of another manufacturer's complete system[cite: 3].",
-                    "<strong>Example:</strong> Silicon chips in computers or electric motors in stairlifts[cite: 3]."
-                ];
-            } else {
-                steps = [
-                    "<strong>Recommended Channel:</strong> Direct Distribution Channel[cite: 3]",
-                    "<strong>Path:</strong> Manufacturer ➔ Industrial Buyer[cite: 3]",
-                    "<strong>Rationale:</strong> Custom-made goods and products of high unit value require direct interaction without middlemen[cite: 3].",
-                    "<strong>Key Benefit:</strong> Full control over technical specifications and customer relationship[cite: 3]."
-                ];
-            }
-            steps.forEach(s => { const d = document.createElement('div'); d.className = 'step-item'; d.innerHTML = s; list.appendChild(d); });
-
-        } else if (scenario === 'operations_decision') {
-            const ops = document.getElementById('sc_ops').value;
-            let steps = [];
-
-            if (ops === 'facility_loc') {
-                steps = [
-                    "<strong>Decision Tier:</strong> Strategic Operations Decision[cite: 4]",
-                    "<strong>Time Horizon:</strong> Long-range planning[cite: 4]",
-                    "<strong>Core Focus:</strong> Answering 'how much' and 'where' regarding production capacity and layout[cite: 4]",
-                    "<strong>Impact:</strong> Sets baseline structural capabilities for future operations[cite: 4]."
-                ];
-            } else if (ops === 'scheduling') {
-                steps = [
-                    "<strong>Decision Tier:</strong> Operating Decision[cite: 4]",
-                    "<strong>Time Horizon:</strong> Short-range execution[cite: 4]",
-                    "<strong>Core Focus:</strong> Shop-floor planning, master scheduling, material requirements planning (MRP)[cite: 4]",
-                    "<strong>Impact:</strong> Ensures efficient daily resource utilization and order fulfillment[cite: 4]."
-                ];
-            } else {
-                steps = [
-                    "<strong>Decision Tier:</strong> Control Decision[cite: 4]",
-                    "<strong>Time Horizon:</strong> Continuous monitoring[cite: 4]",
-                    "<strong>Core Focus:</strong> Total Quality Control, maintenance management, human productivity[cite: 4]",
-                    "<strong>Impact:</strong> Maintains quality standards and facility reliability[cite: 4]."
-                ];
-            }
-            steps.forEach(s => { const d = document.createElement('div'); d.className = 'step-item'; d.innerHTML = s; list.appendChild(d); });
-        }
-    }
-
-    // FLASHCARD ENGINE
-    const flashcardsDeck = [
-        { concept: "Marketing Concept", answer: "Getting appropriate goods/services/ideas to target audience at right place, time, price, with proper promotion and people[cite: 1].", topic: 1 },
-        { concept: "7 Ms of Internal Resources", answer: "Men, Money, Machine, Material, Minute, Media, Margin[cite: 1].", topic: 1 },
-        { concept: "Inelastic Demand in PLC", answer: "Why salt and water stay in maturity indefinitely—price changes do not alter fundamental usage[cite: 2].", topic: 2 },
-        { concept: "Salesmanship Triad", answer: "Viewed as an Art (skills), Science (systematized principles), and Profession (proficiency code)[cite: 2].", topic: 2 },
-        { concept: "Two-Tier Distribution", answer: "Manufacturer ➔ Cash & Carry Wholesaler ➔ Small Retailer/Kiosk ➔ Consumer[cite: 3].", topic: 3 },
-        { concept: "OEM Channel", answer: "Distribution path where one supplier's product is embedded inside another manufacturer's complete product[cite: 3].", topic: 3 },
-        { concept: "Production System Sub-systems", answer: "Production System, Conversion Sub-system, and Control Sub-system[cite: 4].", topic: 4 },
-        { concept: "F.W. Taylor's Contribution", answer: "Scientific management principles, exception principle, time study[cite: 4].", topic: 4 },
-        { concept: "Production Design", answer: "Designing products specifically from the standpoint of producibility and ease of manufacturing[cite: 4].", topic: 4 },
-        { concept: "Operating vs Strategic Decisions", answer: "Strategic deals with long-range facility/tech planning; Operating deals with aggregate planning, scheduling, and inventory[cite: 4].", topic: 4 }
-    ];
-
-    let fcIndex = 0, fcIsFlipped = false;
-
-    function loadFlashcard() {
-        const currentCard = flashcardsDeck[fcIndex];
-        fcIsFlipped = false;
-        document.getElementById('fcLabel').innerText = `WEEK ${currentCard.topic} CONCEPT (Click to Flip)`;
-        document.getElementById('fcContent').innerText = currentCard.concept;
-    }
-
-    function flipCard() {
-        const currentCard = flashcardsDeck[fcIndex];
-        fcIsFlipped = !fcIsFlipped;
-        document.getElementById('fcLabel').innerText = fcIsFlipped ? "DEFINITION / PRINCIPLE" : `WEEK ${currentCard.topic} CONCEPT (Click to Flip)`;
-        document.getElementById('fcContent').innerText = fcIsFlipped ? currentCard.answer : currentCard.concept;
-    }
-
-    function rateCard(rating) {
-        fcIndex = (fcIndex + 1) % flashcardsDeck.length;
-        loadFlashcard();
-    }
-
-    window.onload = () => {
-        updateMasteryUI();
-        generateQuiz();
-        renderScenarioInputs();
-    };
-</script>
-
-</body>
-</html>
+const DATA={
+"weeks":[
+{"week":1,"title":"Week 1: Marketing Function, Environment and Marketing Mix","summary":"This week introduces the marketing concept, its functions, the marketing environment (micro and macro), and the marketing mix (Product, Price, Place, Promotion). Marketing is the process of getting the appropriate goods and services to the target audience at the right place, time, and price.","sections":[["Marketing Concept","Marketing concept is the process of getting the appropriate goods and services or idea to the target audience at the right place, time and price, using the appropriate promotion techniques. <b>Goals:</b> Creation of utility, cost reduction, price stability, maximising customer satisfaction, maximising quality of life, maximising choice."],["Marketing Functions","The art or operations through which products and services and the final consumer are linked together. <b>Functions include:</b> Exchange function (buying and selling), Physical supply (transportation, storage), Facilitating functions (financing, risk taking, market information, standardisation and grading), Pricing, Branding, Packaging, Salesmanship, and Advertising."],["Marketing Environment","The dynamic marketing environment has three types of forces: <b>Internal Controllable</b> (resources, goods & services, strategy, mission, departments, company policy), <b>Micro Environment</b> (company, customers, competitors, suppliers, publics, trade unions, stakeholders, communities, employees, marketing intermediaries, local government, market), and <b>Macro Environment</b> (demographical, economical, political, environmental, socio-cultural, technological, ethical, physical, competitional, governmental)."],["The Marketing Mix (4Ps)","<b>Product:</b> Brand name, product image, package design, customer service, guarantees, new product development. <b>Price:</b> Must be fair relative to benefits. <b>Place:</b> Shipping, warehousing, selling outlets (Web vs. brick-and-mortar). <b>Promotion:</b> All the ways marketers communicate about their products."]],"examTraps":["<b>Trap:</b> Confusing Micro and Macro environments. Micro is partially controllable (customers, competitors); Macro is uncontrollable (demographics, economy, politics).","<b>Trap:</b> Thinking the Marketing Mix is just about selling. It includes Product, Price, Place, and Promotion.","<b>Trap:</b> Forgetting that Marketing Concept starts with the Target Market, focuses on Consumer Need, uses Integrated Marketing, and ends with Profit Through Customer Satisfaction."],"takeaways":["Marketing Concept: Right goods/services, right place, right time, right price.","4Ps: Product, Price, Place, Promotion.","Marketing Environment: Internal, Micro, Macro.","Functions: Exchange, Physical Supply, Facilitating."]},
+{"week":2,"title":"Week 2: Product Planning & Marketing Mix in Details","summary":"This week details product planning, the product life cycle, price strategy, promotion, advertising, salesmanship, and distribution. It explains how products are developed, launched, and managed through their lifecycle to maximize profitability.","sections":[["Product Planning","All activities, decisions, steps, and tasks necessary to develop a successful product. It includes market research, task identification, resources needed, and timelines. Product planning involves product line, product mix, packaging, labelling, branding, service after sales, organizing for product planning, and product research."],["Product Life Cycle","<b>Development:</b> Product developed to meet customer needs; pilot activities, user acceptance testing. <b>Introduction:</b> Slow growth, low sales, low profit; requires advertising and sales promotion. <b>Growth:</b> Rapid sales turnover, accelerated profit. <b>Maturity:</b> Competition brings pressure on price; increased marketing to stimulate demand. <b>Saturation:</b> Constant consumption rate; fight for market share. <b>Decline:</b> Product becomes obsolete."],["Price Strategy","An approach taken by businesses to decide how much to charge. It entails market conditions, consumers' willingness to pay, activities of competition, trade margins, and costs incurred. <b>Internal Forces:</b> Pricing objectives, roles of price, cost of production, images of the firm. <b>External Forces:</b> Government regulations, competition, buyer behavior, economic conditions, ethical consideration, characteristics of demand."],["Promotion","To push forward or advance an idea to gain acceptance. Involves information dissemination, persuasion, and influencing. <b>Promotion Mix:</b> Advertising, Publicity, Personal Selling, Sales Promotion. <b>Advertising Strengths:</b> Planned and controlled message, contacts many people simultaneously at low cost, delivers messages to specific demographics. <b>Weaknesses:</b> Less effective at later stages of buying process, less flexible, one-way communication, lacks credibility."],["Salesmanship","The process of inducing and assisting a prospective buyer to buy a commodity or service. <b>Features:</b> High pressure, persuasive, winning buyer's confidence, aims at mutual benefit, education process, creative process. It is an Art, Science, and Profession."],["Distribution","The set of marketing institutions participating in the movement or flow of goods or services from primary producers to ultimate consumers. <b>Channel Components:</b> Merchant middlemen (wholesalers, retailers), Agent middlemen (commission agents, factors, brokers), Facilitating agencies (common carriers, bankers, advertising agencies)."]],"examTraps":["<b>Trap:</b> Thinking all products go through all stages of the Product Life Cycle. Salt and water remain in the maturity stage forever because they are necessities with inelastic demand.","<b>Trap:</b> Confusing Advertising with Publicity. Advertising is paid; Publicity is non-personal stimulation of demand by placing commercial news.","<b>Trap:</b> Forgetting that Salesmanship is both an Art (skills) and a Science (systematized knowledge) and a Profession (code of conduct)."],"takeaways":["Product Life Cycle: Development, Introduction, Growth, Maturity, Saturation, Decline.","Price = Exchange value of a product or service.","Promotion Mix: Advertising, Publicity, Personal Selling, Sales Promotion.","Salesmanship = Persuading buyers for mutual benefit.","Distribution Channel: Path from producer to consumer."]},
+{"week":3,"title":"Week 3: Distribution Channels in Supply Chain","summary":"This week covers the basic structures for a distribution system (Direct, One-Tier, Two-Tier, Multiple-Tier, OEM), the role of distributors/wholesalers, and the factors that determine the choice of channel.","sections":[["Distribution Channels","Distribution is the element of the marketing mix that involves getting the right product to the right customers in the right place at the right time. A channel of distribution is the path that a product takes from the producer to the consumer, while physical distribution is the actual movement of products along that path."],["Basic Structures","<b>Direct:</b> Supplier owns and manages all resources in the value chain (e.g., Dell, EasyJet). <b>One-Tier:</b> One set of intermediaries between company and customers (e.g., overseas agents). <b>Two-Tier:</b> Two sets of intermediaries (e.g., manufacturer -> Cash and Carry -> Kiosk -> Customer). <b>Multiple-Tier:</b> Additional tiers required to reach end customer (e.g., Unilever soap sachets). <b>OEM Channel:</b> One supplier makes a product embedded inside another (e.g., electric motor inside a stairlift)."],["Role of Distributors/Wholesalers","Distributors are intermediaries that service other intermediaries (e.g., Cash and Carry serving small independent retailers). <b>Functions for Consumers:</b> Fast delivery, segment-based product assortment, local credit, product information, assist in buying decisions, anticipate needs. <b>Functions for Retailers:</b> Demand generation (channel recruitment, marketing fund deployment, special pricing management, channel training), Supply fulfilment (bulk breaker, outbound logistics, reverse logistics), Market information, Outsourced services (warranty management, break-fix operations)."],["Choice of Channel","<b>Product:</b> Perishable/fragile require low level of distribution; Durable/standardised require longer/diversified; Custom made/direct distribution; Technological products need shorter distribution. <b>Market:</b> Consumer market requires retailers; Industrial market doesn't. Large market requires many channels; Highly concentrated market requires direct selling. <b>Middlemen:</b> Preference for those who provide wanted marketing services. <b>Company:</b> Company size, product mix, financial resources, new company relies heavily on middlemen. <b>Marketing Environment:</b> During recession, shorter and cheaper channel is encouraged. <b>Competition:</b> Similar channels to competition are preferred."]],"examTraps":["<b>Trap:</b> Confusing Direct with One-Tier. Direct means the supplier manages everything (no intermediaries). One-Tier uses one set of intermediaries (like agents).","<b>Trap:</b> Forgetting that the role of distributors includes both demand generation and supply fulfilment.","<b>Trap:</b> Thinking the choice of channel is only based on product. It also includes market, middlemen, company, marketing environment, and competition."],"takeaways":["Distribution = Right product, right customers, right place, right time.","Structures: Direct, One-Tier, Two-Tier, Multiple-Tier, OEM.","Distributor role: One-stop shop, bulk breaker, credit, logistics.","Choice of channel: Product, Market, Middlemen, Company, Environment, Competition."]},
+{"week":4,"title":"Week 4: Production & Operations Management","summary":"This week introduces production as a system, the contributors to modern production (Taylor, Gilbreth, Gantt), decision-making in production (Strategic, Operating, Control), product design, process planning, and the role of technology.","sections":[["Production as a System","A system is a whole that cannot be taken apart. Three main systems: <b>Production System</b> (converts inputs into outputs), <b>Conversion Sub-system</b> (inputs converted into final products), <b>Control Sub-system</b> (monitors output for feedback signals to provide corrective action)."],["Contributors to Modern Production","<b>F.W. Taylor:</b> Scientific management principles, exception principles, time study. <b>Frank B. Gilbreth:</b> Motion study, methods construction, contracting, consulting. <b>Lilian M. Gilbreth:</b> Fatigue studies, human factors in work, employee selection and training. <b>Henry L. Gantt:</b> Gantt charts, incentive pay systems, humanistic approach to labor training. <b>Harrington Emerson:</b> Principles of efficiency, million dollars-a-day savings in railroads."],["Decision-Making in Production","<b>Strategic Decisions:</b> Production processes, technology, facility layout, allocating resources, long range capacity planning. <b>Operating Decisions:</b> Production planning system, independent demand inventory systems, resource requirement planning, shop floor planning and control, material management. <b>Control Decisions:</b> Productivity and employees, total quality control, project planning and control techniques, maintenance management and reliability."],["Product Design & Production Design","Product design is concerned with the form and function of a product. <b>Functional Design:</b> Product should perform the function for which it was developed. <b>Form Design:</b> Appearance, appeal, aesthetic. <b>Process Design:</b> Overall sequence of operations. <b>Production Design:</b> Designing products from the point of view of producibility. <b>Factors influencing product design:</b> Customer requirement, convenience, trade-off between function and form, types of materials, work methods, cost/price ratio, product quality, process capability, effect on existing products, packaging."],["What is a Process?","A process is a sequence of activities intended to achieve some result, typically to create added value for the customer. A process converts inputs into outputs. <b>Types of Processes:</b> Conversion Processes, Manufacturing Processes, Testing Processes. <b>Process Planning:</b> Planning the conversion processes needed to convert raw material into finished products. It consists of process design and operations design."],["Role of Technology","<b>Influence:</b> On production organization, product strategy, organizational structure. <b>Classification:</b> Manual, Mechanical, Automated, Current, Appropriate, State-of-the-art, Advanced, Obsolete, Capital-Intensive, Labor-Intensive. <b>Choice of Technology:</b> Internal (availability of funds, product life cycle, present plant capacity), External (innovation, syndication, diffusion, substitution). <b>Primary Areas:</b> Product Technology, Process Technology, Information Technology, Manufacturing Technology, Design Technology, Production or Manufacturing Technology."]],"examTraps":["<b>Trap:</b> Confusing Strategic, Operating, and Control decisions in production. Strategic is long-range; Operating is medium/short-range; Control is monitoring and maintaining.","<b>Trap:</b> Thinking Product Design is just about appearance. It includes Functional Design (does it work?), Form Design (how does it look?), Process Design (how is it made?), and Production Design (can it be produced?).","<b>Trap:</b> Forgetting that a process is a sequence of activities that creates added value for the customer."],"takeaways":["Production System: Production, Conversion, Control sub-systems.","Contributors: Taylor (Scientific Management), Gilbreth (Motion/Fatigue), Gantt (Gantt Charts).","Decisions: Strategic, Operating, Control.","Product Design: Functional, Form, Process, Production.","Process = Sequence of activities creating value.","Technology: Manual, Mechanical, Automated, etc."]}
+],
+"questions":[
+{"week":"1","q":"What is the marketing concept?","opts":["Selling products at any cost","Getting the right goods/services to the target audience at the right place, time, and price","Only advertising","Only pricing"],"a":1,"why":"The marketing concept is the process of getting the appropriate goods and services or idea to the target audience at the right place, time and price, using appropriate promotion techniques."},
+{"week":"1","q":"Which of the following is a goal of marketing?","opts":["Creation of utility","Cost reduction","Price stability","All of the above"],"a":3,"why":"Goals of marketing include creation of utility, cost reduction, price stability, maximising customer satisfaction, maximising quality of life, and maximising choice."},
+{"week":"1","q":"Which of the following is a function of physical supply?","opts":["Buying","Transportation","Selling","Pricing"],"a":1,"why":"Transportation and storage are functions of physical supply."},
+{"week":"1","q":"What is the macro-marketing environment?","opts":["Internal controllable forces","External uncontrollable forces","External partially controllable forces","Company policies"],"a":1,"why":"The macro-marketing environment consists of external uncontrollable forces (demographics, economy, politics, etc.)."},
+{"week":"1","q":"Which of the following is part of the marketing mix?","opts":["Product","Price","Place","All of the above"],"a":3,"why":"The marketing mix consists of Product, Price, Place, and Promotion."},
+{"week":"1","q":"What does demography study?","opts":["Human population and its distribution structure","Economic conditions","Political stability","Technological advancement"],"a":0,"why":"Demography is the scientific study of human population and its distribution structure."},
+{"week":"1","q":"What is market segmentation?","opts":["Dividing target market into approachable groups","Selling to everyone","Ignoring customer differences","Only selling online"],"a":0,"why":"Market segmentation is the practice of dividing target market into approachable groups based on demographics, needs, priorities, common interest, income, etc."},
+{"week":"1","q":"Which of the following is a facilitating function of marketing?","opts":["Transportation","Storage","Financing","Selling"],"a":2,"why":"Financing, risk taking, market information, and standardisation/grading are facilitating functions."},
+{"week":"1","q":"What does the 'Promotion' element of the marketing mix include?","opts":["All the ways marketers communicate about their products","Only advertising","Only personal selling","Only sales promotion"],"a":0,"why":"Promotion includes all of the ways that marketers communicate about their products."},
+{"week":"1","q":"Which environment includes customers, competitors, and suppliers?","opts":["Macro environment","Micro environment","Internal environment","None of the above"],"a":1,"why":"The micro-marketing environment includes the company, customers, competitors, suppliers, publics, etc."},
+{"week":"2","q":"What is product planning?","opts":["All activities, decisions, steps, and tasks necessary to develop a successful product","Only designing the product","Only advertising the product","Only selling the product"],"a":0,"why":"Product planning includes all the activities, decisions, steps, and tasks necessary to develop a successful product."},
+{"week":"2","q":"Which stage of the product life cycle has rapid sales turnover and accelerated profit?","opts":["Introduction","Growth","Maturity","Decline"],"a":1,"why":"In the Growth stage, the rate of increase of sales turnover is rapid, and profit also increases at an accelerated rate."},
+{"week":"2","q":"Why do products like salt and water remain in the maturity stage forever?","opts":["Because they are luxuries","Because they are necessities with inelastic demand","Because they are expensive","Because they are seasonal"],"a":1,"why":"Necessities tend to have inelastic demand. Salt and water are necessities; a change in their price does not change how customers respond to their purchase."},
+{"week":"2","q":"What is price?","opts":["The cost of production","The exchange value of a product or service expressed in money","The profit margin","The discount offered"],"a":1,"why":"Economists described price as the exchange value of a product or service always expressed in money."},
+{"week":"2","q":"Which of the following is an internal force influencing price decisions?","opts":["Government regulations","Competition","Pricing objectives","Economic conditions"],"a":2,"why":"Pricing objectives, roles of price, cost of production, and images of the firm are internal forces."},
+{"week":"2","q":"What is advertising?","opts":["Any paid form of nonpersonal presentation and promotion of ideas, goods, and services by an identified sponsor","Personal selling","Publicity","Sales promotion"],"a":0,"why":"Advertising is a mass, paid communication of goods, services or ideas by an identified sponsor."},
+{"week":"2","q":"Which of the following is a weakness of advertising?","opts":["It is planned and controlled","It can contact many people simultaneously","It is less effective at later stages of the buying process","It delivers messages to specific demographics"],"a":2,"why":"Weaknesses of advertising include being less effective at later stages of the buying process, less flexible, one-way communication, and lacking credibility."},
+{"week":"2","q":"What is salesmanship?","opts":["The process of persuading people to buy goods or services for mutual benefit","Only advertising","Only pricing","Only distribution"],"a":0,"why":"Salesmanship is the process of inducing and assisting a prospective buyer to buy a commodity or service for mutual benefit."},
+{"week":"2","q":"Which of the following is a channel of distribution?","opts":["Manufacturer -> Consumer","Manufacturer -> Retailer -> Consumer","Manufacturer -> Wholesaler -> Retailer -> Consumer","All of the above"],"a":3,"why":"All of these are valid distribution channels."},
+{"week":"2","q":"What is the main goal of promotion?","opts":["To inform, persuade, and influence","To increase prices","To reduce quality","To ignore customers"],"a":0,"why":"Promotion involves information dissemination, persuasion, and influencing."},
+{"week":"3","q":"What is a distribution channel?","opts":["The path that a product takes from the producer to the consumer","The physical movement of products","The price of a product","The promotion of a product"],"a":0,"why":"A channel of distribution is the path that a product takes from the producer to the consumer."},
+{"week":"3","q":"Which distribution structure involves the supplier owning and managing all resources in the value chain?","opts":["Direct","One-Tier","Two-Tier","Multiple-Tier"],"a":0,"why":"In a Direct distribution structure, the supplier owns and manages all the resources in the value chain through to the customer."},
+{"week":"3","q":"Which distribution structure uses one set of intermediaries between the company and its customers?","opts":["Direct","One-Tier","Two-Tier","OEM"],"a":1,"why":"A One-Tier distribution structure employs one set of intermediaries between the company and its customers."},
+{"week":"3","q":"What is an OEM channel?","opts":["Original Equipment Manufacturer channel where one supplier makes a product embedded inside another","A direct channel","A retail channel","A wholesale channel"],"a":0,"why":"The OEM channel describes the situation when one supplier makes a product that is embedded inside another (e.g., electric motor inside a stairlift)."},
+{"week":"3","q":"Which of the following is a function of distributors for consumers?","opts":["Fast delivery","Provide local credit","Provide product information","All of the above"],"a":3,"why":"Distributors provide fast delivery, segment-based product assortment, local credit, product information, assist in buying decisions, and anticipate needs."},
+{"week":"3","q":"Which factor influences the choice of channel?","opts":["Product","Market","Company","All of the above"],"a":3,"why":"Choice of channel is influenced by product, market, middlemen, company, marketing environment, and competition."},
+{"week":"3","q":"During a recession, which type of distribution channel is encouraged?","opts":["Longer and more expensive","Shorter and cheaper","Direct only","No channel"],"a":1,"why":"During recession or depression, shorter and cheaper channel is encouraged."},
+{"week":"3","q":"What is the role of distributors to retailers?","opts":["Demand generation","Supply fulfilment","Market information","All of the above"],"a":3,"why":"Distributors serve retailers through demand generation, supply fulfilment, market information, and outsourced services."},
+{"week":"3","q":"What is physical distribution?","opts":["The path a product takes from producer to consumer","The actual movement of products along the channel","The price of the product","The promotion of the product"],"a":1,"why":"Physical distribution is the actual movement of products along the channel."},
+{"week":"3","q":"Which of the following is an essential for effective distribution?","opts":["Knowledge of your company","Knowledge of your product","Knowledge of your customers","All of the above"],"a":3,"why":"Essentials for effective distribution include knowledge of your company, product, competition, customers, and selling process."},
+{"week":"4","q":"What is a system?","opts":["A whole that cannot be taken apart","A part of a process","A type of product","A marketing function"],"a":0,"why":"A system is a whole which cannot be taken apart. The system must be studied as a whole."},
+{"week":"4","q":"Which contributor is known for scientific management principles and time study?","opts":["F.W. Taylor","Frank B. Gilbreth","Lilian M. Gilbreth","Henry L. Gantt"],"a":0,"why":"F.W. Taylor is known for scientific management principles, exception principles, and time study."},
+{"week":"4","q":"Which contributor is known for motion study and methods construction?","opts":["F.W. Taylor","Frank B. Gilbreth","Lilian M. Gilbreth","Harrington Emerson"],"a":1,"why":"Frank B. Gilbreth is known for motion study, methods construction, contracting, and consulting."},
+{"week":"4","q":"Which contributor is known for fatigue studies and human factors in work?","opts":["F.W. Taylor","Frank B. Gilbreth","Lilian M. Gilbreth","Carl G. Barth"],"a":2,"why":"Lilian M. Gilbreth is known for fatigue studies, human factors in work, employee selection and training."},
+{"week":"4","q":"Which contributor is known for Gantt charts?","opts":["Henry L. Gantt","F.W. Taylor","Harrington Emerson","Morris L. Cooke"],"a":0,"why":"Henry L. Gantt is known for Gantt charts, incentive pay systems, and humanistic approach to labor training."},
+{"week":"4","q":"What is product design concerned with?","opts":["Form and function of a product","Only appearance","Only cost","Only production"],"a":0,"why":"Product design is the aspect of production that is concerned with the form and function of a product."},
+{"week":"4","q":"What is production design?","opts":["Designing products from the point of view of producibility","Designing the appearance","Designing the process","Designing the marketing"],"a":0,"why":"Production design is the concept of designing products from the point of view of producibility."},
+{"week":"4","q":"What is a process?","opts":["A sequence of activities intended to achieve some result","A single activity","A product","A marketing function"],"a":0,"why":"A process is a sequence of activities that is intended to achieve some result, typically to create added value for the customer."},
+{"week":"4","q":"Which of the following is a type of process?","opts":["Conversion Process","Manufacturing Process","Testing Process","All of the above"],"a":3,"why":"Types of processes include conversion processes, manufacturing processes, and testing processes."},
+{"week":"4","q":"What does technology influence in production and operations management?","opts":["Production organization","Product strategy","Organizational structure","All of the above"],"a":3,"why":"Technology influences production organization, product strategy, and organizational structure."}
+],
+"flashcards":[
+["Marketing Concept","Right goods/services, right place, time, and price."],
+["Marketing Mix","Product, Price, Place, Promotion."],
+["Micro Environment","Customers, competitors, suppliers (partially controllable)."],
+["Macro Environment","Demographics, economy, politics (uncontrollable)."],
+["Product Life Cycle","Development, Introduction, Growth, Maturity, Saturation, Decline."],
+["Price","Exchange value expressed in money."],
+["Advertising","Paid, non-personal communication by an identified sponsor."],
+["Salesmanship","Persuading buyers for mutual benefit."],
+["Distribution Channel","Path from producer to consumer."],
+["Direct Distribution","Supplier manages all resources."],
+["One-Tier Distribution","One set of intermediaries."],
+["Two-Tier Distribution","Two sets of intermediaries."],
+["OEM Channel","Product embedded inside another."],
+["F.W. Taylor","Scientific management, time study."],
+["Frank Gilbreth","Motion study."],
+["Lilian Gilbreth","Fatigue studies."]
+],
+"matches":[
+["Marketing Concept","Right goods, right place, time, price"],
+["Marketing Mix","Product, Price, Place, Promotion"],
+["Micro Environment","Customers, competitors, suppliers"],
+["Macro Environment","Demographics, economy, politics"],
+["Product Life Cycle","Development, Growth, Maturity, Decline"],
+["Price","Exchange value in money"],
+["Advertising","Paid, non-personal communication"],
+["Salesmanship","Persuading buyers for mutual benefit"],
+["Distribution Channel","Path from producer to consumer"],
+["Direct Distribution","Supplier manages all resources"],
+["One-Tier Distribution","One set of intermediaries"],
+["Two-Tier Distribution","Two sets of intermediaries"],
+["OEM Channel","Product embedded inside another"],
+["F.W. Taylor","Scientific management"],
+["Frank Gilbreth","Motion study"],
+["Lilian Gilbreth","Fatigue studies"]
+]
+};
+const $=id=>document.getElementById(id);
+document.querySelectorAll('.nav button[data-tab]').forEach(b=>b.addEventListener('click',()=>{document.querySelectorAll('.nav button[data-tab]').forEach(x=>x.classList.remove('active'));document.querySelectorAll('.panel').forEach(x=>x.classList.remove('active'));b.classList.add('active');$(b.dataset.tab).classList.add('active')}));
+$('theme').onclick=()=>document.body.classList.toggle('dark');
+function renderSummaries(){let term=$('search').value.toLowerCase(),wf=$('weekFilter').value;let arr=DATA.weeks.filter(w=>(wf==='all'||String(w.week)===wf)&&JSON.stringify(w).toLowerCase().includes(term));$('summaryList').innerHTML=arr.map(w=>`<article class="card searchable"><span class="tag">WEEK ${w.week}</span><h3>${w.title}</h3><p>${w.summary}</p>${w.sections.map(s=>`<h4>${s[0]}</h4><p>${s[1]}</p>`).join('')}<div class="callout warning"><b>Worked Examples & Exam Traps</b><ul>${w.examTraps.map(t=>`<li>${t}</li>`).join('')}</ul></div><div class="callout"><b>Exam takeaways</b><ul>${w.takeaways.map(t=>`<li>${t}</li>`).join('')}</ul></div></article>`).join('')||'<p class="muted">No matching topics found.</p>'}
+$('search').addEventListener('input',renderSummaries);$('weekFilter').onchange=renderSummaries;renderSummaries();
+let active=[],missed=[],idx=0,correct=0,done=0;
+function beginQuiz(list){active=list;missed=[];idx=0;correct=0;done=0;$('score').textContent='0';$('answered').textContent='0';$('total').textContent=list.length;updateProgress();renderQuestion()}
+function updateProgress(){$('progress').style.width=(active.length?done/active.length*100:0)+'%'}
+function renderQuestion(){
+ if(!active.length){$('quizArea').innerHTML='<p class="muted">No questions available for this selection.</p>';return}
+ $('quizArea').innerHTML=`<div class="eyebrow">All ${active.length} questions · Answer in any order</div><div id="quizCompletion" class="callout">Select an answer under each question. Your feedback and score update immediately.</div><div id="allQuestions"></div><div id="quizEnd" class="callout" style="display:none"></div>`;
+ $('allQuestions').innerHTML=active.map((q,qi)=>`<div class="quiz-question" data-question="${qi}"><div class="eyebrow">Question ${qi+1} · Week ${q.week}</div><div class="qtitle">${q.q}</div>${q.opts.map((o,i)=>`<button class="option" data-question="${qi}" data-i="${i}">${String.fromCharCode(65+i)}. ${o}</button>`).join('')}<div class="feedback" id="qfeedback${qi}"></div></div>`).join('');
+ document.querySelectorAll('#allQuestions .option').forEach(b=>b.onclick=()=>answer(Number(b.dataset.question),Number(b.dataset.i)));
+}
+function answer(qi,n){
+ let q=active[qi],wrap=document.querySelector(`[data-question="${qi}"]`);
+ if(!wrap||wrap.dataset.answered==='yes')return;
+ wrap.dataset.answered='yes';
+ wrap.querySelectorAll('.option').forEach((b,i)=>{b.disabled=true;if(i===q.a)b.classList.add('correct');if(i===n&&n!==q.a)b.classList.add('wrong')});
+ let ok=n===q.a;if(ok)correct++;else missed.push(q);done++;
+ $('score').textContent=correct;$('answered').textContent=done;updateProgress();
+ let fb=$('qfeedback'+qi);fb.className='quiz-feedback '+(ok?'good':'bad');fb.textContent=(ok?'✓ Correct — ':'✕ Not quite — ')+q.why;
+ $('quizCompletion').textContent=`${done} of ${active.length} answered · ${correct} correct · ${missed.length} to review`;
+ if(done===active.length){let end=$('quizEnd');end.style.display='block';end.innerHTML=`<b>Quiz complete: ${correct} / ${active.length}</b><br>${missed.length} question(s) to review. ${missed.length?'Use "Retry missed" above to practise them again.':'Excellent work — you got every question right!'}`;}
+}
+let lastList=[];function restartCurrent(){beginQuiz(lastList)}
+$('startQuiz').onclick=()=>{let v=$('quizSelect').value;lastList=v==='all'?DATA.questions.slice(0,40):DATA.questions.filter(q=>String(q.week)===v);beginQuiz(lastList)};
+$('retryMissed').onclick=()=>{if(!missed.length){$('quizArea').innerHTML='<p class="muted">No missed questions yet. Complete a quiz first.</p>';return}lastList=missed.slice();beginQuiz(lastList)};
+function setupMatches(){
+ let pairs=DATA.matches.map((p,i)=>({id:i,left:p[0],right:p[1]}));
+ let items=[...pairs.map(p=>({id:p.id,side:'l',text:p.left})),...pairs.map(p=>({id:p.id,side:'r',text:p.right}))].sort(()=>Math.random()-.5);
+ let chosen=null,matched=new Set(),locked=false;
+ $('matchArea').innerHTML=items.map((x,i)=>`<button class="match" data-id="${x.id}" data-side="${x.side}" data-key="${i}">${x.text}</button>`).join('');
+ $('matchScore').textContent='0 / 16';$('matchFeedback').textContent='Choose a term, then its definition. Correct pairs turn green; incorrect choices shake.';
+ document.querySelectorAll('.match').forEach(b=>b.onclick=()=>{
+  if(locked||b.classList.contains('done'))return;
+  let item=items[Number(b.dataset.key)];
+  if(!chosen){chosen=item;b.classList.add('selected');return}
+  if(chosen.id===item.id&&chosen.side!==item.side){
+   matched.add(item.id);
+   document.querySelectorAll(`.match[data-id="${item.id}"]`).forEach(x=>{x.classList.remove('selected');x.classList.add('done','pop')});
+   $('matchFeedback').textContent='✓ Correct match! Both cards are now marked green.';
+   $('matchScore').textContent=matched.size+' / 16';
+   if(matched.size===16)$('matchFeedback').textContent='🏆 Excellent — all sixteen pairs matched!';
+   chosen=null;return;
+  }
+  if(chosen===item){b.classList.remove('selected');chosen=null;return}
+  let first=document.querySelector(`.match[data-id="${chosen.id}"][data-side="${chosen.side}"]`);
+  locked=true;b.classList.add('selected');
+  [first,b].forEach(x=>{if(x){x.classList.remove('selected');x.classList.add('shake')}});
+  $('matchFeedback').textContent='✕ Not a match. The cards will shake — try a different pairing.';
+  setTimeout(()=>{[first,b].forEach(x=>{if(x)x.classList.remove('shake','selected')});chosen=null;locked=false;},480);
+ });
+}
+$('resetMatch').onclick=setupMatches;setupMatches();
+const keys=[['Marketing Concept','Right goods/services, right place, time, price'],['Marketing Mix','Product, Price, Place, Promotion'],['Micro Environment','Customers, competitors, suppliers'],['Macro Environment','Demographics, economy, politics'],['Product Life Cycle','Development, Growth, Maturity, Decline'],['Price','Exchange value in money'],['Advertising','Paid, non-personal communication'],['Salesmanship','Persuading buyers for mutual benefit'],['Distribution Channel','Path from producer to consumer'],['Direct Distribution','Supplier manages all resources'],['One-Tier Distribution','One set of intermediaries'],['Two-Tier Distribution','Two sets of intermediaries'],['OEM Channel','Product embedded inside another'],['F.W. Taylor','Scientific management'],['Frank Gilbreth','Motion study'],['Lilian Gilbreth','Fatigue studies']];
+$('keyGrid').innerHTML=keys.map(k=>`<div class="key"><b>${k[0]}</b>${k[1]}</div>`).join('');
+let fi=0,flipped=false;function showFlash(){$('flashCount').textContent=(fi+1)+' / '+DATA.flashcards.length;$('flashcard').textContent=flipped?DATA.flashcards[fi][1]:DATA.flashcards[fi][0];$('flipFlash').textContent=flipped?'Show term':'Reveal answer'}
+$('flipFlash').onclick=()=>{flipped=!flipped;showFlash()};$('nextFlash').onclick=()=>{fi=(fi+1)%DATA.flashcards.length;flipped=false;showFlash()};$('prevFlash').onclick=()=>{fi=(fi-1+DATA.flashcards.length)%DATA.flashcards.length;flipped=false;showFlash()};showFlash();
+</script></body></html>
