@@ -1,1098 +1,212 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Principles of Management II - Master Summary Suite</title>
-    <style>
-        :root {
-            --bg-color: #f8fafc;
-            --surface-color: #ffffff;
-            --text-color: #1e293b;
-            --border-color: #e2e8f0;
-            --primary-color: #0d9488;
-            --primary-hover: #0f766e;
-            --success-color: #16a34a;
-            --success-bg: #f0fdf4;
-            --success-border: #bbf7d0;
-            --error-color: #dc2626;
-            --error-bg: #fef2f2;
-            --error-border: #fecaca;
-            --badge-bg: #ccfbf1;
-            --badge-text: #115e59;
-            --card-hover: #f1f5f9;
-            --summary-bg: #f1f5f9;
-        }
-
-        [data-theme="dark"] {
-            --bg-color: #0f172a;
-            --surface-color: #1e293b;
-            --text-color: #f8fafc;
-            --border-color: #334155;
-            --primary-color: #14b8a6;
-            --primary-hover: #2dd4bf;
-            --success-color: #4ade80;
-            --success-bg: #064e3b;
-            --success-border: #047857;
-            --error-color: #f87171;
-            --error-bg: #7f1d1d;
-            --error-border: #991b1b;
-            --badge-bg: #115e59;
-            --badge-text: #ccfbf1;
-            --card-hover: #334155;
-            --summary-bg: #0f172a;
-        }
-
-        body {
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-            background-color: var(--bg-color);
-            color: var(--text-color);
-            margin: 0;
-            padding: 20px;
-            transition: background-color 0.3s, color 0.3s;
-            line-height: 1.6;
-        }
-
-        .container {
-            max-width: 1000px;
-            margin: 0 auto;
-            background: var(--surface-color);
-            padding: 30px;
-            border-radius: 12px;
-            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
-        }
-
-        .header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 20px;
-            flex-wrap: wrap;
-            gap: 10px;
-        }
-
-        h1 {
-            color: var(--primary-color);
-            margin: 0;
-            font-size: 1.8rem;
-        }
-
-        .nav-tabs {
-            display: flex;
-            gap: 8px;
-            margin-bottom: 25px;
-            border-bottom: 2px solid var(--border-color);
-            padding-bottom: 10px;
-            flex-wrap: wrap;
-        }
-
-        .tab-btn {
-            background: none;
-            border: none;
-            color: var(--text-color);
-            font-size: 14px;
-            font-weight: 600;
-            padding: 8px 14px;
-            cursor: pointer;
-            border-radius: 6px;
-            transition: background 0.2s, color 0.2s;
-        }
-
-        .tab-btn.active {
-            background-color: var(--primary-color);
-            color: #ffffff;
-        }
-
-        .theme-toggle {
-            background: none;
-            border: 1px solid var(--border-color);
-            color: var(--text-color);
-            padding: 8px 12px;
-            border-radius: 6px;
-            cursor: pointer;
-            font-weight: 600;
-        }
-
-        .controls {
-            display: flex;
-            gap: 10px;
-            align-items: center;
-            margin-bottom: 20px;
-            flex-wrap: wrap;
-        }
-
-        select, input[type="text"], input[type="number"], button.action-btn {
-            padding: 10px 14px;
-            font-size: 14px;
-            border-radius: 6px;
-            border: 1px solid var(--border-color);
-            background-color: var(--surface-color);
-            color: var(--text-color);
-        }
-
-        button.action-btn {
-            background-color: var(--primary-color);
-            color: white;
-            border: none;
-            font-weight: 600;
-            cursor: pointer;
-        }
-
-        button.action-btn:hover {
-            background-color: var(--primary-hover);
-        }
-
-        .search-box {
-            width: 100%;
-            margin-bottom: 20px;
-            padding: 12px;
-            box-sizing: border-box;
-            border-radius: 6px;
-            border: 1px solid var(--border-color);
-            background: var(--surface-color);
-            color: var(--text-color);
-            font-size: 15px;
-        }
-
-        .summary-week {
-            border: 1px solid var(--border-color);
-            border-radius: 8px;
-            padding: 24px;
-            margin-bottom: 25px;
-            background-color: var(--surface-color);
-        }
-
-        .summary-week h2 {
-            color: var(--primary-color);
-            margin-top: 0;
-            border-bottom: 2px solid var(--border-color);
-            padding-bottom: 8px;
-        }
-
-        .summary-week h3 {
-            color: var(--text-color);
-            font-size: 1.1rem;
-            margin-top: 15px;
-            margin-bottom: 5px;
-        }
-
-        .summary-week ul {
-            margin-top: 5px;
-            padding-left: 20px;
-        }
-
-        .summary-week li {
-            margin-bottom: 6px;
-        }
-
-        .formula-box {
-            background-color: var(--summary-bg);
-            border-left: 4px solid var(--primary-color);
-            padding: 12px 16px;
-            margin: 12px 0;
-            font-family: "Courier New", Courier, monospace;
-            border-radius: 0 6px 6px 0;
-        }
-
-        .progress-dashboard {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-            gap: 12px;
-            margin-bottom: 20px;
-        }
-
-        .progress-card {
-            border: 1px solid var(--border-color);
-            border-radius: 8px;
-            padding: 12px 16px;
-            background: var(--surface-color);
-            text-align: center;
-        }
-
-        .progress-card .score {
-            font-size: 1.5rem;
-            font-weight: bold;
-            color: var(--primary-color);
-        }
-
-        .question-card {
-            border: 1px solid var(--border-color);
-            border-radius: 8px;
-            padding: 20px;
-            margin-bottom: 20px;
-            background-color: var(--surface-color);
-        }
-
-        .question-title {
-            font-weight: 600;
-            margin-bottom: 12px;
-            color: var(--text-color);
-        }
-
-        .options {
-            display: flex;
-            flex-direction: column;
-            gap: 8px;
-            margin-bottom: 10px;
-        }
-
-        .option-label {
-            display: flex;
-            align-items: center;
-            padding: 10px 14px;
-            border: 1px solid var(--border-color);
-            border-radius: 6px;
-            cursor: pointer;
-            transition: background 0.15s;
-        }
-
-        .option-label:hover {
-            background-color: var(--card-hover);
-        }
-
-        .option-label input {
-            margin-right: 12px;
-        }
-
-        .explanation {
-            display: none;
-            margin-top: 12px;
-            padding: 12px;
-            border-radius: 6px;
-            font-size: 14px;
-            line-height: 1.5;
-        }
-
-        .explanation.correct {
-            display: block;
-            background-color: var(--success-bg);
-            border: 1px solid var(--success-border);
-            color: var(--success-color);
-        }
-
-        .explanation.incorrect {
-            display: block;
-            background-color: var(--error-bg);
-            border: 1px solid var(--error-border);
-            color: var(--error-color);
-        }
-
-        .badge {
-            display: inline-block;
-            padding: 2px 8px;
-            font-size: 12px;
-            font-weight: 600;
-            border-radius: 4px;
-            background: var(--badge-bg);
-            color: var(--badge-text);
-            margin-bottom: 8px;
-        }
-
-        .matching-container {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 20px;
-            margin-top: 15px;
-        }
-
-        .match-column {
-            display: flex;
-            flex-direction: column;
-            gap: 10px;
-        }
-
-        .match-card {
-            padding: 14px 16px;
-            border: 1px solid var(--border-color);
-            border-radius: 8px;
-            background: var(--surface-color);
-            cursor: pointer;
-            user-select: none;
-            transition: border-color 0.2s, background 0.2s;
-            min-height: 50px;
-            display: flex;
-            align-items: center;
-            font-weight: 500;
-        }
-
-        .match-card:hover { border-color: var(--primary-color); }
-        .match-card.selected { border: 2px solid var(--primary-color); background-color: var(--card-hover); }
-        .match-card.matched { border-color: var(--success-color); background-color: var(--success-bg); color: var(--success-color); cursor: default; opacity: 0.8; }
-        .match-card.wrong { border-color: var(--error-color); background-color: var(--error-bg); }
-
-        .matching-feedback {
-            margin-bottom: 20px;
-            padding: 16px;
-            border-radius: 8px;
-            font-size: 15px;
-            display: none;
-            line-height: 1.5;
-        }
-
-        .solver-panel {
-            border: 1px solid var(--border-color);
-            border-radius: 8px;
-            padding: 20px;
-            background: var(--surface-color);
-            margin-bottom: 20px;
-        }
-
-        .scenario-inputs {
-            display: flex;
-            gap: 10px;
-            align-items: center;
-            margin-top: 15px;
-            margin-bottom: 15px;
-            flex-wrap: wrap;
-        }
-
-        .step-list {
-            display: flex;
-            flex-direction: column;
-            gap: 10px;
-            margin-top: 15px;
-        }
-
-        .step-item {
-            padding: 12px;
-            border-left: 4px solid var(--primary-color);
-            background: var(--summary-bg);
-            border-radius: 0 6px 6px 0;
-        }
-
-        .flashcard-wrapper {
-            perspective: 1000px;
-            max-width: 500px;
-            margin: 20px auto;
-        }
-
-        .flashcard {
-            width: 100%;
-            height: 250px;
-            border: 1px solid var(--border-color);
-            border-radius: 12px;
-            background: var(--surface-color);
-            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            padding: 24px;
-            text-align: center;
-            cursor: pointer;
-            box-sizing: border-box;
-            user-select: none;
-            transition: transform 0.2s;
-        }
-
-        .flashcard:hover {
-            transform: translateY(-2px);
-        }
-
-        .flashcard .card-label {
-            font-size: 12px;
-            color: var(--badge-text);
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            margin-bottom: 10px;
-        }
-
-        .flashcard .card-content {
-            font-size: 1.2rem;
-            font-weight: 600;
-        }
-
-        .flashcard-controls {
-            display: flex;
-            justify-content: center;
-            gap: 10px;
-            margin-top: 15px;
-        }
-
-        .view-section { display: none; }
-        .view-section.active { display: block; }
-        .score-board { font-weight: bold; color: var(--primary-color); }
-    </style>
-</head>
-<body>
-
-<div class="container">
-    <div class="header">
-        <h1>Principles of Management II (Comprehensive Suite)</h1>
-        <button class="theme-toggle" onclick="toggleTheme()" id="themeBtn">🌙 Night Mode</button>
-    </div>
-
-    <div class="nav-tabs">
-        <button class="tab-btn active" onclick="switchTab('summaries')">📖 Course Summaries</button>
-        <button class="tab-btn" onclick="switchTab('quiz')">📝 Quiz & Mastery (20 Questions)</button>
-        <button class="tab-btn" onclick="switchTab('matching')">🧩 Matching Game</button>
-        <button class="tab-btn" onclick="switchTab('solver')">🔍 Decision & Production Analyzer</button>
-        <button class="tab-btn" onclick="switchTab('flashcards')">🎴 Study Flashcards</button>
-    </div>
-
-    <!-- TAB 1: SUMMARIES -->
-    <div id="summariesTab" class="view-section active">
-        <input type="text" id="summarySearch" class="search-box" placeholder="⚡ Search across all Management II topics..." oninput="filterSummaries()">
-        
-        <div id="summaryList">
-            <!-- Week 1 -->
-            <div class="summary-week searchable">
-                <h2>1. Forms of Business Ownership</h2>
-                <p>Covers key legal structures, criteria for selection, liability profiles, taxation structures, and special entities like social enterprises.</p>
-                
-                <h3>Key Decision Factors</h3>
-                <ul>
-                    <li><strong>Evaluation Criteria:</strong> Tax considerations, liability exposure, capital requirements (startup & future), management control, managerial ability, vision, succession planning, and formation costs.</li>
-                    <li><strong>Sole Proprietorship:</strong> Owned/managed by one person. Riskiest due to <em>unlimited personal liability</em>. Simple setup, total decision authority, direct profit incentive, marginal tax rates (7.5% - 15%). Limited capital and lack of continuity.</li>
-                    <li><strong>Partnerships:</strong> Co-owned by two or more people. Shared capital and complementary skills.
-                        <ul>
-                            <li><em>General Partners:</em> Active management role, unlimited personal liability. Every partnership must have at least one.</li>
-                            <li><em>Limited Partners:</em> Cannot manage day-to-day operations; limited liability. Includes <strong>Silent Partners</strong> (known to public) and <strong>Dormant Partners</strong> (unknown to public).</li>
-                            <li><em>LLP (Limited Liability Partnership):</em> Limits all partners' liability; pass-through income tax (no entity-level tax).</li>
-                        </ul>
-                    </li>
-                    <li><strong>Corporation & Limited Companies:</strong> Separate legal entity from owners.
-                        <ul>
-                            <li><em>Publicly Held (PLC):</em> Traded on stock exchanges, minimum 2 shareholders, minimum 2 directors, raises capital via public share sales. Subject to double taxation.</li>
-                            <li><em>Closely Held (Ltd):</em> Shares owned by small group (e.g., family), restrictions on share transfers.</li>
-                            <li><em>LLC (Limited Liability Company):</em> Combines limited liability of a corporation with pass-through taxation of a partnership. Requires <strong>Articles of Organization</strong> (name, address, duration) and an <strong>Operating Agreement</strong> (provisions governing conduct).</li>
-                        </ul>
-                    </li>
-                    <li><strong>Social Enterprise:</strong> Uses commercial strategies to achieve social/environmental benefits. Profits are primarily reinvested rather than distributed. Focuses on self-generated revenue over grants/donations.</li>
-                </ul>
-
-                <div class="formula-box">
-                    LLC Core Docs = Articles of Organization + Operating Agreement<br>
-                    PLC Structure = Board of Directors (Elected) + Shareholders (Limited Liability) + Stock Sales
-                </div>
-            </div>
-
-            <!-- Week 2 -->
-            <div class="summary-week searchable">
-                <h2>2. Production Function & Management</h2>
-                <p>Details manufacturing processes, operations strategies, aids to production, and modern Industry 4.0 innovations.</p>
-                
-                <h3>Key Concepts & Production Systems</h3>
-                <ul>
-                    <li><strong>Production Process Types:</strong>
-                        <ul>
-                            <li><em>Jobbing / Job Shop:</em> Custom, customized, one-off or small-batch items. Labor-intensive, skilled workforce, flexible layout, general-purpose machinery (e.g., tailoring, specialty printing).</li>
-                            <li><em>Project-Based:</em> Temporary teams assembled around unique projects with fixed scopes, timelines, and budgets (e.g., construction, film production, software engineering).</li>
-                            <li><em>Batch Production:</em> Standardized parts produced in discrete lots/batches. Middle ground between jobbing and mass production; emphasizes planning, scheduling, and general-purpose machines.</li>
-                            <li><em>Mass & Continuous Production:</em> High-volume, highly automated, standardized production lines. Low per-unit cost, rigid specifications, specialized machines (e.g., automotive, smartphones).</li>
-                        </ul>
-                    </li>
-                    <li><strong>Aids to Production & Engineering:</strong>
-                        <ul>
-                            <li><em>Work Study:</em> Method study and work measurement to streamline operational workflows.</li>
-                            <li><em>Value Engineering (VE):</em> Systematic process to maximize functionality/quality while minimizing overall lifecycle costs.</li>
-                            <li><em>Value Analysis (VA):</em> Application of VE focused specifically on analyzing existing component parts, materials, and designs.</li>
-                            <li><em>Quality Circles:</em> Small, voluntary employee groups meeting regularly to analyze data and solve quality problems.</li>
-                        </ul>
-                    </li>
-                    <li><strong>Modern Manufacturing Tech:</strong> CAD/CAM, ERP systems, Additive Manufacturing (3D Printing), Cobots (collaborative robots), AR/VR, IoT, and AI-driven automation.</li>
-                </ul>
-
-                <div class="formula-box">
-                    Value Optimization = Maximizing Functionality & Quality ÷ Minimizing Lifecycle Costs<br>
-                    Batch vs. Jobbing = Standardized Lots vs. Fully Custom/Single Units
-                </div>
-            </div>
-
-            <!-- Week 3 -->
-            <div class="summary-week searchable">
-                <h2>3. Marketing & Market Research</h2>
-                <p>Covers definitions of marketing vs. selling, marketing orientations, the 7 Ps mix, bootstrap tactics, and market research methodologies.</p>
-                
-                <h3>Key Concepts & Breakdown</h3>
-                <ul>
-                    <li><strong>Marketing vs. Selling:</strong> Marketing creates, delivers, and exchanges value to satisfy target needs at a profit. Selling is assisting or persuading a customer to buy an existing product.</li>
-                    <li><strong>Orientations:</strong> Production, Product, Sales, Market (customer-centric), and Societal orientations.</li>
-                    <li><strong>The Marketing Mix (7 Ps):</strong>
-                        <ul>
-                            <li><em>Traditional 4 Ps:</em> Product, Price, Place, Promotion.</li>
-                            <li><em>Extended 3 Ps (Services):</em> People, Process, Physical Evidence.</li>
-                        </ul>
-                    </li>
-                    <li><strong>Bootstrap Marketing:</strong> Unconventional, low-cost, creative marketing strategies for small businesses to maximize ROI without large budgets. Focuses on finding niches, building community, publicity, and emotional connection.</li>
-                    <li><strong>Market vs. Marketing Research:</strong>
-                        <ul>
-                            <li><em>Market Research:</em> Focuses on market size, target demographics, trends, segments, and demand.</li>
-                            <li><em>Marketing Research:</em> Broader scope evaluating ad effectiveness, concept testing, promotional methods, copywriting, and customer satisfaction.</li>
-                        </ul>
-                    </li>
-                    <li><strong>USP & Brand Attributes:</strong> Unique Selling Proposition. Uses <em>Threshold Attributes</em> (expected baseline), <em>Performance Attributes</em> (superior features), and <em>Excitement Attributes</em> (unexpected differentiators).</li>
-                </ul>
-
-                <div class="formula-box">
-                    Extended Mix = 4 Ps (Product, Price, Place, Promotion) + 3 Ps (People, Process, Physical Evidence)<br>
-                    USP Triad = Threshold Attributes + Performance Attributes + Excitement Attributes
-                </div>
-            </div>
-
-            <!-- Week 4 -->
-            <div class="summary-week searchable">
-                <h2>4. Managerial Competencies & Stress Management</h2>
-                <p>Analyzes manager development, talent management, stress symptoms/interventions, employee counseling, job evaluation, and employee relations.</p>
-                
-                <h3>Key Concepts & Frameworks</h3>
-                <ul>
-                    <li><strong>Managerial Competencies & Development:</strong> Clusters of Knowledge, Skills, and Abilities (KSAs). Key roles: Self skills, Providing direction, Facilitating change, Working with people, Using resources, Achieving results.
-                        <ul>
-                            <li><em>Development Methods:</em> CPD (Continuing Professional Development), Coaching, Job Rotation, Delegation, Secondments, Case Studies, and Simulations.</li>
-                            <li><em>Succession Planning & Talent Management:</em> Identifying high-potential employees to fill leadership roles, ensuring continuity and knowledge retention.</li>
-                        </ul>
-                    </li>
-                    <li><strong>Workplace Stress:</strong> Adverse physical/psychological reactions to demands exceeding individual coping capacity.
-                        <ul>
-                            <li><em>Causes:</em> Heavy workload, role ambiguity, lack of control, poor relationships/bullying, organizational changes.</li>
-                            <li><em>Symptoms:</em> Physiological (hypertension, ulcers), Psychological (anxiety, depression), Behavioral (absenteeism, substance abuse).</li>
-                        </ul>
-                    </li>
-                    <li><strong>Counseling & Harassment:</strong>
-                        <ul>
-                            <li><em>Counseling:</em> Professional guidance providing active listening, confidentiality, root cause identification, and joint action planning.</li>
-                            <li><em>Harassment & Discrimination:</em> Unwelcome conduct targeting protected characteristics (race, gender, age, religion, disability). Employer must establish reporting, investigate, and take corrective action.</li>
-                        </ul>
-                    </li>
-                    <li><strong>Job Evaluation & Employee Relations:</strong>
-                        <ul>
-                            <li><em>Job Evaluation Methods:</em> Analytical (Points rating, Factor comparison) vs. Non-analytical (Job ranking, Job classification). Used to establish internal equity and salary structures.</li>
-                            <li><em>Employee Relations:</em> Strategic management of individual/collective workplace relationships, aiming for open communication, fairness, engagement, and constructive conflict resolution.</li>
-                        </ul>
-                    </li>
-                </ul>
-
-                <div class="formula-box">
-                    Job Evaluation Types = Analytical (Points, Factors) vs. Non-Analytical (Ranking, Grading)<br>
-                    Managerial KSAs = Knowledge + Skills + Abilities
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- TAB 2: QUIZ -->
-    <div id="quizTab" class="view-section">
-        <div class="progress-dashboard">
-            <div class="progress-card"><div>Module 1: Ownership</div><div class="score" id="m_mod1">0%</div></div>
-            <div class="progress-card"><div>Module 2: Production</div><div class="score" id="m_mod2">0%</div></div>
-            <div class="progress-card"><div>Module 3: Marketing</div><div class="score" id="m_mod3">0%</div></div>
-            <div class="progress-card"><div>Module 4: Managerial/HR</div><div class="score" id="m_mod4">0%</div></div>
-        </div>
-
-        <div class="controls">
-            <label for="topicSelect"><strong>Select Topic:</strong></label>
-            <select id="topicSelect">
-                <option value="1">1. Forms of Business Ownership (5 Questions)</option>
-                <option value="2">2. Production Function & Management (5 Questions)</option>
-                <option value="3">3. Marketing & Market Research (5 Questions)</option>
-                <option value="4">4. Managerial Competencies & Stress (5 Questions)</option>
-                <option value="all" selected>All 4 Topics Combined (20 Questions)</option>
-            </select>
-            <button class="action-btn" onclick="generateQuiz(false)">Generate Quiz</button>
-            <button class="action-btn" style="background-color: var(--error-color)" onclick="generateQuiz(true)">🎯 Retry Missed Questions Only</button>
-        </div>
-
-        <div id="quizContainer"></div>
-    </div>
-
-    <!-- TAB 3: MATCHING GAME -->
-    <div id="matchingTab" class="view-section">
-        <div class="controls">
-            <button class="action-btn" onclick="resetMatchingGame()">Reset / New Cards</button>
-            <div id="matchingScore" class="score-board">Matches Found: 0 / 0</div>
-        </div>
-
-        <div id="matchingFeedback" class="matching-feedback"></div>
-
-        <div class="matching-container">
-            <div class="match-column" id="leftCol"></div>
-            <div class="match-column" id="rightCol"></div>
-        </div>
-    </div>
-
-    <!-- TAB 4: DECISION & PRODUCTION ANALYZER -->
-    <div id="solverTab" class="view-section">
-        <div class="solver-panel">
-            <h2>Management Decision & Operations Analyzer</h2>
-            <p>Select scenario parameters to evaluate organizational legal structure, production workflow selection, or job evaluation methodologies.</p>
-            
-            <div class="controls">
-                <label for="scenarioType"><strong>Analysis Engine:</strong></label>
-                <select id="scenarioType" onchange="renderScenarioInputs()">
-                    <option value="ownership_recommender">Business Ownership Selection Advisor</option>
-                    <option value="production_selector">Production System Classifier</option>
-                    <option value="evaluation_analyzer">Job Evaluation System Evaluator</option>
-                </select>
-            </div>
-
-            <div class="scenario-inputs" id="scenarioInputs"></div>
-
-            <button class="action-btn" onclick="solveAndDraw()">Analyze Scenario</button>
-
-            <div class="step-list" id="stepList"></div>
-        </div>
-    </div>
-
-    <!-- TAB 5: FLASHCARDS -->
-    <div id="flashcardsTab" class="view-section">
-        <div class="flashcard-wrapper">
-            <div class="flashcard" id="flashcard" onclick="flipCard()">
-                <div class="card-label" id="fcLabel">CONCEPT (Click to Flip)</div>
-                <div class="card-content" id="fcContent">Click start to load deck</div>
-            </div>
-        </div>
-
-        <div class="flashcard-controls">
-            <button class="action-btn" style="background-color: var(--error-color)" onclick="rateCard('hard')">🔴 Hard</button>
-            <button class="action-btn" style="background-color: #d97706" onclick="rateCard('medium')">🟡 Medium</button>
-            <button class="action-btn" style="background-color: var(--success-color)" onclick="rateCard('easy')">🟢 Easy</button>
-        </div>
-    </div>
-
-</div>
-
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>AMS 108 | Principles of Management II (Weeks 1-4)</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&family=Playfair+Display:wght@600;700&display=swap');
+:root{--ink:#172b3a;--muted:#667887;--blue:#173e5b;--blue2:#2c6385;--pale:#eef4f7;--paper:#fff;--line:#dce5ea;--accent:#a77d65;--shadow:0 10px 28px rgba(26,52,69,.09)}
+*{box-sizing:border-box}body{margin:0;background:#f3f5f6;color:var(--ink);font-family:'DM Sans',Arial,sans-serif;line-height:1.65}
+.hero{background:linear-gradient(135deg,#725d50,#9a7a64 55%,#5b493f);color:white;padding:34px max(22px,calc((100% - 1120px)/2)) 38px;position:relative;overflow:hidden}
+.hero:after{content:"";position:absolute;inset:0;background:repeating-linear-gradient(55deg,transparent 0 36px,rgba(255,255,255,.045) 37px 39px);pointer-events:none}
+.hero-inner{max-width:1120px;margin:auto;position:relative;z-index:1}.brand{font-size:12px;letter-spacing:1.6px;text-transform:uppercase;opacity:.9}.hero h1{font:700 clamp(30px,5vw,48px) 'Playfair Display',serif;line-height:1.12;margin:30px 0 10px}.hero p{max-width:700px;color:#f5eae2;margin:0}.hero-meta{display:flex;gap:10px;flex-wrap:wrap;margin-top:20px}.pill{border:1px solid #ffffff55;border-radius:30px;padding:5px 12px;font-size:12px;background:#ffffff12}
+.topbar{background:white;border-bottom:1px solid var(--line);position:sticky;top:0;z-index:10}.nav{max-width:1120px;margin:auto;display:flex;gap:6px;padding:10px 16px;overflow-x:auto}.nav button,.theme{border:0;background:transparent;color:#506575;padding:10px 13px;border-radius:9px;font:600 13px 'DM Sans';white-space:nowrap;cursor:pointer}.nav button.active{background:var(--pale);color:var(--blue)}.theme{margin-left:auto;border:1px solid var(--line)}
+main{max-width:1120px;margin:28px auto;padding:0 18px 70px}.panel{display:none}.panel.active{display:block}.intro{margin-bottom:22px}.eyebrow{font-size:11px;text-transform:uppercase;letter-spacing:1.5px;color:var(--accent);font-weight:800}.intro h2{font:700 29px 'Playfair Display';margin:4px 0}.muted{color:var(--muted)}
+.toolbar{display:flex;gap:10px;flex-wrap:wrap;margin:18px 0}.toolbar input,.toolbar select{padding:12px 14px;border:1px solid var(--line);border-radius:10px;background:white;color:var(--ink);font:inherit;min-width:190px;flex:1}
+.week-grid{display:grid;grid-template-columns:1fr;gap:18px}.card{background:var(--paper);border:1px solid var(--line);border-radius:15px;padding:21px;box-shadow:var(--shadow);margin-bottom:16px}.card h3{margin:0 0 8px;font-size:19px;color:var(--blue)}.card h4{margin:18px 0 6px;color:#805f4c;font-size:16px}.card p{margin:7px 0}.card ul{padding-left:21px;margin:8px 0}.tag{display:inline-block;background:#f3eae4;color:#795944;border-radius:30px;padding:4px 10px;font-size:11px;font-weight:700;margin-bottom:9px}
+.callout{border-left:4px solid var(--accent);background:#f8f3ef;padding:12px 15px;border-radius:0 9px 9px 0;margin:12px 0}.callout.warning{border-left-color:#c43d32;background:#fff0ed}
+.btn{background:var(--blue);color:white;border:0;border-radius:9px;padding:11px 16px;font-weight:700;cursor:pointer}.btn.secondary{background:#eaf0f3;color:var(--blue)}.btn:disabled{opacity:.45;cursor:not-allowed}
+.quiz-question{padding:17px 0;border-bottom:1px solid var(--line)}.quiz-question:last-child{border:0}.qtitle{font-weight:700;margin-bottom:10px}.option{display:block;width:100%;text-align:left;background:#f7f9fa;border:1px solid var(--line);padding:10px 12px;margin:7px 0;border-radius:9px;cursor:pointer;color:var(--ink);font:inherit}.option.correct{background:#e6f4eb;border-color:#5b9b70}.option.wrong{background:#fff0ed;border-color:#d77b6b}.feedback{font-size:13px;color:var(--muted);margin:7px 0}.progress{height:8px;background:#e8eef1;border-radius:9px;overflow:hidden}.progress span{display:block;height:100%;background:#4f8aab;width:0}
+.statrow{display:flex;gap:12px;flex-wrap:wrap}.stat{background:#f2f6f8;border-radius:10px;padding:12px 16px;min-width:115px}.stat strong{display:block;font-size:22px;color:var(--blue)}
+.flashcard{min-height:190px;display:grid;place-items:center;text-align:center;cursor:pointer;background:linear-gradient(145deg,#f7f2ed,#edf3f6);border:1px solid var(--line);border-radius:16px;padding:28px;font-size:21px;font-weight:700}.flash-actions{display:flex;gap:10px;justify-content:center;margin:15px}
+.match-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}.match{padding:14px;border:1px solid var(--line);border-radius:10px;background:#f7f9fa;cursor:pointer;text-align:left;color:var(--ink);font:inherit}.match.selected{outline:2px solid var(--blue2);background:#eaf2f6}.match.done{background:#e6f4eb;border-color:#75a887;cursor:default}
+.key-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}.key{background:#f6f8f9;border-radius:12px;padding:14px}.key b{display:block;color:var(--blue);margin-bottom:4px}
+body.dark{--ink:#e8eef2;--muted:#a9b7c0;--paper:#1d2b35;--line:#344650;--pale:#263b49;background:#121d25;color:var(--ink)}body.dark .topbar,body.dark .toolbar input,body.dark .toolbar select{background:#1d2b35;color:var(--ink)}body.dark .nav button{color:#c2d0d8}body.dark .option,body.dark .match,body.dark .key,body.dark .stat{background:#263944;color:var(--ink);border-color:#40535e}body.dark .flashcard{background:#263944;color:var(--ink)}body.dark .callout{background:#342e2a}body.dark .callout.warning{background:#3b2525}
+footer{text-align:center;color:var(--muted);font-size:12px;padding:30px}
+@media(max-width:720px){.key-grid{grid-template-columns:1fr}.hero{padding:25px 20px 30px}.nav{padding:8px}.nav button{padding:9px}.theme{margin-left:0}.match-grid{grid-template-columns:1fr}main{padding:0 13px 50px}.card{padding:17px}}
+
+.quiz-question{padding:18px 0;border-bottom:1px solid var(--line);scroll-margin-top:90px}
+.quiz-question .qtitle{font-size:15px;line-height:1.5}
+.quiz-question .option{transition:transform .16s ease,background .16s ease,border-color .16s ease}
+.quiz-question .option:disabled{cursor:default;opacity:1}
+.quiz-question .option.correct{background:#dff5e7!important;border:2px solid #27834c!important;color:#14532d!important}
+.quiz-question .option.wrong{background:#ffe5e1!important;border:2px solid #c43d32!important;color:#7f1d1d!important}
+.quiz-feedback{padding:10px 13px;border-radius:9px;margin-top:9px;font-size:13px}
+.quiz-feedback.good{background:#e5f5eb;color:#175c35}
+.quiz-feedback.bad{background:#fff0ed;color:#8a2922}
+.match{min-height:66px;font-weight:600;transition:background .18s,border-color .18s,transform .18s,box-shadow .18s}
+.match.selected{background:#dceefa!important;border:2px solid #23658c!important;color:#123e59!important;box-shadow:0 0 0 3px rgba(35,101,140,.16)}
+.match.done{background:#dff5e7!important;border:2px solid #27834c!important;color:#14532d!important;box-shadow:inset 0 0 0 1px #27834c;position:relative}
+.match.done:after{content:"  ✓ Matched";font-size:11px;font-weight:800;display:block;color:#17653a}
+.match.shake{animation:matchShake .42s ease;border:2px solid #d33b32!important;background:#ffe5e1!important;color:#7f1d1d!important}
+.match.pop{animation:matchPop .34s ease}
+@keyframes matchShake{0%,100%{transform:translateX(0)}20%,60%{transform:translateX(-7px)}40%,80%{transform:translateX(7px)}}
+@keyframes matchPop{0%{transform:scale(.94)}55%{transform:scale(1.045)}100%{transform:scale(1)}}
+body.dark .quiz-question .option{background:#263944;color:#edf4f7;border-color:#506571}
+body.dark .quiz-question .option.correct{background:#174b34!important;border-color:#4ade80!important;color:#dcfce7!important}
+body.dark .quiz-question .option.wrong{background:#5b2525!important;border-color:#fb7185!important;color:#ffe4e6!important}
+body.dark .quiz-feedback.good{background:#174b34;color:#dcfce7}
+body.dark .quiz-feedback.bad{background:#5b2525;color:#ffe4e6}
+body.dark .match{background:#263944!important;color:#f0f5f8!important;border:1px solid #627986}
+body.dark .match.selected{background:#174b63!important;color:#e0f2fe!important;border:2px solid #7dd3fc!important}
+body.dark .match.done{background:#174b34!important;color:#dcfce7!important;border:2px solid #4ade80!important}
+body.dark .match.done:after{color:#bbf7d0}
+body.dark .match.shake{background:#5b2525!important;color:#ffe4e6!important;border-color:#fb7185!important}
+</style></head><body>
+<header class="hero"><div class="hero-inner"><div class="brand">MIVA · AMS 108 · PRINCIPLES OF MANAGEMENT II</div><h1>Principles of<br>Management II</h1><p>Semester revision hub for AMS 108 — master forms of ownership, production management, marketing research, and managerial competencies.</p><div class="hero-meta"><span class="pill">AMS 108</span><span class="pill">Weeks 1–4</span><span class="pill">Comprehensive Questions</span><span class="pill">Expanded Summaries</span></div></div></header>
+<div class="topbar"><nav class="nav"><button class="active" data-tab="summaries">Comprehensive Summaries</button><button data-tab="quiz">Quiz &amp; Mastery</button><button data-tab="matching">Matching Game</button><button data-tab="keys">Key Concepts</button><button data-tab="flashcards">Flashcards</button><button class="theme" id="theme">☾ Theme</button></nav></div>
+<main>
+<section id="summaries" class="panel active"><div class="intro"><div class="eyebrow">Study notes · Weeks 1–4</div><h2>Comprehensive Summaries</h2><p class="muted">Search across the 4 weeks of lecture material or filter by week to revise detailed concepts, examples and rules.</p></div><div class="toolbar"><input id="search" placeholder="Search topics, terms or examples…"><select id="weekFilter"><option value="all">All weeks</option><option value="1">Week 1: Forms of Ownership</option><option value="2">Week 2: Production Management</option><option value="3">Week 3: Marketing Research</option><option value="4">Week 4: Managerial Competencies</option></select></div><div id="summaryList" class="week-grid"></div></section>
+<section id="quiz" class="panel"><div class="intro"><div class="eyebrow">Test your understanding</div><h2>Quiz &amp; Mastery</h2><p class="muted">Choose a specific week or take the full mixed quiz. Answers are marked immediately with explanations.</p></div><div class="toolbar"><select id="quizSelect"><option value="all">Full mixed quiz</option><option value="1">Week 1: Forms of Ownership</option><option value="2">Week 2: Production Management</option><option value="3">Week 3: Marketing Research</option><option value="4">Week 4: Managerial Competencies</option></select><button class="btn" id="startQuiz">Start quiz</button><button class="btn secondary" id="retryMissed">Retry missed</button></div><div class="statrow"><div class="stat"><strong id="score">0</strong><span class="muted">Correct</span></div><div class="stat"><strong id="answered">0</strong><span class="muted">Answered</span></div><div class="stat"><strong id="total">40</strong><span class="muted">Questions</span></div></div><div class="progress" style="margin:15px 0 20px"><span id="progress"></span></div><div id="quizArea" class="card"><p class="muted">Select a quiz and press Start quiz to begin.</p></div></section>
+<section id="matching" class="panel"><div class="intro"><div class="eyebrow">Active recall</div><h2>Matching Game</h2><p class="muted">Select a term, then select its matching definition. Match all pairs to complete the round.</p></div><div class="statrow"><div class="stat"><strong id="matchScore">0 / 16</strong><span class="muted">Pairs matched</span></div><button class="btn secondary" id="resetMatch">Restart game</button></div><div id="matchArea" class="match-grid" style="margin-top:18px"></div><p id="matchFeedback" class="feedback"></p></section>
+<section id="keys" class="panel"><div class="intro"><div class="eyebrow">Fast revision</div><h2>Key Concepts &amp; Quick Revision</h2><p class="muted">High-value distinctions and structures to remember before an assessment.</p></div><div class="key-grid" id="keyGrid"></div></section>
+<section id="flashcards" class="panel"><div class="intro"><div class="eyebrow">Recall practice</div><h2>Flashcards</h2><p class="muted">Try to recall the meaning before revealing the answer.</p></div><div class="statrow"><div class="stat"><strong id="flashCount">1 / 16</strong><span class="muted">Card</span></div></div><div class="flashcard" id="flashcard">Term</div><div class="flash-actions"><button class="btn secondary" id="prevFlash">← Previous</button><button class="btn" id="flipFlash">Reveal answer</button><button class="btn secondary" id="nextFlash">Next →</button></div></section>
+</main><footer>AMS 108 · Principles of Management II · MIVA revision hub</footer>
 <script>
-    function toggleTheme() {
-        const currentTheme = document.body.getAttribute('data-theme');
-        const themeBtn = document.getElementById('themeBtn');
-        if (currentTheme === 'dark') {
-            document.body.removeAttribute('data-theme');
-            themeBtn.innerText = '🌙 Night Mode';
-        } else {
-            document.body.setAttribute('data-theme', 'dark');
-            themeBtn.innerText = '☀️ Light Mode';
-        }
-    }
-
-    function switchTab(tabName) {
-        document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));
-        document.querySelectorAll('.view-section').forEach(sec => sec.classList.remove('active'));
-
-        const tabs = ['summaries', 'quiz', 'matching', 'solver', 'flashcards'];
-        const index = tabs.indexOf(tabName);
-        document.querySelectorAll('.tab-btn')[index].classList.add('active');
-        document.getElementById(tabName + 'Tab').classList.add('active');
-
-        if (tabName === 'matching') resetMatchingGame();
-        if (tabName === 'solver') { renderScenarioInputs(); solveAndDraw(); }
-        if (tabName === 'flashcards') loadFlashcard();
-    }
-
-    function filterSummaries() {
-        const query = document.getElementById('summarySearch').value.toLowerCase();
-        document.querySelectorAll('.searchable').forEach(el => {
-            const text = el.innerText.toLowerCase();
-            el.style.display = text.includes(query) ? 'block' : 'none';
-        });
-    }
-
-    // MASTERY SYSTEM
-    let masteryData = JSON.parse(localStorage.getItem('pom_mastery') || '{"1":{"c":0,"t":0},"2":{"c":0,"t":0},"3":{"c":0,"t":0},"4":{"c":0,"t":0}}');
-    let missedQuestions = JSON.parse(localStorage.getItem('pom_missed') || '[]');
-
-    function saveMastery() {
-        localStorage.setItem('pom_mastery', JSON.stringify(masteryData));
-        localStorage.setItem('pom_missed', JSON.stringify(missedQuestions));
-        updateMasteryUI();
-    }
-
-    function updateMasteryUI() {
-        for (let m = 1; m <= 4; m++) {
-            const data = masteryData[m];
-            const pct = data && data.t > 0 ? Math.round((data.c / data.t) * 100) : 0;
-            const el = document.getElementById(`m_mod${m}`);
-            if (el) el.innerText = `${pct}%`;
-        }
-    }
-
-    function shuffle(arr) { return [...arr].sort(() => Math.random() - 0.5); }
-
-    // QUIZ BANK (5 questions per module = 20 total)
-    const quizBank = [
-        // Topic 1: Ownership
-        { mod: 1, title: "Which business legal structure combines limited liability protection with pass-through taxation and operating flexibility?", correct: "Limited Liability Company (LLC)", options: ["Limited Liability Company (LLC)", "Sole Proprietorship", "Public Limited Company (PLC)", "General Partnership"], exp: "LLCs offer pass-through tax treatment like partnerships while protecting members from personal liability." },
-        { mod: 1, title: "A limited partner who is neither active in management nor generally known to be associated with the firm is a:", correct: "Dormant Partner", options: ["Dormant Partner", "Silent Partner", "General Partner", "Managing Partner"], exp: "Dormant partners are both inactive and publicly unknown, whereas silent partners are inactive but known." },
-        { mod: 1, title: "What primary document establishes the internal operational rules and provisions for an LLC?", correct: "Operating Agreement", options: ["Operating Agreement", "Articles of Organization", "Royal Charter", "Business Registration Certificate"], exp: "The Operating Agreement governs internal management and operations, while Articles of Organization establish existence." },
-        { mod: 1, title: "What is a major financial disadvantage of a traditional Corporation/PLC?", correct: "Double Taxation", options: ["Double Taxation", "Unlimited Personal Liability", "Pass-Through Taxation", "Lack of Capital Access"], exp: "Corporations face double taxation: taxes on corporate net income and personal taxes on shareholder dividends." },
-        { mod: 1, title: "A social enterprise differs from a traditional commercial business primarily because:", correct: "Its profits are primarily reinvested to drive positive social change", options: ["Its profits are primarily reinvested to drive positive social change", "It is legally forbidden from making money", "It relies entirely on grants and donations", "It pays zero taxes under all circumstances"], exp: "Social enterprises use commercial tactics to generate income, but reinvest profits into social/environmental missions." },
-
-        // Topic 2: Production
-        { mod: 2, title: "Tailoring, specialty printing, and custom furniture manufacturing are classic examples of:", correct: "Jobbing Production", options: ["Jobbing Production", "Mass Production", "Continuous Production", "Batch Production"], exp: "Jobbing production creates individual or small-custom quantities tailored to client specifications." },
-        { mod: 3, title: "Which production method represents a middle ground between jobbing and mass production?", correct: "Batch Production", options: ["Batch Production", "Project-based Production", "Flow Production", "Continuous Assembly"], exp: "Batch manufacturing processes standardized units in discrete lots using flexible layouts." },
-        { mod: 2, title: "Value Analysis (VA) differs from general Value Engineering (VE) because it specifically focuses on:", correct: "Analyzing existing components, materials, and designs of an active product", options: ["Analyzing existing components, materials, and designs of an active product", "Initial concept development before manufacturing", "Marketing and advertising expenditures", "Employee salary structures"], exp: "Value Analysis is applied directly to existing components and products to optimize value and cost." },
-        { mod: 2, title: "Temporary teams assembled with specific skills for a unique output that disband upon completion characterize:", correct: "Project-Based Production", options: ["Project-Based Production", "Batch Production", "Mass Production", "Continuous Production"], exp: "Project production (e.g., construction, software) relies on temporary teams disbanded after project delivery." },
-        { mod: 2, title: "Small, voluntary groups of employees who meet regularly to solve work-related quality problems are:", correct: "Quality Circles", options: ["Quality Circles", "Board of Directors", "Audit Committees", "Project Taskforces"], exp: "Quality circles engage workers voluntarily in data-driven quality and process improvement." },
-
-        // Topic 3: Marketing
-        { mod: 3, title: "Which component is part of the extended 3 Ps in service marketing?", correct: "Physical Evidence", options: ["Physical Evidence", "Price", "Promotion", "Product"], exp: "The extended 3 Ps for services are People, Process, and Physical Evidence." },
-        { mod: 3, title: "Low-cost, unconventional, and highly creative tactics used by small firms to yield high returns are called:", correct: "Bootstrap Marketing", options: ["Bootstrap Marketing", "Mass Marketing", "Production Orientation", "Transactional Selling"], exp: "Bootstrap marketing relies on imagination, relationships, and low-cost execution rather than big budgets." },
-        { mod: 3, title: "Evaluating advertisement effectiveness, copywriting style, and concept testing falls under:", correct: "Marketing Research", options: ["Marketing Research", "Market Research", "Demographic Analysis", "Supply Chain Planning"], exp: "Marketing research focuses on advertising, promotional efficacy, and customer satisfaction." },
-        { mod: 3, title: "In brand positioning, unexpected features that excite customers and differentiate the brand are:", correct: "Excitement Attributes", options: ["Excitement Attributes", "Threshold Attributes", "Performance Attributes", "Baseline Attributes"], exp: "Excitement attributes go beyond basic expectations (threshold) to create unique differentiation." },
-        { mod: 3, title: "What orientation focuses on mass production and low cost under the assumption that customers favor available/cheap items?", correct: "Production Orientation", options: ["Production Orientation", "Market Orientation", "Societal Orientation", "Sales Orientation"], exp: "Production orientation prioritizes high operational efficiency and wide distribution." },
-
-        // Topic 4: Managerial/HR
-        { mod: 4, title: "Knowledge, Skills, and Abilities vital for managerial performance are collectively known as:", correct: "Competencies (KSAs)", options: ["Competencies (KSAs)", "Job Descriptions", "Physical Evidence", "Threshold Attributes"], exp: "Competencies combine knowledge, skills, and abilities required to achieve organizational goals." },
-        { mod: 4, title: "Points Rating and Factor Comparison methods in job evaluation are classified as:", correct: "Analytical Methods", options: ["Analytical Methods", "Non-analytical Methods", "Subjective Rankings", "Casual Classifications"], exp: "Analytical job evaluation schemes break jobs down into quantitative factors for objective rating." },
-        { mod: 4, title: "Identified physical symptoms of stress include hypertension, heart disease, and:", correct: "Ulcers and Muscle Tension", options: ["Ulcers and Muscle Tension", "Anxiety and Depression", "Loss of Appetite", "Substance Abuse"], exp: "Physiological stress symptoms manifest physically (ulcers, high blood pressure, muscle tension)." },
-        { mod: 4, title: "The systematic identification and development of internal staff to fill future key leadership vacancies is:", correct: "Succession Planning", options: ["Succession Planning", "Job Evaluation", "Method Study", "Value Engineering"], exp: "Succession planning ensures leadership continuity by grooming internal talent for critical roles." },
-        { mod: 4, title: "Job Ranking and Job Classification belong to which category of job evaluation?", correct: "Non-analytical Schemes", options: ["Non-analytical Schemes", "Analytical Schemes", "Factor Comparison Systems", "Point-Factor Rating Systems"], exp: "Non-analytical schemes assess jobs as whole entities without breaking them into point factors." }
-    ];
-
-    let currentQuestions = [];
-
-    function generateQuiz(retryMissedOnly = false) {
-        const topic = document.getElementById('topicSelect').value;
-        if (retryMissedOnly) {
-            currentQuestions = [...missedQuestions];
-            if (currentQuestions.length === 0) {
-                alert("No missed questions recorded yet!");
-                return;
-            }
-        } else {
-            if (topic === 'all') {
-                currentQuestions = shuffle([...quizBank]);
-            } else {
-                const modNum = parseInt(topic);
-                currentQuestions = quizBank.filter(q => q.mod === modNum);
-            }
-        }
-        renderQuiz();
-    }
-
-    function renderQuiz() {
-        const container = document.getElementById('quizContainer');
-        container.innerHTML = '';
-
-        currentQuestions.forEach((q, qIndex) => {
-            const card = document.createElement('div');
-            card.className = 'question-card';
-            card.innerHTML = `
-                <span class="badge">Module ${q.mod}</span>
-                <div class="question-title">${qIndex + 1}. ${q.title}</div>
-                <div class="options">
-                    ${shuffle(q.options).map(opt => `
-                        <label class="option-label">
-                            <input type="radio" name="q_${qIndex}" value="${opt}" onchange="handleOptionSelect(${qIndex}, '${opt.replace(/'/g, "\\'")}', '${q.correct.replace(/'/g, "\\'")}', '${q.exp.replace(/'/g, "\\'")}', ${q.mod})">
-                            ${opt}
-                        </label>
-                    `).join('')}
-                </div>
-                <div class="explanation" id="exp_${qIndex}"></div>
-            `;
-            container.appendChild(card);
-        });
-    }
-
-    function handleOptionSelect(qIndex, selectedOpt, correctOpt, explanation, mod) {
-        const expDiv = document.getElementById(`exp_${qIndex}`);
-        document.querySelectorAll(`input[name="q_${qIndex}"]`).forEach(i => i.disabled = true);
-
-        if (!masteryData[mod]) masteryData[mod] = { c: 0, t: 0 };
-        masteryData[mod].t += 1;
-
-        if (selectedOpt === correctOpt) {
-            expDiv.className = 'explanation correct';
-            expDiv.innerHTML = `<strong>Correct!</strong> ${explanation}`;
-            masteryData[mod].c += 1;
-        } else {
-            expDiv.className = 'explanation incorrect';
-            expDiv.innerHTML = `<strong>Incorrect.</strong> Correct answer: <strong>${correctOpt}</strong>.<br>${explanation}`;
-            if (!missedQuestions.some(item => item.title === currentQuestions[qIndex].title)) {
-                missedQuestions.push(currentQuestions[qIndex]);
-            }
-        }
-        saveMastery();
-    }
-
-    // MATCHING GAME ENGINE
-    const rawPairs = [
-        { id: 0, left: "Articles of Organization", right: "Document establishing an LLC's official legal existence", explanation: "Defines business name, address, duration, and structure." },
-        { id: 1, left: "Jobbing Production", right: "Customized manufacturing of low-volume, specialized goods", explanation: "Labor-intensive, highly adaptable using skilled workers." },
-        { id: 2, left: "Value Engineering", right: "Maximizing function while minimizing total lifecycle costs", explanation: "Structured, systematic approach applied during design or revision." },
-        { id: 3, left: "Extended Marketing Mix", right: "People, Process, and Physical Evidence", explanation: "3 additional Ps critical for service marketing success." },
-        { id: 4, left: "Analytical Job Evaluation", right: "Points Rating and Factor Comparison methods", explanation: "Breaks jobs down into quantitative factors to set compensation." },
-        { id: 5, left: "Silent Partner", right: "Inactive in management but publicly known as a partner", explanation: "Differs from a dormant partner who is neither active nor publicly known." }
-    ];
-
-    let leftSelected = null, rightSelected = null, matchesCount = 0;
-
-    function resetMatchingGame() {
-        matchesCount = 0;
-        leftSelected = null;
-        rightSelected = null;
-
-        const leftCol = document.getElementById('leftCol');
-        const rightCol = document.getElementById('rightCol');
-        const feedbackDiv = document.getElementById('matchingFeedback');
-        
-        leftCol.innerHTML = ''; 
-        rightCol.innerHTML = ''; 
-        feedbackDiv.style.display = 'none';
-
-        document.getElementById('matchingScore').innerText = `Matches Found: 0 / ${rawPairs.length}`;
-
-        const leftList = shuffle(rawPairs);
-        const rightList = shuffle(rawPairs);
-
-        leftList.forEach(item => {
-            const card = document.createElement('div');
-            card.className = 'match-card';
-            card.dataset.id = item.id;
-            card.innerText = item.left;
-            card.onclick = () => selectLeft(card, item);
-            leftCol.appendChild(card);
-        });
-
-        rightList.forEach(item => {
-            const card = document.createElement('div');
-            card.className = 'match-card';
-            card.dataset.id = item.id;
-            card.innerText = item.right;
-            card.onclick = () => selectRight(card, item);
-            rightCol.appendChild(card);
-        });
-    }
-
-    function selectLeft(card, item) {
-        if (card.classList.contains('matched')) return;
-        document.querySelectorAll('#leftCol .match-card').forEach(c => c.classList.remove('selected'));
-        leftSelected = { card, item };
-        card.classList.add('selected');
-        checkPairMatch();
-    }
-
-    function selectRight(card, item) {
-        if (card.classList.contains('matched')) return;
-        document.querySelectorAll('#rightCol .match-card').forEach(c => c.classList.remove('selected'));
-        rightSelected = { card, item };
-        card.classList.add('selected');
-        checkPairMatch();
-    }
-
-    function checkPairMatch() {
-        if (!leftSelected || !rightSelected) return;
-
-        const feedbackDiv = document.getElementById('matchingFeedback');
-        feedbackDiv.style.display = 'block';
-
-        if (leftSelected.item.id === rightSelected.item.id) {
-            leftSelected.card.className = 'match-card matched';
-            rightSelected.card.className = 'match-card matched';
-
-            feedbackDiv.style.backgroundColor = 'var(--success-bg)';
-            feedbackDiv.style.borderColor = 'var(--success-border)';
-            feedbackDiv.style.color = 'var(--success-color)';
-            feedbackDiv.innerHTML = `<strong>Correct Match!</strong><br>${leftSelected.item.left} ⟺ <code>${leftSelected.item.right}</code><br>${leftSelected.item.explanation}`;
-
-            matchesCount++;
-            document.getElementById('matchingScore').innerText = `Matches Found: ${matchesCount} / ${rawPairs.length}`;
-            leftSelected = null; rightSelected = null;
-        } else {
-            const l = leftSelected, r = rightSelected;
-            l.card.classList.add('wrong');
-            r.card.classList.add('wrong');
-
-            feedbackDiv.style.backgroundColor = 'var(--error-bg)';
-            feedbackDiv.style.borderColor = 'var(--error-border)';
-            feedbackDiv.style.color = 'var(--error-color)';
-            feedbackDiv.innerHTML = `<strong>Incorrect Pair.</strong> Try again!`;
-
-            setTimeout(() => {
-                l.card.classList.remove('wrong', 'selected');
-                r.card.classList.remove('wrong', 'selected');
-            }, 800);
-
-            leftSelected = null; rightSelected = null;
-        }
-    }
-
-    // INTERACTIVE SOLVER / ANALYZER
-    function renderScenarioInputs() {
-        const scenario = document.getElementById('scenarioType').value;
-        const container = document.getElementById('scenarioInputs');
-        container.innerHTML = '';
-
-        if (scenario === 'ownership_recommender') {
-            container.innerHTML = `
-                <label>Primary Goal: </label>
-                <select id="sc_goal">
-                    <option value="llc">Protect liability & avoid double taxation</option>
-                    <option value="plc">Raise massive capital on public stock exchange</option>
-                    <option value="sole">Minimal cost, full control, instant setup</option>
-                    <option value="social">Reinvest profits into social goals</option>
-                </select>
-            `;
-        } else if (scenario === 'production_selector') {
-            container.innerHTML = `
-                <label>Product Type & Volume: </label>
-                <select id="sc_prod">
-                    <option value="jobbing">Highly customized, 1-off bespoke items</option>
-                    <option value="batch">Standardized items produced in discrete lots</option>
-                    <option value="mass">High volume, identical automated products</option>
-                    <option value="project">Unique large-scale multi-month construction/software</option>
-                </select>
-            `;
-        } else if (scenario === 'evaluation_analyzer') {
-            container.innerHTML = `
-                <label>Evaluation Objective: </label>
-                <select id="sc_eval">
-                    <option value="points">Quantitative numerical point scheme</option>
-                    <option value="ranking">Simple holistic ranking from highest to lowest</option>
-                    <option value="classification">Assigning jobs to predefined grade categories</option>
-                </select>
-            `;
-        }
-    }
-
-    function solveAndDraw() {
-        const scenario = document.getElementById('scenarioType').value;
-        const list = document.getElementById('stepList');
-        list.innerHTML = '';
-
-        if (scenario === 'ownership_recommender') {
-            const goal = document.getElementById('sc_goal').value;
-            let steps = [];
-
-            if (goal === 'llc') {
-                steps = [
-                    "<strong>Recommended Structure:</strong> Limited Liability Company (LLC)",
-                    "<strong>Key Feature:</strong> Offers corporate limited liability while maintaining pass-through income taxation.",
-                    "<strong>Required Documents:</strong> Articles of Organization (state registration) + Operating Agreement (internal governance).",
-                    "<strong>Tax Profile:</strong> Profits/losses flow directly to members' personal tax returns."
-                ];
-            } else if (goal === 'plc') {
-                steps = [
-                    "<strong>Recommended Structure:</strong> Public Limited Company (PLC) / Corporation",
-                    "<strong>Key Feature:</strong> Ability to sell shares publicly on stock exchanges to raise equity.",
-                    "<strong>Governance:</strong> Managed by an elected Board of Directors representing shareholders.",
-                    "<strong>Tax Profile:</strong> Subject to double taxation (corporate profits + dividend tax)."
-                ];
-            } else if (goal === 'sole') {
-                steps = [
-                    "<strong>Recommended Structure:</strong> Sole Proprietorship",
-                    "<strong>Key Feature:</strong> Simplest and least expensive structure to start.",
-                    "<strong>Risk Exposure:</strong> Owner faces <em>unlimited personal liability</em> for all business debts.",
-                    "<strong>Tax Profile:</strong> Direct pass-through tax rate (7.5% - 15%)."
-                ];
-            } else {
-                steps = [
-                    "<strong>Recommended Structure:</strong> Social Enterprise",
-                    "<strong>Key Feature:</strong> Uses commercial revenue models to fund social or environmental objectives.",
-                    "<strong>Profit Allocation:</strong> Surplus is reinvested into the business mission rather than paid out to shareholders.",
-                    "<strong>Financial Model:</strong> Focuses on income generation over total reliance on grants."
-                ];
-            }
-            steps.forEach(s => { const d = document.createElement('div'); d.className = 'step-item'; d.innerHTML = s; list.appendChild(d); });
-
-        } else if (scenario === 'production_selector') {
-            const prod = document.getElementById('sc_prod').value;
-            let steps = [];
-
-            if (prod === 'jobbing') {
-                steps = [
-                    "<strong>Production System:</strong> Jobbing / Job Shop Production",
-                    "<strong>Characteristics:</strong> Highly labor-intensive, skilled workers, varied sequences, general-purpose machines.",
-                    "<strong>Examples:</strong> Tailoring, custom furniture, specialty printing.",
-                    "<strong>Trade-off:</strong> Highly flexible but higher cost per unit."
-                ];
-            } else if (prod === 'batch') {
-                steps = [
-                    "<strong>Production System:</strong> Batch Production",
-                    "<strong>Characteristics:</strong> Standardized components produced in lots, middle ground between job shop and mass.",
-                    "<strong>Key Focus:</strong> Detailed production planning, inventory buffer control, short runs.",
-                    "<strong>Examples:</strong> Bakery goods, pharmaceuticals, electronics sub-assemblies."
-                ];
-            } else if (prod === 'mass') {
-                steps = [
-                    "<strong>Production System:</strong> Mass & Continuous Production",
-                    "<strong>Characteristics:</strong> Automated assembly lines, low unit costs, rigid specifications.",
-                    "<strong>Key Requirement:</strong> Capital-intensive machinery set up in line formation.",
-                    "<strong>Examples:</strong> Automobile manufacturing, smartphone assembly."
-                ];
-            } else {
-                steps = [
-                    "<strong>Production System:</strong> Project-Based Production",
-                    "<strong>Characteristics:</strong> Temporary specialized team assembled for a distinct contract.",
-                    "<strong>Management Role:</strong> Strong project management required for scope, schedule, and budget.",
-                    "<strong>Examples:</strong> Construction, software development, filmmaking."
-                ];
-            }
-            steps.forEach(s => { const d = document.createElement('div'); d.className = 'step-item'; d.innerHTML = s; list.appendChild(d); });
-
-        } else if (scenario === 'evaluation_analyzer') {
-            const evalObj = document.getElementById('sc_eval').value;
-            let steps = [];
-
-            if (evalObj === 'points') {
-                steps = [
-                    "<strong>System Type:</strong> Analytical - Points Rating Method",
-                    "<strong>Process:</strong> Breaks jobs into compensable factors (skill, effort, responsibility) and assigns numeric points.",
-                    "<strong>Advantage:</strong> Highly objective and quantifiable basis for salary administration.",
-                    "<strong>Category:</strong> Analytical scheme."
-                ];
-            } else if (evalObj === 'ranking') {
-                steps = [
-                    "<strong>System Type:</strong> Non-analytical - Job Ranking Method",
-                    "<strong>Process:</strong> Ranks jobs subjectively as whole entities from highest to lowest worth.",
-                    "<strong>Advantage:</strong> Fast and easy to execute in smaller organizations.",
-                    "<strong>Category:</strong> Non-analytical scheme."
-                ];
-            } else {
-                steps = [
-                    "<strong>System Type:</strong> Non-analytical - Job Classification / Grading",
-                    "<strong>Process:</strong> Places whole jobs into predefined grade classes based on complexity and skill.",
-                    "<strong>Advantage:</strong> Standardized grouping across administrative divisions.",
-                    "<strong>Category:</strong> Non-analytical scheme."
-                ];
-            }
-            steps.forEach(s => { const d = document.createElement('div'); d.className = 'step-item'; d.innerHTML = s; list.appendChild(d); });
-        }
-    }
-
-    // FLASHCARD DECK
-    const flashcardsDeck = [
-        { concept: "Operating Agreement", answer: "Internal document governing provisions and conduct of an LLC.", topic: 1 },
-        { concept: "Unlimited Personal Liability", answer: "Owner's personal assets can be seized to pay business debts (Sole Prop/General Partner).", topic: 1 },
-        { concept: "Social Enterprise", answer: "Business using commercial strategies to achieve social goals, reinvesting profits.", topic: 1 },
-        { concept: "Jobbing Production", answer: "Manufacturing customized goods in small quantities or single items.", topic: 2 },
-        { concept: "Value Engineering (VE)", answer: "Structured method to maximize functionality while minimizing lifecycle costs.", topic: 2 },
-        { concept: "Quality Circles", answer: "Voluntary employee groups meeting regularly to solve quality/process problems.", topic: 2 },
-        { concept: "Extended 3 Ps", answer: "People, Process, and Physical Evidence (Service Marketing).", topic: 3 },
-        { concept: "Bootstrap Marketing", answer: "Unconventional, low-cost creative marketing strategies yielding high returns.", topic: 3 },
-        { concept: "Marketing vs. Market Research", answer: "Market = size/demographics; Marketing = advertising/copywriting/customer satisfaction.", topic: 3 },
-        { concept: "Managerial Competencies", answer: "Clusters of Knowledge, Skills, and Abilities (KSAs) needed for performance.", topic: 4 },
-        { concept: "Analytical Job Evaluation", answer: "Quantitative schemes rating job factors (Points Rating, Factor Comparison).", topic: 4 },
-        { concept: "Succession Planning", answer: "Strategic process of identifying/grooming internal staff for key leadership roles.", topic: 4 }
-    ];
-
-    let fcIndex = 0, fcIsFlipped = false;
-
-    function loadFlashcard() {
-        const currentCard = flashcardsDeck[fcIndex];
-        fcIsFlipped = false;
-        document.getElementById('fcLabel').innerText = `MODULE ${currentCard.topic} CONCEPT (Click to Flip)`;
-        document.getElementById('fcContent').innerText = currentCard.concept;
-    }
-
-    function flipCard() {
-        const currentCard = flashcardsDeck[fcIndex];
-        fcIsFlipped = !fcIsFlipped;
-        document.getElementById('fcLabel').innerText = fcIsFlipped ? "DEFINITION / EXPLANATION" : `MODULE ${currentCard.topic} CONCEPT (Click to Flip)`;
-        document.getElementById('fcContent').innerText = fcIsFlipped ? currentCard.answer : currentCard.concept;
-    }
-
-    function rateCard(rating) {
-        fcIndex = (fcIndex + 1) % flashcardsDeck.length;
-        loadFlashcard();
-    }
-
-    window.onload = () => {
-        updateMasteryUI();
-        generateQuiz();
-        renderScenarioInputs();
-    };
-</script>
-
-</body>
-</html>
+const DATA={
+"weeks":[
+{"week":1,"title":"Week 1: Forms of Business Ownership","summary":"This week covers the major forms of business ownership: Sole Proprietorship, Partnership (General and Limited), Corporation, and Limited Liability Company (LLC). It explains the advantages, disadvantages, and key factors to consider when choosing a form of ownership.","sections":[["Choosing a Form of Ownership","One of the first decisions when establishing a business is choosing the right legal structure. There is no one 'best' form; it depends on the entrepreneur's situation. <b>Factors affecting the choice:</b> Tax considerations, liability exposure, start-up capital, control, managerial ability, business goals, management succession plans, cost of formation."],["Sole Proprietorship","A business owned and managed by one individual. <b>Advantages:</b> Simple to create, least costly, profit incentive, total decision-making authority, easy to discontinue. <b>Disadvantages:</b> Unlimited personal liability, limited skills, isolation, limited access to capital, lack of continuity."],["Partnership","An association of two or more people who co-own a business for profit. <b>Partnership Agreement:</b> States in writing the terms of operation and protects each partner's interests. <b>Advantages:</b> Easy to establish, complementary skills, division of profits, larger pool of capital, minimal government regulation, flexibility. <b>Disadvantages:</b> Unlimited liability of at least one partner, capital accumulation, difficulty disposing of interest, potential for conflicts, bound by law of agency."],["Types of Partners","<b>General Partners:</b> Take an active role in managing; have unlimited liability. Every partnership must have at least one general partner. <b>Limited Partners:</b> Cannot participate in day-to-day management; have limited liability. <b>Silent Partners:</b> Not active but generally known. <b>Dormant Partners:</b> Neither active nor generally known."],["Limited Liability Company (LLC)","Offers owners limited personal liability for debts. <b>Advantages:</b> Limited liability, no double taxation (does not pay income tax; members do), flexibility (profit sharing not restricted to ownership percentage). <b>Disadvantages:</b> Expensive to create, limited life span, personal benefit costs not tax deductible, private LLCs cannot sell shares to the public, venture capitalists generally do not like to invest."],["Corporation","A legal entity separate from its owners (shareholders). <b>Features:</b> Legal entity, limited liability, perpetual existence, complex structure, stock ownership. <b>Advantages:</b> Limited liability, access to capital markets, professional management, attracting investors. <b>Disadvantages:</b> Complex setup, double taxation, loss of control, bureaucracy."]],"examTraps":["<b>Trap:</b> Confusing a General Partner with a Limited Partner. General partners manage and have unlimited liability; Limited partners do not manage and have limited liability.","<b>Trap:</b> Thinking a Corporation is the same as an LLC. A Corporation has double taxation (corporate tax + personal tax on dividends); an LLC has no double taxation.","<b>Trap:</b> Forgetting that a Sole Proprietorship has unlimited personal liability (the company's debts are the owner's debts)."],"takeaways":["Sole Proprietorship: One owner, unlimited liability.","Partnership: Two+ owners, unlimited liability (general partners).","LLC: Limited liability + no double taxation.","Corporation: Separate legal entity, limited liability, double taxation.","Factors: Tax, liability, capital, control, goals."]},
+{"week":2,"title":"Week 2: Production Management (Production Function)","summary":"This week explores the types of production processes (Jobbing, Project-based, Batch, Mass), aids to production (work study, method study, work measurement), value engineering/analysis, and new technologies in manufacturing.","sections":[["Production Processes","The way a business creates products and services is the production process. Objective: Create goods and services that meet customer requirements (correct number, shortest time, best quality, low cost). Two sets of production processes: <b>Transforming resources</b> (facilities, machinery, technology, people) and <b>Raw material inputs</b> (transformed resources)."],["Jobbing Production","Jobbing (job shop) production is a manufacturing approach where products are produced in small quantities or one at a time. It is used for custom or highly specialized products. <b>Characteristics:</b> Wide variety of operations, varying sequences, general purpose machinery, unpredictable demands, workforce with broad skills. <b>Examples:</b> Custom machining shops, custom furniture, tailoring."],["Project-Based Production","Production activities organized around specific projects or contracts, each with a defined scope, timeline, and budget. Common in construction, engineering, software development, and film production. <b>Characteristics:</b> Temporary team assembled for the project; team disbands once completed; project managers play a crucial role."],["Batch Production","Production of standardised units or parts in small or large lots (batches). It is a halfway position between jobbing and mass production. <b>Features:</b> Economies of scale, customisation, flexibility, quality control, reduced lead times, efficient resource utilisation, cost efficiency."],["Mass and Continuous Production","Manufacturing process involving the production of large quantities of standardised products using a continuous, highly automated, and efficient production line. Common in automotive, electronics, and consumer goods. <b>Features:</b> Standardisation, high volume, automation, specialisation, efficiency, low unit costs, limited customisation, high initial investment."],["Aids to Production & Value Engineering","<b>Aids:</b> Work study, method study, work measurement. <b>Value Engineering (VE):</b> A structured, methodical process aimed at improving the value of a product, project, or process. Primary goal: Maximise functionality, performance, and quality while minimising costs. <b>Value Analysis (VA):</b> A specific application of VE that focuses on improving value by analysing existing components, materials, and design."],["New Technology in Manufacturing","Automation, Computer Aided Design (CAD), Computer Aided Manufacturing (CAM), Enterprise Resource Planning (ERP), Flexible Manufacturing Systems, Robots, Industry 4.0 and Smart Manufacturing, AI/Machine Learning/IoT, Additive Manufacturing (3D Printing), Advanced Robotics and Cobots, Augmented Reality (AR)/Virtual Reality (VR), Blockchain for Supply Chain, Advanced Materials, Robotic Process Automation (RPA), Energy-Efficient Technologies, Biomanufacturing, Quantum Computing."]],"examTraps":["<b>Trap:</b> Confusing Jobbing Production with Batch Production. Jobbing is one-off/custom; Batch is standardised units in lots.","<b>Trap:</b> Thinking Mass Production allows for high customisation. Mass production has limited customisation and is highly standardised.","<b>Trap:</b> Forgetting that Value Engineering aims to maximise value by reducing costs while maintaining quality."],"takeaways":["Production types: Jobbing, Project-based, Batch, Mass.","Jobbing = Custom, one-off.","Batch = Standardised units in lots.","Mass = Large-scale, standardised, automated.","Value Engineering = Maximise value, minimise cost."]},
+{"week":3,"title":"Week 3: Marketing Research","summary":"This week defines marketing, explains marketing orientations (Production, Product, Sales, Market, Societal), the marketing mix (4Ps + extended 3Ps), and the market research process (Primary vs Secondary research, Market vs Marketing research).","sections":[["Definition of Marketing","Marketing is the process of creating and delivering desired goods and services to customers; it involves all activities associated with winning and retaining loyal customers. It is the activity, set of institutions, and processes for creating, communicating, delivering, and exchanging offerings that have value for customers, clients, partners, and society at large."],["Orientations in Marketing","<b>Production Orientation:</b> Focus on production efficiency. <b>Product Orientation:</b> Focus on product quality. <b>Sales Orientation:</b> Focus on selling and promotion. <b>Market Orientation:</b> Focus on customer needs and wants. <b>Societal Orientation:</b> Focus on customer needs while preserving society's long-term well-being."],["Marketing Mix (Traditional & Extended)","<b>Traditional 4Ps:</b> Product (Functionality, Appearance, Quality, Packaging, Brand), Price (List price, Discounts, Allowances, Financing), Place (Channel members, Logistics, Service levels), Promotion (Advertising, Personal selling, Public Relations). <b>Extended 3Ps:</b> People (The people behind the company), Process (What you do to deliver a fantastic customer experience), Physical Evidence (The physical elements needed to complete the mix)."],["Market Research","Market research is the vehicle for gathering the information that serves as the foundation for the marketing plan. Never assume a market exists; prove it! <b>Steps:</b> Define the objective, Collect the data (individualized marketing, primary research, secondary research, data mining), Analyse and interpret the data, Draw conclusions and act."],["Market Research vs Marketing Research","<b>Market Research:</b> Focuses on market trends, market size, target market, technical info, market segments. <b>Marketing Research:</b> Focuses on effectiveness of ads, copywriting style, concept testing, customer satisfaction, promotional methods. <b>Overlap:</b> Competition analysis, product features, demand, limitations."],["Methods of Market Research","<b>Primary Research:</b> Quantitative (Surveys, Questionnaires, Phone/One-to-one interviews) and Qualitative (Focus groups, In-depth interviews, Observations). <b>Secondary Research:</b> Public sources, Commercial sources, Educational institutions."]],"examTraps":["<b>Trap:</b> Confusing Market Research with Marketing Research. Market research is about the market (size, trends, segments); Marketing research is about marketing activities (ads, promotions, customer satisfaction).","<b>Trap:</b> Thinking Primary Research is always quantitative. It can be qualitative (focus groups, observations) too.","<b>Trap:</b> Forgetting the extended 3Ps of the marketing mix (People, Process, Physical Evidence)."],"takeaways":["Marketing = Creating, communicating, delivering value.","Orientations: Production, Product, Sales, Market, Societal.","Marketing Mix: 4Ps + Extended 3Ps (People, Process, Physical Evidence).","Market Research = Gather info for the marketing plan.","Primary Research: Quantitative & Qualitative.","Secondary Research: Public, Commercial, Educational."]},
+{"week":4,"title":"Week 4: Developing Managerial Competencies and Stress Management","summary":"This week covers managerial competencies, management development methods, succession planning, stress (causes, symptoms, coping strategies), harassment and discrimination, counselling, job evaluation, and employee relations.","sections":[["Developing Managerial Competencies","Managerial competencies are clusters of knowledge, skills, and abilities (KSAs) vital in determining how managers accomplish their goals. <b>Key roles (Management Standards):</b> Self and personal skills, Providing direction, Facilitating change, Working with people, Using resources, Achieving results."],["Management Development Methods","<b>Coaching/Guided experience:</b> Planned improvement of the manager and aiding subordinate manager. <b>Delegation:</b> Superior gives specific responsibility, authority, and resources; performance is monitored. <b>Projects:</b> Working on a specific problem or opportunity. <b>Secondments/Job rotation:</b> Manager assigned to a post. <b>CPD:</b> Personal development plan, performance benchmark, assessment tools, on-the-job development."],["Succession Planning & Talent Management","Succession planning is a strategic process of identifying and developing individuals within an organisation to fill key leadership and critical roles when they become vacant. Talent management refers to attracting, developing, retaining, and optimizing the skills and abilities of the workforce. <b>Benefits:</b> Continuity, retention, preparedness, knowledge transfer, improved diversity."],["Stress","The physical symptoms of ill-health caused by excessive pressures in the workplace or elsewhere, leading to reduced job performance. It is a form of strain provoked in response to situational demands (stressors). <b>Causes:</b> Work-related factors (job characteristics, work relationships, organizational factors), Individual factors (domestic situation, personal factors). <b>Symptoms:</b> Physiological (increased heartbeat, high blood pressure), Psychological (anxiety, depression), Behavioral (loss of appetite, increased cigarette/alcohol consumption). <b>Coping Strategies:</b> Identify stressors, Learn to speak, Spot the signs, Explore organisational and individual strategies."],["Harassment & Discrimination","<b>Harassment:</b> Unwelcome conduct based on protected class that creates an intimidating or hostile work environment. <b>Discrimination:</b> Unfair treatment of an individual or group on grounds of their sex, race, or other factors (protected characteristics). <b>Protected characteristics:</b> Race, color, religion, sex, national origin, age, disability, genetic information."],["Counselling & Job Evaluation","<b>Counselling:</b> A process that involves a trained professional helping individuals explore, understand, and address personal or emotional issues. <b>Types:</b> Individual, Group, Couples/Relationship. <b>Job Evaluation:</b> A technique for determining the size of one job compared to another, and the relationship between the two. It forms the basis for wage and salary administration. <b>Methods:</b> Job ranking, Job classification, Point factor."],["Employee Relations","The interactions and relationships between an organisation and its employees. <b>Objectives:</b> Promote positive workplace culture, encourage open communication, manage conflict constructively, support employee wellbeing, balance organisational goals with employee needs. <b>Strategies:</b> Effective communication, Fairness and equity, Employee engagement."]],"examTraps":["<b>Trap:</b> Confusing Succession Planning with Talent Management. Succession planning is about identifying and developing individuals to fill key roles; Talent management is broader (attracting, developing, retaining, and optimizing the workforce).","<b>Trap:</b> Thinking stress is only psychological. It has physiological and behavioral symptoms too.","<b>Trap:</b> Forgetting that Job Evaluation is about determining the relative worth of jobs, not evaluating the performance of the person in the job."],"takeaways":["Managerial Competencies = KSAs.","Development Methods: Coaching, Delegation, Projects, Secondments, CPD.","Stress: Causes (work-related, individual), Symptoms (physiological, psychological, behavioral).","Job Evaluation: Determines relative worth of jobs.","Employee Relations: Interactions between organisation and employees."]}
+],
+"questions":[
+{"week":"1","q":"What is a sole proprietorship?","opts":["A business owned and managed by one individual","A business owned by two or more people","A legal entity separate from its owners","A business owned by shareholders"],"a":0,"why":"A sole proprietorship is a business that is owned and managed by one individual."},
+{"week":"1","q":"Which of the following is a disadvantage of a sole proprietorship?","opts":["Simple to create","Unlimited personal liability","Profit incentive","Total decision-making authority"],"a":1,"why":"Unlimited personal liability means the company's debts are the owner's debts."},
+{"week":"1","q":"What is a partnership?","opts":["A business owned by one person","An association of two or more people who co-own a business for profit","A legal entity separate from its owners","A business owned by shareholders"],"a":1,"why":"A partnership is an association of two or more people who co-own a business for the purpose of making a profit."},
+{"week":"1","q":"Which type of partner has unlimited liability and takes an active role in managing the business?","opts":["Limited Partner","Silent Partner","General Partner","Dormant Partner"],"a":2,"why":"General partners take an active role in managing a business and have unlimited liability for the partnership's debts."},
+{"week":"1","q":"What is a limited liability company (LLC)?","opts":["A business owned by one person","A business that offers its owners limited personal liability for debts","A business owned by shareholders","A business that is not registered"],"a":1,"why":"A limited liability company offers its owners limited personal liability for the debts of the business."},
+{"week":"1","q":"Which of the following is an advantage of a corporation?","opts":["Unlimited liability","Double taxation","Access to capital markets","Loss of control"],"a":2,"why":"Access to capital markets is a key advantage of a corporation."},
+{"week":"1","q":"What is the key difference between a general partnership and a limited partnership?","opts":["General partners have limited liability; limited partners have unlimited liability","General partners have unlimited liability; limited partners have limited liability","There is no difference","General partners cannot manage the business"],"a":1,"why":"General partners have unlimited liability and manage the business; limited partners have limited liability and do not manage."},
+{"week":"1","q":"Which form of ownership has double taxation?","opts":["Sole Proprietorship","Partnership","Corporation","LLC"],"a":2,"why":"Corporations are subject to double taxation (corporate tax + personal tax on dividends)."},
+{"week":"1","q":"What is a partnership agreement?","opts":["A document that states the terms under which the partners agree to operate","A government regulation","A type of business license","A tax form"],"a":0,"why":"A partnership agreement states in writing the terms under which the partners agree to operate the partnership."},
+{"week":"1","q":"Which form of ownership is considered ideal for many small companies because it offers tax advantages and legal protection?","opts":["Sole Proprietorship","Partnership","Corporation","Limited Liability Company (LLC)"],"a":3,"why":"LLCs offer the tax advantage of a partnership, the legal protection of a corporation, and maximum operating flexibility."},
+{"week":"2","q":"What is jobbing production?","opts":["Production of large quantities of standardised products","Production of small quantities or one-off products","Production in batches","Production of services only"],"a":1,"why":"Jobbing production is a manufacturing approach where products are produced in small quantities or even one at a time."},
+{"week":"2","q":"Which of the following is an example of project-based production?","opts":["Custom furniture manufacturing","Car manufacturing","Construction of a bridge","Bakery production"],"a":2,"why":"Project-based production is commonly used in construction, engineering, software development, and film production."},
+{"week":"2","q":"What is the main distinguishing feature between batch and jobbing production?","opts":["Batch production is more customised","Batch production is standardised","Batch production is only for services","There is no difference"],"a":1,"why":"The main distinguishing feature between batch and jobbing production lies in the standardised nature of batch production."},
+{"week":"2","q":"Which production process involves large quantities of standardised products using a continuous, highly automated production line?","opts":["Jobbing","Batch","Mass","Project-based"],"a":2,"why":"Mass production involves the production of large quantities of standardised products using a continuous, highly automated, and efficient production line."},
+{"week":"2","q":"What is value engineering?","opts":["A process aimed at improving the value of a product by maximising functionality while minimising costs","A process of reducing product quality","A process of increasing prices","A process of ignoring customer needs"],"a":0,"why":"Value engineering is a structured, methodical process aimed at improving the value of a product, project, or process by maximising functionality, performance, and quality while minimising costs."},
+{"week":"2","q":"What is value analysis?","opts":["A specific application of value engineering that focuses on analysing existing components, materials, and design","A process of increasing costs","A process of ignoring design","A process of reducing functionality"],"a":0,"why":"Value analysis is a specific application of value engineering that primarily focuses on improving the value of a product or system by analysing its existing components, materials, and design."},
+{"week":"2","q":"Which of the following is an aid to production?","opts":["Work study","Method study","Work measurement","All of the above"],"a":3,"why":"Work study, method study, and work measurement are all aids to production."},
+{"week":"2","q":"Which technology is associated with Industry 4.0?","opts":["Steam power","Assembly lines","AI, Machine Learning, and IoT","Manual labour"],"a":2,"why":"Industry 4.0 and Smart Manufacturing are associated with AI, Machine Learning, and IoT."},
+{"week":"2","q":"What is the objective of a production process?","opts":["To create goods and services that meet customer requirements","To maximise costs","To reduce quality","To ignore customer needs"],"a":0,"why":"The objective of a production process is to create goods and services that meet customer requirements."},
+{"week":"2","q":"Which of the following is a feature of mass production?","opts":["High customisation","Low volume","Standardisation","High unit costs"],"a":2,"why":"Mass production features standardisation, high volume, automation, and low unit costs."},
+{"week":"3","q":"What is marketing?","opts":["The process of creating and delivering desired goods and services to customers","The process of selling only","The process of advertising only","The process of producing goods"],"a":0,"why":"Marketing is the process of creating and delivering desired goods and services to customers; it involves all activities associated with winning and retaining loyal customers."},
+{"week":"3","q":"Which marketing orientation focuses on customer needs and wants?","opts":["Production Orientation","Product Orientation","Sales Orientation","Market Orientation"],"a":3,"why":"Market orientation focuses on customer needs and wants."},
+{"week":"3","q":"What are the traditional 4Ps of the marketing mix?","opts":["Product, Price, Place, Promotion","People, Process, Physical Evidence","Product, People, Price, Promotion","Place, Process, Promotion, Price"],"a":0,"why":"The traditional 4Ps are Product, Price, Place, and Promotion."},
+{"week":"3","q":"What is market research?","opts":["The vehicle for gathering information that serves as the foundation for the marketing plan","A process of selling products","A process of advertising","A process of producing goods"],"a":0,"why":"Market research is the vehicle for gathering the information that serves as the foundation for the marketing plan."},
+{"week":"3","q":"Which of the following is an example of primary research?","opts":["Public sources","Commercial sources","Surveys","Educational institutions"],"a":2,"why":"Surveys are an example of primary research. Public sources, commercial sources, and educational institutions are secondary research."},
+{"week":"3","q":"What is the difference between market research and marketing research?","opts":["Market research focuses on market trends; marketing research focuses on marketing activities","Market research is only for large companies","Marketing research is only for small companies","There is no difference"],"a":0,"why":"Market research focuses on market trends, market size, target market, etc. Marketing research focuses on effectiveness of ads, copywriting style, concept testing, etc."},
+{"week":"3","q":"Which of the following is a qualitative research method?","opts":["Surveys","Questionnaires","Focus groups","Phone interviews"],"a":2,"why":"Focus groups, in-depth interviews, and observations are qualitative research methods."},
+{"week":"3","q":"What is the purpose of market research?","opts":["To determine customer needs","To ignore customer needs","To increase prices","To reduce quality"],"a":0,"why":"Market research is used to determine customer needs and wants."},
+{"week":"3","q":"What is a Unique Selling Proposition (USP)?","opts":["A promise to customers that differentiates a company's brand from all others","A type of product","A pricing strategy","A distribution channel"],"a":0,"why":"A USP is a promise to customers that differentiates a company's brand from all others."},
+{"week":"3","q":"Which of the following is an extended 'P' of the marketing mix?","opts":["Product","Price","People","Promotion"],"a":2,"why":"People, Process, and Physical Evidence are the extended 3Ps of the marketing mix."},
+{"week":"4","q":"What are managerial competencies?","opts":["Clusters of knowledge, skills, and abilities (KSAs) vital in determining how managers accomplish their goals","A type of business ownership","A marketing strategy","A production process"],"a":0,"why":"Managerial competencies are clusters of knowledge, skills, and abilities (KSAs) considered vital in determining how managers accomplish their goals."},
+{"week":"4","q":"Which of the following is a management development method?","opts":["Coaching","Delegation","Job rotation","All of the above"],"a":3,"why":"Coaching, delegation, projects, secondments/job rotation, and CPD are all management development methods."},
+{"week":"4","q":"What is succession planning?","opts":["A strategic process of identifying and developing individuals to fill key leadership roles","A process of firing employees","A marketing strategy","A production process"],"a":0,"why":"Succession planning is a strategic process of identifying and developing individuals within an organisation to fill key leadership and critical roles when they become vacant."},
+{"week":"4","q":"What is stress?","opts":["The physical symptoms of ill-health caused by excessive pressures in the workplace","A type of business ownership","A marketing strategy","A production process"],"a":0,"why":"Stress is the physical symptoms of ill-health caused by excessive pressures in the workplace or elsewhere, leading to reduced job performance."},
+{"week":"4","q":"Which of the following is a cause of stress?","opts":["Heavy workload","Role ambiguity","Lack of control over work","All of the above"],"a":3,"why":"Heavy workload, role ambiguity, lack of control over work, poor relationships, and organisational change are all causes of stress."},
+{"week":"4","q":"Which of the following is a symptom of stress?","opts":["Increased heartbeat","Anxiety and depression","Loss of appetite","All of the above"],"a":3,"why":"Stress symptoms include physiological (increased heartbeat), psychological (anxiety, depression), and behavioral (loss of appetite) symptoms."},
+{"week":"4","q":"What is harassment?","opts":["Unwelcome conduct based on protected class that creates an intimidating or hostile work environment","A type of business ownership","A marketing strategy","A production process"],"a":0,"why":"Harassment is unwelcome conduct based on protected class that creates an intimidating or hostile work environment."},
+{"week":"4","q":"What is counselling?","opts":["A process that involves a trained professional helping individuals explore, understand, and address personal or emotional issues","A type of business ownership","A marketing strategy","A production process"],"a":0,"why":"Counselling is a process that involves a trained professional helping individuals explore, understand, and address personal or emotional issues."},
+{"week":"4","q":"What is job evaluation?","opts":["A technique for determining the size of one job compared to another","A process of evaluating employee performance","A type of business ownership","A marketing strategy"],"a":0,"why":"Job evaluation is a technique for determining the size of one job compared to another, and the relationship between the two."},
+{"week":"4","q":"What is employee relations?","opts":["The interactions and relationships between an organisation and its employees","A type of business ownership","A marketing strategy","A production process"],"a":0,"why":"Employee relations refers to the interactions and relationships between an organisation and its employees."}
+],
+"flashcards":[
+["Sole Proprietorship","Business owned and managed by one individual."],
+["Partnership","Association of two or more people who co-own a business for profit."],
+["General Partner","Active in managing, unlimited liability."],
+["Limited Partner","Not active in managing, limited liability."],
+["LLC","Limited liability + no double taxation."],
+["Corporation","Separate legal entity, double taxation."],
+["Jobbing Production","Small quantities or one-off products."],
+["Batch Production","Standardised units in lots."],
+["Mass Production","Large-scale, standardised, automated."],
+["Value Engineering","Maximise value, minimise cost."],
+["Marketing","Creating, communicating, delivering value."],
+["Market Research","Gather info for the marketing plan."],
+["Primary Research","Surveys, focus groups, interviews."],
+["Managerial Competencies","KSAs vital for managers."],
+["Succession Planning","Identifying and developing future leaders."],
+["Stress","Physical/psychological strain from excessive pressure."]
+],
+"matches":[
+["Sole Proprietorship","One owner, unlimited liability"],
+["Partnership","Two+ owners, shared control"],
+["General Partner","Active, unlimited liability"],
+["Limited Partner","Not active, limited liability"],
+["LLC","Limited liability, no double taxation"],
+["Corporation","Separate entity, double taxation"],
+["Jobbing Production","One-off, custom products"],
+["Batch Production","Standardised lots"],
+["Mass Production","Large-scale, automated"],
+["Value Engineering","Maximise value, minimise cost"],
+["Marketing","Creating and delivering value"],
+["Market Research","Gather info for marketing plan"],
+["Primary Research","Surveys, focus groups"],
+["Managerial Competencies","KSAs"],
+["Succession Planning","Future leadership"],
+["Stress","Strain from excessive pressure"]
+]
+};
+const $=id=>document.getElementById(id);
+document.querySelectorAll('.nav button[data-tab]').forEach(b=>b.addEventListener('click',()=>{document.querySelectorAll('.nav button[data-tab]').forEach(x=>x.classList.remove('active'));document.querySelectorAll('.panel').forEach(x=>x.classList.remove('active'));b.classList.add('active');$(b.dataset.tab).classList.add('active')}));
+$('theme').onclick=()=>document.body.classList.toggle('dark');
+function renderSummaries(){let term=$('search').value.toLowerCase(),wf=$('weekFilter').value;let arr=DATA.weeks.filter(w=>(wf==='all'||String(w.week)===wf)&&JSON.stringify(w).toLowerCase().includes(term));$('summaryList').innerHTML=arr.map(w=>`<article class="card searchable"><span class="tag">WEEK ${w.week}</span><h3>${w.title}</h3><p>${w.summary}</p>${w.sections.map(s=>`<h4>${s[0]}</h4><p>${s[1]}</p>`).join('')}<div class="callout warning"><b>Worked Examples & Exam Traps</b><ul>${w.examTraps.map(t=>`<li>${t}</li>`).join('')}</ul></div><div class="callout"><b>Exam takeaways</b><ul>${w.takeaways.map(t=>`<li>${t}</li>`).join('')}</ul></div></article>`).join('')||'<p class="muted">No matching topics found.</p>'}
+$('search').addEventListener('input',renderSummaries);$('weekFilter').onchange=renderSummaries;renderSummaries();
+let active=[],missed=[],idx=0,correct=0,done=0;
+function beginQuiz(list){active=list;missed=[];idx=0;correct=0;done=0;$('score').textContent='0';$('answered').textContent='0';$('total').textContent=list.length;updateProgress();renderQuestion()}
+function updateProgress(){$('progress').style.width=(active.length?done/active.length*100:0)+'%'}
+function renderQuestion(){
+ if(!active.length){$('quizArea').innerHTML='<p class="muted">No questions available for this selection.</p>';return}
+ $('quizArea').innerHTML=`<div class="eyebrow">All ${active.length} questions · Answer in any order</div><div id="quizCompletion" class="callout">Select an answer under each question. Your feedback and score update immediately.</div><div id="allQuestions"></div><div id="quizEnd" class="callout" style="display:none"></div>`;
+ $('allQuestions').innerHTML=active.map((q,qi)=>`<div class="quiz-question" data-question="${qi}"><div class="eyebrow">Question ${qi+1} · Week ${q.week}</div><div class="qtitle">${q.q}</div>${q.opts.map((o,i)=>`<button class="option" data-question="${qi}" data-i="${i}">${String.fromCharCode(65+i)}. ${o}</button>`).join('')}<div class="feedback" id="qfeedback${qi}"></div></div>`).join('');
+ document.querySelectorAll('#allQuestions .option').forEach(b=>b.onclick=()=>answer(Number(b.dataset.question),Number(b.dataset.i)));
+}
+function answer(qi,n){
+ let q=active[qi],wrap=document.querySelector(`[data-question="${qi}"]`);
+ if(!wrap||wrap.dataset.answered==='yes')return;
+ wrap.dataset.answered='yes';
+ wrap.querySelectorAll('.option').forEach((b,i)=>{b.disabled=true;if(i===q.a)b.classList.add('correct');if(i===n&&n!==q.a)b.classList.add('wrong')});
+ let ok=n===q.a;if(ok)correct++;else missed.push(q);done++;
+ $('score').textContent=correct;$('answered').textContent=done;updateProgress();
+ let fb=$('qfeedback'+qi);fb.className='quiz-feedback '+(ok?'good':'bad');fb.textContent=(ok?'✓ Correct — ':'✕ Not quite — ')+q.why;
+ $('quizCompletion').textContent=`${done} of ${active.length} answered · ${correct} correct · ${missed.length} to review`;
+ if(done===active.length){let end=$('quizEnd');end.style.display='block';end.innerHTML=`<b>Quiz complete: ${correct} / ${active.length}</b><br>${missed.length} question(s) to review. ${missed.length?'Use "Retry missed" above to practise them again.':'Excellent work — you got every question right!'}`;}
+}
+let lastList=[];function restartCurrent(){beginQuiz(lastList)}
+$('startQuiz').onclick=()=>{let v=$('quizSelect').value;lastList=v==='all'?DATA.questions.slice(0,40):DATA.questions.filter(q=>String(q.week)===v);beginQuiz(lastList)};
+$('retryMissed').onclick=()=>{if(!missed.length){$('quizArea').innerHTML='<p class="muted">No missed questions yet. Complete a quiz first.</p>';return}lastList=missed.slice();beginQuiz(lastList)};
+function setupMatches(){
+ let pairs=DATA.matches.map((p,i)=>({id:i,left:p[0],right:p[1]}));
+ let items=[...pairs.map(p=>({id:p.id,side:'l',text:p.left})),...pairs.map(p=>({id:p.id,side:'r',text:p.right}))].sort(()=>Math.random()-.5);
+ let chosen=null,matched=new Set(),locked=false;
+ $('matchArea').innerHTML=items.map((x,i)=>`<button class="match" data-id="${x.id}" data-side="${x.side}" data-key="${i}">${x.text}</button>`).join('');
+ $('matchScore').textContent='0 / 16';$('matchFeedback').textContent='Choose a term, then its definition. Correct pairs turn green; incorrect choices shake.';
+ document.querySelectorAll('.match').forEach(b=>b.onclick=()=>{
+  if(locked||b.classList.contains('done'))return;
+  let item=items[Number(b.dataset.key)];
+  if(!chosen){chosen=item;b.classList.add('selected');return}
+  if(chosen.id===item.id&&chosen.side!==item.side){
+   matched.add(item.id);
+   document.querySelectorAll(`.match[data-id="${item.id}"]`).forEach(x=>{x.classList.remove('selected');x.classList.add('done','pop')});
+   $('matchFeedback').textContent='✓ Correct match! Both cards are now marked green.';
+   $('matchScore').textContent=matched.size+' / 16';
+   if(matched.size===16)$('matchFeedback').textContent='🏆 Excellent — all sixteen pairs matched!';
+   chosen=null;return;
+  }
+  if(chosen===item){b.classList.remove('selected');chosen=null;return}
+  let first=document.querySelector(`.match[data-id="${chosen.id}"][data-side="${chosen.side}"]`);
+  locked=true;b.classList.add('selected');
+  [first,b].forEach(x=>{if(x){x.classList.remove('selected');x.classList.add('shake')}});
+  $('matchFeedback').textContent='✕ Not a match. The cards will shake — try a different pairing.';
+  setTimeout(()=>{[first,b].forEach(x=>{if(x)x.classList.remove('shake','selected')});chosen=null;locked=false;},480);
+ });
+}
+$('resetMatch').onclick=setupMatches;setupMatches();
+const keys=[['Sole Proprietorship','One owner, unlimited liability'],['Partnership','Two+ owners, shared control'],['General Partner','Active, unlimited liability'],['Limited Partner','Not active, limited liability'],['LLC','Limited liability, no double taxation'],['Corporation','Separate entity, double taxation'],['Jobbing Production','One-off, custom products'],['Batch Production','Standardised lots'],['Mass Production','Large-scale, automated'],['Value Engineering','Maximise value, minimise cost'],['Marketing','Creating and delivering value'],['Market Research','Gather info for marketing plan'],['Primary Research','Surveys, focus groups'],['Managerial Competencies','KSAs'],['Succession Planning','Future leadership'],['Stress','Strain from excessive pressure']];
+$('keyGrid').innerHTML=keys.map(k=>`<div class="key"><b>${k[0]}</b>${k[1]}</div>`).join('');
+let fi=0,flipped=false;function showFlash(){$('flashCount').textContent=(fi+1)+' / '+DATA.flashcards.length;$('flashcard').textContent=flipped?DATA.flashcards[fi][1]:DATA.flashcards[fi][0];$('flipFlash').textContent=flipped?'Show term':'Reveal answer'}
+$('flipFlash').onclick=()=>{flipped=!flipped;showFlash()};$('nextFlash').onclick=()=>{fi=(fi+1)%DATA.flashcards.length;flipped=false;showFlash()};$('prevFlash').onclick=()=>{fi=(fi-1+DATA.flashcards.length)%DATA.flashcards.length;flipped=false;showFlash()};showFlash();
+</script></body></html>
