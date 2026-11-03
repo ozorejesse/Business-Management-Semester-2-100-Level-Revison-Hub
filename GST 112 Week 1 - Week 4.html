@@ -1,1215 +1,212 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>GST 112: Nigerian People's & Culture Master Suite</title>
-    <style>
-        :root {
-            --bg-color: #f8fafc;
-            --surface-color: #ffffff;
-            --text-color: #1e293b;
-            --border-color: #e2e8f0;
-            --primary-color: #0d9488;
-            --primary-hover: #0f766e;
-            --success-color: #16a34a;
-            --success-bg: #f0fdf4;
-            --success-border: #bbf7d0;
-            --error-color: #dc2626;
-            --error-bg: #fef2f2;
-            --error-border: #fecaca;
-            --badge-bg: #ccfbf1;
-            --badge-text: #0f766e;
-            --card-hover: #f1f5f9;
-            --summary-bg: #f1f5f9;
-        }
-
-        [data-theme="dark"] {
-            --bg-color: #0f172a;
-            --surface-color: #1e293b;
-            --text-color: #f8fafc;
-            --border-color: #334155;
-            --primary-color: #2dd4bf;
-            --primary-hover: #14b8a6;
-            --success-color: #4ade80;
-            --success-bg: #064e3b;
-            --success-border: #047857;
-            --error-color: #f87171;
-            --error-bg: #7f1d1d;
-            --error-border: #991b1b;
-            --badge-bg: #134e4a;
-            --badge-text: #2dd4bf;
-            --card-hover: #334155;
-            --summary-bg: #0f172a;
-        }
-
-        body {
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-            background-color: var(--bg-color);
-            color: var(--text-color);
-            margin: 0;
-            padding: 20px;
-            transition: background-color 0.3s, color 0.3s;
-            line-height: 1.6;
-        }
-
-        .container {
-            max-width: 980px;
-            margin: 0 auto;
-            background: var(--surface-color);
-            padding: 30px;
-            border-radius: 12px;
-            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
-        }
-
-        .header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 20px;
-            flex-wrap: wrap;
-            gap: 10px;
-        }
-
-        h1 {
-            color: var(--primary-color);
-            margin: 0;
-            font-size: 1.8rem;
-        }
-
-        .nav-tabs {
-            display: flex;
-            gap: 8px;
-            margin-bottom: 25px;
-            border-bottom: 2px solid var(--border-color);
-            padding-bottom: 10px;
-            flex-wrap: wrap;
-        }
-
-        .tab-btn {
-            background: none;
-            border: none;
-            color: var(--text-color);
-            font-size: 14px;
-            font-weight: 600;
-            padding: 8px 14px;
-            cursor: pointer;
-            border-radius: 6px;
-            transition: background 0.2s, color 0.2s;
-        }
-
-        .tab-btn.active {
-            background-color: var(--primary-color);
-            color: #ffffff;
-        }
-
-        .theme-toggle {
-            background: none;
-            border: 1px solid var(--border-color);
-            color: var(--text-color);
-            padding: 8px 12px;
-            border-radius: 6px;
-            cursor: pointer;
-            font-weight: 600;
-        }
-
-        .controls {
-            display: flex;
-            gap: 10px;
-            align-items: center;
-            margin-bottom: 20px;
-            flex-wrap: wrap;
-        }
-
-        select, input[type="text"], input[type="number"], button.action-btn {
-            padding: 10px 14px;
-            font-size: 14px;
-            border-radius: 6px;
-            border: 1px solid var(--border-color);
-            background-color: var(--surface-color);
-            color: var(--text-color);
-        }
-
-        button.action-btn {
-            background-color: var(--primary-color);
-            color: white;
-            border: none;
-            font-weight: 600;
-            cursor: pointer;
-        }
-
-        button.action-btn:hover {
-            background-color: var(--primary-hover);
-        }
-
-        .search-box {
-            width: 100%;
-            margin-bottom: 20px;
-            padding: 12px;
-            box-sizing: border-box;
-            border-radius: 6px;
-            border: 1px solid var(--border-color);
-            background: var(--surface-color);
-            color: var(--text-color);
-            font-size: 15px;
-        }
-
-        .summary-week {
-            border: 1px solid var(--border-color);
-            border-radius: 8px;
-            padding: 24px;
-            margin-bottom: 25px;
-            background-color: var(--surface-color);
-        }
-
-        .summary-week h2 {
-            color: var(--primary-color);
-            margin-top: 0;
-            border-bottom: 2px solid var(--border-color);
-            padding-bottom: 8px;
-        }
-
-        .summary-week h3 {
-            color: var(--text-color);
-            font-size: 1.1rem;
-            margin-top: 15px;
-            margin-bottom: 5px;
-        }
-
-        .summary-week ul {
-            margin-top: 5px;
-            padding-left: 20px;
-        }
-
-        .summary-week li {
-            margin-bottom: 6px;
-        }
-
-        .formula-box {
-            background-color: var(--summary-bg);
-            border-left: 4px solid var(--primary-color);
-            padding: 12px 16px;
-            margin: 12px 0;
-            font-family: "Courier New", Courier, monospace;
-            border-radius: 0 6px 6px 0;
-        }
-
-        .progress-dashboard {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-            gap: 12px;
-            margin-bottom: 20px;
-        }
-
-        .progress-card {
-            border: 1px solid var(--border-color);
-            border-radius: 8px;
-            padding: 12px 16px;
-            background: var(--surface-color);
-            text-align: center;
-        }
-
-        .progress-card .score {
-            font-size: 1.5rem;
-            font-weight: bold;
-            color: var(--primary-color);
-        }
-
-        .question-card {
-            border: 1px solid var(--border-color);
-            border-radius: 8px;
-            padding: 20px;
-            margin-bottom: 20px;
-            background-color: var(--surface-color);
-        }
-
-        .question-title {
-            font-weight: 600;
-            margin-bottom: 12px;
-            color: var(--text-color);
-        }
-
-        .options {
-            display: flex;
-            flex-direction: column;
-            gap: 8px;
-            margin-bottom: 10px;
-        }
-
-        .option-label {
-            display: flex;
-            align-items: center;
-            padding: 10px 14px;
-            border: 1px solid var(--border-color);
-            border-radius: 6px;
-            cursor: pointer;
-            transition: background 0.15s;
-        }
-
-        .option-label:hover {
-            background-color: var(--card-hover);
-        }
-
-        .option-label input {
-            margin-right: 12px;
-        }
-
-        .explanation {
-            display: none;
-            margin-top: 12px;
-            padding: 12px;
-            border-radius: 6px;
-            font-size: 14px;
-            line-height: 1.5;
-        }
-
-        .explanation.correct {
-            display: block;
-            background-color: var(--success-bg);
-            border: 1px solid var(--success-border);
-            color: var(--success-color);
-        }
-
-        .explanation.incorrect {
-            display: block;
-            background-color: var(--error-bg);
-            border: 1px solid var(--error-border);
-            color: var(--error-color);
-        }
-
-        .badge {
-            display: inline-block;
-            padding: 2px 8px;
-            font-size: 12px;
-            font-weight: 600;
-            border-radius: 4px;
-            background: var(--badge-bg);
-            color: var(--badge-text);
-            margin-bottom: 8px;
-        }
-
-        .matching-container {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 20px;
-            margin-top: 15px;
-        }
-
-        .match-column {
-            display: flex;
-            flex-direction: column;
-            gap: 10px;
-        }
-
-        .match-card {
-            padding: 14px 16px;
-            border: 1px solid var(--border-color);
-            border-radius: 8px;
-            background: var(--surface-color);
-            cursor: pointer;
-            user-select: none;
-            transition: border-color 0.2s, background 0.2s;
-            min-height: 50px;
-            display: flex;
-            align-items: center;
-            font-weight: 500;
-        }
-
-        .match-card:hover { border-color: var(--primary-color); }
-        .match-card.selected { border: 2px solid var(--primary-color); background-color: var(--card-hover); }
-        .match-card.matched { border-color: var(--success-color); background-color: var(--success-bg); color: var(--success-color); cursor: default; opacity: 0.8; }
-        .match-card.wrong { border-color: var(--error-color); background-color: var(--error-bg); }
-
-        .matching-feedback {
-            margin-bottom: 20px;
-            padding: 16px;
-            border-radius: 8px;
-            font-size: 15px;
-            display: none;
-            line-height: 1.5;
-        }
-
-        .solver-panel {
-            border: 1px solid var(--border-color);
-            border-radius: 8px;
-            padding: 20px;
-            background: var(--surface-color);
-            margin-bottom: 20px;
-        }
-
-        .scenario-inputs {
-            display: flex;
-            gap: 10px;
-            align-items: center;
-            margin-top: 15px;
-            margin-bottom: 15px;
-            flex-wrap: wrap;
-        }
-
-        .step-list {
-            display: flex;
-            flex-direction: column;
-            gap: 10px;
-            margin-top: 15px;
-        }
-
-        .step-item {
-            padding: 12px;
-            border-left: 4px solid var(--primary-color);
-            background: var(--summary-bg);
-            border-radius: 0 6px 6px 0;
-        }
-
-        .flashcard-wrapper {
-            perspective: 1000px;
-            max-width: 500px;
-            margin: 20px auto;
-        }
-
-        .flashcard {
-            width: 100%;
-            height: 250px;
-            border: 1px solid var(--border-color);
-            border-radius: 12px;
-            background: var(--surface-color);
-            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            padding: 24px;
-            text-align: center;
-            cursor: pointer;
-            box-sizing: border-box;
-            user-select: none;
-            transition: transform 0.2s;
-        }
-
-        .flashcard:hover {
-            transform: translateY(-2px);
-        }
-
-        .flashcard .card-label {
-            font-size: 12px;
-            color: var(--badge-text);
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            margin-bottom: 10px;
-        }
-
-        .flashcard .card-content {
-            font-size: 1.2rem;
-            font-weight: 600;
-        }
-
-        .flashcard-controls {
-            display: flex;
-            justify-content: center;
-            gap: 10px;
-            margin-top: 15px;
-        }
-
-        .view-section { display: none; }
-        .view-section.active { display: block; }
-        .score-board { font-weight: bold; color: var(--primary-color); }
-
-        table {
-            width: 100%;
-            border-collapse: collapse;
-            margin: 15px 0;
-        }
-
-        th, td {
-            border: 1px solid var(--border-color);
-            padding: 10px;
-            text-align: left;
-        }
-
-        th {
-            background-color: var(--summary-bg);
-            color: var(--primary-color);
-        }
-    </style>
-</head>
-<body>
-
-<div class="container">
-    <div class="header">
-        <h1>GST 112: Nigerian People's & Culture Master Suite</h1>
-        <button class="theme-toggle" onclick="toggleTheme()" id="themeBtn">🌙 Night Mode</button>
-    </div>
-
-    <div class="nav-tabs">
-        <button class="tab-btn active" onclick="switchTab('summaries')">📖 Comprehensive Summaries</button>
-        <button class="tab-btn" onclick="switchTab('quiz')">📝 Quiz & Mastery (30 Questions)</button>
-        <button class="tab-btn" onclick="switchTab('matching')">🧩 Matching Game</button>
-        <button class="tab-btn" onclick="switchTab('solver')">🔍 Historical & Political Analyzer</button>
-        <button class="tab-btn" onclick="switchTab('flashcards')">🎴 Extended Flashcards</button>
-    </div>
-
-    <!-- TAB 1: SUMMARIES -->
-    <div id="summariesTab" class="view-section active">
-        <input type="text" id="summarySearch" class="search-box" placeholder="⚡ Search across Weeks 1 to 4 course concepts..." oninput="filterSummaries()">
-        
-        <div id="summaryList">
-            <!-- WEEK 1 -->
-            <div class="summary-week searchable">
-                <h2>1. Conceptual Clarification: Culture, Society, & Nation-Building</h2>
-                <p>Introduces foundational concepts defining human social existence, structural organization, colonial disruption, and state integration.</p>
-                
-                <h3>Key Concepts & Breakdown</h3>
-                <ul>
-                    <li><strong>Culture & Its Essential Components:</strong> Culture is a complex system encompassing traditional behaviors, beliefs, practices, and values. It consists of three primary components:
-                        <ul>
-                            <li><em>Technological (Material Culture):</em> Tools, artifacts, physical creations, and technology used to adapt to environments.</li>
-                            <li><em>Sociological (Institutions & Norms):</em> Social organizations, political structures, family systems, laws, and normative behavior.</li>
-                            <li><em>Ideological (Beliefs & Values):</em> Religious systems, philosophies, worldviews, morals, and shared cognitive ideas.</li>
-                        </ul>
-                    </li>
-                    <li><strong>Categorization of Society:</strong> Society is categorized into <em>communal</em> (tradition-bound, low division of labor, intimate personal ties) and <em>associational</em> (formal, complex division of labor, legalistic ties) forms.</li>
-                    <li><strong>Theoretical Perspectives:</strong>
-                        <ul>
-                            <li><em>Karl Marx's Communist Vision:</em> Envisioned a society characterized by collective ownership of the means of production and equitable distribution of wealth.</li>
-                            <li><em>Functionalism:</em> Conceives society as a complex organism where every social institution plays a crucial role in maintaining stability and social equilibrium.</li>
-                        </ul>
-                    </li>
-                    <li><strong>Impact of Colonialism & Nation-Building:</strong> Colonialism significantly altered pre-colonial African governance, traditional cultural norms, and family dynamics. Nation-building involves mobilizing human and material resources for socio-political development and creating a unified national identity amidst multi-ethnic diversity.</li>
-                </ul>
-
-                <div class="formula-box">
-                    Components of Culture = Technological (Material) + Sociological (Institutions) + Ideological (Beliefs)<br>
-                    Nation-Building Goal = Resource Mobilization + National Identity Construction + Inter-ethnic Integration
-                </div>
-            </div>
-
-            <!-- WEEK 2 -->
-            <div class="summary-week searchable">
-                <h2>2. Intergroup Relations Among Pre-Colonial Nigerian Peoples</h2>
-                <p>Examines linguistic diversity (over 348 language groups and 374 ethnic groups) and mechanisms of intergroup contact across the Niger area.</p>
-                
-                <h3>Indicators of Pre-Colonial Interaction</h3>
-                <ul>
-                    <li><strong>Traditions of Origin Myths:</strong>
-                        <ul>
-                            <li><em>Bayajidda Legend:</em> Traces origins to Baghdad; Bayajidda settled among the Kanuri, married the Mai's daughter, and migrated south to establish Hausa states. Highlights historical ties among Hausa, Kanuri, Gwari, Nupe, and Yoruba.</li>
-                            <li><em>Kisra Legend:</em> Migration myth from Baghdad establishing political ties and royal lineages across Borgu and Yorubaland (Ooni of Ife considered his brother).</li>
-                            <li><em>Yoruba–Benin Connections:</em> Shared dynastic links through Prince Oranmiyan and King Eweka I.</li>
-                            <li><em>Edo–Igbo–Isoko Connections:</em> Umu-Ezechima (Igbo section) and Isoko groups trace ancestral roots to the Edo (Benin) Kingdom.</li>
-                        </ul>
-                    </li>
-                    <li><strong>Conflict & Military Alliances:</strong> Oyo and Bariba formed military alliances to counter Nupe expansion; Jukun (Kwararafa) expanded influence over Hausa, Igala, and Ebira; Benin expanded eastward into Igbo territory and west to Eko (Lagos), where early kings (Ado, Asipa) had Benin roots; Igala–Nsukka wars created deep political ties (e.g., Illah people speak Igbo while masquerades speak Igala).</li>
-                    <li><strong>Trade & Commerce Networks:</strong>
-                        <ul>
-                            <li><em>Trans-Saharan Trade:</em> Kanem Bornu, Hausa states, Nupe, and Oyo participated actively.</li>
-                            <li><em>Regional Exchanges:</em> Jukun traded salt for Tiv firewood; Nupe supplied shea butter, brasswork, potash, and straw hats to Yorubaland; Ibibioland served as a trade corridor connecting hinterland Igbo to coastal Efiks and Ijaws.</li>
-                        </ul>
-                    </li>
-                    <li><strong>Religious & Cultural Diffusion:</strong> Shared pantheon worship, nature worship, and masquerade systems. Specific shared cults include Yoruba <em>Igunu</em> (traceable to Nupe <em>Ndakogbaya</em>), <em>Ibini Ukpabi</em> (Arochukwu Oracle with Ibibio origins), and <em>Ekpe/Ekpo</em> societies (Efik origin widely adopted across Igboland).</li>
-                </ul>
-
-                <div class="formula-box">
-                    Intergroup Contact Channels = Traditions of Origin + Military Conflicts/Alliances + Regional Trade Routes + Religious Diffusion
-                </div>
-            </div>
-
-            <!-- WEEK 3 -->
-            <div class="summary-week searchable">
-                <h2>3. The Trans-Atlantic Slave Trade, Legitimate Trade, & Colonial Occupation</h2>
-                <p>Details the centuries-long human exploitation, transition to commercial commodity trade, company administration, and formal British colonization.</p>
-                
-                <h3>Key Historical Phases</h3>
-                <ul>
-                    <li><strong>Trans-Atlantic Slave Trade (15th–19th Century):</strong>
-                        <ul>
-                            <li>Initiated by Portuguese maritime explorers in the 15th century and structured around the <em>Triangular Trade</em> (Europe ➔ Africa ➔ Americas).</li>
-                            <li><em>Spanish Asiento System:</em> Monopolistic monopoly licenses granted by the Spanish Crown to European traders to import enslaved Africans to the Americas.</li>
-                            <li><em>Socioeconomic Impact:</em> Depopulation (over 15 million reached Americas; over 7 million died in transit), severe insecurity, disruption of local industrial crafts, and economic stagnation (noted by scholars like Walter Rodney, Claude Ake, and Paul Lovejoy).</li>
-                        </ul>
-                    </li>
-                    <li><strong>Abolition & Shift to Legitimate Trade:</strong> British abolition (1807 trade prohibition, 1833 emancipation bill sponsored by Thomas Fowell Buxton). Shift driven by European Industrial Revolution's demand for raw agricultural products (palm oil, ivory) rather than slave labor.</li>
-                    <li><strong>The Annexation of Lagos (1861):</strong> Dynastic feud between King Kosoko (pro-slave trade) and Oba Akitoye (supported by Britain). British naval bombardment in 1851 restored Akitoye; formal annexation occurred in 1861 to enforce anti-slavery treaties and secure commercial dominance.</li>
-                    <li><strong>Mercantile Rule & The Royal Niger Company (RNC):</strong>
-                        <ul>
-                            <li>Sir George Goldie-Taubman amalgamated competing British traders into the United African Company (1879), later renamed National African Company (NAC).</li>
-                            <li>Granted a Royal Charter in 1886 as the <strong>Royal Niger Company (RNC)</strong>, combining trade monopolies with government administration.</li>
-                            <li><em>Decline & Revocation:</em> RNC imposed heavy taxes and trade monopolies. Local resistance (1895 Brass people's raid on RNC headquarters at Akassa) and the subsequent Kirk Commission of Enquiry led to the revocation of RNC's charter on December 31, 1899.</li>
-                        </ul>
-                    </li>
-                </ul>
-
-                <div class="formula-box">
-                    Economic Progression = Trans-Atlantic Slave Trade ➔ Legitimate Palm Oil Trade ➔ RNC Company Monopoly (1886) ➔ Direct Colonial Rule (1900)
-                </div>
-            </div>
-
-            <!-- WEEK 4 -->
-            <div class="summary-week searchable">
-                <h2>4. Constitutional Development, Political Parties, & Quest for Independence</h2>
-                <p>Traces Nigeria's political evolution from early administrative advisory councils through colonial constitutions to the rise of nationalist political parties.</p>
-
-                <h3>Chronological Constitutional Evolution</h3>
-                <table>
-                    <thead>
-                        <tr>
-                            <th>Constitution / Milestone</th>
-                            <th>Key Features & Structural Framework</th>
-                            <th>Significance & Achievements</th>
-                            <th>Criticisms & Limitations</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td><strong>Nigerian Council (1914)</strong></td>
-                            <td>Created by Lord Lugard post-amalgamation; 36 members (6 unofficial Africans).</td>
-                            <td>Laid the earliest administrative foundation for constitutional development.</td>
-                            <td>Purely advisory; no legislative powers; members were non-literate traditional rulers.</td>
-                        </tr>
-                        <tr>
-                            <td><strong>Clifford Constitution (1922)</strong></td>
-                            <td>45-member Legislative Council (26 official, 15 nominated, 4 elected: 3 Lagos, 1 Calabar).</td>
-                            <td>Introduced the <strong>Elective Principle</strong>; spurred political party formation and newspapers.</td>
-                            <td>Governor retained absolute veto power; excluded Northern Nigeria from the central council.</td>
-                        </tr>
-                        <tr>
-                            <td><strong>Richards Constitution (1947)</strong></td>
-                            <td>Introduced <strong>Regionalism</strong> (Northern, Western, Eastern regions) with Regional Houses of Assembly.</td>
-                            <td>United North and South under one central legislative body for the first time.</td>
-                            <td>Drafted without consultation with Nigerians; maintained restricted property franchise.</td>
-                        </tr>
-                        <tr>
-                            <td><strong>Macpherson Constitution (1951)</strong></td>
-                            <td>Wide consultations (village to national level); 136-member House of Representatives; Ministers without portfolios.</td>
-                            <td>Fostered major nationwide political party organization (AG, NPC).</td>
-                            <td>Central ministers lacked executive portfolios; regional tensions caused collapse within 3 years.</td>
-                        </tr>
-                        <tr>
-                            <td><strong>Lyttleton Constitution (1954)</strong></td>
-                            <td>Established a formal <strong>Federal Structure</strong>; created offices of Regional Premiers, regional judiciaries, FCT Lagos.</td>
-                            <td>Granted regional autonomy, civil service regionalization, revenue by derivation.</td>
-                            <td>Deepened regionalism and ethnic politics at the expense of national unity.</td>
-                        </tr>
-                    </tbody>
-                </table>
-
-                <h3>Rise of Early Political Parties</h3>
-                <ul>
-                    <li><strong>NNDP (1923):</strong> Founded by Herbert Macaulay; dominated Lagos elections (1923, 1928, 1933); published <em>Lagos Daily News</em>.</li>
-                    <li><strong>NYM (1935):</strong> Founded by Ernest Ikoli, Samuel Akinsanya, Azikiwe, and Awolowo. First true nationalist movement with a genuine national outlook; published <em>Daily Service</em>.</li>
-                    <li><strong>NCNC (1944):</strong> Formed by Macaulay (President) and Azikiwe (Gen. Sec.); advocated anti-colonial self-rule; published <em>West African Pilot</em>.</li>
-                    <li><strong>Action Group (1951):</strong> Evolved from <em>Egbe Omo Oduduwa</em>; led by Chief Obafemi Awolowo; dominated Western Region politics.</li>
-                    <li><strong>NPC (1951):</strong> Evolved from cultural association <em>Jam'iyyar Mutanen Arewa</em>; led by Sir Ahmadu Bello and Sir Abubakar Tafawa Balewa; dominated Northern Region.</li>
-                </ul>
-
-                <div class="formula-box">
-                    Constitutional Roadmap: 1914 Council ➔ 1922 Clifford (Elective) ➔ 1947 Richards (Regional) ➔ 1951 Macpherson (Consultative) ➔ 1954 Lyttleton (Federal)
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- TAB 2: QUIZ -->
-    <div id="quizTab" class="view-section">
-        <div class="progress-dashboard">
-            <div class="progress-card"><div>Week 1: Concepts</div><div class="score" id="m_mod1">0%</div></div>
-            <div class="progress-card"><div>Week 2: Intergroup Rel.</div><div class="score" id="m_mod2">0%</div></div>
-            <div class="progress-card"><div>Week 3: Slave & Trade</div><div class="score" id="m_mod3">0%</div></div>
-            <div class="progress-card"><div>Week 4: Constitutions</div><div class="score" id="m_mod4">0%</div></div>
-            <div class="progress-card"><div>Week 4: Parties</div><div class="score" id="m_mod5">0%</div></div>
-            <div class="progress-card"><div>Overall Mastery</div><div class="score" id="m_mod6">0%</div></div>
-        </div>
-
-        <div class="controls">
-            <label for="topicSelect"><strong>Select Topic:</strong></label>
-            <select id="topicSelect">
-                <option value="1">Week 1: Culture, Society & Nation Building (6 Questions)</option>
-                <option value="2">Week 2: Pre-Colonial Intergroup Relations (6 Questions)</option>
-                <option value="3">Week 3: Slave Trade, Legitimate Trade & RNC (6 Questions)</option>
-                <option value="4">Week 4: Constitutional Development (6 Questions)</option>
-                <option value="5">Week 4: Formation of Political Parties (6 Questions)</option>
-                <option value="all" selected>All Topics Combined (30 Questions)</option>
-            </select>
-            <button class="action-btn" onclick="generateQuiz(false)">Generate Quiz</button>
-            <button class="action-btn" style="background-color: var(--error-color)" onclick="generateQuiz(true)">🎯 Retry Missed Questions Only</button>
-        </div>
-
-        <div id="quizContainer"></div>
-    </div>
-
-    <!-- TAB 3: MATCHING GAME -->
-    <div id="matchingTab" class="view-section">
-        <div class="controls">
-            <button class="action-btn" onclick="resetMatchingGame()">Reset / New Cards</button>
-            <div id="matchingScore" class="score-board">Matches Found: 0 / 0</div>
-        </div>
-
-        <div id="matchingFeedback" class="matching-feedback"></div>
-
-        <div class="matching-container">
-            <div class="match-column" id="leftCol"></div>
-            <div class="match-column" id="rightCol"></div>
-        </div>
-    </div>
-
-    <!-- TAB 4: INTERACTIVE ANALYZER -->
-    <div id="solverTab" class="view-section">
-        <div class="solver-panel">
-            <h2>Historical & Constitutional Analyzer Engine</h2>
-            <p>Select specific historical scenarios or constitutional milestones to evaluate structural mechanisms, impact, and historical outcomes.</p>
-            
-            <div class="controls">
-                <label for="scenarioType"><strong>Analysis Module:</strong></label>
-                <select id="scenarioType" onchange="renderScenarioInputs()">
-                    <option value="constitution_eval">Constitutional Framework Evaluator</option>
-                    <option value="trade_transition">Economic Shift Analyzer (Slave Trade to Legitimate Trade)</option>
-                    <option value="party_ideology">Political Party Profile & Impact Breakdown</option>
-                    <option value="origin_legend">Pre-Colonial Origin Myth & Intergroup Link Evaluator</option>
-                </select>
-            </div>
-
-            <div class="scenario-inputs" id="scenarioInputs"></div>
-
-            <button class="action-btn" onclick="solveAndDraw()">Analyze Scenario</button>
-
-            <div class="step-list" id="stepList"></div>
-        </div>
-    </div>
-
-    <!-- TAB 5: FLASHCARDS -->
-    <div id="flashcardsTab" class="view-section">
-        <div class="flashcard-wrapper">
-            <div class="flashcard" id="flashcard" onclick="flipCard()">
-                <div class="card-label" id="fcLabel">CONCEPT (Click to Flip)</div>
-                <div class="card-content" id="fcContent">Click start to load deck</div>
-            </div>
-        </div>
-
-        <div class="flashcard-controls">
-            <button class="action-btn" style="background-color: var(--error-color)" onclick="rateCard('hard')">🔴 Hard</button>
-            <button class="action-btn" style="background-color: #d97706" onclick="rateCard('medium')">🟡 Medium</button>
-            <button class="action-btn" style="background-color: var(--success-color)" onclick="rateCard('easy')">🟢 Easy</button>
-        </div>
-    </div>
-
-</div>
-
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>GST 112 | Nigerian Peoples and Culture (Weeks 1-4)</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&family=Playfair+Display:wght@600;700&display=swap');
+:root{--ink:#172b3a;--muted:#667887;--blue:#173e5b;--blue2:#2c6385;--pale:#eef4f7;--paper:#fff;--line:#dce5ea;--accent:#a77d65;--shadow:0 10px 28px rgba(26,52,69,.09)}
+*{box-sizing:border-box}body{margin:0;background:#f3f5f6;color:var(--ink);font-family:'DM Sans',Arial,sans-serif;line-height:1.65}
+.hero{background:linear-gradient(135deg,#725d50,#9a7a64 55%,#5b493f);color:white;padding:34px max(22px,calc((100% - 1120px)/2)) 38px;position:relative;overflow:hidden}
+.hero:after{content:"";position:absolute;inset:0;background:repeating-linear-gradient(55deg,transparent 0 36px,rgba(255,255,255,.045) 37px 39px);pointer-events:none}
+.hero-inner{max-width:1120px;margin:auto;position:relative;z-index:1}.brand{font-size:12px;letter-spacing:1.6px;text-transform:uppercase;opacity:.9}.hero h1{font:700 clamp(30px,5vw,48px) 'Playfair Display',serif;line-height:1.12;margin:30px 0 10px}.hero p{max-width:700px;color:#f5eae2;margin:0}.hero-meta{display:flex;gap:10px;flex-wrap:wrap;margin-top:20px}.pill{border:1px solid #ffffff55;border-radius:30px;padding:5px 12px;font-size:12px;background:#ffffff12}
+.topbar{background:white;border-bottom:1px solid var(--line);position:sticky;top:0;z-index:10}.nav{max-width:1120px;margin:auto;display:flex;gap:6px;padding:10px 16px;overflow-x:auto}.nav button,.theme{border:0;background:transparent;color:#506575;padding:10px 13px;border-radius:9px;font:600 13px 'DM Sans';white-space:nowrap;cursor:pointer}.nav button.active{background:var(--pale);color:var(--blue)}.theme{margin-left:auto;border:1px solid var(--line)}
+main{max-width:1120px;margin:28px auto;padding:0 18px 70px}.panel{display:none}.panel.active{display:block}.intro{margin-bottom:22px}.eyebrow{font-size:11px;text-transform:uppercase;letter-spacing:1.5px;color:var(--accent);font-weight:800}.intro h2{font:700 29px 'Playfair Display';margin:4px 0}.muted{color:var(--muted)}
+.toolbar{display:flex;gap:10px;flex-wrap:wrap;margin:18px 0}.toolbar input,.toolbar select{padding:12px 14px;border:1px solid var(--line);border-radius:10px;background:white;color:var(--ink);font:inherit;min-width:190px;flex:1}
+.week-grid{display:grid;grid-template-columns:1fr;gap:18px}.card{background:var(--paper);border:1px solid var(--line);border-radius:15px;padding:21px;box-shadow:var(--shadow);margin-bottom:16px}.card h3{margin:0 0 8px;font-size:19px;color:var(--blue)}.card h4{margin:18px 0 6px;color:#805f4c;font-size:16px}.card p{margin:7px 0}.card ul{padding-left:21px;margin:8px 0}.tag{display:inline-block;background:#f3eae4;color:#795944;border-radius:30px;padding:4px 10px;font-size:11px;font-weight:700;margin-bottom:9px}
+.callout{border-left:4px solid var(--accent);background:#f8f3ef;padding:12px 15px;border-radius:0 9px 9px 0;margin:12px 0}.callout.warning{border-left-color:#c43d32;background:#fff0ed}
+.btn{background:var(--blue);color:white;border:0;border-radius:9px;padding:11px 16px;font-weight:700;cursor:pointer}.btn.secondary{background:#eaf0f3;color:var(--blue)}.btn:disabled{opacity:.45;cursor:not-allowed}
+.quiz-question{padding:17px 0;border-bottom:1px solid var(--line)}.quiz-question:last-child{border:0}.qtitle{font-weight:700;margin-bottom:10px}.option{display:block;width:100%;text-align:left;background:#f7f9fa;border:1px solid var(--line);padding:10px 12px;margin:7px 0;border-radius:9px;cursor:pointer;color:var(--ink);font:inherit}.option.correct{background:#e6f4eb;border-color:#5b9b70}.option.wrong{background:#fff0ed;border-color:#d77b6b}.feedback{font-size:13px;color:var(--muted);margin:7px 0}.progress{height:8px;background:#e8eef1;border-radius:9px;overflow:hidden}.progress span{display:block;height:100%;background:#4f8aab;width:0}
+.statrow{display:flex;gap:12px;flex-wrap:wrap}.stat{background:#f2f6f8;border-radius:10px;padding:12px 16px;min-width:115px}.stat strong{display:block;font-size:22px;color:var(--blue)}
+.flashcard{min-height:190px;display:grid;place-items:center;text-align:center;cursor:pointer;background:linear-gradient(145deg,#f7f2ed,#edf3f6);border:1px solid var(--line);border-radius:16px;padding:28px;font-size:21px;font-weight:700}.flash-actions{display:flex;gap:10px;justify-content:center;margin:15px}
+.match-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}.match{padding:14px;border:1px solid var(--line);border-radius:10px;background:#f7f9fa;cursor:pointer;text-align:left;color:var(--ink);font:inherit}.match.selected{outline:2px solid var(--blue2);background:#eaf2f6}.match.done{background:#e6f4eb;border-color:#75a887;cursor:default}
+.key-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}.key{background:#f6f8f9;border-radius:12px;padding:14px}.key b{display:block;color:var(--blue);margin-bottom:4px}
+body.dark{--ink:#e8eef2;--muted:#a9b7c0;--paper:#1d2b35;--line:#344650;--pale:#263b49;background:#121d25;color:var(--ink)}body.dark .topbar,body.dark .toolbar input,body.dark .toolbar select{background:#1d2b35;color:var(--ink)}body.dark .nav button{color:#c2d0d8}body.dark .option,body.dark .match,body.dark .key,body.dark .stat{background:#263944;color:var(--ink);border-color:#40535e}body.dark .flashcard{background:#263944;color:var(--ink)}body.dark .callout{background:#342e2a}body.dark .callout.warning{background:#3b2525}
+footer{text-align:center;color:var(--muted);font-size:12px;padding:30px}
+@media(max-width:720px){.key-grid{grid-template-columns:1fr}.hero{padding:25px 20px 30px}.nav{padding:8px}.nav button{padding:9px}.theme{margin-left:0}.match-grid{grid-template-columns:1fr}main{padding:0 13px 50px}.card{padding:17px}}
+
+.quiz-question{padding:18px 0;border-bottom:1px solid var(--line);scroll-margin-top:90px}
+.quiz-question .qtitle{font-size:15px;line-height:1.5}
+.quiz-question .option{transition:transform .16s ease,background .16s ease,border-color .16s ease}
+.quiz-question .option:disabled{cursor:default;opacity:1}
+.quiz-question .option.correct{background:#dff5e7!important;border:2px solid #27834c!important;color:#14532d!important}
+.quiz-question .option.wrong{background:#ffe5e1!important;border:2px solid #c43d32!important;color:#7f1d1d!important}
+.quiz-feedback{padding:10px 13px;border-radius:9px;margin-top:9px;font-size:13px}
+.quiz-feedback.good{background:#e5f5eb;color:#175c35}
+.quiz-feedback.bad{background:#fff0ed;color:#8a2922}
+.match{min-height:66px;font-weight:600;transition:background .18s,border-color .18s,transform .18s,box-shadow .18s}
+.match.selected{background:#dceefa!important;border:2px solid #23658c!important;color:#123e59!important;box-shadow:0 0 0 3px rgba(35,101,140,.16)}
+.match.done{background:#dff5e7!important;border:2px solid #27834c!important;color:#14532d!important;box-shadow:inset 0 0 0 1px #27834c;position:relative}
+.match.done:after{content:"  ✓ Matched";font-size:11px;font-weight:800;display:block;color:#17653a}
+.match.shake{animation:matchShake .42s ease;border:2px solid #d33b32!important;background:#ffe5e1!important;color:#7f1d1d!important}
+.match.pop{animation:matchPop .34s ease}
+@keyframes matchShake{0%,100%{transform:translateX(0)}20%,60%{transform:translateX(-7px)}40%,80%{transform:translateX(7px)}}
+@keyframes matchPop{0%{transform:scale(.94)}55%{transform:scale(1.045)}100%{transform:scale(1)}}
+body.dark .quiz-question .option{background:#263944;color:#edf4f7;border-color:#506571}
+body.dark .quiz-question .option.correct{background:#174b34!important;border-color:#4ade80!important;color:#dcfce7!important}
+body.dark .quiz-question .option.wrong{background:#5b2525!important;border-color:#fb7185!important;color:#ffe4e6!important}
+body.dark .quiz-feedback.good{background:#174b34;color:#dcfce7}
+body.dark .quiz-feedback.bad{background:#5b2525;color:#ffe4e6}
+body.dark .match{background:#263944!important;color:#f0f5f8!important;border:1px solid #627986}
+body.dark .match.selected{background:#174b63!important;color:#e0f2fe!important;border:2px solid #7dd3fc!important}
+body.dark .match.done{background:#174b34!important;color:#dcfce7!important;border:2px solid #4ade80!important}
+body.dark .match.done:after{color:#bbf7d0}
+body.dark .match.shake{background:#5b2525!important;color:#ffe4e6!important;border-color:#fb7185!important}
+</style></head><body>
+<header class="hero"><div class="hero-inner"><div class="brand">MIVA · GST 112 · NIGERIAN PEOPLES & CULTURE</div><h1>Nigerian Peoples<br>& Culture</h1><p>Semester revision hub for GST 112 — master culture, intergroup relations, the slave trade, and constitutional development.</p><div class="hero-meta"><span class="pill">GST 112</span><span class="pill">Weeks 1–4</span><span class="pill">Comprehensive Questions</span><span class="pill">Expanded Summaries</span></div></div></header>
+<div class="topbar"><nav class="nav"><button class="active" data-tab="summaries">Comprehensive Summaries</button><button data-tab="quiz">Quiz &amp; Mastery</button><button data-tab="matching">Matching Game</button><button data-tab="keys">Key Concepts</button><button data-tab="flashcards">Flashcards</button><button class="theme" id="theme">☾ Theme</button></nav></div>
+<main>
+<section id="summaries" class="panel active"><div class="intro"><div class="eyebrow">Study notes · Weeks 1–4</div><h2>Comprehensive Summaries</h2><p class="muted">Search across the 4 weeks of lecture material or filter by week to revise detailed concepts, examples and rules.</p></div><div class="toolbar"><input id="search" placeholder="Search topics, terms or examples…"><select id="weekFilter"><option value="all">All weeks</option><option value="1">Week 1: Conceptual Clarification</option><option value="2">Week 2: Intergroup Relations</option><option value="3">Week 3: Slave Trade & Legitimate Trade</option><option value="4">Week 4: Constitutional Development & Political Parties</option></select></div><div id="summaryList" class="week-grid"></div></section>
+<section id="quiz" class="panel"><div class="intro"><div class="eyebrow">Test your understanding</div><h2>Quiz &amp; Mastery</h2><p class="muted">Choose a specific week or take the full mixed quiz. Answers are marked immediately with explanations.</p></div><div class="toolbar"><select id="quizSelect"><option value="all">Full mixed quiz</option><option value="1">Week 1: Conceptual Clarification</option><option value="2">Week 2: Intergroup Relations</option><option value="3">Week 3: Slave Trade & Legitimate Trade</option><option value="4">Week 4: Constitutional Development & Political Parties</option></select><button class="btn" id="startQuiz">Start quiz</button><button class="btn secondary" id="retryMissed">Retry missed</button></div><div class="statrow"><div class="stat"><strong id="score">0</strong><span class="muted">Correct</span></div><div class="stat"><strong id="answered">0</strong><span class="muted">Answered</span></div><div class="stat"><strong id="total">40</strong><span class="muted">Questions</span></div></div><div class="progress" style="margin:15px 0 20px"><span id="progress"></span></div><div id="quizArea" class="card"><p class="muted">Select a quiz and press Start quiz to begin.</p></div></section>
+<section id="matching" class="panel"><div class="intro"><div class="eyebrow">Active recall</div><h2>Matching Game</h2><p class="muted">Select a term, then select its matching definition. Match all pairs to complete the round.</p></div><div class="statrow"><div class="stat"><strong id="matchScore">0 / 16</strong><span class="muted">Pairs matched</span></div><button class="btn secondary" id="resetMatch">Restart game</button></div><div id="matchArea" class="match-grid" style="margin-top:18px"></div><p id="matchFeedback" class="feedback"></p></section>
+<section id="keys" class="panel"><div class="intro"><div class="eyebrow">Fast revision</div><h2>Key Concepts &amp; Quick Revision</h2><p class="muted">High-value distinctions and structures to remember before an assessment.</p></div><div class="key-grid" id="keyGrid"></div></section>
+<section id="flashcards" class="panel"><div class="intro"><div class="eyebrow">Recall practice</div><h2>Flashcards</h2><p class="muted">Try to recall the meaning before revealing the answer.</p></div><div class="statrow"><div class="stat"><strong id="flashCount">1 / 16</strong><span class="muted">Card</span></div></div><div class="flashcard" id="flashcard">Term</div><div class="flash-actions"><button class="btn secondary" id="prevFlash">← Previous</button><button class="btn" id="flipFlash">Reveal answer</button><button class="btn secondary" id="nextFlash">Next →</button></div></section>
+</main><footer>GST 112 · Nigerian Peoples and Culture · MIVA revision hub</footer>
 <script>
-    function toggleTheme() {
-        const currentTheme = document.body.getAttribute('data-theme');
-        const themeBtn = document.getElementById('themeBtn');
-        if (currentTheme === 'dark') {
-            document.body.removeAttribute('data-theme');
-            themeBtn.innerText = '🌙 Night Mode';
-        } else {
-            document.body.setAttribute('data-theme', 'dark');
-            themeBtn.innerText = '☀️ Light Mode';
-        }
-    }
-
-    function switchTab(tabName) {
-        document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));
-        document.querySelectorAll('.view-section').forEach(sec => sec.classList.remove('active'));
-
-        const tabs = ['summaries', 'quiz', 'matching', 'solver', 'flashcards'];
-        const index = tabs.indexOf(tabName);
-        document.querySelectorAll('.tab-btn')[index].classList.add('active');
-        document.getElementById(tabName + 'Tab').classList.add('active');
-
-        if (tabName === 'matching') resetMatchingGame();
-        if (tabName === 'solver') { renderScenarioInputs(); solveAndDraw(); }
-        if (tabName === 'flashcards') loadFlashcard();
-    }
-
-    function filterSummaries() {
-        const query = document.getElementById('summarySearch').value.toLowerCase();
-        document.querySelectorAll('.searchable').forEach(el => {
-            const text = el.innerText.toLowerCase();
-            el.style.display = text.includes(query) ? 'block' : 'none';
-        });
-    }
-
-    // MASTERY SYSTEM
-    let masteryData = JSON.parse(localStorage.getItem('gst112_mastery') || '{"1":{"c":0,"t":0},"2":{"c":0,"t":0},"3":{"c":0,"t":0},"4":{"c":0,"t":0},"5":{"c":0,"t":0}}');
-    let missedQuestions = JSON.parse(localStorage.getItem('gst112_missed') || '[]');
-
-    function saveMastery() {
-        localStorage.setItem('gst112_mastery', JSON.stringify(masteryData));
-        localStorage.setItem('gst112_missed', JSON.stringify(missedQuestions));
-        updateMasteryUI();
-    }
-
-    function updateMasteryUI() {
-        let totalCorrect = 0;
-        let totalTaken = 0;
-
-        for (let m = 1; m <= 5; m++) {
-            const data = masteryData[m];
-            const pct = data && data.t > 0 ? Math.round((data.c / data.t) * 100) : 0;
-            const el = document.getElementById(`m_mod${m}`);
-            if (el) el.innerText = `${pct}%`;
-
-            if (data) {
-                totalCorrect += data.c;
-                totalTaken += data.t;
-            }
-        }
-
-        const overallPct = totalTaken > 0 ? Math.round((totalCorrect / totalTaken) * 100) : 0;
-        const overallEl = document.getElementById('m_mod6');
-        if (overallEl) overallEl.innerText = `${overallPct}%`;
-    }
-
-    function shuffle(arr) { return [...arr].sort(() => Math.random() - 0.5); }
-
-    // QUIZ BANK (30 Comprehensive Questions, 6 per module)
-    const quizBank = [
-        // Week 1: Culture, Society & Nation Building
-        { mod: 1, title: "Which component of culture encompasses institutions, family structures, and normative laws?", correct: "Sociological Component", options: ["Sociological Component", "Technological Component", "Ideological Component", "Material Component"], exp: "The sociological component deals with societal institutions, political systems, and social norms." },
-        { mod: 1, title: "Karl Marx envisioned a communist society characterized by:", correct: "Collective ownership of means of production", options: ["Collective ownership of means of production", "Strict colonial administrative hierarchy", "Capitalist free-market monopoly", "Feudal monarchical rule"], exp: "Marx advocated for collective ownership of productive forces and equitable wealth distribution." },
-        { mod: 1, title: "Which theoretical perspective views society as an organism where every part performs a vital role?", correct: "Functionalism", options: ["Functionalism", "Marxism", "Conflict Theory", "Post-colonialism"], exp: "Functionalism compares society to a biological organism with interdependent components." },
-        { mod: 1, title: "Culture is broadly divided into three main components. Which of the following is material culture?", correct: "Technological Component", options: ["Technological Component", "Sociological Component", "Ideological Component", "Philosophical Component"], exp: "Material culture consists of physical artifacts and technology, categorized as technological." },
-        { mod: 1, title: "Nation-building in multi-ethnic states primarily involves:", correct: "Mobilizing resources to construct a national identity", options: ["Mobilizing resources to construct a national identity", "Suppressing all cultural heritage", "Enforcing single-language adoption by decree", "Abolishing local traditional councils"], exp: "Nation-building seeks socio-political development and unified national identity among diverse groups." },
-        { mod: 1, title: "Societies characterized by formal relationships, legalistic bonds, and complex division of labor are:", correct: "Associational Societies", options: ["Associational Societies", "Communal Societies", "Feudal Societies", "Agrarian Societies"], exp: "Associational societies are organized through formal, legal, and complex division of labor." },
-
-        // Week 2: Pre-Colonial Intergroup Relations
-        { mod: 2, title: "The Bayajidda legend traces origins to Baghdad and establishes ties between Hausa and which group?", correct: "Kanuri", options: ["Kanuri", "Efik", "Itsekiri", "Ibibio"], exp: "Bayajidda married the Mai of Bornu's daughter among the Kanuri before founding Hausa state lineages." },
-        { mod: 2, title: "The Kisra legend links origins in Baghdad with the founding of which kingdoms?", correct: "Yoruba and Borgu Kingdoms", options: ["Yoruba and Borgu Kingdoms", "Igbo and Ibibio Kingdoms", "Efik and Ijaw Kingdoms", "Sokoto and Kano Kingdoms"], exp: "Kisra legend establishes ties between Baghdad, Borgu, and Yorubaland." },
-        { mod: 2, title: "Which pre-colonial state extended military expeditions directly into Eko (Lagos)?", correct: "Benin Kingdom", options: ["Benin Kingdom", "Oyo Empire", "Kanem Bornu", "Jukun Kingdom"], exp: "Benin expanded westward to Lagos; early kings like Ado and Asipa were of Benin origin." },
-        { mod: 2, title: "The Ndakogbaya deity among the Nupe people is traceably linked to which Yoruba deity?", correct: "Igunu", options: ["Igunu", "Sango", "Ogun", "Sango"], exp: "The Yoruba Igunu deity shares direct historical diffusion with the Nupe Ndakogbaya." },
-        { mod: 2, title: "The Umu-Ezechima section of the Igbo people trace their historical origins to:", correct: "Edo (Benin) People", options: ["Edo (Benin) People", "Igala People", "Nupe People", "Tiv People"], exp: "Umu-Ezechima and Isoko communities share documented historical origin ties with the Edo." },
-        { mod: 2, title: "Which trade route allowed Kanem Bornu, Hausa, Nupe, and Oyo to interact economically?", correct: "Trans-Saharan Trade Route", options: ["Trans-Saharan Trade Route", "Trans-Atlantic Trade Route", "Silk Road", "Indian Ocean Maritime Route"], exp: "Trans-Saharan trade connected Northern and Central Nigerian groups to West African trade hubs." },
-
-        // Week 3: Slave Trade, Legitimate Trade & Company Rule
-        { mod: 3, title: "The Spanish 'Asiento' system was primarily a license granting:", correct: "The right to trade in slaves in the New World", options: ["The right to trade in slaves in the New World", "Monopoly over palm oil extraction", "Naval control over the River Niger", "Exclusive rights to gold mining in West Africa"], exp: "The Asiento was a crown permit authorizing European merchants to supply slaves to Spanish colonies." },
-        { mod: 3, title: "In what year was Lagos formally annexed as a British Crown Colony?", correct: "1861", options: ["1861", "1851", "1886", "1895"], exp: "Lagos was formally annexed in 1861 following earlier naval intervention in 1851." },
-        { mod: 4, title: "The National African Company (NAC) was granted a Royal Charter to become the Royal Niger Company in:", correct: "1886", options: ["1886", "1881", "1882", "1899"], exp: "The Royal Charter was officially granted in 1886 after buying out competing French firms." },
-        { mod: 3, title: "Who sponsored the 1833 British Parliamentary bill that abolished slavery across the Empire?", correct: "Thomas Fowell Buxton", options: ["Thomas Fowell Buxton", "Lord Lugard", "John Beecroft", "George Goldie"], exp: "Thomas Fowell Buxton sponsored the pivotal 1833 abolition bill in Parliament." },
-        { mod: 3, title: "What local event in 1895 directly exposed RNC excesses and led to the Kirk Commission of Enquiry?", correct: "The Brass people's raid on Akassa", options: ["The Brass people's raid on Akassa", "The Egba uprising", "The Kano civil war", "The Lagos riots"], exp: "The Akassa raid by Nembe-Brass traders led to the revocation of RNC's charter in 1899." },
-        { mod: 3, title: "Estimates indicate that during the Trans-Atlantic slave trade, over how many Africans died in transit?", correct: "7 million", options: ["7 million", "1 million", "15 million", "25 million"], exp: "Paul Lovejoy's research indicates over 7 million Africans perished during transit." },
-
-        // Week 4: Constitutional Development
-        { mod: 4, title: "Which constitution introduced the 'Elective Principle' in Nigerian political history?", correct: "Clifford Constitution (1922)", options: ["Clifford Constitution (1922)", "Richards Constitution (1947)", "Macpherson Constitution (1951)", "Lyttleton Constitution (1954)"], exp: "Clifford's 1922 Constitution allowed 4 elected Africans (3 Lagos, 1 Calabar) into the legislative council." },
-        { mod: 4, title: "Regionalism was officially introduced into Nigerian administration under which constitution?", correct: "Richards Constitution (1947)", options: ["Richards Constitution (1947)", "Clifford Constitution (1922)", "Macpherson Constitution (1951)", "1914 Amalgamation Scheme"], exp: "The 1947 Richards Constitution divided Nigeria into three administrative regions (North, West, East)." },
-        { mod: 4, title: "A formal Federal Structure with regional autonomy and premiers was established by:", correct: "Lyttleton Constitution (1954)", options: ["Lyttleton Constitution (1954)", "Macpherson Constitution (1951)", "Richards Constitution (1947)", "Clifford Constitution (1922)"], exp: "The 1954 Lyttleton Constitution formally created a federal framework with autonomous regions." },
-        { mod: 4, title: "What was a major criticism of both the Clifford and Richards Constitutions?", correct: "Lack of consultation with Nigerians during drafting", options: ["Lack of consultation with Nigerians during drafting", "Granting too much power to regional premiers", "Abolishing traditional chieftaincy institutions", "Forcing instant independence"], exp: "Both constitutions were drafted arbitrarily by colonial governors without local consultation." },
-        { mod: 4, title: "Under the Macpherson Constitution (1951), Nigerian ministers were appointed but lacked:", correct: "Executive portfolios or ministries", options: ["Executive portfolios or ministries", "Voting rights in the house", "Salaries from the treasury", "Right to speak in public"], exp: "Ministers under the 1951 constitution had no executive portfolios or departmental control." },
-        { mod: 4, title: "The Nigerian Council created by Lord Lugard in 1914 consisted of how many total members?", correct: "36 members", options: ["36 members", "45 members", "136 members", "28 members"], exp: "Lugard's council had 36 members, including 6 unofficial traditional rulers." },
-
-        // Week 4: Political Parties & Independence
-        { mod: 5, title: "Which party was founded in 1923 by Herbert Macaulay and dominated Lagos elective seats?", correct: "Nigerian National Democratic Party (NNDP)", options: ["Nigerian National Democratic Party (NNDP)", "Nigerian Youth Movement (NYM)", "National Council of Nigeria and the Cameroons (NCNC)", "Action Group (AG)"], exp: "The NNDP was Nigeria's first political party, founded in 1923 by Herbert Macaulay." },
-        { mod: 5, title: "The first Nigerian movement with a broad national outlook that broke Lagos-centric politics was:", correct: "Nigerian Youth Movement (NYM)", options: ["Nigerian Youth Movement (NYM)", "NNDP", "NPC", "Egbe Omo Oduduwa"], exp: "Formed in 1935, NYM expanded nationwide with leaders like Azikiwe, Awolowo, and Ikoli." },
-        { mod: 5, title: "The Action Group (AG) evolved from which cultural organization in 1951?", correct: "Egbe Omo Oduduwa", options: ["Egbe Omo Oduduwa", "Jam'iyyar Mutanen Arewa", "Ibibio State Union", "Aro State Council"], exp: "Chief Obafemi Awolowo formed AG out of the Yoruba cultural group Egbe Omo Oduduwa." },
-        { mod: 5, title: "The Northern People's Congress (NPC) emerged from which cultural association?", correct: "Jam'iyyar Mutanen Arewa", options: ["Jam'iyyar Mutanen Arewa", "Egbe Omo Oduduwa", "NNDP", "Borno Youth Movement"], exp: "NPC developed from the northern cultural organization Jam'iyyar Mutanen Arewa." },
-        { mod: 5, title: "What newspaper was established by Nnamdi Azikiwe to promote nationalist consciousness?", correct: "West African Pilot", options: ["West African Pilot", "Lagos Daily News", "Daily Service", "Nigerian Tribune"], exp: "Azikiwe launched the West African Pilot in 1937 as a major voice against colonial rule." },
-        { mod: 5, title: "A major criticism leveled against early Nigerian political parties was their:", correct: "Ethnocentric orientation and regional bias", options: ["Ethnocentric orientation and regional bias", "Over-reliance on foreign funding", "Refusal to publish newspapers", "Complete lack of educated leaders"], exp: "Early parties often sacrificed overall national interests for regional and ethnic loyalties." }
-    ];
-
-    let currentQuestions = [];
-
-    function generateQuiz(retryMissedOnly = false) {
-        const topic = document.getElementById('topicSelect').value;
-        if (retryMissedOnly) {
-            currentQuestions = [...missedQuestions];
-            if (currentQuestions.length === 0) {
-                alert("No missed questions recorded yet!");
-                return;
-            }
-        } else {
-            if (topic === 'all') {
-                currentQuestions = shuffle([...quizBank]);
-            } else {
-                const modNum = parseInt(topic);
-                currentQuestions = quizBank.filter(q => q.mod === modNum);
-            }
-        }
-        renderQuiz();
-    }
-
-    function renderQuiz() {
-        const container = document.getElementById('quizContainer');
-        container.innerHTML = '';
-
-        currentQuestions.forEach((q, qIndex) => {
-            const card = document.createElement('div');
-            card.className = 'question-card';
-            card.innerHTML = `
-                <span class="badge">Module ${q.mod}</span>
-                <div class="question-title">${qIndex + 1}. ${q.title}</div>
-                <div class="options">
-                    ${shuffle(q.options).map(opt => `
-                        <label class="option-label">
-                            <input type="radio" name="q_${qIndex}" value="${opt}" onchange="handleOptionSelect(${qIndex}, '${opt.replace(/'/g, "\\'")}', '${q.correct.replace(/'/g, "\\'")}', '${q.exp.replace(/'/g, "\\'")}', ${q.mod})">
-                            ${opt}
-                        </label>
-                    `).join('')}
-                </div>
-                <div class="explanation" id="exp_${qIndex}"></div>
-            `;
-            container.appendChild(card);
-        });
-    }
-
-    function handleOptionSelect(qIndex, selectedOpt, correctOpt, explanation, mod) {
-        const expDiv = document.getElementById(`exp_${qIndex}`);
-        document.querySelectorAll(`input[name="q_${qIndex}"]`).forEach(i => i.disabled = true);
-
-        if (!masteryData[mod]) masteryData[mod] = { c: 0, t: 0 };
-        masteryData[mod].t += 1;
-
-        if (selectedOpt === correctOpt) {
-            expDiv.className = 'explanation correct';
-            expDiv.innerHTML = `<strong>Correct!</strong> ${explanation}`;
-            masteryData[mod].c += 1;
-        } else {
-            expDiv.className = 'explanation incorrect';
-            expDiv.innerHTML = `<strong>Incorrect.</strong> Correct answer: <strong>${correctOpt}</strong>.<br>${explanation}`;
-            if (!missedQuestions.some(item => item.title === currentQuestions[qIndex].title)) {
-                missedQuestions.push(currentQuestions[qIndex]);
-            }
-        }
-        saveMastery();
-    }
-
-    // MATCHING GAME ENGINE
-    const rawPairs = [
-        { id: 0, left: "Clifford Constitution (1922)", right: "Introduced Elective Principle (4 seats)", explanation: "Allowed first elected representation for Lagos and Calabar." },
-        { id: 1, left: "Richards Constitution (1947)", right: "Formalized Regionalism (North, West, East)", explanation: "Created regional assemblies under a central legislature." },
-        { id: 2, left: "Lyttleton Constitution (1954)", right: "Established Federal Structure & Regional Autonomy", explanation: "Created Regional Premiers and regional civil service." },
-        { id: 3, left: "Royal Niger Company (RNC)", right: "Chartered in 1886; monopolized Niger trade", explanation: "Led by George Taubman Goldie; charter revoked in 1899." },
-        { id: 4, left: "Bayajidda Myth", right: "Traced origin to Baghdad; linked Hausa and Kanuri", explanation: "Foundational myth connecting Northern Nigerian groups." },
-        { id: 5, left: "Nigerian Youth Movement", right: "First party with genuine national outlook (1935)", explanation: "Broke NNDP's Lagos monopoly with broad national appeal." }
-    ];
-
-    let leftSelected = null, rightSelected = null, matchesCount = 0;
-
-    function resetMatchingGame() {
-        matchesCount = 0;
-        leftSelected = null;
-        rightSelected = null;
-
-        const leftCol = document.getElementById('leftCol');
-        const rightCol = document.getElementById('rightCol');
-        const feedbackDiv = document.getElementById('matchingFeedback');
-        
-        leftCol.innerHTML = ''; 
-        rightCol.innerHTML = ''; 
-        feedbackDiv.style.display = 'none';
-
-        document.getElementById('matchingScore').innerText = `Matches Found: 0 / ${rawPairs.length}`;
-
-        const leftList = shuffle(rawPairs);
-        const rightList = shuffle(rawPairs);
-
-        leftList.forEach(item => {
-            const card = document.createElement('div');
-            card.className = 'match-card';
-            card.dataset.id = item.id;
-            card.innerText = item.left;
-            card.onclick = () => selectLeft(card, item);
-            leftCol.appendChild(card);
-        });
-
-        rightList.forEach(item => {
-            const card = document.createElement('div');
-            card.className = 'match-card';
-            card.dataset.id = item.id;
-            card.innerText = item.right;
-            card.onclick = () => selectRight(card, item);
-            rightCol.appendChild(card);
-        });
-    }
-
-    function selectLeft(card, item) {
-        if (card.classList.contains('matched')) return;
-        document.querySelectorAll('#leftCol .match-card').forEach(c => c.classList.remove('selected'));
-        leftSelected = { card, item };
-        card.classList.add('selected');
-        checkPairMatch();
-    }
-
-    function selectRight(card, item) {
-        if (card.classList.contains('matched')) return;
-        document.querySelectorAll('#rightCol .match-card').forEach(c => c.classList.remove('selected'));
-        rightSelected = { card, item };
-        card.classList.add('selected');
-        checkPairMatch();
-    }
-
-    function checkPairMatch() {
-        if (!leftSelected || !rightSelected) return;
-
-        const feedbackDiv = document.getElementById('matchingFeedback');
-        feedbackDiv.style.display = 'block';
-
-        if (leftSelected.item.id === rightSelected.item.id) {
-            leftSelected.card.className = 'match-card matched';
-            rightSelected.card.className = 'match-card matched';
-
-            feedbackDiv.style.backgroundColor = 'var(--success-bg)';
-            feedbackDiv.style.borderColor = 'var(--success-border)';
-            feedbackDiv.style.color = 'var(--success-color)';
-            feedbackDiv.innerHTML = `<strong>Correct Match!</strong><br>${leftSelected.item.left} ⟺ <code>${leftSelected.item.right}</code><br>${leftSelected.item.explanation}`;
-
-            matchesCount++;
-            document.getElementById('matchingScore').innerText = `Matches Found: ${matchesCount} / ${rawPairs.length}`;
-            leftSelected = null; rightSelected = null;
-        } else {
-            const l = leftSelected, r = rightSelected;
-            l.card.classList.add('wrong');
-            r.card.classList.add('wrong');
-
-            feedbackDiv.style.backgroundColor = 'var(--error-bg)';
-            feedbackDiv.style.borderColor = 'var(--error-border)';
-            feedbackDiv.style.color = 'var(--error-color)';
-            feedbackDiv.innerHTML = `<strong>Incorrect Pair.</strong> Try again!`;
-
-            setTimeout(() => {
-                l.card.classList.remove('wrong', 'selected');
-                r.card.classList.remove('wrong', 'selected');
-            }, 800);
-
-            leftSelected = null; rightSelected = null;
-        }
-    }
-
-    // INTERACTIVE HISTORICAL & CONSTITUTIONAL ANALYZER
-    function renderScenarioInputs() {
-        const scenario = document.getElementById('scenarioType').value;
-        const container = document.getElementById('scenarioInputs');
-        container.innerHTML = '';
-
-        if (scenario === 'constitution_eval') {
-            container.innerHTML = `
-                <label>Select Constitution: </label>
-                <select id="sc_const">
-                    <option value="clifford">Clifford Constitution (1922)</option>
-                    <option value="richards">Richards Constitution (1947)</option>
-                    <option value="macpherson">Macpherson Constitution (1951)</option>
-                    <option value="lyttleton">Lyttleton Constitution (1954)</option>
-                </select>
-            `;
-        } else if (scenario === 'trade_transition') {
-            container.innerHTML = `
-                <label>Select Historical Transition Period: </label>
-                <select id="sc_trade">
-                    <option value="trans_atlantic">Trans-Atlantic Slave Trade Era (15th - 19th Century)</option>
-                    <option value="legitimate_trade">Transition to Legitimate Palm Oil Trade (1830s - 1860s)</option>
-                    <option value="rnc_rule">Royal Niger Company Monopoly & Charter Revocation (1886 - 1899)</option>
-                </select>
-            `;
-        } else if (scenario === 'party_ideology') {
-            container.innerHTML = `
-                <label>Select Nationalist Political Party: </label>
-                <select id="sc_party">
-                    <option value="nndp">Nigerian National Democratic Party (NNDP - 1923)</option>
-                    <option value="nym">Nigerian Youth Movement (NYM - 1935)</option>
-                    <option value="ncnc">National Council of Nigeria & Cameroons (NCNC - 1944)</option>
-                    <option value="ag">Action Group (AG - 1951)</option>
-                    <option value="npc">Northern People's Congress (NPC - 1951)</option>
-                </select>
-            `;
-        } else if (scenario === 'origin_legend') {
-            container.innerHTML = `
-                <label>Select Pre-Colonial Intergroup Legend: </label>
-                <select id="sc_legend">
-                    <option value="bayajidda">Bayajidda Legend (Hausa - Kanuri - Nupe - Yoruba)</option>
-                    <option value="kisra">Kisra Legend (Baghdad - Borgu - Yorubaland)</option>
-                    <option value="benin_connections">Benin Dynasty Links (Oranmiyan - Eweka - Eko/Lagos)</option>
-                    <option value="edo_igbo">Edo - Igbo - Isoko Lineage Links (Umu-Ezechima)</option>
-                </select>
-            `;
-        }
-    }
-
-    function solveAndDraw() {
-        const scenario = document.getElementById('scenarioType').value;
-        const list = document.getElementById('stepList');
-        list.innerHTML = '';
-
-        if (scenario === 'constitution_eval') {
-            const type = document.getElementById('sc_const').value;
-            let steps = [];
-
-            if (type === 'clifford') {
-                steps = [
-                    "<strong>Constitutional Landmark:</strong> Clifford Constitution (1922)",
-                    "<strong>Key Innovation:</strong> Introduced the Elective Principle (4 elected seats: 3 Lagos, 1 Calabar).",
-                    "<strong>Structural Setup:</strong> Legislative Council of 45 members (predominantly white European officials). Northern Nigeria was ruled by executive proclamation.",
-                    "<strong>Impact:</strong> Stimulated party politics (formation of NNDP in 1923) and political newspapers (Lagos Daily News).",
-                    "<strong>Primary Criticism:</strong> Absolute veto power held by Governor; total exclusion of Northern Nigeria from the council."
-                ];
-            } else if (type === 'richards') {
-                steps = [
-                    "<strong>Constitutional Landmark:</strong> Richards Constitution (1947)",
-                    "<strong>Key Innovation:</strong> Formally introduced Regionalism (Northern, Western, Eastern Regions).",
-                    "<strong>Structural Setup:</strong> Created Regional Houses of Assembly and a central legislative council of 45 members (28 Africans).",
-                    "<strong>Impact:</strong> Brought Northern and Southern leaders under one central legislative body for the first time.",
-                    "<strong>Primary Criticism:</strong> Arbitrarily drafted without local public consultation; maintained high property voting franchise."
-                ];
-            } else if (type === 'macpherson') {
-                steps = [
-                    "<strong>Constitutional Landmark:</strong> Macpherson Constitution (1951)",
-                    "<strong>Key Innovation:</strong> Unprecedented nationwide consultation from village level to national conference.",
-                    "<strong>Structural Setup:</strong> Central House of Representatives (136 members); Council of Ministers with 12 Nigerian ministers.",
-                    "<strong>Impact:</strong> Spurred nationwide political party expansion (AG, NPC).",
-                    "<strong>Primary Criticism:</strong> Ministers lacked portfolios or executive authority; severe inter-regional rivalries led to breakdown in 3 years."
-                ];
-            } else {
-                steps = [
-                    "<strong>Constitutional Landmark:</strong> Lyttleton Constitution (1954)",
-                    "<strong>Key Innovation:</strong> Established a full Federal System with regional autonomy.",
-                    "<strong>Structural Setup:</strong> Created offices of Regional Premiers, regionalized judiciaries, civil services, and made Lagos a Federal Capital Territory.",
-                    "<strong>Impact:</strong> Granted full administrative power to regional governments; revenue allocation based on derivation.",
-                    "<strong>Primary Criticism:</strong> Institutionalized ethnic politics and deepened regional divisions."
-                ];
-            }
-            steps.forEach(s => { const d = document.createElement('div'); d.className = 'step-item'; d.innerHTML = s; list.appendChild(d); });
-
-        } else if (scenario === 'trade_transition') {
-            const type = document.getElementById('sc_trade').value;
-            let steps = [];
-
-            if (type === 'trans_atlantic') {
-                steps = [
-                    "<strong>Economic Era:</strong> Trans-Atlantic Slave Trade (15th–19th Century)",
-                    "<strong>Mechanism:</strong> Triangular Trade (European goods to Africa ➔ Slaves to Americas ➔ Cash crops to Europe). Regulated partly by the Spanish <em>Asiento</em> license system.",
-                    "<strong>Human Cost:</strong> Over 15 million Africans forcibly transported; over 7 million died during transit.",
-                    "<strong>Socioeconomic Consequence:</strong> Devastating depopulation, destruction of indigenous craft industries, unbridled warfare, and long-term economic stagnation (Walter Rodney)."
-                ];
-            } else if (type === 'legitimate_trade') {
-                steps = [
-                    "<strong>Economic Era:</strong> Legitimate Commodity Trade (1830s–1860s)",
-                    "<strong>Driving Force:</strong> European Industrial Revolution created huge demand for industrial lubricants (palm oil) and raw materials.",
-                    "<strong>Political Outcome:</strong> Shift led directly to European intervention on West African coasts to enforce trade security.",
-                    "<strong>Milestone:</strong> British intervention in Lagos succession disputes, culminating in naval bombardment (1851) and annexation of Lagos (1861)."
-                ];
-            } else {
-                steps = [
-                    "<strong>Economic Era:</strong> Royal Niger Company Monopoly & Decline (1886–1899)",
-                    "<strong>Mechanism:</strong> Sir George Goldie unified British traders into the NAC, receiving a Royal Charter as the RNC in 1886.",
-                    "<strong>Monopoly Practices:</strong> High taxes, price manipulation, and exclusion of local coastal middleman traders.",
-                    "<strong>Decline & Fall:</strong> 1895 Nembe-Brass raid on RNC's Akassa depot exposed brutality; Kirk Commission recommended charter revocation on Dec 31, 1899."
-                ];
-            }
-            steps.forEach(s => { const d = document.createElement('div'); d.className = 'step-item'; d.innerHTML = s; list.appendChild(d); });
-
-        } else if (scenario === 'party_ideology') {
-            const party = document.getElementById('sc_party').value;
-            let steps = [];
-
-            if (party === 'nndp') {
-                steps = [
-                    "<strong>Party Profile:</strong> Nigerian National Democratic Party (NNDP - 1923)",
-                    "<strong>Founder:</strong> Herbert Macaulay ('Father of Nigerian Nationalism').",
-                    "<strong>Electoral Record:</strong> Swept all 3 elective seats for Lagos in 1923, 1928, and 1933 legislative council elections.",
-                    "<strong>Organ:</strong> Published the <em>Lagos Daily News</em>.",
-                    "<strong>Limitation:</strong> Maintained a predominantly Lagos-centric focus."
-                ];
-            } else if (party === 'nym') {
-                steps = [
-                    "<strong>Party Profile:</strong> Nigerian Youth Movement (NYM - 1935)",
-                    "<strong>Key Leaders:</strong> Ernest Ikoli, Samuel Akinsanya, Nnamdi Azikiwe, Obafemi Awolowo.",
-                    "<strong>Significance:</strong> First true political party with a genuine nationwide outlook.",
-                    "<strong>Achievements:</strong> Defeated NNDP in 1938 Lagos elections; published the <em>Daily Service</em>.",
-                    "<strong>Decline:</strong> Internal leadership disputes in 1941–1944 destroyed organizational cohesion."
-                ];
-            } else if (party === 'ncnc') {
-                steps = [
-                    "<strong>Party Profile:</strong> National Council of Nigeria and the Cameroons (NCNC - 1944)",
-                    "<strong>Leadership:</strong> Herbert Macaulay (First President), Nnamdi Azikiwe (First General Secretary/Later President).",
-                    "<strong>Aims:</strong> Self-government, political education, and anti-colonial agitation across all regions.",
-                    "<strong>Key Actions:</strong> Published <em>West African Pilot</em>; sent 1946 protest delegation to London against Richards Constitution."
-                ];
-            } else if (party === 'ag') {
-                steps = [
-                    "<strong>Party Profile:</strong> Action Group (AG - 1951)",
-                    "<strong>Founder/Leader:</strong> Chief Obafemi Awolowo.",
-                    "<strong>Origins:</strong> Evolved from the Yoruba cultural society <em>Egbe Omo Oduduwa</em>.",
-                    "<strong>Base:</strong> Dominant party in the Western Region; focused on welfare governance and anti-colonial agitation."
-                ];
-            } else {
-                steps = [
-                    "<strong>Party Profile:</strong> Northern People's Congress (NPC - 1951)",
-                    "<strong>Key Leaders:</strong> Sir Ahmadu Bello (Sardauna of Sokoto), Sir Abubakar Tafawa Balewa.",
-                    "<strong>Origins:</strong> Evolved from cultural association <em>Jam'iyyar Mutanen Arewa</em>.",
-                    "<strong>Aims:</strong> Preserving Northern regional autonomy, traditional Islamic ruler authority, and political unity."
-                ];
-            }
-            steps.forEach(s => { const d = document.createElement('div'); d.className = 'step-item'; d.innerHTML = s; list.appendChild(d); });
-
-        } else if (scenario === 'origin_legend') {
-            const legend = document.getElementById('sc_legend').value;
-            let steps = [];
-
-            if (legend === 'bayajidda') {
-                steps = [
-                    "<strong>Tradition of Origin:</strong> Bayajidda Legend",
-                    "<strong>Narrative:</strong> Bayajidda migrated from Baghdad, settled among Kanem-Bornu (married the Mai's daughter), and moved west to slay the sacred snake Sarki in Daura.",
-                    "<strong>Intergroup Connection:</strong> Demonstrates ancient historical ties connecting Hausa states, Kanuri, Gwari, Nupe, and Yoruba peoples."
-                ];
-            } else if (legend === 'kisra') {
-                steps = [
-                    "<strong>Tradition of Origin:</strong> Kisra Legend",
-                    "<strong>Narrative:</strong> Migration myth from Baghdad following religious conflicts, leading to state formations in Borgu and Yorubaland.",
-                    "<strong>Intergroup Connection:</strong> Kisra is acknowledged in tradition as establishing ties with Borgu and considering the Ooni of Ife his brother."
-                ];
-            } else if (legend === 'benin_connections') {
-                steps = [
-                    "<strong>Tradition of Origin:</strong> Yoruba - Benin Dynastic Links",
-                    "<strong>Narrative:</strong> Benin leaders requested a prince from Ife, leading to Prince Oranmiyan establishing the Eweka dynasty in Benin.",
-                    "<strong>Intergroup Connection:</strong> Benin subsequently expanded westward to Lagos (Eko), establishing early royal lineages (King Ado, Asipa)."
-                ];
-            } else {
-                steps = [
-                    "<strong>Tradition of Origin:</strong> Edo - Igbo - Isoko Lineage Links",
-                    "<strong>Narrative:</strong> Historical migrations from the expansion of the Benin Kingdom into neighboring regions.",
-                    "<strong>Intergroup Connection:</strong> The Umu-Ezechima section of the Igbo and sections of the Isoko people directly trace historical ancestry to Edo (Benin)."
-                ];
-            }
-            steps.forEach(s => { const d = document.createElement('div'); d.className = 'step-item'; d.innerHTML = s; list.appendChild(d); });
-        }
-    }
-
-    // FLASHCARD ENGINE
-    const flashcardsDeck = [
-        { concept: "Technological Component of Culture", answer: "Material culture: tools, artifacts, and physical items created to adapt to the environment.", topic: 1 },
-        { concept: "Communal vs. Associational Society", answer: "Communal = tradition-bound with low division of labor; Associational = formal, legalistic with complex division of labor.", topic: 1 },
-        { concept: "Bayajidda Legend", answer: "Origin myth tracing roots to Baghdad, linking Kanuri, Hausa, Nupe, Gwari, and Yoruba peoples.", topic: 2 },
-        { concept: "Spanish Asiento System", answer: "Crown license permit granting European merchants rights to supply enslaved Africans to Spanish New World colonies.", topic: 3 },
-        { concept: "Annexation of Lagos (1861)", answer: "Formal British takeover of Lagos as a Crown Colony following dynastic conflicts and anti-slave trade enforcement.", topic: 3 },
-        { concept: "Royal Niger Company (RNC)", answer: "Chartered in 1886 under Sir George Goldie; held trade monopolies over the Niger until charter revocation in 1899.", topic: 3 },
-        { concept: "Clifford Constitution (1922)", answer: "Introduced the Elective Principle, allowing 4 elected Africans (3 Lagos, 1 Calabar) into the Legislative Council.", topic: 4 },
-        { concept: "Richards Constitution (1947)", answer: "Introduced Regionalism (North, West, East) under a central legislative council.", topic: 4 },
-        { concept: "Lyttleton Constitution (1954)", answer: "Established a full Federal System with regional autonomy, Regional Premiers, and FCT Lagos.", topic: 4 },
-        { concept: "NYM (1935)", answer: "Nigerian Youth Movement: First nationalist movement with a genuine nationwide outlook.", topic: 4 }
-    ];
-
-    let fcIndex = 0, fcIsFlipped = false;
-
-    function loadFlashcard() {
-        const currentCard = flashcardsDeck[fcIndex];
-        fcIsFlipped = false;
-        document.getElementById('fcLabel').innerText = `TOPIC ${currentCard.topic} CONCEPT (Click to Flip)`;
-        document.getElementById('fcContent').innerText = currentCard.concept;
-    }
-
-    function flipCard() {
-        const currentCard = flashcardsDeck[fcIndex];
-        fcIsFlipped = !fcIsFlipped;
-        document.getElementById('fcLabel').innerText = fcIsFlipped ? "EXPLANATION / SIGNIFICANCE" : `TOPIC ${currentCard.topic} CONCEPT (Click to Flip)`;
-        document.getElementById('fcContent').innerText = fcIsFlipped ? currentCard.answer : currentCard.concept;
-    }
-
-    function rateCard(rating) {
-        fcIndex = (fcIndex + 1) % flashcardsDeck.length;
-        loadFlashcard();
-    }
-
-    window.onload = () => {
-        updateMasteryUI();
-        generateQuiz();
-        renderScenarioInputs();
-    };
-</script>
-
-</body>
-</html>
+const DATA={
+"weeks":[
+{"week":1,"title":"Week 1: Conceptual Clarification","summary":"This week introduces key concepts: culture, society, and nation-building. Culture is a complex system with three components: technological, sociological, and ideological. Society is categorised into communal and associational forms. Colonialism significantly impacted Nigerian governance, culture, and families. Nation-building involves mobilising resources for development and national identity.","sections":[["Culture","Culture is a complex system encompassing traditional behaviours, beliefs, practices, and values. It has three fundamental components: <b>Technological</b> (material culture), <b>Sociological</b> (institutions and norms), and <b>Ideological</b> (beliefs and values)."],["Society","Society can be categorised into <b>Communal</b> (small-scale, kinship-based, limited division of labour) and <b>Associational</b> (large-scale, complex, high division of labour) forms. The historical emergence of society is explored, including Karl Marx's communist vision of collective ownership of means of production."],["Colonialism & Nation-Building","Colonialism had significant impacts on African societies, altering governance, culture, and family structures. <b>Nation-building</b> involves mobilising resources for socio-economic and political development and constructing a national identity. Nigeria faces challenges in achieving national integration due to its ethnic diversity."],["Government Initiatives","The government has implemented various initiatives to foster national integration, including the creation of states, the federal character principle, and the National Youth Service Corps (NYSC)."]],"examTraps":["<b>Trap:</b> Confusing Communal with Associational Society. Communal is small-scale/kinship-based; Associational is large-scale/complex.","<b>Trap:</b> Thinking Culture only covers tangible things (like food or clothing). It also includes ideological components (beliefs, values) and sociological components (institutions, norms).","<b>Trap:</b> Forgetting that Nation-building is not just about building infrastructure; it also involves creating a shared national identity."],"takeaways":["Culture = Technological + Sociological + Ideological.","Society = Communal vs Associational.","Colonialism altered governance, culture, and family.","Nation-building = resource mobilisation + national identity.","Challenges: Ethnic diversity, integration."]},
+{"week":2,"title":"Week 2: Intergroup Relations Among Precolonial Nigerian Peoples","summary":"This week explores the interactions between different ethnic groups in Nigeria before colonialism. It uses indicators such as traditions of origin, conflict, trade, and religion to demonstrate the complex relationships that existed.","sections":[["Indicators of Intergroup Relations","There are two major factors for identifying groups: <b>Culture</b> and <b>Language</b>. Inter-group relations is the interaction between two or more distinct linguistic and cultural groups. Nigeria has over 348 language groups and 374 ethnic groups."],["Traditions of Origin","The Kanuri and Hausa share similar origin myths, tracing their roots to Baghdad (Saif for Kanuri, Bayajidda for Hausa). The Kisra legend indicates ties with the Yoruba (Kisra founded Yoruba and Borgu Kingdoms). Other connections include Yoruba-Benin (through Oranmiyan and Eweka), and Igbo-Edo (Umu-Ezechinma)."],["Conflict","Wars were a major indicator of interaction. Examples include: Oyo vs Nupe; Kano vs Katsina (control of trade routes); Jukun conquests (Kanuri, Hausa, Igala); Benin's conquest (Auchi, Idah, Itsekiri, Lagos); Igala vs Nsukka Igbo (territorial)."],["Trade and Commerce","Trade was another key indicator. Examples: Jukun exchanged salt for firewood with the Tiv; Kanem Bornu dominated Trans-Saharan trade; Ibibio land was a trade corridor between hinterland Igbo and coastal Efiks/Ijaw; Hausas traded with Tuaregs, Kanuri, and others."],["Religion","Similarities in indigenous religious practices indicate contact. Examples: male priests/female priestesses, chanting, sacrifices, masquerades. Shared deities: Igunu (Yoruba) and Ndakogbaya (Nupe); Ekpe and Ekpo (Efik origins, popular among Igbo subgroups)."]],"examTraps":["<b>Trap:</b> Thinking pre-colonial Nigeria was completely isolated. The intergroup relations were extensive, as shown by shared traditions of origin, trade, and religion.","<b>Trap:</b> Confusing the Kanuri origin (Saif) with the Hausa origin (Bayajidda). Both trace back to Baghdad.","<b>Trap:</b> Forgetting the role of conflict. Wars were not just destructive; they also forged political ties and increased interaction (e.g., Igala and Nsukka Igbo)."],"takeaways":["Indicators of Intergroup Relations: Traditions of Origin, Conflict, Trade, Religion.","Kanuri origin: Saif; Hausa origin: Bayajidda.","Kisra legend connects Yoruba and Borgu.","Trade: Jukun-Tiv (salt for firewood), Kanem Bornu (Trans-Saharan).","Religion: Igunu (Yoruba) and Ndakogbaya (Nupe)."]},
+{"week":3,"title":"Week 3: The Slave Trade & Legitimate Trade","summary":"This week covers the Trans-Atlantic Slave Trade, its origins, the Spanish Asiento system, its impact on Africa, and the transition to legitimate trade and formal colonial occupation.","sections":[["What is Slavery?","Slaves are persons who were bought, stolen, captured in wars, or pawned with expectations to render services to their master, who exercised full power over them, even their life and death."],["The Trans-Atlantic Slave Trade","The inhuman buying and selling of humans from Africa across the Atlantic to the Americas and Europe to serve as slaves. Described as the <b>Triangular Trade</b>: Africa (source), Americas (destination), Europeans (organisers). The Middle Passage took 5-8 weeks under terrible conditions."],["The Asiento","The Spanish Asiento system was the right to trade in slaves in the New World. Before 1600, the Portuguese were the chief slave traders in West Africa. The Asiento later became transferable to other Europeans."],["Impact of the Slave Trade","The slave trade had a number of implications for Africa: <b>Depopulation</b>, destruction of socio-economic and political structures, unbridled warfare, insecurity, and underdevelopment. Scholars like Walter Rodney and Wole Soyinka argue that slavery and colonialism caused Africa's underdevelopment."],["Legitimate Trade & Annexation of Lagos","By 1840, the Bight of Benin was the last centre of the slave trade, with Lagos as the leading port. Trade in palm oil and ivory expanded. The British annexed Lagos in 1861 to enforce the abolition of the slave trade."],["Company Rule to Colonialism","Companies like the Royal Niger Company (RNC) were granted Royal Charters to administer territories. The RNC's charter was revoked in 1899, leading to formal colonial occupation. The Oil River Protectorate was established in 1884."]],"examTraps":["<b>Trap:</b> Thinking the slave trade was just a European initiative. African chiefs also participated, forcing Europeans to pay taxes at trade ports.","<b>Trap:</b> Confusing the Asiento with a company. It was a license (right) to trade slaves in the New World.","<b>Trap:</b> Forgetting that the abolition of the slave trade led directly to the annexation of Lagos (1861) and eventually colonialism."],"takeaways":["Slave trade = Triangular Trade (Africa, Americas, Europe).","The Asiento = right to trade slaves in the New World.","Impact: Depopulation, underdevelopment, insecurity.","Legitimate trade: Palm oil, ivory.","Annexation of Lagos: 1861.","Royal Niger Company: Granted charter in 1886, revoked in 1899."]},
+{"week":4,"title":"Week 4: Constitutional Development & Political Parties","summary":"This week covers the series of constitutions that shaped Nigeria's political development (Clifford, Richard, Macpherson, Lyttleton) and the formation of political parties (NNDP, NYM, NCNC, AG, NPC) in the quest for independence.","sections":[["The Nigerian Council (1914)","Set up by Lord Lugard. It performed only advisory functions. It was made up of 36 members, including six unofficial members. It laid the foundation for constitutional development in Nigeria."],["Clifford Constitution (1922)","The first written constitution of Nigeria, introduced by Sir Hugh Clifford. It introduced the <b>elective principle</b>, which led to the emergence of political parties and newspapers. <b>Criticism:</b> Governor had veto power; council was predominantly white; laid foundation for disintegration (North not represented)."],["Richard Constitution (1947)","Introduced by Sir Arthur Richards. It introduced <b>regionalism</b> in Nigeria. Provided bicameral legislation in the North, unicameral in others. Central legislative council for the whole of Nigeria. <b>Significance:</b> Tried to unite North and South under one legislative body. <b>Criticism:</b> Locals were not consulted."],["Macpherson Constitution (1951)","Introduced by Sir John Macpherson. He went into wide consultations with Nigerians. Established a central single chamber called the House of Representatives (136 members). <b>Significance:</b> Led to the formation of more political parties (AG, NPC). It did not last beyond three years because of Enahoro's motion for independence."],["Lyttleton Constitution (1954)","Introduced by Sir Oliver Lyttleton (Colonial Secretary). It introduced the <b>federal system</b>; power was shared between central and regional governments. <b>Significance:</b> The judiciary was regionalised; Lagos was made a Federal Capital Territory; ministers controlled their departments; revenue allocation based on derivation."],["Political Parties (NNDP, NYM, NCNC, AG, NPC)","<b>NNDP</b> (1923): Founded by Herbert Macaulay; won Lagos seats. <b>NYM</b> (1935): Began as Lagos Youth Movement; fought for Yaba Higher College affiliation; established Daily Service. <b>NCNC</b> (1944): First president Herbert Macaulay, first GS Nnamdi Azikiwe; published West African Pilot. <b>AG</b> (1951): Formed by Awolowo, Ooni, Ajasin. <b>NPC</b> (1951): Conservative party from Jamiyya Mutanen Arewa; led by Ahmadu Bello."]],"examTraps":["<b>Trap:</b> Confusing the Clifford Constitution (1922) with the Richard Constitution (1947). Clifford introduced the elective principle; Richard introduced regionalism.","<b>Trap:</b> Thinking the Macpherson Constitution lasted long. It did not last beyond three years because of Enahoro's motion for independence.","<b>Trap:</b> Forgetting that the Lyttleton Constitution introduced the federal system and made Lagos a Federal Capital Territory.","<b>Trap:</b> Mixing up the political parties. NNDP was founded by Herbert Macaulay; NCNC also had Macaulay as first president but Azikiwe as first GS."],"takeaways":["Nigerian Council (1914): Advisory only.","Clifford (1922): First written, elective principle.","Richard (1947): Regionalism, tried to unite North & South.","Macpherson (1951): Wide consultations, House of Reps (136), led to more parties.","Lyttleton (1954): Federal system, regionalised judiciary, Lagos as FCT.","Political Parties: NNDP (Macaulay), NYM (national outlook), NCNC (Azikiwe), AG (Awolowo), NPC (Ahmadu Bello)."]}
+],
+"questions":[
+{"week":"1","q":"What are the three components of culture?","opts":["Technological, Sociological, Ideological","Economic, Political, Social","Communal, Associational, National","Physical, Mental, Spiritual"],"a":0,"why":"Culture has three fundamental components: technological (material culture), sociological (institutions and norms), and ideological (beliefs and values)."},
+{"week":"1","q":"What is the difference between communal and associational societies?","opts":["Communal is large-scale; Associational is small-scale","Communal is small-scale and kinship-based; Associational is large-scale and complex","Communal is modern; Associational is traditional","There is no difference"],"a":1,"why":"Communal societies are small-scale and kinship-based, while associational societies are large-scale and complex."},
+{"week":"1","q":"What does nation-building involve?","opts":["Only building infrastructure","Mobilising resources for socio-economic and political development and constructing a national identity","Only creating political parties","Only writing a constitution"],"a":1,"why":"Nation-building involves mobilising resources for socio-economic and political development and constructing a national identity."},
+{"week":"1","q":"What was a major impact of colonialism on African societies?","opts":["It improved family structures","It altered governance, culture, and family structures","It had no impact","It only affected the economy"],"a":1,"why":"Colonialism had significant impacts on African societies, altering governance, culture, and family structures."},
+{"week":"1","q":"Which of the following is a challenge to nation-building in Nigeria?","opts":["Ethnic diversity","Lack of resources","Too much unity","Lack of culture"],"a":0,"why":"Nigeria faces challenges in achieving national integration due to its ethnic diversity."},
+{"week":"1","q":"What did Karl Marx envision for society?","opts":["Capitalist society","Communist society with collective ownership","Feudal society","Associational society"],"a":1,"why":"Karl Marx envisioned a communist society with collective ownership of means of production and wealth distribution."},
+{"week":"1","q":"Which of the following is a government initiative to foster national integration in Nigeria?","opts":["Creation of states","Federal character principle","National Youth Service Corps (NYSC)","All of the above"],"a":3,"why":"The government has implemented various initiatives including creation of states, federal character principle, and NYSC."},
+{"week":"1","q":"What is the ideological component of culture?","opts":["Institutions and norms","Beliefs and values","Material culture","Technology"],"a":1,"why":"The ideological component of culture includes beliefs and values."},
+{"week":"1","q":"Functionalist view sees society as:","opts":["A battlefield","An organism where each component plays a crucial role","A random collection of individuals","A communist system"],"a":1,"why":"Functionalist views society as an organism where each component plays a crucial role."},
+{"week":"1","q":"What is the technological component of culture?","opts":["Beliefs and values","Institutions and norms","Material culture","Language"],"a":2,"why":"The technological component is material culture."},
+{"week":"2","q":"How many ethnic groups are estimated to be in Nigeria?","opts":["250","300","348 language groups and 374 ethnic groups","500"],"a":2,"why":"There are over 348 language groups and 374 ethnic groups in Nigeria."},
+{"week":"2","q":"Which two ethnic groups share similar traditions of origin tracing to Baghdad?","opts":["Yoruba and Igbo","Kanuri and Hausa","Ijaw and Ibibio","Tiv and Jukun"],"a":1,"why":"The Kanuri and Hausa share similar origin myths, tracing their roots to Baghdad (Saif for Kanuri, Bayajidda for Hausa)."},
+{"week":"2","q":"What does the Kisra legend indicate?","opts":["Ties between Yoruba and Borgu","Ties between Igbo and Edo","Ties between Hausa and Kanuri","Ties between Tiv and Jukun"],"a":0,"why":"The Kisra legend indicates that ties existed with the Yoruba, founding the Yoruba and Borgu Kingdoms."},
+{"week":"2","q":"Which of the following is an example of conflict as an indicator of intergroup relations?","opts":["Oyo vs Nupe","Kano vs Katsina","Benin's conquest of Lagos","All of the above"],"a":3,"why":"All of these are examples of conflicts that shaped intergroup relations."},
+{"week":"2","q":"What did the Jukun exchange with the Tiv?","opts":["Salt for firewood","Palm oil for ivory","Gold for slaves","Kola nut for cloth"],"a":0,"why":"The Jukun exchanged salt for firewood from the Tiv."},
+{"week":"2","q":"Which deity is traceable to the Ndakogbaya among the Nupe?","opts":["Igunu deity of the Yoruba","Ekpe of the Efik","Ibini Ukpabi of the Igbo","Bori Cult of the Hausa"],"a":0,"why":"The Igunu deity of the Yoruba is traceable to the Ndakogbaya among the Nupe."},
+{"week":"2","q":"What does 'inter-group relations' mean?","opts":["Interaction within one group","Interaction between two or more distinct linguistic and cultural groups","Isolation of groups","War between groups"],"a":1,"why":"Inter-group relations is the interaction between two or more distinct linguistic and cultural groups."},
+{"week":"2","q":"Which of the following is a shared religious practice across different Nigerian communities?","opts":["Pantheon worship","Nature worship","Masquerades","All of the above"],"a":3,"why":"Similarities in indigenous religious practices include pantheon worship, nature worship, and masquerades."},
+{"week":"2","q":"What does the Bayajidda legend show?","opts":["Historical ties between Gwari, Nupe, and Yoruba","Ties between Kanuri and Hausa","Ties between Igbo and Edo","Ties between Tiv and Jukun"],"a":0,"why":"The Bayajidda legend shows historical ties between Gwari, Nupe, and Yoruba people."},
+{"week":"2","q":"Which Igbo subgroup has a connection with the Edo people?","opts":["Umu-Ezechinma","Nsukka Igbo","Ikwo","Ezza"],"a":0,"why":"A section of the Igbo known as the Umu-Ezechinma have a connection with the Edo people."},
+{"week":"3","q":"What is the Trans-Atlantic Slave Trade?","opts":["Trade between Africa and Asia","Inhuman buying and selling of humans from Africa across the Atlantic to the Americas and Europe","Trade within Africa","Trade between Europe and Asia"],"a":1,"why":"The Trans-Atlantic Slave Trade is the inhuman buying and selling of humans from Africa across the Atlantic to the Americas and Europe."},
+{"week":"3","q":"Which of the following is NOT part of the Triangular Trade?","opts":["Africa (source)","Americas (destination)","Europe (organisers)","Asia (suppliers)"],"a":3,"why":"The Triangular Trade involves Africa (source), Americas (destination), and Europe (organisers). Asia is not part of it."},
+{"week":"3","q":"What was the Spanish Asiento?","opts":["A trading company","The right to trade in slaves in the New World","A type of ship","A slave rebellion"],"a":1,"why":"The Spanish Asiento system was the right to trade in slaves in the New World."},
+{"week":"3","q":"What was a major impact of the slave trade on Africa?","opts":["Population growth","Depopulation and underdevelopment","Improved technology","Political stability"],"a":1,"why":"The slave trade had implications including depopulation, destruction of socio-economic and political structures, and underdevelopment."},
+{"week":"3","q":"When was Lagos annexed by the British?","opts":["1840","1851","1861","1886"],"a":2,"why":"The British annexed Lagos in 1861 to enforce the abolition of the slave trade."},
+{"week":"3","q":"Which company was granted a Royal Charter in 1886?","opts":["Royal Niger Company","Central African Company","River Niger Navigation and Trading Company","Company of African Merchants"],"a":0,"why":"The National African Company (NAC) was granted a Royal Charter in 1886 and became known as the Royal Niger Company."},
+{"week":"3","q":"What does the term 'legitimate trade' refer to?","opts":["Slave trade","Trade in palm oil, ivory, and other commodities","Trade in weapons","Trade in humans"],"a":1,"why":"Legitimate trade refers to trade in palm oil, ivory, and other 'legitimate' commodities after the abolition of the slave trade."},
+{"week":"3","q":"Which of the following scholars argued that Africa's underdevelopment is the outcome of slavery and colonialism?","opts":["Phillip Curtin","Walter Rodney","Paul Lovejoy","Claude Ake"],"a":1,"why":"Walter Rodney shared the view that Africa's underdevelopment is the outcome of slavery and colonialism."},
+{"week":"3","q":"What was the consequence of the Royal Niger Company's charter revocation?","opts":["It became more powerful","It led to formal colonial occupation","It was replaced by another company","Nothing changed"],"a":1,"why":"The revocation of the RNC's charter led to formal colonial occupation."},
+{"week":"3","q":"How long did the Middle Passage take?","opts":["1-2 weeks","5-8 weeks","3-4 months","1 year"],"a":1,"why":"The journey through the Atlantic took 5 to 8 weeks in very terrible conditions."},
+{"week":"4","q":"Which constitution introduced the elective principle in Nigeria?","opts":["Clifford Constitution (1922)","Richard Constitution (1947)","Macpherson Constitution (1951)","Lyttleton Constitution (1954)"],"a":0,"why":"The Clifford Constitution of 1922 introduced the elective principle."},
+{"week":"4","q":"Which constitution introduced regionalism in Nigeria?","opts":["Clifford Constitution","Richard Constitution","Macpherson Constitution","Lyttleton Constitution"],"a":1,"why":"The Richard Constitution of 1947 introduced regionalism in Nigeria."},
+{"week":"4","q":"Which constitution introduced the federal system in Nigeria?","opts":["Clifford Constitution","Richard Constitution","Macpherson Constitution","Lyttleton Constitution"],"a":3,"why":"The Lyttleton Constitution of 1954 introduced the federal system in Nigeria."},
+{"week":"4","q":"Who founded the Nigerian National Democratic Party (NNDP)?","opts":["Nnamdi Azikiwe","Herbert Macaulay","Obafemi Awolowo","Ahmadu Bello"],"a":1,"why":"The NNDP was founded by Herbert Macaulay in 1923."},
+{"week":"4","q":"Which political party was formed in 1944 with Herbert Macaulay as first president and Nnamdi Azikiwe as first General Secretary?","opts":["NNDP","NYM","NCNC","AG"],"a":2,"why":"The National Council of Nigeria and Cameroon (NCNC) was formed in 1944 with Macaulay as first president and Azikiwe as first General Secretary."},
+{"week":"4","q":"Which political party was formed in 1951 by Awolowo, Ooni, and Ajasin?","opts":["NNDP","NYM","NCNC","Action Group"],"a":3,"why":"The Action Group (AG) was formed in 1951 by Awolowo, Ooni, and Ajasin."},
+{"week":"4","q":"Which political party emerged from Jamiyya Mutanen Arewa?","opts":["NNDP","NYM","NCNC","NPC"],"a":3,"why":"The Northern People's Congress (NPC) emerged from a cultural organisation called Jamiyya Mutanen Arewa."},
+{"week":"4","q":"What was the main criticism of Nigerian political parties?","opts":["They were too nationalistic","Ethnocentric syndrome and lack of political ideology","They were too small","They were too many"],"a":1,"why":"Criticisms of Nigerian political parties include ethnocentric syndrome, lack of political ideology, and weakened central government."},
+{"week":"4","q":"Which constitution provided for the position of Premier as the leader of the government in the regions?","opts":["Clifford Constitution","Richard Constitution","Macpherson Constitution","Lyttleton Constitution"],"a":3,"why":"The Lyttleton Constitution of 1954 provided for the position of Premier as the leader of the government in the regions."},
+{"week":"4","q":"What is the significance of the Nigerian Council (1914)?","opts":["It was the first constitution","It laid the foundation for constitutional development in Nigeria","It introduced the elective principle","It introduced the federal system"],"a":1,"why":"The Nigerian Council (1914) laid the foundation for constitutional development in Nigeria, although it only performed advisory functions."}
+],
+"flashcards":[
+["Culture","Encompasses traditional behaviours, beliefs, practices, and values."],
+["Communal Society","Small-scale, kinship-based, limited division of labour."],
+["Associational Society","Large-scale, complex, high division of labour."],
+["Nation-Building","Mobilising resources for development and national identity."],
+["Intergroup Relations","Interaction between two or more distinct linguistic and cultural groups."],
+["Kanuri Origin","Descended from Saif, traced to Baghdad."],
+["Hausa Origin","Descended from Bayajidda, traced to Baghdad."],
+["Triangular Trade","Africa (source), Americas (destination), Europe (organisers)."],
+["Asiento","Right to trade in slaves in the New World."],
+["Legitimate Trade","Trade in palm oil, ivory, and other commodities."],
+["Clifford Constitution","1922, introduced elective principle."],
+["Richard Constitution","1947, introduced regionalism."],
+["Macpherson Constitution","1951, wide consultations, House of Reps."],
+["Lyttleton Constitution","1954, introduced federal system."],
+["NNDP","Founded by Herbert Macaulay in 1923."],
+["NCNC","Formed in 1944, Macaulay president, Azikiwe GS."]
+],
+"matches":[
+["Culture","Technological, Sociological, Ideological"],
+["Communal Society","Small-scale, kinship-based"],
+["Associational Society","Large-scale, complex"],
+["Nation-Building","Resource mobilisation + identity"],
+["Intergroup Relations","Interaction between groups"],
+["Kanuri Origin","Saif"],
+["Hausa Origin","Bayajidda"],
+["Triangular Trade","Africa, Americas, Europe"],
+["Asiento","Right to trade slaves"],
+["Legitimate Trade","Palm oil, ivory"],
+["Clifford Constitution","1922, elective principle"],
+["Richard Constitution","1947, regionalism"],
+["Macpherson Constitution","1951, House of Reps"],
+["Lyttleton Constitution","1954, federal system"],
+["NNDP","Herbert Macaulay"],
+["NCNC","Azikiwe"]
+]
+};
+const $=id=>document.getElementById(id);
+document.querySelectorAll('.nav button[data-tab]').forEach(b=>b.addEventListener('click',()=>{document.querySelectorAll('.nav button[data-tab]').forEach(x=>x.classList.remove('active'));document.querySelectorAll('.panel').forEach(x=>x.classList.remove('active'));b.classList.add('active');$(b.dataset.tab).classList.add('active')}));
+$('theme').onclick=()=>document.body.classList.toggle('dark');
+function renderSummaries(){let term=$('search').value.toLowerCase(),wf=$('weekFilter').value;let arr=DATA.weeks.filter(w=>(wf==='all'||String(w.week)===wf)&&JSON.stringify(w).toLowerCase().includes(term));$('summaryList').innerHTML=arr.map(w=>`<article class="card searchable"><span class="tag">WEEK ${w.week}</span><h3>${w.title}</h3><p>${w.summary}</p>${w.sections.map(s=>`<h4>${s[0]}</h4><p>${s[1]}</p>`).join('')}<div class="callout warning"><b>Worked Examples & Exam Traps</b><ul>${w.examTraps.map(t=>`<li>${t}</li>`).join('')}</ul></div><div class="callout"><b>Exam takeaways</b><ul>${w.takeaways.map(t=>`<li>${t}</li>`).join('')}</ul></div></article>`).join('')||'<p class="muted">No matching topics found.</p>'}
+$('search').addEventListener('input',renderSummaries);$('weekFilter').onchange=renderSummaries;renderSummaries();
+let active=[],missed=[],idx=0,correct=0,done=0;
+function beginQuiz(list){active=list;missed=[];idx=0;correct=0;done=0;$('score').textContent='0';$('answered').textContent='0';$('total').textContent=list.length;updateProgress();renderQuestion()}
+function updateProgress(){$('progress').style.width=(active.length?done/active.length*100:0)+'%'}
+function renderQuestion(){
+ if(!active.length){$('quizArea').innerHTML='<p class="muted">No questions available for this selection.</p>';return}
+ $('quizArea').innerHTML=`<div class="eyebrow">All ${active.length} questions · Answer in any order</div><div id="quizCompletion" class="callout">Select an answer under each question. Your feedback and score update immediately.</div><div id="allQuestions"></div><div id="quizEnd" class="callout" style="display:none"></div>`;
+ $('allQuestions').innerHTML=active.map((q,qi)=>`<div class="quiz-question" data-question="${qi}"><div class="eyebrow">Question ${qi+1} · Week ${q.week}</div><div class="qtitle">${q.q}</div>${q.opts.map((o,i)=>`<button class="option" data-question="${qi}" data-i="${i}">${String.fromCharCode(65+i)}. ${o}</button>`).join('')}<div class="feedback" id="qfeedback${qi}"></div></div>`).join('');
+ document.querySelectorAll('#allQuestions .option').forEach(b=>b.onclick=()=>answer(Number(b.dataset.question),Number(b.dataset.i)));
+}
+function answer(qi,n){
+ let q=active[qi],wrap=document.querySelector(`[data-question="${qi}"]`);
+ if(!wrap||wrap.dataset.answered==='yes')return;
+ wrap.dataset.answered='yes';
+ wrap.querySelectorAll('.option').forEach((b,i)=>{b.disabled=true;if(i===q.a)b.classList.add('correct');if(i===n&&n!==q.a)b.classList.add('wrong')});
+ let ok=n===q.a;if(ok)correct++;else missed.push(q);done++;
+ $('score').textContent=correct;$('answered').textContent=done;updateProgress();
+ let fb=$('qfeedback'+qi);fb.className='quiz-feedback '+(ok?'good':'bad');fb.textContent=(ok?'✓ Correct — ':'✕ Not quite — ')+q.why;
+ $('quizCompletion').textContent=`${done} of ${active.length} answered · ${correct} correct · ${missed.length} to review`;
+ if(done===active.length){let end=$('quizEnd');end.style.display='block';end.innerHTML=`<b>Quiz complete: ${correct} / ${active.length}</b><br>${missed.length} question(s) to review. ${missed.length?'Use "Retry missed" above to practise them again.':'Excellent work — you got every question right!'}`;}
+}
+let lastList=[];function restartCurrent(){beginQuiz(lastList)}
+$('startQuiz').onclick=()=>{let v=$('quizSelect').value;lastList=v==='all'?DATA.questions.slice(0,40):DATA.questions.filter(q=>String(q.week)===v);beginQuiz(lastList)};
+$('retryMissed').onclick=()=>{if(!missed.length){$('quizArea').innerHTML='<p class="muted">No missed questions yet. Complete a quiz first.</p>';return}lastList=missed.slice();beginQuiz(lastList)};
+function setupMatches(){
+ let pairs=DATA.matches.map((p,i)=>({id:i,left:p[0],right:p[1]}));
+ let items=[...pairs.map(p=>({id:p.id,side:'l',text:p.left})),...pairs.map(p=>({id:p.id,side:'r',text:p.right}))].sort(()=>Math.random()-.5);
+ let chosen=null,matched=new Set(),locked=false;
+ $('matchArea').innerHTML=items.map((x,i)=>`<button class="match" data-id="${x.id}" data-side="${x.side}" data-key="${i}">${x.text}</button>`).join('');
+ $('matchScore').textContent='0 / 16';$('matchFeedback').textContent='Choose a term, then its definition. Correct pairs turn green; incorrect choices shake.';
+ document.querySelectorAll('.match').forEach(b=>b.onclick=()=>{
+  if(locked||b.classList.contains('done'))return;
+  let item=items[Number(b.dataset.key)];
+  if(!chosen){chosen=item;b.classList.add('selected');return}
+  if(chosen.id===item.id&&chosen.side!==item.side){
+   matched.add(item.id);
+   document.querySelectorAll(`.match[data-id="${item.id}"]`).forEach(x=>{x.classList.remove('selected');x.classList.add('done','pop')});
+   $('matchFeedback').textContent='✓ Correct match! Both cards are now marked green.';
+   $('matchScore').textContent=matched.size+' / 16';
+   if(matched.size===16)$('matchFeedback').textContent='🏆 Excellent — all sixteen pairs matched!';
+   chosen=null;return;
+  }
+  if(chosen===item){b.classList.remove('selected');chosen=null;return}
+  let first=document.querySelector(`.match[data-id="${chosen.id}"][data-side="${chosen.side}"]`);
+  locked=true;b.classList.add('selected');
+  [first,b].forEach(x=>{if(x){x.classList.remove('selected');x.classList.add('shake')}});
+  $('matchFeedback').textContent='✕ Not a match. The cards will shake — try a different pairing.';
+  setTimeout(()=>{[first,b].forEach(x=>{if(x)x.classList.remove('shake','selected')});chosen=null;locked=false;},480);
+ });
+}
+$('resetMatch').onclick=setupMatches;setupMatches();
+const keys=[['Culture','Technological + Sociological + Ideological'],['Communal Society','Small-scale, kinship-based'],['Associational Society','Large-scale, complex'],['Nation-Building','Resource mobilisation + identity'],['Intergroup Relations','Interaction between groups'],['Kanuri Origin','Saif'],['Hausa Origin','Bayajidda'],['Triangular Trade','Africa, Americas, Europe'],['Asiento','Right to trade slaves'],['Legitimate Trade','Palm oil, ivory'],['Clifford Constitution','1922, elective principle'],['Richard Constitution','1947, regionalism'],['Macpherson Constitution','1951, House of Reps'],['Lyttleton Constitution','1954, federal system'],['NNDP','Herbert Macaulay'],['NCNC','Azikiwe'],['NYM','Daily Service'],['AG','Awolowo'],['NPC','Ahmadu Bello'],['Royal Niger Company','1886 charter']];
+$('keyGrid').innerHTML=keys.map(k=>`<div class="key"><b>${k[0]}</b>${k[1]}</div>`).join('');
+let fi=0,flipped=false;function showFlash(){$('flashCount').textContent=(fi+1)+' / '+DATA.flashcards.length;$('flashcard').textContent=flipped?DATA.flashcards[fi][1]:DATA.flashcards[fi][0];$('flipFlash').textContent=flipped?'Show term':'Reveal answer'}
+$('flipFlash').onclick=()=>{flipped=!flipped;showFlash()};$('nextFlash').onclick=()=>{fi=(fi+1)%DATA.flashcards.length;flipped=false;showFlash()};$('prevFlash').onclick=()=>{fi=(fi-1+DATA.flashcards.length)%DATA.flashcards.length;flipped=false;showFlash()};showFlash();
+</script></body></html>
