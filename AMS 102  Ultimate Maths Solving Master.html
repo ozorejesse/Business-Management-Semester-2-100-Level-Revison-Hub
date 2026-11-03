@@ -1,0 +1,1247 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>AMS 102 | Ultimate Maths Solving Master</title>
+<script>
+window.MathJax = {
+  tex: { inlineMath: [['$', '$'], ['\\(', '\\)']] },
+  svg: { fontCache: 'global' }
+};
+</script>
+<script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&family=Playfair+Display:wght@600;700&display=swap');
+:root{--ink:#172b3a;--muted:#667887;--blue:#173e5b;--blue2:#2c6385;--pale:#eef4f7;--paper:#fff;--line:#dce5ea;--accent:#a77d65;--shadow:0 10px 28px rgba(26,52,69,.09);--success:#27834c;--success-bg:#e6f4eb;--danger:#c43d32;--danger-bg:#fff0ed;--hint:#b45309;--hint-bg:#fef3c7}
+*{box-sizing:border-box}
+body{margin:0;background:#f3f5f6;color:var(--ink);font-family:'DM Sans',Arial,sans-serif;line-height:1.65}
+.hero{background:linear-gradient(135deg,#725d50,#9a7a64 55%,#5b493f);color:white;padding:34px max(22px,calc((100% - 1400px)/2)) 38px;position:relative;overflow:hidden}
+.hero:after{content:"";position:absolute;inset:0;background:repeating-linear-gradient(55deg,transparent 0 36px,rgba(255,255,255,.045) 37px 39px);pointer-events:none}
+.hero-inner{max-width:1400px;margin:auto;position:relative;z-index:1}
+.brand{font-size:12px;letter-spacing:1.6px;text-transform:uppercase;opacity:.9}
+.hero h1{font:700 clamp(30px,5vw,48px) 'Playfair Display',serif;line-height:1.12;margin:30px 0 10px}
+.hero p{max-width:700px;color:#f5eae2;margin:0}
+.topbar{background:white;border-bottom:1px solid var(--line);position:sticky;top:0;z-index:10}
+.nav{max-width:1400px;margin:auto;display:flex;gap:6px;padding:10px 16px;overflow-x:auto}
+.nav button,.theme{border:0;background:transparent;color:#506575;padding:10px 13px;border-radius:9px;font:600 13px 'DM Sans';white-space:nowrap;cursor:pointer}
+.nav button.active{background:var(--pale);color:var(--blue)}
+.theme{margin-left:auto;border:1px solid var(--line)}
+.layout{max-width:1400px;margin:28px auto;padding:0 18px 70px;display:grid;grid-template-columns:280px 1fr;gap:24px;align-items:start}
+.sidebar{background:var(--paper);border:1px solid var(--line);border-radius:15px;padding:20px;box-shadow:var(--shadow);position:sticky;top:80px;max-height:calc(100vh - 100px);overflow-y:auto}
+.sidebar h3{margin:0 0 12px;font-size:16px;color:var(--blue);border-bottom:1px solid var(--line);padding-bottom:8px}
+.week-btn{display:block;width:100%;text-align:left;padding:10px 12px;margin-bottom:4px;border:0;background:transparent;border-radius:8px;color:var(--ink);font:500 13px 'DM Sans';cursor:pointer;transition:background .15s}
+.week-btn:hover{background:#f3f6f8}
+.week-btn.active{background:var(--pale);color:var(--blue);font-weight:700}
+.formula-box{margin-top:20px;padding-top:15px;border-top:2px solid var(--line)}
+.formula-box h4{margin:0 0 10px;font-size:13px;text-transform:uppercase;letter-spacing:1px;color:var(--accent)}
+.formula-box p{font-size:14px;margin:8px 0;color:var(--blue);background:#f8f3ef;padding:8px;border-radius:6px;transition:background .3s}
+.formula-box p.highlight{background:#e0f2fe;border-left:4px solid var(--blue2)}
+.main-area{min-width:0}
+.card{background:var(--paper);border:1px solid var(--line);border-radius:15px;padding:30px;box-shadow:var(--shadow);margin-bottom:20px}
+.tag{display:inline-block;background:#f3eae4;color:#795944;border-radius:30px;padding:4px 10px;font-size:11px;font-weight:700;margin-bottom:15px}
+.qtitle{font-size:20px;font-weight:700;margin-bottom:20px;line-height:1.4}
+.step-container{margin-top:20px}
+.step{background:#f7f9fa;border:1px solid var(--line);border-radius:10px;padding:15px 20px;margin-bottom:12px;animation:fadeIn .3s ease}
+.step-why{font-size:13px;color:var(--muted);margin-bottom:10px;font-style:italic}
+.step-math{font-size:18px;color:var(--blue);overflow-x:auto}
+.step-final{background:var(--success-bg);border-color:var(--success);border-left:4px solid var(--success)}
+.step-final .step-why{color:#14532d;font-weight:600}
+.final-answer-card{background:linear-gradient(135deg, var(--success-bg), #d1fae5);border:3px solid var(--success);border-radius:15px;padding:25px;margin-top:25px;text-align:center;animation:popIn .5s ease}
+.final-answer-card h3{margin:0 0 10px;color:var(--success);font-size:16px;text-transform:uppercase;letter-spacing:2px}
+.final-answer-card .answer-value{font-size:28px;font-weight:800;color:#14532d;overflow-x:auto}
+.final-answer-card .completed-badge{display:inline-block;background:var(--success);color:white;padding:6px 16px;border-radius:30px;font-size:12px;font-weight:700;margin-top:15px;letter-spacing:1px}
+.btn{background:var(--blue);color:white;border:0;border-radius:9px;padding:12px 24px;font-weight:700;cursor:pointer;font-size:14px;transition:opacity .2s}
+.btn:hover{opacity:.9}
+.btn:disabled{opacity:.4;cursor:not-allowed}
+.btn.secondary{background:#eaf0f3;color:var(--blue)}
+.btn.hint{background:var(--hint);color:white;margin-left:8px}
+.btn.success{background:var(--success)}
+.btn-row{display:flex;gap:10px;flex-wrap:wrap;margin-top:20px}
+.statrow{display:flex;gap:12px;flex-wrap:wrap;margin-bottom:20px}
+.stat{background:#f2f6f8;border-radius:10px;padding:12px 20px;min-width:120px}
+.stat strong{display:block;font-size:24px;color:var(--blue)}
+.stat span{font-size:12px;color:var(--muted)}
+.progress-bar{height:8px;background:#e8eef1;border-radius:9px;overflow:hidden;margin-bottom:20px}
+.progress-bar span{display:block;height:100%;background:var(--blue);width:0;transition:width .3s}
+.choice-grid{display:grid;grid-template-columns:1fr;gap:10px;margin-top:15px}
+.choice-btn{background:var(--paper);border:2px solid var(--line);border-radius:10px;padding:15px 20px;text-align:left;cursor:pointer;font:inherit;color:var(--ink);transition:all .2s;font-size:16px}
+.choice-btn:hover:not(:disabled){border-color:var(--blue2);background:#f0f9ff}
+.choice-btn.correct{border-color:var(--success);background:var(--success-bg);pointer-events:none}
+.choice-btn.wrong{border-color:var(--danger);background:var(--danger-bg);animation:shake .3s}
+.choice-feedback{margin-top:15px;padding:15px;border-radius:10px;font-weight:600;display:none;animation:fadeIn .3s}
+.choice-feedback.good{background:var(--success-bg);color:#14532d;display:block}
+.choice-feedback.bad{background:var(--danger-bg);color:#7f1d1d;display:block}
+@keyframes fadeIn{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
+@keyframes popIn{0%{opacity:0;transform:scale(.9)}70%{transform:scale(1.03)}100%{opacity:1;transform:scale(1)}}
+@keyframes shake{0%,100%{transform:translateX(0)}25%{transform:translateX(-6px)}75%{transform:translateX(6px)}}
+body.dark{--ink:#e8eef2;--muted:#a9b7c0;--paper:#1d2b35;--line:#344650;--pale:#263b49;background:#121d25;color:var(--ink)}
+body.dark .topbar{background:#1d2b35}
+body.dark .sidebar{background:#1d2b35}
+body.dark .week-btn:hover{background:#263b49}
+body.dark .week-btn.active{background:#263b49;color:#7dd3fc}
+body.dark .step{background:#263944;border-color:#40535e}
+body.dark .step-final{background:#174b34;border-color:#4ade80}
+body.dark .stat{background:#263944}
+body.dark .formula-box p{background:#342e2a;color:#e8eef2}
+body.dark .formula-box p.highlight{background:#174b63;color:#e0f2fe}
+body.dark .btn.secondary{background:#263944;color:#e8eef2}
+body.dark .choice-btn{background:#263944;color:var(--ink);border-color:#40535e}
+body.dark .choice-btn:hover:not(:disabled){border-color:#7dd3fc;background:#1e3a4a}
+body.dark .choice-btn.correct{background:#174b34;border-color:#4ade80}
+body.dark .choice-btn.wrong{background:#5b2525;border-color:#fb7185}
+body.dark .final-answer-card{background:linear-gradient(135deg, #174b34, #064e3b);border-color:#4ade80}
+body.dark .final-answer-card h3{color:#4ade80}
+body.dark .final-answer-card .answer-value{color:#dcfce7}
+footer{text-align:center;color:var(--muted);font-size:12px;padding:30px}
+@media(max-width:900px){.layout{grid-template-columns:1fr}.sidebar{position:static;max-height:none}.nav button{padding:8px}}
+</style>
+</head>
+<body>
+<header class="hero">
+  <div class="hero-inner">
+    <div class="brand">MIVA · AMS 102 · BASIC MATHEMATICS</div>
+    <h1>Maths Solving<br>Master</h1>
+    <p>The ultimate interactive tutor. Make a choice at every step, learn from mistakes, and master every formula from Week 1 to Week 12.</p>
+  </div>
+</header>
+<div class="topbar">
+  <nav class="nav">
+    <button class="active" id="tab-master">Solving Environment</button>
+    <button class="theme" id="theme">☾ Dark Mode</button>
+  </nav>
+</div>
+<main class="layout">
+  <aside class="sidebar">
+    <h3>Select a Topic</h3>
+    <div id="weekList"></div>
+    <div class="formula-box">
+      <h4>Key Formula</h4>
+      <div id="formulaDisplay"><p>Select a topic to see the formula.</p></div>
+    </div>
+  </aside>
+  <section class="main-area">
+    <div class="statrow">
+      <div class="stat"><strong id="solvedCount">0</strong><span>Solved</span></div>
+      <div class="stat"><strong id="streakCount">0</strong><span>Streak 🔥</span></div>
+      <div class="stat"><strong id="currentWeekDisplay">-</strong><span>Topic</span></div>
+      <div class="stat"><strong id="progressText">0%</strong><span>Progress</span></div>
+    </div>
+    <div class="progress-bar"><span id="progressBarFill"></span></div>
+    
+    <div class="card" id="solverCard">
+      <div class="tag" id="qTag">WEEK 1</div>
+      <div class="qtitle" id="qTitle">Select a topic from the sidebar to begin.</div>
+      
+      <div id="stepHistory" class="step-container"></div>
+      
+      <div id="choiceContainer" style="display:none">
+        <h4 id="choicePrompt" style="color:var(--blue2);margin-bottom:10px;"></h4>
+        <div class="choice-grid" id="choiceGrid"></div>
+        <div class="choice-feedback" id="choiceFeedback"></div>
+      </div>
+
+      <div id="finalAnswerCard"></div>
+      
+      <div class="btn-row" id="controls" style="display:none;margin-top:20px">
+        <button class="btn hint" id="hintBtn">💡 Hint</button>
+        <button class="btn secondary" id="newQuestionBtn">Next Question ➔</button>
+      </div>
+    </div>
+  </section>
+</main>
+<footer>AMS 102 · Basic Mathematics · MIVA Ultimate Solving Master</footer>
+<script>
+// ============================================================
+// ULTIMATE DATABASE (Choice-Based Micro-Steps)
+// ============================================================
+const DATABASE = {
+  "1": {
+    title: "Week 1: Real Numbers & Equations",
+    formula: ["Linear: $ax + b = 0$", "Quadratic: $x = \\frac{-b \\pm \\sqrt{b^2 - 4ac}}{2a}$"],
+    questions: [
+      {
+        q: "Solve: $3x + 2(x - 1) = 6x - 10$",
+        finalAnswer: "$x = 8$",
+        steps: [
+          {
+            prompt: "What is the first step to simplify the left side?",
+            choices: [
+              {text: "Divide both sides by 3", correct: false, why: "We can't divide until the bracket is removed. Start by expanding."},
+              {text: "Expand the bracket: $2(x-1)$", correct: true, why: "Use the distributive law: $2 \\times x = 2x$ and $2 \\times -1 = -2$."},
+              {text: "Add 10 to both sides", correct: false, why: "Simplify the left side first before moving terms around."}
+            ],
+            highlightFormula: 0
+          },
+          {
+            prompt: "After expanding, we get $3x + 2x - 2 = 6x - 10$. What is next?",
+            choices: [
+              {text: "Combine like terms ($3x + 2x = 5x$)", correct: true, why: "Combine the $x$ terms on the left: $3x + 2x = 5x$."},
+              {text: "Subtract $6x$ from both sides", correct: false, why: "Simplify the left side first. You have $3x+2x$ waiting to be combined."}
+            ],
+            highlightFormula: 0
+          },
+          {
+            prompt: "We now have $5x - 2 = 6x - 10$. How do we isolate $x$?",
+            choices: [
+              {text: "Subtract $5x$ from both sides", correct: true, why: "Moving all $x$ terms to one side: $5x - 5x - 2 = 6x - 5x - 10 \\Rightarrow -2 = x - 10$."},
+              {text: "Add 2 to both sides", correct: false, why: "That moves the constant, not the $x$ term. Move the $x$ term first."}
+            ],
+            highlightFormula: 0
+          },
+          {
+            prompt: "We have $-2 = x - 10$. What is the final step?",
+            choices: [
+              {text: "Add 10 to both sides", correct: true, why: "$-2 + 10 = x - 10 + 10 \\Rightarrow 8 = x$."},
+              {text: "Subtract 10 from both sides", correct: false, why: "You need to undo the $-10$ by adding 10."}
+            ],
+            highlightFormula: 0
+          }
+        ]
+      },
+      {
+        q: "Solve: $2x^2 + 5x - 3 = 0$",
+        finalAnswer: "$x = \\frac{1}{2}$ or $x = -3$",
+        steps: [
+          {
+            prompt: "What are the coefficients $a, b, c$?",
+            choices: [
+              {text: "$a=2, b=5, c=-3$", correct: true, why: "Compare with $ax^2 + bx + c = 0$."},
+              {text: "$a=2, b=5, c=3$", correct: false, why: "The constant term is $-3$, not $+3$."},
+              {text: "$a=1, b=5, c=-3$", correct: false, why: "The coefficient of $x^2$ is $2$, not $1$."}
+            ],
+            highlightFormula: 1
+          },
+          {
+            prompt: "Which formula should we use?",
+            choices: [
+              {text: "$x = \\frac{-b \\pm \\sqrt{b^2 - 4ac}}{2a}$", correct: true, why: "The quadratic formula applies to any equation of the form $ax^2 + bx + c = 0$."},
+              {text: "$x = -\\frac{b}{a}$", correct: false, why: "This is only for linear equations ($ax + b = 0$)."}
+            ],
+            highlightFormula: 1
+          },
+          {
+            prompt: "Substitute the values into the discriminant $b^2 - 4ac$. What is the value?",
+            choices: [
+              {text: "$25 - 24 = 1$", correct: false, why: "Check the sign: $4(2)(-3) = -24$. The formula has a minus sign, so $-(-24) = +24$."},
+              {text: "$25 + 24 = 49$", correct: true, why: "$5^2 - 4(2)(-3) = 25 + 24 = 49$."}
+            ],
+            highlightFormula: 1
+          },
+          {
+            prompt: "The discriminant is 49. What is the final simplified form?",
+            choices: [
+              {text: "$x = \\frac{-5 \\pm 7}{4}$", correct: true, why: "$\\sqrt{49} = 7$, so $x = \\frac{-5 \\pm 7}{4}$."},
+              {text: "$x = \\frac{-5 \\pm 49}{4}$", correct: false, why: "You forgot to take the square root of 49."}
+            ],
+            highlightFormula: 1
+          }
+        ]
+      }
+    ]
+  },
+  "2": {
+    title: "Week 2: Surds, Indices & Logs",
+    formula: ["$a^m \\times a^n = a^{m+n}$", "$\\log_a(bc) = \\log_a b + \\log_a c$", "$\\sqrt{ab} = \\sqrt{a}\\sqrt{b}$"],
+    questions: [
+      {
+        q: "Simplify: $\\sqrt{18}$",
+        finalAnswer: "$3\\sqrt{2}$",
+        steps: [
+          {
+            prompt: "What is the largest perfect square that divides 18?",
+            choices: [
+              {text: "4", correct: false, why: "$18 \\div 4 = 4.5$, which is not an integer."},
+              {text: "9", correct: true, why: "$18 = 9 \\times 2$, and 9 is a perfect square."},
+              {text: "2", correct: false, why: "2 is prime, not a perfect square."}
+            ],
+            highlightFormula: 2
+          },
+          {
+            prompt: "Using $\\sqrt{ab} = \\sqrt{a}\\sqrt{b}$, what is $\\sqrt{18}$?",
+            choices: [
+              {text: "$3\\sqrt{2}$", correct: true, why: "$\\sqrt{9 \\times 2} = \\sqrt{9} \\times \\sqrt{2} = 3\\sqrt{2}$."},
+              {text: "$2\\sqrt{3}$", correct: false, why: "Check: $(2\\sqrt{3})^2 = 4 \\times 3 = 12$, not 18."}
+            ],
+            highlightFormula: 2
+          }
+        ]
+      },
+      {
+        q: "Evaluate: $27^{\\frac{5}{3}}$",
+        finalAnswer: "$243$",
+        steps: [
+          {
+            prompt: "What does the denominator of the fraction power (3) tell us to do?",
+            choices: [
+              {text: "Take the cube root", correct: true, why: "$a^{m/n} = (\\sqrt[n]{a})^m$. The denominator is the root."},
+              {text: "Cube the number", correct: false, why: "The denominator is the root, not the power. The numerator is the power."}
+            ],
+            highlightFormula: 0
+          },
+          {
+            prompt: "We have $\\sqrt[3]{27} = 3$. What is the final step?",
+            choices: [
+              {text: "Raise 3 to the power of 5", correct: true, why: "The numerator (5) is the power: $3^5 = 243$."},
+              {text: "Multiply 3 by 5", correct: false, why: "The numerator is an exponent, not a multiplier. It means $3 \\times 3 \\times 3 \\times 3 \\times 3$."}
+            ],
+            highlightFormula: 0
+          }
+        ]
+      }
+    ]
+  },
+  "3": {
+    title: "Week 3: Polynomials & Partial Fractions",
+    formula: ["Remainder Theorem: Remainder $= f(a)$", "Partial Fractions: $\\frac{P(x)}{(x-a)(x-b)} = \\frac{A}{x-a} + \\frac{B}{x-b}$"],
+    questions: [
+      {
+        q: "Find the remainder when $f(x) = 3x^4 + 2x^3 - 5x^2 + 7x - 9$ is divided by $(x-1)$.",
+        finalAnswer: "Remainder $= -2$",
+        steps: [
+          {
+            prompt: "What value of $x$ makes the divisor $(x-1)$ equal to zero?",
+            choices: [
+              {text: "$x = 1$", correct: true, why: "Set $x-1=0 \\Rightarrow x=1$."},
+              {text: "$x = -1$", correct: false, why: "Set the divisor $x-1=0$, so $x=1$, not $-1$."}
+            ],
+            highlightFormula: 0
+          },
+          {
+            prompt: "What is the value of $f(1)$?",
+            choices: [
+              {text: "$3 + 2 - 5 + 7 - 9 = -2$", correct: true, why: "Substitute $x=1$ into the polynomial and simplify."},
+              {text: "$3 + 2 + 5 + 7 + 9 = 26$", correct: false, why: "Careful with the signs: $(-5)^2 = 25$, but $(1)^2 = 1$, so $-5(1)^2 = -5$."}
+            ],
+            highlightFormula: 0
+          }
+        ]
+      },
+      {
+        q: "Express $\\frac{2x-5}{(x+3)(x-2)}$ in partial fractions.",
+        finalAnswer: "$\\frac{11}{5(x+3)} - \\frac{1}{5(x-2)}$",
+        steps: [
+          {
+            prompt: "What is the correct setup?",
+            choices: [
+              {text: "$\\frac{A}{x+3} + \\frac{B}{x-2}$", correct: true, why: "For distinct linear factors, we use $\\frac{A}{x+3}$ and $\\frac{B}{x-2}$."},
+              {text: "$\\frac{A}{x+3} + \\frac{Bx+C}{x-2}$", correct: false, why: "The denominator is linear, not quadratic."}
+            ],
+            highlightFormula: 1
+          },
+          {
+            prompt: "Set $x=2$ to find B. What is B?",
+            choices: [
+              {text: "$B = -\\frac{1}{5}$", correct: true, why: "$2(2)-5 = B(2+3) \\Rightarrow -1 = 5B \\Rightarrow B = -\\frac{1}{5}$."},
+              {text: "$B = \\frac{1}{5}$", correct: false, why: "Check the sign: $2(2)-5 = -1$, and $-1/5$ is negative."}
+            ],
+            highlightFormula: 1
+          },
+          {
+            prompt: "Set $x=-3$ to find A. What is A?",
+            choices: [
+              {text: "$A = \\frac{11}{5}$", correct: true, why: "$2(-3)-5 = A(-3-2) \\Rightarrow -11 = -5A \\Rightarrow A = \\frac{11}{5}$."},
+              {text: "$A = -\\frac{11}{5}$", correct: false, why: "Two negatives cancel: $-11 = -5A$ means $A$ is positive."}
+            ],
+            highlightFormula: 1
+          }
+        ]
+      }
+    ]
+  },
+  "4": {
+    title: "Week 4: Inequalities & Fields",
+    formula: ["$|x| < a \\Rightarrow -a < x < a$", "$|x| > a \\Rightarrow x < -a$ or $x > a$"],
+    questions: [
+      {
+        q: "Solve: $|3x + 1| < 2$",
+        finalAnswer: "$-1 < x < \\frac{1}{3}$",
+        steps: [
+          {
+            prompt: "What is the correct interpretation of $|3x+1| < 2$?",
+            choices: [
+              {text: "$-2 < 3x+1 < 2$", correct: true, why: "The rule is $|x| < a \\Rightarrow -a < x < a$."},
+              {text: "$3x+1 < 2$ or $3x+1 > -2$", correct: false, why: "The 'or' rule applies to $>$, not $<$."}
+            ],
+            highlightFormula: 0
+          },
+          {
+            prompt: "After subtracting 1, we get $-3 < 3x < 1$. What is the final step?",
+            choices: [
+              {text: "Divide all parts by 3: $-1 < x < \\frac{1}{3}$", correct: true, why: "Divide by 3 to isolate $x$."},
+              {text: "Divide all parts by 3 and flip the inequality", correct: false, why: "Only flip the inequality when dividing by a negative number."}
+            ],
+            highlightFormula: 0
+          }
+        ]
+      },
+      {
+        q: "Solve: $2x^2 - 3x - 5 < 0$",
+        finalAnswer: "$-1 < x < \\frac{5}{2}$",
+        steps: [
+          {
+            prompt: "Factorise $2x^2 - 3x - 5 = 0$. What are the roots?",
+            choices: [
+              {text: "$x = -1$ and $x = \\frac{5}{2}$", correct: true, why: "Factorise as $(x+1)(2x-5) = 0$."},
+              {text: "$x = 1$ and $x = -\\frac{5}{2}$", correct: false, why: "Check the signs: $(x+1)$ gives $x=-1$."}
+            ],
+            highlightFormula: 1
+          },
+          {
+            prompt: "Since the inequality is '< 0', where is the solution?",
+            choices: [
+              {text: "Between the roots: $-1 < x < \\frac{5}{2}$", correct: true, why: "For a positive quadratic '< 0', the solution is between the roots."},
+              {text: "Outside the roots", correct: false, why: "That would be for '> 0'."}
+            ],
+            highlightFormula: 1
+          }
+        ]
+      }
+    ]
+  },
+  "5": {
+    title: "Week 5: Permutation & Combination",
+    formula: ["$^nP_r = \\frac{n!}{(n-r)!}$", "$^nC_r = \\frac{n!}{r!(n-r)!}$", "Circular: $(n-1)!$"],
+    questions: [
+      {
+        q: "How many ways can 5 students be selected from 20 for presentations (order matters)?",
+        finalAnswer: "$1,860,480$ ways",
+        steps: [
+          {
+            prompt: "Should we use permutations or combinations?",
+            choices: [
+              {text: "Permutations", correct: true, why: "Order matters (who goes first, second, etc.), so use permutations."},
+              {text: "Combinations", correct: false, why: "Order doesn't matter for combinations. Here, it does."}
+            ],
+            highlightFormula: 0
+          },
+          {
+            prompt: "What is the correct formula to use?",
+            choices: [
+              {text: "$^{20}P_5 = \\frac{20!}{15!}$", correct: true, why: "$n=20, r=5$, so $\\frac{20!}{(20-5)!} = \\frac{20!}{15!}$."},
+              {text: "$^{20}C_5 = \\frac{20!}{5!15!}$", correct: false, why: "That's the combination formula. Order matters here."}
+            ],
+            highlightFormula: 0
+          },
+          {
+            prompt: "What is the final answer?",
+            choices: [
+              {text: "$1,860,480$", correct: true, why: "$20 \\times 19 \\times 18 \\times 17 \\times 16 = 1,860,480$."},
+              {text: "$15,504$", correct: false, why: "That's $^{20}C_5$, not $^{20}P_5$."}
+            ],
+            highlightFormula: 0
+          }
+        ]
+      },
+      {
+        q: "How many distinct ways can MATHEMATICS be arranged?",
+        finalAnswer: "$\\frac{11!}{8} = 4,989,600$",
+        steps: [
+          {
+            prompt: "How many total letters does MATHEMATICS have?",
+            choices: [
+              {text: "11", correct: true, why: "M-A-T-H-E-M-A-T-I-C-S = 11 letters."},
+              {text: "10", correct: false, why: "Count carefully: there are 11 letters."}
+            ],
+            highlightFormula: 1
+          },
+          {
+            prompt: "Which letters are repeated?",
+            choices: [
+              {text: "M, A, T (each twice)", correct: true, why: "M(2), A(2), T(2)."},
+              {text: "M, A (each twice) and T (once)", correct: false, why: "T appears twice as well (in MATHEMA-T-ICS)."}
+            ],
+            highlightFormula: 1
+          },
+          {
+            prompt: "What is the correct arrangement formula?",
+            choices: [
+              {text: "$\\frac{11!}{2!2!2!}$", correct: true, why: "Divide by the factorials of the repeated letters."},
+              {text: "$\\frac{11!}{3!}$", correct: false, why: "There are three different repeated letters, each with count 2."}
+            ],
+            highlightFormula: 1
+          }
+        ]
+      }
+    ]
+  },
+  "5.2": {
+    title: "Week 5: Binomial Theorem",
+    formula: ["$T_{r+1} = ^nC_r x^{n-r}y^r$", "$(x+y)^n = \\sum_{r=0}^{n} ^nC_r x^{n-r}y^r$"],
+    questions: [
+      {
+        q: "What is the 3rd term in $(x+y)^5$?",
+        finalAnswer: "$10x^3y^2$",
+        steps: [
+          {
+            prompt: "For the 3rd term, what is the value of $r$?",
+            choices: [
+              {text: "$r = 2$", correct: true, why: "The $r+1$ term is the 3rd term. So $r+1=3 \\Rightarrow r=2$."},
+              {text: "$r = 3$", correct: false, why: "That would be the 4th term."}
+            ],
+            highlightFormula: 0
+          },
+          {
+            prompt: "What is the coefficient $^5C_2$?",
+            choices: [
+              {text: "10", correct: true, why: "$^5C_2 = \\frac{5!}{2!3!} = 10$."},
+              {text: "5", correct: false, why: "That's $^5C_1$ or $^5C_4$, not $^5C_2$."}
+            ],
+            highlightFormula: 0
+          },
+          {
+            prompt: "What is the final term?",
+            choices: [
+              {text: "$10x^3y^2$", correct: true, why: "$x^{5-2} = x^3$ and $y^2 = y^2$, so $10x^3y^2$."},
+              {text: "$10x^2y^3$", correct: false, why: "The powers of $x$ should sum with the powers of $y$ to 5."}
+            ],
+            highlightFormula: 0
+          }
+        ]
+      }
+    ]
+  },
+  "6": {
+    title: "Week 6: Sequences & Series",
+    formula: ["AP: $a_n = a + (n-1)d$", "AP Sum: $S_n = \\frac{n}{2}[2a + (n-1)d]$", "GP: $a_n = ar^{n-1}$", "Infinite GP: $S_\\infty = \\frac{a}{1-r}$"],
+    questions: [
+      {
+        q: "Find the 10th term of the AP: 3, 7, 11, 15, ...",
+        finalAnswer: "$a_{10} = 39$",
+        steps: [
+          {
+            prompt: "What is the first term $a$ and common difference $d$?",
+            choices: [
+              {text: "$a=3, d=4$", correct: true, why: "The first term is 3, and each term increases by 4."},
+              {text: "$a=3, d=3$", correct: false, why: "$7-3=4$, not 3."}
+            ],
+            highlightFormula: 0
+          },
+          {
+            prompt: "Use $a_n = a + (n-1)d$ with $n=10$. What is the 10th term?",
+            choices: [
+              {text: "$3 + 9(4) = 39$", correct: true, why: "$3 + 36 = 39$."},
+              {text: "$3 + 10(4) = 43$", correct: false, why: "Use $(n-1)$, not $n$."}
+            ],
+            highlightFormula: 0
+          }
+        ]
+      },
+      {
+        q: "Find the sum to infinity of $1 + \\frac{1}{2} + \\frac{1}{4} + \\dots$",
+        finalAnswer: "$S_\\infty = 2$",
+        steps: [
+          {
+            prompt: "What is $a$ and $r$?",
+            choices: [
+              {text: "$a=1, r=\\frac{1}{2}$", correct: true, why: "The first term is 1, and each term is multiplied by $\\frac{1}{2}$."},
+              {text: "$a=1, r=2$", correct: false, why: "$r$ is the ratio between consecutive terms."}
+            ],
+            highlightFormula: 3
+          },
+          {
+            prompt: "Check convergence: Is $|r| < 1$?",
+            choices: [
+              {text: "Yes, $|\\frac{1}{2}| < 1$, so it converges", correct: true, why: "The series converges because the ratio is between -1 and 1."},
+              {text: "No, it diverges", correct: false, why: "$\\frac{1}{2} < 1$, so it converges."}
+            ],
+            highlightFormula: 3
+          },
+          {
+            prompt: "What is the sum to infinity?",
+            choices: [
+              {text: "$S_\\infty = \\frac{1}{1 - 1/2} = 2$", correct: true, why: "$\\frac{1}{0.5} = 2$."},
+              {text: "$S_\\infty = \\frac{1}{1 + 1/2} = \\frac{2}{3}$", correct: false, why: "The formula has a minus sign: $1-r$, not $1+r$."}
+            ],
+            highlightFormula: 3
+          }
+        ]
+      }
+    ]
+  },
+  "7": {
+    title: "Week 7: Complex Numbers",
+    formula: ["Rectangular: $z = a+bi$", "Polar: $z = r(\\cos\\theta + i\\sin\\theta)$", "De Moivre: $z^n = r^n(\\cos n\\theta + i\\sin n\\theta)$"],
+    questions: [
+      {
+        q: "Simplify: $(3 - 2i) + (4 + 7i)$",
+        finalAnswer: "$7 + 5i$",
+        steps: [
+          {
+            prompt: "How do we add complex numbers?",
+            choices: [
+              {text: "Add real parts and imaginary parts separately", correct: true, why: "$(a+bi) + (c+di) = (a+c) + (b+d)i$."},
+              {text: "Multiply them together", correct: false, why: "The operation is addition, not multiplication."}
+            ],
+            highlightFormula: 0
+          },
+          {
+            prompt: "What is the result?",
+            choices: [
+              {text: "$7 + 5i$", correct: true, why: "$(3+4) + (-2+7)i = 7 + 5i$."},
+              {text: "$7 - 5i$", correct: false, why: "$-2 + 7 = +5$, not $-5$."}
+            ],
+            highlightFormula: 0
+          }
+        ]
+      },
+      {
+        q: "Simplify: $(2 - 7i)(3 + 3i)$",
+        finalAnswer: "$27 - 15i$",
+        steps: [
+          {
+            prompt: "How do we multiply complex numbers?",
+            choices: [
+              {text: "Use FOIL and replace $i^2$ with -1", correct: true, why: "Expand like binomials, then use $i^2 = -1$."},
+              {text: "Just multiply the real parts", correct: false, why: "You must multiply all terms (FOIL)."}
+            ],
+            highlightFormula: 0
+          },
+          {
+            prompt: "FOIL gives $6 + 6i - 21i - 21i^2$. What is $i^2$?",
+            choices: [
+              {text: "$-1$", correct: true, why: "By definition, $i = \\sqrt{-1}$, so $i^2 = -1$."},
+              {text: "$1$", correct: false, why: "$i^2 = -1$, not 1."}
+            ],
+            highlightFormula: 1
+          },
+          {
+            prompt: "What is the final simplified result?",
+            choices: [
+              {text: "$27 - 15i$", correct: true, why: "$6 - 15i + 21 = 27 - 15i$."},
+              {text: "$-15 - 15i$", correct: false, why: "You forgot to add the $+21$ from $-21(-1)$."}
+            ],
+            highlightFormula: 0
+          }
+        ]
+      },
+      {
+        q: "What is the polar form of $z = -1 - i$?",
+        finalAnswer: "$\\sqrt{2}(\\cos 225^\\circ + i\\sin 225^\\circ)$",
+        steps: [
+          {
+            prompt: "What is the magnitude $r = \\sqrt{a^2+b^2}$?",
+            choices: [
+              {text: "$r = \\sqrt{2}$", correct: true, why: "$\\sqrt{(-1)^2+(-1)^2} = \\sqrt{2}$."},
+              {text: "$r = 2$", correct: false, why: "Check: $\\sqrt{1+1} = \\sqrt{2}$, not 2."}
+            ],
+            highlightFormula: 1
+          },
+          {
+            prompt: "The point $(-1,-1)$ is in the 3rd quadrant. What is the angle $\\theta$?",
+            choices: [
+              {text: "$\\theta = 225^\\circ$", correct: true, why: "$180^\\circ + 45^\\circ = 225^\\circ$."},
+              {text: "$\\theta = 45^\\circ$", correct: false, why: "$45^\\circ$ would be in the 1st quadrant."}
+            ],
+            highlightFormula: 1
+          },
+          {
+            prompt: "What is the polar form?",
+            choices: [
+              {text: "$\\sqrt{2}(\\cos 225^\\circ + i\\sin 225^\\circ)$", correct: true, why: "$r(\\cos\\theta + i\\sin\\theta)$ with $r=\\sqrt{2}, \\theta=225^\\circ$."},
+              {text: "$\\sqrt{2}(\\cos 45^\\circ + i\\sin 45^\\circ)$", correct: false, why: "Use the correct quadrant angle."}
+            ],
+            highlightFormula: 1
+          }
+        ]
+      }
+    ]
+  },
+  "8": {
+    title: "Week 8: Trigonometry & Sets",
+    formula: ["$\\sin^2\\theta + \\cos^2\\theta = 1$", "$\\sin(90^\\circ-\\theta) = \\cos\\theta$", "De Morgan: $(A \\cup B)' = A' \\cap B'$", "Cardinality: $|A \\cup B| = |A| + |B| - |A \\cap B|$"],
+    questions: [
+      {
+        q: "If $\\sin\\theta = \\frac{4}{5}$ and $\\theta$ is acute, find $\\cos\\theta$.",
+        finalAnswer: "$\\cos\\theta = \\frac{3}{5}$",
+        steps: [
+          {
+            prompt: "Which identity relates sine and cosine?",
+            choices: [
+              {text: "$\\sin^2\\theta + \\cos^2\\theta = 1$", correct: true, why: "This is the Pythagorean identity."},
+              {text: "$\\sin\\theta = \\cos\\theta$", correct: false, why: "That's only true for $\\theta=45^\\circ$."}
+            ],
+            highlightFormula: 0
+          },
+          {
+            prompt: "Substitute $\\sin\\theta = \\frac{4}{5}$. What is $\\cos^2\\theta$?",
+            choices: [
+              {text: "$\\frac{16}{25} + \\cos^2\\theta = 1$", correct: true, why: "$(\\frac{4}{5})^2 = \\frac{16}{25}$."},
+              {text: "$\\frac{4}{5} + \\cos^2\\theta = 1$", correct: false, why: "You must square the sine value."}
+            ],
+            highlightFormula: 0
+          },
+          {
+            prompt: "Solve for $\\cos\\theta$ (acute).",
+            choices: [
+              {text: "$\\frac{3}{5}$", correct: true, why: "$\\cos^2\\theta = \\frac{9}{25} \\Rightarrow \\cos\\theta = \\frac{3}{5}$."},
+              {text: "$\\frac{3}{4}$", correct: false, why: "Take the square root of $\\frac{9}{25}$ correctly."}
+            ],
+            highlightFormula: 0
+          }
+        ]
+      },
+      {
+        q: "Evaluate: $\\sin 150^\\circ$",
+        finalAnswer: "$\\sin 150^\\circ = \\frac{1}{2}$",
+        steps: [
+          {
+            prompt: "In which quadrant is $150^\\circ$, and is sine positive or negative?",
+            choices: [
+              {text: "2nd quadrant, positive", correct: true, why: "Angles between $90^\\circ$ and $180^\\circ$ are in the 2nd quadrant, where sine is positive."},
+              {text: "3rd quadrant, negative", correct: false, why: "$150^\\circ$ is in the 2nd quadrant."}
+            ],
+            highlightFormula: 1
+          },
+          {
+            prompt: "What is the reference angle?",
+            choices: [
+              {text: "$180^\\circ - 150^\\circ = 30^\\circ$", correct: true, why: "The reference angle is the distance from the x-axis."},
+              {text: "$150^\\circ - 90^\\circ = 60^\\circ$", correct: false, why: "Measure from the x-axis."}
+            ],
+            highlightFormula: 1
+          },
+          {
+            prompt: "What is the final value?",
+            choices: [
+              {text: "$\\frac{1}{2}$", correct: true, why: "$\\sin 150^\\circ = \\sin 30^\\circ = \\frac{1}{2}$."},
+              {text: "$\\frac{\\sqrt{3}}{2}$", correct: false, why: "That's $\\cos 30^\\circ$ or $\\sin 60^\\circ$."}
+            ],
+            highlightFormula: 1
+          }
+        ]
+      },
+      {
+        q: "If $|A|=10, |B|=15, |A \\cap B|=5$, find $|A \\cup B|$.",
+        finalAnswer: "$|A \\cup B| = 20$",
+        steps: [
+          {
+            prompt: "What is the formula for the union of two sets?",
+            choices: [
+              {text: "$|A \\cup B| = |A| + |B| - |A \\cap B|$", correct: true, why: "Subtract the intersection to avoid counting twice."},
+              {text: "$|A \\cup B| = |A| + |B| + |A \\cap B|$", correct: false, why: "You should subtract, not add, the intersection."}
+            ],
+            highlightFormula: 3
+          },
+          {
+            prompt: "What is the result?",
+            choices: [
+              {text: "$10 + 15 - 5 = 20$", correct: true, why: "$25 - 5 = 20$."},
+              {text: "$10 + 15 + 5 = 30$", correct: false, why: "You must subtract the intersection."}
+            ],
+            highlightFormula: 3
+          }
+        ]
+      }
+    ]
+  },
+  "9": {
+    title: "Week 9: Real-Valued Functions",
+    formula: ["$f(x) = x^2 + 3$"],
+    questions: [
+      {
+        q: "If $f(x) = x^2 + 3$, find $f(-2)$.",
+        finalAnswer: "$f(-2) = 7$",
+        steps: [
+          {
+            prompt: "What is the first step?",
+            choices: [
+              {text: "Substitute $x = -2$ into the function", correct: true, why: "Replace every $x$ with $-2$."},
+              {text: "Multiply $f$ by $-2$", correct: false, why: "The notation $f(-2)$ means evaluate the function at $x=-2$."}
+            ],
+            highlightFormula: 0
+          },
+          {
+            prompt: "What is the result?",
+            choices: [
+              {text: "$(-2)^2 + 3 = 4 + 3 = 7$", correct: true, why: "$(-2)^2 = 4$, and $4+3=7$."},
+              {text: "$-(2)^2 + 3 = -4 + 3 = -1$", correct: false, why: "$(-2)^2 = +4$, not $-4$."}
+            ],
+            highlightFormula: 0
+          }
+        ]
+      },
+      {
+        q: "If $f(x) = x^2 + 3$, find $f(a-1)$.",
+        finalAnswer: "$f(a-1) = a^2 - 2a + 4$",
+        steps: [
+          {
+            prompt: "Substitute $x = a-1$. What is the expression?",
+            choices: [
+              {text: "$(a-1)^2 + 3$", correct: true, why: "Replace $x$ with $(a-1)$."},
+              {text: "$a^2 - 1 + 3$", correct: false, why: "You must square the entire bracket."}
+            ],
+            highlightFormula: 0
+          },
+          {
+            prompt: "Expand $(a-1)^2$. What is the result?",
+            choices: [
+              {text: "$a^2 - 2a + 1 + 3$", correct: true, why: "$(a-1)^2 = a^2 - 2a + 1$."},
+              {text: "$a^2 - 1 + 3$", correct: false, why: "Expand $(a-1)(a-1)$ fully."}
+            ],
+            highlightFormula: 0
+          },
+          {
+            prompt: "Simplify.",
+            choices: [
+              {text: "$a^2 - 2a + 4$", correct: true, why: "$1 + 3 = 4$."},
+              {text: "$a^2 - 2a + 2$", correct: false, why: "$1 + 3 = 4$, not 2."}
+            ],
+            highlightFormula: 0
+          }
+        ]
+      }
+    ]
+  },
+  "10": {
+    title: "Week 10: Limits & Continuity",
+    formula: ["$\\lim_{x\\to a} f(x) = L$"],
+    questions: [
+      {
+        q: "Evaluate: $\\lim_{x \\to 2} (3x^2 - 2x - 5)$",
+        finalAnswer: "$\\lim_{x\\to 2} = 3$",
+        steps: [
+          {
+            prompt: "What is the first step?",
+            choices: [
+              {text: "Direct substitution of $x=2$", correct: true, why: "For polynomials, direct substitution works."},
+              {text: "Factorise the expression", correct: false, why: "There's no denominator to factorise."}
+            ],
+            highlightFormula: 0
+          },
+          {
+            prompt: "Evaluate $3(2)^2 - 2(2) - 5$.",
+            choices: [
+              {text: "$12 - 4 - 5 = 3$", correct: true, why: "$3(4) = 12$, $2(2) = 4$, so $12-4-5=3$."},
+              {text: "$6 - 4 - 5 = -3$", correct: false, why: "$3(2)^2 = 3(4) = 12$, not 6."}
+            ],
+            highlightFormula: 0
+          }
+        ]
+      },
+      {
+        q: "Evaluate: $\\lim_{x \\to \\infty} \\frac{2x^2 - 6}{x^4 - 8x + 9}$",
+        finalAnswer: "$\\lim_{x\\to\\infty} = 0$",
+        steps: [
+          {
+            prompt: "What is the standard technique for limits at infinity?",
+            choices: [
+              {text: "Divide every term by the highest power of $x$ in the denominator", correct: true, why: "Here, divide by $x^4$."},
+              {text: "Plug in a large number like 1000", correct: false, why: "That's a guess, not an exact method."}
+            ],
+            highlightFormula: 0
+          },
+          {
+            prompt: "After dividing by $x^4$, what happens to $\\frac{2}{x^2}$ as $x \\to \\infty$?",
+            choices: [
+              {text: "It goes to 0", correct: true, why: "Any constant divided by an increasing power of $x$ approaches 0."},
+              {text: "It goes to infinity", correct: false, why: "The denominator is growing, so the fraction shrinks."}
+            ],
+            highlightFormula: 0
+          },
+          {
+            prompt: "What is the final limit?",
+            choices: [
+              {text: "$\\frac{0 - 0}{1 - 0 + 0} = 0$", correct: true, why: "All terms go to 0 except the 1 in the denominator."},
+              {text: "Undefined", correct: false, why: "The limit is a finite value: 0."}
+            ],
+            highlightFormula: 0
+          }
+        ]
+      }
+    ]
+  },
+  "11": {
+    title: "Week 11: Differentiation",
+    formula: ["Power: $\\frac{d}{dx}x^n = nx^{n-1}$", "Product: $(uv)' = u'v + uv'$", "Quotient: $(\\frac{u}{v})' = \\frac{u'v - uv'}{v^2}$"],
+    questions: [
+      {
+        q: "Differentiate $f(x) = x^4$.",
+        finalAnswer: "$f'(x) = 4x^3$",
+        steps: [
+          {
+            prompt: "What is the rule for differentiating $x^n$?",
+            choices: [
+              {text: "$nx^{n-1}$", correct: true, why: "The power rule: bring the power down and subtract 1 from the exponent."},
+              {text: "$x^{n+1}/(n+1)$", correct: false, why: "That's the integration rule, not differentiation."}
+            ],
+            highlightFormula: 0
+          },
+          {
+            prompt: "What is the derivative?",
+            choices: [
+              {text: "$4x^3$", correct: true, why: "$4x^{4-1} = 4x^3$."},
+              {text: "$x^3$", correct: false, why: "Don't forget to bring the power (4) down as a multiplier."}
+            ],
+            highlightFormula: 0
+          }
+        ]
+      },
+      {
+        q: "Differentiate $f(x) = (2x+1)(x^2 - x - 3)$.",
+        finalAnswer: "$f'(x) = 6x^2 - 2x - 7$",
+        steps: [
+          {
+            prompt: "Which rule should we use for a product of two functions?",
+            choices: [
+              {text: "Product rule: $u'v + uv'$", correct: true, why: "We have a product of two binomials, so use the product rule."},
+              {text: "Power rule", correct: false, why: "The function is a product of two expressions, not a single power."}
+            ],
+            highlightFormula: 1
+          },
+          {
+            prompt: "Let $u=2x+1$ and $v=x^2-x-3$. What is $u'$?",
+            choices: [
+              {text: "2", correct: true, why: "$\\frac{d}{dx}(2x+1) = 2$."},
+              {text: "2x", correct: false, why: "The derivative of $2x+1$ is 2 (constant)."}
+            ],
+            highlightFormula: 1
+          },
+          {
+            prompt: "What is the correct application of the product rule?",
+            choices: [
+              {text: "$2(x^2-x-3) + (2x+1)(2x-1)$", correct: true, why: "$u'v + uv' = 2 \\cdot v + u \\cdot (2x-1)$."},
+              {text: "$2(2x+1) + (x^2-x-3)(2x-1)$", correct: false, why: "Swap the order: it's $u'v + uv'$."}
+            ],
+            highlightFormula: 1
+          },
+          {
+            prompt: "Simplify the result.",
+            choices: [
+              {text: "$6x^2 - 2x - 7$", correct: true, why: "$2x^2-2x-6 + 4x^2-1 = 6x^2-2x-7$."},
+              {text: "$6x^2 + 2x - 7$", correct: false, why: "Check the signs when expanding $(2x+1)(2x-1)$."}
+            ],
+            highlightFormula: 1
+          }
+        ]
+      }
+    ]
+  },
+  "12": {
+    title: "Week 12: Integration",
+    formula: ["Indefinite: $\\int x^n dx = \\frac{x^{n+1}}{n+1} + C$", "Definite: $\\int_a^b f(x)dx = F(b) - F(a)$", "Area: $\\int_a^b y \\, dx$"],
+    questions: [
+      {
+        q: "Evaluate: $\\int (3x^2 + 4x) dx$",
+        finalAnswer: "$x^3 + 2x^2 + C$",
+        steps: [
+          {
+            prompt: "What is the integration rule for $x^n$?",
+            choices: [
+              {text: "$\\frac{x^{n+1}}{n+1} + C$", correct: true, why: "Raise the power by 1 and divide by the new power."},
+              {text: "$nx^{n-1}$", correct: false, why: "That's differentiation, not integration."}
+            ],
+            highlightFormula: 0
+          },
+          {
+            prompt: "What is the integral of $3x^2$?",
+            choices: [
+              {text: "$x^3$", correct: true, why: "$\\frac{3x^3}{3} = x^3$."},
+              {text: "$6x$", correct: false, why: "That's the derivative, not the integral."}
+            ],
+            highlightFormula: 0
+          },
+          {
+            prompt: "What is the final indefinite integral?",
+            choices: [
+              {text: "$x^3 + 2x^2 + C$", correct: true, why: "$\\int 3x^2 = x^3$ and $\\int 4x = 2x^2$. Don't forget $+C$."},
+              {text: "$x^3 + 2x^2$", correct: false, why: "Always add the constant of integration $+C$."}
+            ],
+            highlightFormula: 0
+          }
+        ]
+      },
+      {
+        q: "Evaluate: $\\int_1^2 3x^2 dx$",
+        finalAnswer: "$7$",
+        steps: [
+          {
+            prompt: "What is the first step for a definite integral?",
+            choices: [
+              {text: "Find the antiderivative", correct: true, why: "Find $F(x) = x^3$, then evaluate at the limits."},
+              {text: "Substitute the limits immediately", correct: false, why: "You must integrate first, then evaluate."}
+            ],
+            highlightFormula: 1
+          },
+          {
+            prompt: "What is the antiderivative of $3x^2$?",
+            choices: [
+              {text: "$x^3$", correct: true, why: "$\\int 3x^2 dx = x^3$."},
+              {text: "$6x$", correct: false, why: "That's the derivative."}
+            ],
+            highlightFormula: 1
+          },
+          {
+            prompt: "Evaluate at the limits: $[x^3]_1^2$.",
+            choices: [
+              {text: "$2^3 - 1^3 = 8 - 1 = 7$", correct: true, why: "Substitute upper limit minus lower limit."},
+              {text: "$2^3 + 1^3 = 8 + 1 = 9$", correct: false, why: "Definite integral is $F(b) - F(a)$."}
+            ],
+            highlightFormula: 1
+          }
+        ]
+      },
+      {
+        q: "Find the area under $y = x^2$ from $x=0$ to $x=2$.",
+        finalAnswer: "$\\frac{8}{3}$ square units",
+        steps: [
+          {
+            prompt: "What integral represents the area?",
+            choices: [
+              {text: "$\\int_0^2 x^2 dx$", correct: true, why: "Area under a curve is the definite integral of $y$ with respect to $x$."},
+              {text: "$\\int x^2 dx$", correct: false, why: "This is indefinite. We need the definite integral with limits 0 and 2."}
+            ],
+            highlightFormula: 2
+          },
+          {
+            prompt: "What is the integral of $x^2$?",
+            choices: [
+              {text: "$\\frac{x^3}{3}$", correct: true, why: "$\\frac{x^{2+1}}{2+1} = \\frac{x^3}{3}$."},
+              {text: "$2x$", correct: false, why: "That's the derivative."}
+            ],
+            highlightFormula: 2
+          },
+          {
+            prompt: "What is the final area?",
+            choices: [
+              {text: "$\\frac{8}{3}$", correct: true, why: "$\\frac{2^3}{3} - \\frac{0^3}{3} = \\frac{8}{3}$."},
+              {text: "$\\frac{4}{3}$", correct: false, why: "$2^3 = 8$, not 4."}
+            ],
+            highlightFormula: 2
+          }
+        ]
+      }
+    ]
+  }
+};
+
+// ============================================================
+// APP LOGIC
+// ============================================================
+const state = {
+  currentWeek: null,
+  currentQuestionIndex: 0,
+  currentStep: 0,
+  solvedCount: 0,
+  streakCount: 0,
+  questionsAnsweredInTopic: 0
+};
+
+const weekListEl = document.getElementById('weekList');
+const qTag = document.getElementById('qTag');
+const qTitle = document.getElementById('qTitle');
+const stepHistory = document.getElementById('stepHistory');
+const choiceContainer = document.getElementById('choiceContainer');
+const choicePrompt = document.getElementById('choicePrompt');
+const choiceGrid = document.getElementById('choiceGrid');
+const choiceFeedback = document.getElementById('choiceFeedback');
+const finalAnswerCard = document.getElementById('finalAnswerCard');
+const controls = document.getElementById('controls');
+const hintBtn = document.getElementById('hintBtn');
+const newQuestionBtn = document.getElementById('newQuestionBtn');
+const formulaDisplay = document.getElementById('formulaDisplay');
+const solvedCountEl = document.getElementById('solvedCount');
+const streakCountEl = document.getElementById('streakCount');
+const currentWeekDisplay = document.getElementById('currentWeekDisplay');
+const progressText = document.getElementById('progressText');
+const progressBarFill = document.getElementById('progressBarFill');
+const themeBtn = document.getElementById('theme');
+
+Object.keys(DATABASE).forEach(key => {
+  const btn = document.createElement('button');
+  btn.className = 'week-btn';
+  btn.textContent = DATABASE[key].title;
+  btn.onclick = () => loadTopic(key, btn);
+  weekListEl.appendChild(btn);
+});
+
+function loadTopic(weekKey, btnElement) {
+  state.currentWeek = weekKey;
+  state.currentQuestionIndex = 0;
+  state.currentStep = 0;
+  state.questionsAnsweredInTopic = 0;
+  
+  document.querySelectorAll('.week-btn').forEach(b => b.classList.remove('active'));
+  if(btnElement) btnElement.classList.add('active');
+  
+  const topic = DATABASE[weekKey];
+  currentWeekDisplay.textContent = weekKey.includes('.') ? `Wk ${weekKey.split('.')[0]}` : `Wk ${weekKey}`;
+  
+  formulaDisplay.innerHTML = topic.formula.map((f, i) => `<p data-formula-index="${i}">${f}</p>`).join('');
+  loadQuestion();
+}
+
+function loadQuestion() {
+  const topic = DATABASE[state.currentWeek];
+  const q = topic.questions[state.currentQuestionIndex];
+  
+  state.currentStep = 0;
+  
+  qTag.textContent = `WEEK ${state.currentWeek}`;
+  qTitle.innerHTML = q.q;
+  stepHistory.innerHTML = '';
+  finalAnswerCard.innerHTML = '';
+  controls.style.display = 'none';
+  choiceContainer.style.display = 'none';
+  choiceFeedback.className = 'choice-feedback';
+  choiceFeedback.textContent = '';
+  
+  if (window.MathJax) MathJax.typesetPromise([qTitle]);
+  updateProgress();
+  renderStep();
+}
+
+function renderStep() {
+  const topic = DATABASE[state.currentWeek];
+  const q = topic.questions[state.currentQuestionIndex];
+  const step = q.steps[state.currentStep];
+  
+  if (!step) {
+    // Question complete
+    choiceContainer.style.display = 'none';
+    controls.style.display = 'flex';
+    newQuestionBtn.style.display = 'inline-block';
+    hintBtn.style.display = 'none';
+    showFinalAnswer(q.finalAnswer);
+    return;
+  }
+  
+  choiceContainer.style.display = 'block';
+  choicePrompt.textContent = `Step ${state.currentStep + 1}: ${step.prompt}`;
+  choiceGrid.innerHTML = '';
+  choiceFeedback.className = 'choice-feedback';
+  choiceFeedback.textContent = '';
+  
+  const shuffled = [...step.choices].sort(() => Math.random() - 0.5);
+  
+  shuffled.forEach((choice, index) => {
+    const btn = document.createElement('button');
+    btn.className = 'choice-btn';
+    btn.innerHTML = `<strong>${String.fromCharCode(65 + index)}.</strong> ${choice.text}`;
+    btn.onclick = () => handleChoice(btn, choice, step);
+    choiceGrid.appendChild(btn);
+  });
+  
+  document.querySelectorAll('.formula-box p').forEach(p => p.classList.remove('highlight'));
+  if (step.highlightFormula !== undefined) {
+    const formulaEl = document.querySelector(`[data-formula-index="${step.highlightFormula}"]`);
+    if (formulaEl) formulaEl.classList.add('highlight');
+  }
+  
+  controls.style.display = 'flex';
+  hintBtn.style.display = 'inline-block';
+  newQuestionBtn.style.display = 'none';
+  
+  if (window.MathJax) MathJax.typesetPromise([choicePrompt, choiceGrid]);
+}
+
+function handleChoice(btn, choice, step) {
+  document.querySelectorAll('.choice-btn').forEach(b => b.disabled = true);
+  
+  if (choice.correct) {
+    btn.classList.add('correct');
+    choiceFeedback.className = 'choice-feedback good';
+    choiceFeedback.textContent = '✓ ' + choice.why;
+    state.streakCount++;
+    streakCountEl.textContent = state.streakCount;
+    
+    const stepDiv = document.createElement('div');
+    stepDiv.className = 'step step-final';
+    const whyDiv = document.createElement('div');
+    whyDiv.className = 'step-why';
+    whyDiv.textContent = choice.why;
+    const mathDiv = document.createElement('div');
+    mathDiv.className = 'step-math';
+    mathDiv.innerHTML = choice.text;
+    stepDiv.appendChild(whyDiv);
+    stepDiv.appendChild(mathDiv);
+    stepHistory.appendChild(stepDiv);
+    
+    if (window.MathJax) MathJax.typesetPromise([stepDiv]);
+    
+    setTimeout(() => {
+      state.currentStep++;
+      if (state.currentStep >= DATABASE[state.currentWeek].questions[state.currentQuestionIndex].steps.length) {
+        state.solvedCount++;
+        state.questionsAnsweredInTopic++;
+        solvedCountEl.textContent = state.solvedCount;
+        updateProgress();
+        choiceContainer.style.display = 'none';
+        controls.style.display = 'flex';
+        newQuestionBtn.style.display = 'inline-block';
+        hintBtn.style.display = 'none';
+        showFinalAnswer(DATABASE[state.currentWeek].questions[state.currentQuestionIndex].finalAnswer);
+      } else {
+        renderStep();
+      }
+    }, 1800);
+  } else {
+    btn.classList.add('wrong');
+    choiceFeedback.className = 'choice-feedback bad';
+    choiceFeedback.textContent = '✕ ' + choice.why + ' Try again or look at the hint.';
+    state.streakCount = 0;
+    streakCountEl.textContent = state.streakCount;
+    
+    setTimeout(() => {
+      document.querySelectorAll('.choice-btn').forEach(b => {
+        b.disabled = false;
+        b.classList.remove('wrong');
+      });
+      choiceFeedback.className = 'choice-feedback';
+      choiceFeedback.textContent = '';
+    }, 2200);
+  }
+}
+
+function showFinalAnswer(answer) {
+  finalAnswerCard.innerHTML = `
+    <div class="final-answer-card">
+      <h3>🎉 Final Answer</h3>
+      <div class="answer-value">${answer}</div>
+      <div class="completed-badge">✓ QUESTION COMPLETED</div>
+    </div>
+  `;
+  if (window.MathJax) MathJax.typesetPromise([finalAnswerCard]);
+}
+
+function showHint() {
+  const topic = DATABASE[state.currentWeek];
+  const q = topic.questions[state.currentQuestionIndex];
+  const step = q.steps[state.currentStep];
+  
+  if (!step) return;
+  
+  choiceFeedback.className = 'choice-feedback';
+  choiceFeedback.style.background = 'var(--hint-bg)';
+  choiceFeedback.style.color = 'var(--hint)';
+  choiceFeedback.textContent = '💡 Hint: Look at the highlighted formula. Think about what operation is needed.';
+  choiceFeedback.style.display = 'block';
+  
+  hintBtn.style.display = 'none';
+}
+
+function nextQuestion() {
+  const topic = DATABASE[state.currentWeek];
+  state.currentQuestionIndex = (state.currentQuestionIndex + 1) % topic.questions.length;
+  loadQuestion();
+}
+
+function updateProgress() {
+  if (!state.currentWeek) return;
+  const topic = DATABASE[state.currentWeek];
+  const total = topic.questions.length;
+  const pct = Math.round((state.questionsAnsweredInTopic / total) * 100);
+  progressText.textContent = `${pct}%`;
+  progressBarFill.style.width = `${pct}%`;
+}
+
+hintBtn.addEventListener('click', showHint);
+newQuestionBtn.addEventListener('click', nextQuestion);
+themeBtn.addEventListener('click', () => {
+  document.body.classList.toggle('dark');
+  themeBtn.textContent = document.body.classList.contains('dark') ? '☀ Light Mode' : '☾ Dark Mode';
+});
+</script>
+</body>
+</html>
