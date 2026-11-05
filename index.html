@@ -13,17 +13,17 @@
         }
 
         :root {
-            --navy: #102f52;
-            --navy-dark: #0a223d;
-            --blue: #173f67;
-            --teal: #0c9f94;
-            --teal-dark: #087f77;
-            --teal-soft: #e3f6f3;
-            --page: #f5f7fa;
-            --text: #16324f;
-            --muted: #718096;
-            --border: #e5ebf1;
-            --white: #ffffff;
+            --navy: #172b3a;
+            --navy-dark: #101f2a;
+            --blue: #173e5b;
+            --teal: #173e5b;
+            --teal-dark: #102f45;
+            --teal-soft: #f1e3d5;
+            --page: #f5f0eb;
+            --text: #172b3a;
+            --muted: #667887;
+            --border: #e4d9d0;
+            --white: #fffdfb;
         }
 
         body {
@@ -46,25 +46,26 @@
             background:
                 radial-gradient(
                     circle at 82% 18%,
-                    rgba(61, 151, 181, 0.18),
+                    rgba(255, 232, 211, 0.14),
                     transparent 27%
                 ),
                 linear-gradient(
                     135deg,
-                    #173f67 0%,
-                    #0d2d4d 58%,
-                    #091f38 100%
+                    #725d50 0%,
+                    #9a7a64 58%,
+                    #5b493f 100%
                 );
-            color: white;
+            color: #fffaf5;
         }
 
         .hero::before,
         .hero::after {
             content: "";
             position: absolute;
-            border: 1px solid rgba(255,255,255,0.07);
+            border: 1px solid rgba(255,255,255,0.10);
             transform: rotate(35deg);
             pointer-events: none;
+            z-index: 0;
         }
 
         .hero::before {
@@ -127,7 +128,7 @@
         .nav-links a {
             position: relative;
             text-decoration: none;
-            color: #dce8f4;
+            color: #f4e9df;
             font-size: 14px;
             font-weight: 600;
             padding: 7px 0;
@@ -145,7 +146,7 @@
             bottom: 0;
             height: 2px;
             border-radius: 4px;
-            background: #48c7ba;
+            background: #d8b69c;
         }
 
         /* HERO CONTENT */
@@ -163,7 +164,7 @@
         }
 
         .eyebrow {
-            color: #6bd4c9;
+            color: #f0d4bd;
             font-size: 12px;
             font-weight: 800;
             letter-spacing: 2.2px;
@@ -180,7 +181,7 @@
 
         .hero p {
             max-width: 700px;
-            color: #d6e3ee;
+            color: #f3e8df;
             font-size: 16px;
             line-height: 1.75;
         }
@@ -207,7 +208,7 @@
         }
 
         .semester-badge span {
-            color: #b9ccdc;
+            color: #ead8c9;
             font-size: 13px;
         }
 
@@ -227,9 +228,9 @@
             display: grid;
             grid-template-columns: repeat(4, 1fr);
             background: white;
-            border: 1px solid rgba(15, 47, 79, 0.06);
+            border: 1px solid rgba(74, 53, 40, 0.08);
             border-radius: 18px;
-            box-shadow: 0 15px 40px rgba(20, 47, 73, 0.11);
+            box-shadow: 0 15px 40px rgba(74, 53, 40, 0.12);
             overflow: hidden;
             margin-bottom: 38px;
         }
@@ -253,7 +254,7 @@
             place-items: center;
             border-radius: 12px;
             background: var(--teal-soft);
-            color: var(--teal-dark);
+            color: #795944;
             font-size: 18px;
         }
 
@@ -301,10 +302,10 @@
             flex-direction: column;
             min-height: 315px;
             background: white;
-            border: 1px solid rgba(20, 52, 80, 0.06);
+            border: 1px solid rgba(74, 53, 40, 0.08);
             border-radius: 18px;
             padding: 25px;
-            box-shadow: 0 7px 24px rgba(25, 50, 75, 0.07);
+            box-shadow: 0 7px 24px rgba(74, 53, 40, 0.08);
             transition:
                 transform 0.2s ease,
                 box-shadow 0.2s ease,
@@ -313,8 +314,8 @@
 
         .card:hover {
             transform: translateY(-4px);
-            box-shadow: 0 14px 32px rgba(25, 50, 75, 0.11);
-            border-color: rgba(12, 159, 148, 0.16);
+            box-shadow: 0 14px 32px rgba(74, 53, 40, 0.12);
+            border-color: rgba(167, 125, 101, 0.35);
         }
 
         .card-top {
@@ -328,7 +329,7 @@
             display: inline-flex;
             align-items: center;
             background: var(--teal-soft);
-            color: var(--teal-dark);
+            color: #795944;
             font-weight: 800;
             font-size: 12px;
             letter-spacing: 0.4px;
@@ -373,19 +374,19 @@
         }
 
         .buttons a {
-            background: var(--teal);
+            background: var(--blue);
             color: white;
-            box-shadow: 0 4px 10px rgba(12, 159, 148, 0.18);
+            box-shadow: 0 4px 10px rgba(23, 62, 91, 0.16);
         }
 
         .buttons a:hover {
-            background: var(--teal-dark);
+            background: #102f45;
         }
 
         .coming-soon {
-            background: #f8fafb;
+            background: #faf6f2;
             border: 1px solid var(--border);
-            color: #99a5b1;
+            color: #9a8b80;
         }
 
         /* FOOTER */
@@ -393,7 +394,7 @@
         footer {
             text-align: center;
             padding: 10px 20px 35px;
-            color: #7b8794;
+            color: #88786c;
             font-size: 13px;
         }
 
@@ -623,7 +624,7 @@
                 <div class="stat-icon">◷</div>
                 <div>
                     <strong>Weeks 5–8</strong>
-                    <span>Coming next</span>
+                    <span>Available now</span>
                 </div>
             </div>
 
@@ -631,7 +632,7 @@
                 <div class="stat-icon">☷</div>
                 <div>
                     <strong>Weeks 9–12</strong>
-                    <span>Later in semester</span>
+                    <span>Available now</span>
                 </div>
             </div>
 
@@ -647,6 +648,7 @@
 
 
         <section class="courses">
+
 
             <!-- AMS 102 -->
 
@@ -881,6 +883,7 @@
                 </div>
 
             </div>
+
 
         </section>
 
