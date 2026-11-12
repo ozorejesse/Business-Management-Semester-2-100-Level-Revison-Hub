@@ -181,7 +181,7 @@
 
         .hero p {
             max-width: 700px;
-            color: #f3e8df;
+            color: #d6e3ee;
             font-size: 16px;
             line-height: 1.75;
         }
@@ -208,7 +208,7 @@
         }
 
         .semester-badge span {
-            color: #ead8c9;
+            color: #b9ccdc;
             font-size: 13px;
         }
 
@@ -401,6 +401,7 @@
         /* TABLET */
 
         @media (max-width: 950px) {
+
             .nav-links {
                 gap: 17px;
             }
@@ -435,6 +436,7 @@
         /* MOBILE */
 
         @media (max-width: 650px) {
+
             .nav {
                 padding: 16px 20px;
                 align-items: center;
@@ -549,6 +551,310 @@
                 padding: 22px;
             }
         }
+    
+        /* STUDENT DASHBOARD */
+        .dashboard {
+            background: #fffdfb;
+            border: 1px solid var(--border);
+            border-radius: 20px;
+            padding: 26px;
+            margin: 0 0 38px;
+            box-shadow: 0 10px 30px rgba(74, 53, 40, 0.08);
+        }
+
+        .dashboard-heading {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            gap: 16px;
+            margin-bottom: 20px;
+        }
+
+        .dashboard-heading h2 {
+            font-size: 23px;
+            letter-spacing: -0.5px;
+        }
+
+        .dashboard-heading p {
+            color: var(--muted);
+            font-size: 13px;
+            margin-top: 4px;
+        }
+
+        .dashboard-note {
+            color: #8a7768;
+            background: #f6eee7;
+            border: 1px solid #eadbce;
+            border-radius: 10px;
+            padding: 9px 12px;
+            font-size: 11px;
+            line-height: 1.4;
+            max-width: 230px;
+        }
+
+        .dashboard-overview {
+            display: grid;
+            grid-template-columns: 1.2fr repeat(2, 1fr);
+            gap: 12px;
+            margin-bottom: 20px;
+        }
+
+        .overview-tile {
+            background: #f7f1eb;
+            border: 1px solid #eadfd5;
+            border-radius: 14px;
+            padding: 16px;
+        }
+
+        .overview-tile.primary {
+            background: linear-gradient(135deg, #795f4f, #a18169);
+            color: #fffaf5;
+            border: 0;
+        }
+
+        .overview-label {
+            display: block;
+            font-size: 11px;
+            font-weight: 700;
+            letter-spacing: .5px;
+            text-transform: uppercase;
+            opacity: .8;
+        }
+
+        .overview-number {
+            display: block;
+            font-size: 30px;
+            font-weight: 800;
+            line-height: 1.2;
+            margin: 5px 0 2px;
+        }
+
+        .overview-caption {
+            font-size: 12px;
+            opacity: .8;
+        }
+
+        .overall-track,
+        .course-track {
+            height: 8px;
+            overflow: hidden;
+            border-radius: 99px;
+            background: #e9e0d8;
+        }
+
+        .overall-track {
+            margin-top: 13px;
+            background: rgba(255,255,255,.25);
+        }
+
+        .overall-fill,
+        .course-fill {
+            height: 100%;
+            width: 0%;
+            border-radius: inherit;
+            transition: width .25s ease;
+        }
+
+        .overall-fill {
+            background: #fff5e9;
+        }
+
+        .course-fill {
+            background: #8d6b54;
+        }
+
+        .dashboard-courses {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 12px;
+        }
+
+        .progress-course {
+            border: 1px solid var(--border);
+            border-radius: 14px;
+            padding: 15px;
+            background: #fff;
+            min-width: 0;
+        }
+
+        .progress-course-top {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 10px;
+        }
+
+        .progress-course-name {
+            font-size: 13px;
+            font-weight: 800;
+        }
+
+        .progress-course-percent {
+            color: #795944;
+            font-size: 12px;
+            font-weight: 800;
+            white-space: nowrap;
+        }
+
+        .course-track {
+            height: 6px;
+            margin-bottom: 12px;
+        }
+
+        .progress-weeks {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 7px;
+        }
+
+        .week-check {
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+            background: #f8f4f0;
+            border: 1px solid #e9ded4;
+            color: #5c4a3e;
+            border-radius: 8px;
+            padding: 7px 9px;
+            font-size: 11px;
+            font-weight: 700;
+            cursor: pointer;
+            user-select: none;
+        }
+
+        .week-check input {
+            accent-color: #795944;
+            width: 13px;
+            height: 13px;
+            cursor: pointer;
+        }
+
+        .week-check:has(input:checked) {
+            background: #eee2d7;
+            border-color: #c9ad96;
+        }
+
+        .dashboard-actions {
+            display: flex;
+            justify-content: flex-end;
+            margin-top: 15px;
+        }
+
+        .reset-progress {
+            background: transparent;
+            border: 1px solid #d9c9bc;
+            color: #806957;
+            border-radius: 9px;
+            padding: 8px 12px;
+            font-size: 11px;
+            font-weight: 700;
+            cursor: pointer;
+        }
+
+        .reset-progress:hover {
+            background: #f6eee7;
+        }
+
+        @media (max-width: 700px) {
+            .dashboard {
+                padding: 19px;
+                margin-bottom: 30px;
+            }
+
+            .dashboard-heading {
+                flex-direction: column;
+            }
+
+            .dashboard-note {
+                max-width: none;
+            }
+
+            .dashboard-overview {
+                grid-template-columns: 1fr 1fr;
+            }
+
+            .overview-tile.primary {
+                grid-column: 1 / -1;
+            }
+
+            .dashboard-courses {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 420px) {
+            .dashboard-overview {
+                grid-template-columns: 1fr;
+            }
+
+            .overview-tile.primary {
+                grid-column: auto;
+            }
+        }
+
+    
+        /* WEAK SPOTS ANALYSER */
+
+    
+        .exam-section {
+            margin: 0 0 30px;
+            padding: 25px;
+            border-radius: 20px;
+            background: #fffdfb;
+            border: 1px solid #e4d9d0;
+            box-shadow: 0 10px 30px rgba(74, 53, 40, 0.08);
+        }
+        .exam-heading {
+            display: flex; justify-content: space-between; align-items: flex-start;
+            gap: 16px; margin-bottom: 20px;
+        }
+        .exam-eyebrow {
+            display: block; color: #9a7055; font-size: 10px;
+            font-weight: 850; letter-spacing: 1.7px; margin-bottom: 6px;
+        }
+        .exam-heading h2 { font-size: 24px; color: #172b3a; letter-spacing: -.5px; }
+        .exam-heading p { color: #667887; font-size: 13px; margin-top: 4px; }
+        .exam-live {
+            display: inline-flex; align-items: center; gap: 7px; white-space: nowrap;
+            border-radius: 20px; padding: 7px 10px; background: #f4eee8;
+            color: #76543e; font-size: 10px; font-weight: 800; letter-spacing: .7px;
+        }
+        .live-dot { width: 7px; height: 7px; border-radius: 50%; background: #3d9b70; box-shadow: 0 0 0 4px #e1f1e8; }
+        .exam-layout { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+        .countdown-card {
+            min-width: 0; padding: 22px; border-radius: 16px;
+            background: linear-gradient(135deg, #173e5b, #102f45); color: #fff;
+        }
+        .next-paper-label { color: #e8c5a8; font-size: 10px; font-weight: 800; letter-spacing: 1.3px; }
+        .countdown-card h3 { font-size: 21px; margin: 8px 0 3px; }
+        .countdown-card > p { color: #d6e3ee; font-size: 12px; }
+        .countdown-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 8px; margin: 20px 0 13px; }
+        .countdown-grid div { text-align: center; padding: 12px 4px; border-radius: 11px; background: rgba(255,255,255,.10); }
+        .countdown-grid strong { display: block; font-size: clamp(21px, 3vw, 30px); line-height: 1.1; font-variant-numeric: tabular-nums; }
+        .countdown-grid span { display: block; color: #d6e3ee; font-size: 10px; margin-top: 5px; }
+        .countdown-card .countdown-footnote { color: #c7d7e4; font-size: 11px; }
+        .upcoming-card { padding: 20px; border-radius: 16px; border: 1px solid #e9ded4; background: #faf6f2; min-width: 0; }
+        .upcoming-title { display: flex; align-items: center; justify-content: space-between; gap: 10px; margin-bottom: 10px; }
+        .upcoming-title h3 { font-size: 16px; color: #172b3a; }
+        .upcoming-title span { font-size: 11px; color: #8a7768; }
+        .upcoming-list { display: grid; gap: 8px; max-height: 265px; overflow-y: auto; }
+        .exam-item { display: grid; grid-template-columns: 68px 1fr auto; gap: 10px; align-items: center; padding: 10px; border-radius: 11px; background: white; border: 1px solid #eee5dd; }
+        .exam-date { color: #795944; font-size: 11px; font-weight: 800; }
+        .exam-detail strong { display: block; color: #172b3a; font-size: 12px; }
+        .exam-detail span { display: block; color: #71808c; font-size: 10px; margin-top: 2px; }
+        .exam-time { color: #173e5b; font-size: 10px; font-weight: 800; white-space: nowrap; }
+        .exam-item.next { border-color: #b99173; background: #fffaf5; }
+        .empty-exams { color: #71808c; font-size: 12px; padding: 12px 0; }
+        @media (max-width: 760px) {
+            .exam-section { padding: 17px; }
+            .exam-heading { flex-direction: column; }
+            .exam-layout { grid-template-columns: 1fr; }
+            .countdown-card { padding: 18px; }
+            .exam-item { grid-template-columns: 58px 1fr; }
+            .exam-time { grid-column: 2; }
+        }
+
     </style>
 </head>
 
@@ -638,6 +944,82 @@
 
         </section>
 
+
+        
+        <section class="exam-section" id="examCountdown" aria-label="Exam countdown and upcoming papers">
+            <div class="exam-heading">
+                <div>
+                    <span class="exam-eyebrow">DECEMBER 2026 EXAMINATIONS</span>
+                    <h2>Your exams are coming up</h2>
+                    <p>Live countdown to your next scheduled paper.</p>
+                </div>
+                <div class="exam-live"><span class="live-dot"></span> LIVE COUNTDOWN</div>
+            </div>
+            <div class="exam-layout">
+                <div class="countdown-card">
+                    <div class="next-paper-label">NEXT UPCOMING PAPER</div>
+                    <h3 id="nextExamCourse">Loading next paper…</h3>
+                    <p id="nextExamDate">Checking the timetable</p>
+                    <div class="countdown-grid" aria-live="off">
+                        <div><strong id="countDays">--</strong><span>Days</span></div>
+                        <div><strong id="countHours">--</strong><span>Hours</span></div>
+                        <div><strong id="countMinutes">--</strong><span>Minutes</span></div>
+                        <div><strong id="countSeconds">--</strong><span>Seconds</span></div>
+                    </div>
+                    <p class="countdown-footnote" id="countdownMessage">The countdown updates automatically.</p>
+                </div>
+                <div class="upcoming-card">
+                    <div class="upcoming-title">
+                        <h3>Upcoming papers</h3>
+                        <span id="upcomingCount">0 papers</span>
+                    </div>
+                    <div id="upcomingPapers" class="upcoming-list">
+                        <p class="empty-exams">Loading timetable…</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="dashboard" aria-label="Student study dashboard">
+            <div class="dashboard-heading">
+                <div>
+                    <h2>My Study Dashboard</h2>
+                    <p>Track your revision progress across all seven courses.</p>
+                </div>
+                <div class="dashboard-note">
+                    Your progress is saved on this device in this browser.
+                </div>
+            </div>
+<div class="dashboard-overview">
+                <div class="overview-tile primary">
+                    <span class="overview-label">Overall completion</span>
+                    <strong class="overview-number" id="overallPercent">0%</strong>
+                    <span class="overview-caption" id="overallCaption">0 of 21 study sections completed</span>
+                    <div class="overall-track">
+                        <div class="overall-fill" id="overallFill"></div>
+                    </div>
+                </div>
+                <div class="overview-tile">
+                    <span class="overview-label">Sections completed</span>
+                    <strong class="overview-number" id="completedCount">0</strong>
+                    <span class="overview-caption">Across all courses</span>
+                </div>
+                <div class="overview-tile">
+                    <span class="overview-label">Courses started</span>
+                    <strong class="overview-number" id="coursesStarted">0</strong>
+                    <span class="overview-caption">With at least one completed section</span>
+                </div>
+            </div>
+
+            <div class="dashboard-courses" id="dashboardCourses"></div>
+
+            <div class="dashboard-actions">
+                <button class="reset-progress" id="resetProgress" type="button">Reset my progress</button>
+            </div>
+        </section>
+
+        
+        
 
         <div class="section-heading">
             <h2>Semester 2 Courses</h2>
@@ -893,6 +1275,212 @@
     <footer>
         Miva Revision Hub · Business Management · 100 Level · Semester 2
     </footer>
+
+
+
+<script>
+(() => {
+    const storageKey = "mivaRevisionHubProgress_v1";
+    const courses = [
+        { code: "AMS 102", title: "Basic Mathematics" },
+        { code: "AMS 104", title: "Principles of Project Management" },
+        { code: "AMS 108", title: "Principles of Management II" },
+        { code: "BUA 102", title: "Introduction to Business II" },
+        { code: "ECO 102", title: "Principles of Economics II" },
+        { code: "GST 112", title: "Nigerian Peoples and Culture" },
+        { code: "GST 122", title: "Communication Skills in English II" }
+    ];
+    const sections = [
+        { id: "w1-4", label: "Weeks 1–4" },
+        { id: "w5-8", label: "Weeks 5–8" },
+        { id: "w9-12", label: "Weeks 9–12" }
+    ];
+
+    // Papers visible on page 5 of the timetable image supplied.
+    // Dates/times use Nigeria local time (Africa/Lagos, UTC+1).
+    // Add the remaining timetable pages here when available.
+    const examSchedule = [
+        { date: "2026-12-05", time: "09:00", course: "ECO 102", title: "Principles of Economics II", session: "9am – 11am" },
+        { date: "2026-12-05", time: "13:00", course: "AMS 108", title: "Principles of Management II", session: "1pm – 3pm" },
+        { date: "2026-12-08", time: "09:00", course: "BUA 102", title: "Introduction to Business II", session: "9am – 11am" },
+        { date: "2026-12-08", time: "13:00", course: "GST 122", title: "Communication Skills in English II", session: "1pm – 3pm" },
+        { date: "2026-12-10", time: "13:00", course: "AMS 102", title: "Basic Mathematics", session: "1pm – 3pm" },
+        { date: "2026-12-12", time: "09:00", course: "AMS 104", title: "Principles of Project Management", session: "9am – 11am" },
+        { date: "2026-12-12", time: "13:00", course: "GST 112", title: "Nigerian Peoples and Culture", session: "1pm – 3pm" }
+    ];
+
+    let progress = {};
+    try {
+        progress = JSON.parse(localStorage.getItem(storageKey) || "{}") || {};
+    } catch (error) {
+        progress = {};
+    }
+
+    function saveProgress() {
+        try {
+            localStorage.setItem(storageKey, JSON.stringify(progress));
+        } catch (error) {
+            alert("Your browser could not save progress. Check that browser storage is enabled.");
+        }
+    }
+
+    function isComplete(code, sectionId) {
+        return Boolean(progress[code] && progress[code][sectionId]);
+    }
+
+    function renderDashboard() {
+        const dashboard = document.getElementById("dashboardCourses");
+        if (!dashboard) return;
+        dashboard.innerHTML = "";
+        let completedTotal = 0;
+        let coursesStarted = 0;
+
+        courses.forEach(course => {
+            const completed = sections.filter(section => isComplete(course.code, section.id)).length;
+            completedTotal += completed;
+            if (completed > 0) coursesStarted++;
+
+            const card = document.createElement("div");
+            card.className = "progress-course";
+            const top = document.createElement("div");
+            top.className = "progress-course-top";
+            const name = document.createElement("span");
+            name.className = "progress-course-name";
+            name.textContent = course.code + " · " + course.title;
+            const percent = document.createElement("span");
+            percent.className = "progress-course-percent";
+            percent.textContent = Math.round((completed / sections.length) * 100) + "%";
+            top.append(name, percent);
+
+            const track = document.createElement("div");
+            track.className = "course-track";
+            const fill = document.createElement("div");
+            fill.className = "course-fill";
+            fill.style.width = (completed / sections.length * 100) + "%";
+            track.appendChild(fill);
+
+            const weekList = document.createElement("div");
+            weekList.className = "progress-weeks";
+            sections.forEach(section => {
+                const label = document.createElement("label");
+                label.className = "week-check";
+                const checkbox = document.createElement("input");
+                checkbox.type = "checkbox";
+                checkbox.checked = isComplete(course.code, section.id);
+                checkbox.setAttribute("aria-label", course.code + " " + section.label + " completed");
+                checkbox.addEventListener("change", () => {
+                    if (!progress[course.code]) progress[course.code] = {};
+                    progress[course.code][section.id] = checkbox.checked;
+                    saveProgress();
+                    renderDashboard();
+                });
+                const text = document.createElement("span");
+                text.textContent = section.label;
+                label.append(checkbox, text);
+                weekList.appendChild(label);
+            });
+
+            card.append(top, track, weekList);
+            dashboard.appendChild(card);
+        });
+
+        const totalSections = courses.length * sections.length;
+        const percentage = Math.round((completedTotal / totalSections) * 100);
+        document.getElementById("overallPercent").textContent = percentage + "%";
+        document.getElementById("overallCaption").textContent =
+            completedTotal + " of " + totalSections + " study sections completed";
+        document.getElementById("overallFill").style.width = percentage + "%";
+        document.getElementById("completedCount").textContent = completedTotal;
+        document.getElementById("coursesStarted").textContent = coursesStarted;
+    }
+
+    document.getElementById("resetProgress").addEventListener("click", () => {
+        if (!window.confirm("Reset all your saved study progress on this device?")) return;
+        progress = {};
+        saveProgress();
+        renderDashboard();
+    });
+
+    function examDateTime(exam) {
+        const [year, month, day] = exam.date.split("-").map(Number);
+        const [hour, minute] = exam.time.split(":").map(Number);
+        return new Date(year, month - 1, day, hour, minute, 0, 0);
+    }
+
+    function formatExamDate(exam) {
+        return examDateTime(exam).toLocaleDateString("en-NG", {
+            weekday: "long", day: "numeric", month: "long", year: "numeric"
+        });
+    }
+
+    function renderExams() {
+        const now = new Date();
+        const upcoming = examSchedule
+            .map(exam => ({ ...exam, startsAt: examDateTime(exam) }))
+            .filter(exam => exam.startsAt.getTime() > now.getTime())
+            .sort((a, b) => a.startsAt - b.startsAt);
+
+        const list = document.getElementById("upcomingPapers");
+        const count = document.getElementById("upcomingCount");
+        list.innerHTML = "";
+        count.textContent = upcoming.length + (upcoming.length === 1 ? " paper" : " papers");
+
+        if (!upcoming.length) {
+            document.getElementById("nextExamCourse").textContent = "No upcoming papers";
+            document.getElementById("nextExamDate").textContent = "All listed exams have passed.";
+            document.getElementById("countdownMessage").textContent = "Check back when the next timetable is added.";
+            ["countDays", "countHours", "countMinutes", "countSeconds"].forEach(id => {
+                document.getElementById(id).textContent = "0";
+            });
+            list.innerHTML = '<p class="empty-exams">There are no upcoming papers in the timetable currently added.</p>';
+            return;
+        }
+
+        const next = upcoming[0];
+        document.getElementById("nextExamCourse").textContent = next.course + " · " + next.title;
+        document.getElementById("nextExamDate").textContent = formatExamDate(next) + " · " + next.session;
+
+        upcoming.forEach((exam, index) => {
+            const item = document.createElement("div");
+            item.className = "exam-item" + (index === 0 ? " next" : "");
+            const date = document.createElement("div");
+            date.className = "exam-date";
+            date.textContent = exam.startsAt.toLocaleDateString("en-NG", { day: "numeric", month: "short" });
+            const detail = document.createElement("div");
+            detail.className = "exam-detail";
+            const strong = document.createElement("strong");
+            strong.textContent = exam.course;
+            const sub = document.createElement("span");
+            sub.textContent = exam.title;
+            detail.append(strong, sub);
+            const time = document.createElement("div");
+            time.className = "exam-time";
+            time.textContent = exam.session;
+            item.append(date, detail, time);
+            list.appendChild(item);
+        });
+
+        const diff = Math.max(0, next.startsAt.getTime() - now.getTime());
+        const days = Math.floor(diff / 86400000);
+        const hours = Math.floor((diff % 86400000) / 3600000);
+        const minutes = Math.floor((diff % 3600000) / 60000);
+        const seconds = Math.floor((diff % 60000) / 1000);
+        document.getElementById("countDays").textContent = days;
+        document.getElementById("countHours").textContent = String(hours).padStart(2, "0");
+        document.getElementById("countMinutes").textContent = String(minutes).padStart(2, "0");
+        document.getElementById("countSeconds").textContent = String(seconds).padStart(2, "0");
+        document.getElementById("countdownMessage").textContent =
+            "Countdown uses your device's local time (Nigeria time for your current setup).";
+    }
+
+    renderDashboard();
+    renderExams();
+    setInterval(renderExams, 1000);
+    document.addEventListener("visibilitychange", () => {
+        if (!document.hidden) renderExams();
+    });
+})();
+</script>
 
 </body>
 </html>
