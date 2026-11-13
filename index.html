@@ -389,6 +389,69 @@
             color: #9a8b80;
         }
 
+        /* ABOUT THE CREATOR */
+
+        .about-section {
+            margin: 42px 0 34px;
+        }
+
+        .about-card {
+            display: grid;
+            grid-template-columns: auto minmax(0, 1fr);
+            align-items: center;
+            gap: 24px;
+            padding: 30px;
+            border: 1px solid var(--border);
+            border-radius: 20px;
+            background: linear-gradient(135deg, #fffdfb 0%, #f4e9df 100%);
+            box-shadow: 0 8px 26px rgba(74, 53, 40, 0.07);
+        }
+
+        .about-avatar {
+            width: 76px;
+            height: 76px;
+            display: grid;
+            place-items: center;
+            border-radius: 22px;
+            background: linear-gradient(145deg, #8d6d58, #5b493f);
+            color: #fffaf5;
+            font-size: 28px;
+            font-weight: 800;
+            letter-spacing: -1px;
+            box-shadow: 0 8px 18px rgba(91, 73, 63, 0.18);
+        }
+
+        .about-label {
+            display: inline-block;
+            margin-bottom: 8px;
+            color: #8b634b;
+            font-size: 11px;
+            font-weight: 800;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+        }
+
+        .about-copy h2 {
+            margin-bottom: 9px;
+            color: var(--navy);
+            font-size: 23px;
+            letter-spacing: -0.5px;
+        }
+
+        .about-copy p {
+            max-width: 820px;
+            color: #5f6d76;
+            font-size: 14px;
+            line-height: 1.8;
+            margin-bottom: 9px;
+        }
+
+        .about-signoff {
+            color: #795944 !important;
+            font-weight: 750;
+            margin-bottom: 0 !important;
+        }
+
         /* FOOTER */
 
         footer {
@@ -401,6 +464,9 @@
         /* TABLET */
 
         @media (max-width: 950px) {
+            .about-card {
+                grid-template-columns: 1fr;
+            }
 
             .nav-links {
                 gap: 17px;
@@ -1271,6 +1337,28 @@
 
     </main>
 
+
+    <section class="about-section" aria-labelledby="about-creator-title">
+        <div class="about-card">
+            <div class="about-avatar" aria-hidden="true">J</div>
+            <div class="about-copy">
+                <span class="about-label">Made by a Miva student, for Miva students</span>
+                <h2 id="about-creator-title">About the Creator</h2>
+                <p>
+                    Hi, I'm Jesse Ozore, a Business Management student and the creator
+                    of the Miva Revision Hub. I built this platform to make studying
+                    and exam preparation easier by bringing course summaries, practice
+                    quizzes and revision resources together in one place.
+                </p>
+                <p>
+                    What started as a personal study resource has grown into something
+                    I can share with fellow Miva students. I hope it makes your learning
+                    experience a little easier. Good luck with your exams!
+                </p>
+                <p class="about-signoff">Designed and developed by Jesse Ozore.</p>
+            </div>
+        </div>
+    </section>
 
     <footer>
         Miva Revision Hub · Business Management · 100 Level · Semester 2
